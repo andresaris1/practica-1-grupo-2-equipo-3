@@ -18,32 +18,27 @@ public class Factura {
     public String toString() {
         ArrayList elementos = new ArrayList();
 
-        for(int i = 0;i<=this.items.length;i++){
-            String a=items
-
-            
+        for (int i = 0; i <= this.items.length; i++) {
+            System.out.println(items[i].getClass());
         }
 
+        String PrintFactura = ("-------------------------------------------" + "\n" +
+                "Codigo de factura: " + this.codigo + "\n" +
+                "Fecha y Hora: " + this.date + "\n" +
+                "Empleado: " + this.empleado.getNombre() + "\n" +
+                "Cliente: " + this.cliente.getNombre() + "\n" +
 
+                "Cosa                        Valor" + "\n" +
 
-        String PrintFactura = 
-        ("-------------------------------------------" + "\n" +
-        "Codigo de factura: " + this.codigo + "\n" +
-        "Fecha y Hora: " + this.date + "\n" +
-        "Empleado: " + this.empleado.getNombre() + "\n" +
-        "Cliente: " + this.cliente.getNombre() + "\n" +
-
-        "Cosa                        Valor" + "\n" +
-
-        "-------------------------------------------");
+                "-------------------------------------------");
 
         return PrintFactura;
 
     }
 
-    int calcularTotal(){
+    int calcularTotal() {
         return codigo;
-        
+
     }
 
     public Factura(Usuario cliente, Empleado empleado, Object[] items) {
@@ -58,7 +53,6 @@ public class Factura {
         this.codigo = this.contador;
 
     }
-
 
     // GETERS AND SETTERS
     public int getCodigo() {

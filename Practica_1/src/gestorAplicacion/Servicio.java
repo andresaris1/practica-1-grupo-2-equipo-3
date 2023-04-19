@@ -5,12 +5,12 @@ public class Servicio {
     //clase para los servicios adicionales(jacuzzi, lavado de ropa,etc)
 
     String nombre;
-    int Valor;
+    int valor;
 
     //CONSTRUCTOR
     public Servicio(String nombre, int valor) {
         this.nombre = nombre;
-        Valor = valor;
+        this.valor = valor;
     }
 
     //GETTERS AND SETTERS
@@ -23,11 +23,11 @@ public class Servicio {
     }
 
     public int getValor() {
-        return Valor;
+        return this.valor;
     }
 
     public void setValor(int valor) {
-        Valor = valor;
+        this.valor = valor;
     }
 
     
