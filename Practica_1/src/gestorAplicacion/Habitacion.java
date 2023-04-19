@@ -1,20 +1,38 @@
 package gestorAplicacion;
 
 public class Habitacion {
+    String nombre;
+    int valor;
     int numero;
     String tipo;
-    int valor;
-    String nombre;
 
-    //CONSTRUCTOR
-    public Habitacion(int numero, String tipo, int valor) {
+    //METODOS
+
+    //CONTRUCTOR
+    public Habitacion(int valor, int numero, String tipo) {
+        this.valor = valor;
         this.numero = numero;
         this.tipo = tipo;
-        this.valor = valor;
-        this.nombre = "Habitacion"+tipo;
+        this.nombre="Habitacion"+this.tipo;
     }
 
     //GETTERS AND SETTERS
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
     public int getNumero() {
         return numero;
     }
@@ -31,20 +49,6 @@ public class Habitacion {
         this.tipo = tipo;
     }
 
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     
+
 }

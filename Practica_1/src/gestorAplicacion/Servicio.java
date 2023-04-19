@@ -2,7 +2,7 @@ package gestorAplicacion;
 
 public class Servicio {
     
-    //clase para los servicios adicionales(jacuzzi, lavado de ropa,etc)
+    //
 
     String nombre;
     int valor;

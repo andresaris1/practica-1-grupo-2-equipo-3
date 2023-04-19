@@ -16,11 +16,7 @@ public class Factura {
 
     // METODOS
     public String toString() {
-        ArrayList elementos = new ArrayList();
-
-        for (int i = 0; i <= this.items.length; i++) {
-            System.out.println(items[i].getClass());
-        }
+        
 
         String PrintFactura = ("-------------------------------------------" + "\n" +
                 "Codigo de factura: " + this.codigo + "\n" +
