@@ -1,58 +1,53 @@
 package gestorAplicacion;
 
-public class Habitacion {
-    String nombre;
-    int valor;
+public class Habitacion extends Servicio {
     int numero;
     String tipo;
+    int capacidad;
+
 
     //METODOS
-    @Override
-    public String toString() {
-        return (this.nombre+"--------"+this.valor);
-    }
+
+    //verificar disponibilidad
 
     //CONTRUCTOR
-    public Habitacion(int valor, int numero, String tipo) {
-        this.valor = valor;
+    public Habitacion(int valor, int numero, String tipo, int capacidad) {
+        super("Habitacion "+tipo, valor);
         this.numero = numero;
         this.tipo = tipo;
-        this.nombre="Habitacion "+this.tipo;
+        this.capacidad = capacidad;
     }
 
     //GETTERS AND SETTERS
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
     public int getNumero() {
         return numero;
     }
+
 
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
+
     public String getTipo() {
         return tipo;
     }
+
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    
 
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+
+    
 }

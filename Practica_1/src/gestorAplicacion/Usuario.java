@@ -9,6 +9,11 @@ public class Usuario extends Persona {
     
     //METODOS
 
+    @Override
+    public String obtenerInformacion() {
+        return "d";
+    }
+
     //CONSTRUCTOR
     public Usuario(String nombre, int identificacion, int telefono, String tipo, int cuentaBancaria) {
         super(nombre, identificacion, telefono);
@@ -40,6 +45,8 @@ public class Usuario extends Persona {
     public void setListaFacturas(ArrayList<Factura> listaFacturas) {
         this.listaFacturas = listaFacturas;
     }
+
+
 
     
 

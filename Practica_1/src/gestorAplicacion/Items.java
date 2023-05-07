@@ -6,7 +6,7 @@ abstract public class Items {
     String nombre;
     int valor;
 
-    abstract public {}
+    
     
     public String toString() {
         return (this.nombre+"--------"+this.valor);

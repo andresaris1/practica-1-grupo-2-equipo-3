@@ -9,20 +9,20 @@ public class Factura {
     String date;
     Usuario cliente;
     Empleado empleado;
-    Object[] items;
+    Servicio[] items;
     int valorTotal;
     static int contador = 0;
 
     // METODOS
 
-    public int valorTotal() {
+    public void valorTotal() {
         int total=0;
 
         for (int i = 0; i < items.length; i++){
-            //int x=items[i].getValor;
+            int x=items[i].getValor();
+            total=+x;
         }
-
-        return total;
+        this.valorTotal=total;
 
     }
         
@@ -44,6 +44,7 @@ public class Factura {
 
                 "Cosa                        Valor" + "\n" +
                 lista+"\n"+
+                "Valor total:  "+valorTotal+"\n" +
 
                 "-------------------------------------------");
 
@@ -51,13 +52,9 @@ public class Factura {
 
     }
 
-    int calcularTotal() {
-        return codigo;
-
-    }
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Object[] items) {
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items) {
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
@@ -111,11 +108,11 @@ public class Factura {
         this.valorTotal = valorTotal;
     }
 
-    public Object[] getItems() {
+    public Servicio[] getItems() {
         return items;
     }
 
-    public void setItems(Object[] items) {
+    public void setItems(Servicio[] items) {
         this.items = items;
     }
 
