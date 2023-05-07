@@ -15,16 +15,17 @@ public class Factura {
 
     // METODOS
 
-    public String prueba() {
-        String lista = "";
-        for (int i = 0; i < items.length; i++) {
-            String cadena = items[i].toString();
-            lista = lista + cadena + "\n";
+    public int valorTotal() {
+        int total=0;
+
+        for (int i = 0; i < items.length; i++){
+            //int x=items[i].getValor;
         }
 
-        return lista;
+        return total;
 
     }
+        
 
     public String PrintFactura() {
 

@@ -8,11 +8,8 @@ public class Empleado extends Persona{
     //METODOS 
 
     //CONSTRUCTOR
-    public Empleado(String nombre, int identificacion, int telefono, String cargo, int nomina) {
-        super(nombre, identificacion, telefono);
-        this.cargo = cargo;
-        this.nomina = nomina;
-    }
+    
+    
 
     //GETTERS AND SETTERS
     public String getCargo() {

@@ -6,14 +6,12 @@ abstract public class Persona {
     int telefono;
 
     //METODOS
-
-    //CONSTRUCTOR
     public Persona(String nombre, int identificacion, int telefono) {
         this.nombre = nombre;
         this.identificacion = identificacion;
         this.telefono = telefono;
     }
-
+    
     //GETTERS AND SETTERS
     public String getNombre() {
         return nombre;
