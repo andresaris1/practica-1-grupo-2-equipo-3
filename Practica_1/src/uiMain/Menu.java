@@ -2,6 +2,10 @@ package uiMain;
 
 import java.util.Scanner;
 
+import gestorAplicacion.Usuario;
+import uiMain.Main;
+import gestorAplicacion.*;
+
 public class Menu {
 
     public static void main(String[] args) {
@@ -24,7 +28,18 @@ public class Menu {
                 // Codigo de la funcionalidad reserva
                 break;
             case 2:
-                // codigo de cobros
+                System.out.println("Ingrese la identificacion del usuario: ");
+                int id = sc.nextInt();
+
+                for (int i = 0; i < Main.ListaUsuarios.length; i++) {
+                    int x=Main.ListaUsuarios[i].getIdentificacion();
+                    if (id==x){
+                        System.out.println("Es la misma, pagaaaaa");
+                    }2
+                    
+
+                }
+
                 break;
             case 3:
                 // Codigo de la funcionalidad reserva de tours
@@ -42,8 +57,9 @@ public class Menu {
             default:
                 System.out.println("Opcion Invalida");
                 break;
-
         }
+
         sc.close();
+
     }
 }

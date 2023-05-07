@@ -11,10 +11,10 @@ public class Factura {
     Empleado empleado;
     Servicio[] items;
     int valorTotal;
+    int estado; //0 Deudo 1 Pago
     static int contador = 0;
 
     // METODOS
-
     public void valorTotal() {
         int total=0;
 
@@ -26,7 +26,6 @@ public class Factura {
 
     }
         
-
     public String PrintFactura() {
 
         String lista = "";
@@ -51,6 +50,11 @@ public class Factura {
         return PrintFactura;
 
     }
+
+    public void Cobros(){
+        
+    }
+
 
 
     // CONSTRUCTOR
@@ -123,5 +127,15 @@ public class Factura {
     public static void setContador(int contador) {
         Factura.contador = contador;
     }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    
 
 }
