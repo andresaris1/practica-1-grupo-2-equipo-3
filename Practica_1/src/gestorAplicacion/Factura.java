@@ -1,6 +1,5 @@
 package gestorAplicacion;
 
-import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,16 +14,35 @@ public class Factura {
     static int contador = 0;
 
     // METODOS
-    public String toString() {
-        
 
-        String PrintFactura = ("-------------------------------------------" + "\n" +
+    public String prueba() {
+        String lista = "";
+        for (int i = 0; i < items.length; i++) {
+            String cadena = items[i].toString();
+            lista = lista + cadena + "\n";
+        }
+
+        return lista;
+
+    }
+
+    public String PrintFactura() {
+
+        String lista = "";
+        for (int i = 0; i < items.length; i++) {
+            String cadena = items[i].toString();
+            lista = lista + cadena + "\n";
+        }
+
+        String PrintFactura = 
+                ("-------------------------------------------" + "\n" +
                 "Codigo de factura: " + this.codigo + "\n" +
                 "Fecha y Hora: " + this.date + "\n" +
                 "Empleado: " + this.empleado.getNombre() + "\n" +
                 "Cliente: " + this.cliente.getNombre() + "\n" +
 
                 "Cosa                        Valor" + "\n" +
+                lista+"\n"+
 
                 "-------------------------------------------");
 
@@ -37,6 +55,7 @@ public class Factura {
 
     }
 
+    // CONSTRUCTOR
     public Factura(Usuario cliente, Empleado empleado, Object[] items) {
         this.cliente = cliente;
         this.empleado = empleado;
@@ -46,7 +65,7 @@ public class Factura {
         this.date = dateFormat.format(new Date());
 
         Factura.contador = +1;
-        this.codigo = this.contador;
+        this.codigo = Factura.contador;
 
     }
 

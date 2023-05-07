@@ -7,13 +7,17 @@ public class Habitacion {
     String tipo;
 
     //METODOS
+    @Override
+    public String toString() {
+        return (this.nombre+"--------"+this.valor);
+    }
 
     //CONTRUCTOR
     public Habitacion(int valor, int numero, String tipo) {
         this.valor = valor;
         this.numero = numero;
         this.tipo = tipo;
-        this.nombre="Habitacion"+this.tipo;
+        this.nombre="Habitacion "+this.tipo;
     }
 
     //GETTERS AND SETTERS

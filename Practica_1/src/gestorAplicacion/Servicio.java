@@ -1,11 +1,14 @@
 package gestorAplicacion;
 
 public class Servicio {
-    
-    //
-
     String nombre;
     int valor;
+
+    //METODOS
+    @Override
+    public String toString() {
+        return (this.nombre+"--------"+this.valor);
+    }
 
     //CONSTRUCTOR
     public Servicio(String nombre, int valor) {
