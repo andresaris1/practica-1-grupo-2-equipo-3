@@ -69,6 +69,11 @@ public class Menu {
                         Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
                         destinosSeleccionados.add(destinoSeleccionado);
                         System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
+                        
+                        // Crear la factura y registrarla en la lista del cliente
+                        Factura factura = new Factura(Main.usuario1, Main.empleado1, new Servicio[0], destinoSeleccionado);
+                        Main.usuario1.getListaFacturas().add(factura);
+
                     } else {
                         System.out.println("Opción inválida");
                     }
