@@ -9,6 +9,7 @@ import java.util.HashMap;
 import gestorAplicacion.Usuario;
 import uiMain.Main;
 import gestorAplicacion.*;
+import gestorAplicacion.Destinos;
 
 public class Menu {
 
@@ -48,6 +49,48 @@ public class Menu {
                 String id = sc.next();
                 break;
             case 3:
+<<<<<<< HEAD
+=======
+                ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
+
+                while (true) {
+                    System.out.println("Seleccione un destino:");
+
+                    int index = 1;
+                    for (Destinos destino : Destinos.values()) {
+                        System.out.println(index + ". " + destino);
+                        index++;
+                    }
+
+                    System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
+                    int numDestino = sc.nextInt();
+
+                    if (numDestino == 0) {
+                        break; // Salir del bucle si se ingresa 0
+                    }
+
+                    if (numDestino >= 1 && numDestino <= Destinos.values().length) {
+                        Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
+                        destinosSeleccionados.add(destinoSeleccionado);
+                        System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
+                        
+                        // Crear la factura y registrarla en la lista del cliente
+                        Factura factura = new Factura(Main.usuario1, Main.empleado1, new Servicio[0], destinoSeleccionado);
+                        Main.usuario1.getListaFacturas().add(factura);
+
+                    } else {
+                        System.out.println("Opción inválida");
+                    }
+                }
+
+                System.out.println("Destinos seleccionados:");
+                for (Destinos destino : destinosSeleccionados) {
+                    System.out.println(destino);
+                }
+                // Codigo de la funcionalidad reserva de tours
+                break;
+            case 4:
+>>>>>>> 1d69e64b72e549e17eb9f1faedd7193241e995cf
                 // Codigo para la funcionalidad Reserva de eventos
 
                 // Le pedimos su información al cliente
@@ -117,7 +160,7 @@ public class Menu {
                 int deudaTotal = Factura.sumarDeuda(user);
 
                 System.out.println("Se tiene una deuda de "+deudaTotal+"correspondiente a las facturas"+Factura.imprimirCodigos(listaDeuda));
-                                
+                        
 
                 break;
             case 5:
