@@ -11,7 +11,7 @@ public class Main {
   Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
   Habitacion hab1 = new Habitacion(0, 0, null, 0);
   Servicio ser1 = new Servicio("piscina", 34);
-  Factura f1 = new Factura(usuario1, empleado1, new Servicio[] { hab1, ser1 });
+  static Factura f1 = new Factura(usuario1, empleado1, new Servicio[] { hab1, ser1 });
 
 public static  Usuario[] ListaUsuarios = {usuario1,usuario2,usuario3,usuario4};
 
