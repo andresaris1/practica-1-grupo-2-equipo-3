@@ -38,8 +38,12 @@ public class Menu {
                 break;
             case 4:
                 // Codigo para la funcionalidad Reserva de eventos
+
+                //Le pedimos su información al cliente
                 System.out.println("Escribe tu identificacion: ");
                 id = sc.next();
+                System.out.println("Escribe tu nombre:");
+                nombre = sc.next();
                 System.out.println("Escribe el lugar en el que desea su evento: ");
                 System.out.println("1. Terraza");
                 System.out.println("2. Piscina");
@@ -47,19 +51,43 @@ public class Menu {
                 System.out.println("4. Gran salón de eventos");
                 int tipoLugar = sc.nextInt();
 
-                
+                //Instanciamos el Diccionario que usaremos para guardar la información sobre los 
+                //empleados que el cliente necesita
                 HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
-                
-                System.out.println("¿Cuántos cocineros requiere?");
-                empleadosNecesarios.put("Chefs", sc.nextInt());
+                empleadosNecesarios.put("Cocineros", -1);
+                empleadosNecesarios.put("Meseros", -1);
+                empleadosNecesarios.put("Bartenders", -1);
 
-                System.out.println("¿Cuántos meseros requiere?");
-                empleadosNecesarios.put("Meseros", sc.nextInt());
-                
-                System.out.println("¿Cuántos bartenders requiere?");
-                empleadosNecesarios.put("Bartender", sc.nextInt());
+                //Pedimos al cliente que nos especifique cuántos empleados requiere
+                //de cada uno de los tres tipos que le podemos ofrecer, validadando e insistiendo
+                //el formato específico que sus respuestas deben tener
+                for(String x: empleadosNecesarios.keySet()){
+                    while(empleadosNecesarios.get(x) < 0){
+                        System.out.println("¿Cuántos "+x+" requiere?");
+                        System.out.println("Ingrese un natural mayor o igual que cero");
+                        empleadosNecesarios.put(x, sc.nextInt());
+                    }
+                }
+            
 
-                
+                //le preguntamos al cliente si desea que contratemos algún servicio extra para él
+                System.out.println("¿Desea contratar algún servicio extra? (si/no)");
+                switch(sc.next()){
+                    case "si":
+                    System.out.println("¿Qué servicio desea contratar?");
+                    System.out.println("1. Entretenimiento");
+                    System.out.println("2. Sonido");
+                    System.out.println("3. Pantalla");
+                    int servicio = sc.nextInt();
+
+
+                    break;
+                    case "no":
+                    break;
+                }
+
+                //Generar la factura para el cliente tomando en cuenta todo lo solicitado.
+
                 break;
             case 5:
                 // codigo para la funcionalidad de cobro
