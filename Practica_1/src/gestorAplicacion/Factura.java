@@ -14,6 +14,7 @@ public class Factura {
     private int valorTotal;
     private int estado; // 0 Deudo 1 Pago
     static int contador = 0;
+    private Destinos destino;
 
     // METODOS
 
@@ -25,6 +26,7 @@ public class Factura {
     public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items) {
         int x = Factura.contador + 1;
         String name = "Fac" + Integer.toString(x);
+        
         // Encontrar la manera que todos los objetos queden con nombre diferente??
     }
 
@@ -45,7 +47,7 @@ public class Factura {
      * Metodo para sumar el valor total que debe un cliente, recibe como parametro
      * un objeto de tipo usuario y regresa en entero el valor total de la deuda
      */
-    public int sumarDeuda(Usuario user) {
+    static public int sumarDeuda(Usuario user) {
         int valorDeuda = 0;
         for (int i = 0; i < user.listaFacturas.size(); i++) {
             if (user.listaFacturas.get(i).getEstado() == 0) {
@@ -57,9 +59,10 @@ public class Factura {
 
     /*
      * Metodo FacturasEnDeuda se encarga de recopilar totas las facturas no pagas de
-     * un cliente recibe como parametro usuario y regresa un array con todas las facturas no pagas
+     * un cliente recibe como parametro usuario y regresa un array con todas las
+     * facturas no pagas
      */
-    public ArrayList<Factura> facturasEnDeuda(Usuario user) {
+    static public ArrayList<Factura> facturasEnDeuda(Usuario user) {
         ArrayList<Factura> facturasDeudas = new ArrayList<Factura>();
         for (Factura factura : user.listaFacturas) {
             if (factura.getEstado() == 0) {
@@ -74,17 +77,17 @@ public class Factura {
      * recibe por parametro
      */
     static public int realizarCobro(Factura factura, int valorIngresado) {
-        int vuelto=valorIngresado-factura.getValorTotal();
+        int vuelto = valorIngresado - factura.getValorTotal();
         factura.setEstado(1);
         factura.getEmpleado().calcularComision(factura.getValorTotal());
         return vuelto;
     }
 
-    public void realizarCobro(ArrayList<Factura> facturasDeudas,int valorIngresado){
+    public void realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
         for (Factura factura : facturasDeudas) {
-            int vuelto=Factura.realizarCobro(factura, valorIngresado);
+            int vuelto = Factura.realizarCobro(factura, valorIngresado);
             System.out.println(valorIngresado);
-            valorIngresado=-vuelto;
+            valorIngresado = -vuelto;
             System.out.println(valorIngresado);
         }
     }
@@ -116,13 +119,23 @@ public class Factura {
         return PrintFactura;
     }
 
-    // metodo imprimir codigos--toString
+    //Metodo imrpimir codigos
+    static public String imprimirCodigos(ArrayList<Factura> facturas) {
+        String texto="";
+        for (Factura factura : facturas) {
+            String x=Integer.toString(factura.getCodigo());
+            texto= texto+x;
+        }
+        return texto;
+        
+    }
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Servicio[] items) {
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items,Destinos destino) {
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
+        this.destino = destino;
 
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
         this.date = dateFormat.format(new Date());
@@ -195,6 +208,14 @@ public class Factura {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+    
+    public Destinos getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destinos destino) {
+        this.destino = destino;
     }
 
 }

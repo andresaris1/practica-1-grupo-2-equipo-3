@@ -9,7 +9,7 @@ public class Empleado extends Persona {
 
     // METODOS
     @Override
-    public String obtenerInformacion() {
+    public String informacion() {
         return "Empleado " + nombre;
     }
 
