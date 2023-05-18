@@ -38,6 +38,7 @@ public class Menu {
                 String fsalida = sc.next();
                 Reserva reserva = new Reserva(Main.f1, fentrada, fsalida, 2000, Main.usuario1);
                 System.out.println(reserva);
+                
                 break;
 
             /*
