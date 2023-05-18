@@ -27,9 +27,6 @@ public class Menu {
         System.out.println("Eliga una opción: ");
         int opcion = sc.nextInt();
 
-        String hola = Main.usuario1.getNombre();
-        System.out.print(hola);
-
         switch (opcion) {
             case 1:
                 System.out.println(
