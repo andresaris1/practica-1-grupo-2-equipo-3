@@ -36,7 +36,7 @@ public class Factura {
 
         for (int i = 0; i < items.length; i++) {
             int x = items[i].getValor();
-            total = +x;
+            total += x;
         }
         this.valorTotal = total;
     }
@@ -51,7 +51,7 @@ public class Factura {
         int valorDeuda = 0;
         for (int i = 0; i < user.listaFacturas.size(); i++) {
             if (user.listaFacturas.get(i).getEstado() == 0) {
-                valorDeuda = +user.listaFacturas.get(i).getValorTotal();
+                valorDeuda += user.listaFacturas.get(i).getValorTotal();
             }
         }
         return valorDeuda;
@@ -93,45 +93,42 @@ public class Factura {
     }
 
     /*
-     * Metodo imprimir factura se engarda de imprimir la imformacion principal
+     * Metodo imprimirFactura se encarga de imprimir la imformacion principal
      * de la factura con formato de interfaz
      */
     public String imprimirFactura() {
-
+        StringBuilder sb = new StringBuilder();
         String lista = "";
         for (int i = 0; i < items.length; i++) {
             String cadena = items[i].toString();
             lista = lista + cadena + "\n";
         }
 
-        String PrintFactura = ("-------------------------------------------" + "\n" +
-                "Codigo de factura: " + this.codigo + "\n" +
-                "Fecha y Hora: " + this.date + "\n" +
-                "Empleado: " + this.empleado.getNombre() + "\n" +
-                "Cliente: " + this.cliente.getNombre() + "\n" +
+        sb.append("-------------------------------------------").append("\n");
+        sb.append("Codigo de factura: ").append(this.codigo).append("\n");
+        sb.append("Fecha y Hora: ").append(this.date).append("\n");
+        sb.append("Empleado: ").append(this.empleado.getNombre()).append("\n");
+        sb.append("Cliente: ").append(this.cliente.getNombre()).append("\n");
+        sb.append("Cosa                        Valor").append("\n");
+        sb.append(lista).append("\n");
+        sb.append("Valor total:  ").append(valorTotal).append("\n");
+        sb.append("-------------------------------------------");
 
-                "Cosa                        Valor" + "\n" +
-                lista + "\n" +
-                "Valor total:  " + valorTotal + "\n" +
-
-                "-------------------------------------------");
-
-        return PrintFactura;
+        return sb.toString();
     }
 
     //Metodo imrpimir codigos
     static public String imprimirCodigos(ArrayList<Factura> facturas) {
-        String texto="";
+        StringBuilder sb = new StringBuilder();
         for (Factura factura : facturas) {
-            String x=Integer.toString(factura.getCodigo());
-            texto= texto+x;
+            String x = Integer.toString(factura.getCodigo());
+            sb.append(x);
         }
-        return texto;
-        
+        return sb.toString();
     }
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Servicio[] items,Destinos destino) {
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
@@ -140,12 +137,11 @@ public class Factura {
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
         this.date = dateFormat.format(new Date());
 
-        Factura.contador = +1;
+        Factura.contador += 1;
         this.codigo = Factura.contador;
-
     }
 
-    // GETERS AND SETTERS
+    // GETTERS AND SETTERS
     public int getCodigo() {
         return codigo;
     }
