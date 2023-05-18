@@ -7,7 +7,7 @@ abstract public class Persona {
 
     // METODOS
 
-    public abstract String obtenerInformacion();
+    public abstract String informacion();
 
     // CONSTRUCTOR
     public Persona(String nombre, int identificacion, int telefono) {

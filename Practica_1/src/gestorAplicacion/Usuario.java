@@ -1,6 +1,5 @@
 package gestorAplicacion;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Usuario extends Persona {
@@ -11,10 +10,11 @@ public class Usuario extends Persona {
     //METODOS
 
     @Override
-    public String obtenerInformacion() {
-        return "Usuario:";
+    public String informacion() {
+        return ("Nombre: "+this.getNombre()+"\n"+
+                "Telefono: "+this.getTelefono()+"\n"+
+                "Documento: "+this.getIdentificacion()+"\n");
     }
-
 
     //CONSTRUCTOR
     public Usuario(String nombre, int identificacion, int telefono, String tipo, int cuentaBancaria) {
