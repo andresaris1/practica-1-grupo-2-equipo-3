@@ -9,6 +9,7 @@ import java.util.HashMap;
 import gestorAplicacion.Usuario;
 import uiMain.Main;
 import gestorAplicacion.*;
+import gestorAplicacion.Destinos;
 
 public class Menu {
 
@@ -46,22 +47,36 @@ public class Menu {
 
                 break;
             case 3:
-                  System.out.println("Seleccione un destino:");
+                ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
-                int index = 1;
-                for (Destinos destino : Destinos.values()) {
-                    System.out.println(index + ". " + destino);
-                    index++;
+                while (true) {
+                    System.out.println("Seleccione un destino:");
+
+                    int index = 1;
+                    for (Destinos destino : Destinos.values()) {
+                        System.out.println(index + ". " + destino);
+                        index++;
+                    }
+
+                    System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
+                    int numDestino = sc.nextInt();
+
+                    if (numDestino == 0) {
+                        break; // Salir del bucle si se ingresa 0
+                    }
+
+                    if (numDestino >= 1 && numDestino <= Destinos.values().length) {
+                        Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
+                        destinosSeleccionados.add(destinoSeleccionado);
+                        System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
+                    } else {
+                        System.out.println("Opción inválida");
+                    }
                 }
 
-                System.out.println("Ingrese el número del destino seleccionado: ");
-                int numDestino = sc.nextInt();
-
-                if (numDestino >= 1 && numDestino <= Destinos.values().length) {
-                    Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
-                    System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
-                } else {
-                    System.out.println("Opción inválida");
+                System.out.println("Destinos seleccionados:");
+                for (Destinos destino : destinosSeleccionados) {
+                    System.out.println(destino);
                 }
                 // Codigo de la funcionalidad reserva de tours
                 break;
