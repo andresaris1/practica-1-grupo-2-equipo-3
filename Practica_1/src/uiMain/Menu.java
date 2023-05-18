@@ -92,7 +92,7 @@ public class Menu {
                     System.out.println("3. Pantalla");
                     int servicio = sc.nextInt();
 
-
+                    
                     break;
                     case "no":
                     break;
