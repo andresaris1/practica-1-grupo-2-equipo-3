@@ -15,9 +15,6 @@ public class Usuario extends Persona {
         return "Usuario:";
     }
 
-    
-
-
 
     //CONSTRUCTOR
     public Usuario(String nombre, int identificacion, int telefono, String tipo, int cuentaBancaria) {

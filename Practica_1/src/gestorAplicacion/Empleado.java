@@ -3,14 +3,19 @@ package gestorAplicacion;
 //crear una clase abstracta llamada persona que tenga los atributos abstractos nombrey valor, ademas que tenga un metodo abstracto llamado obtener
 
 public class Empleado extends Persona {
-    String cargo;
-    int comision;
-    int nomina; // Valor prestablecido
+    private String cargo;
+    private double comision;
+    private int nomina; // Valor prestablecido
 
     // METODOS
     @Override
     public String obtenerInformacion() {
         return "Empleado " + nombre;
+    }
+
+    public void calcularComision(int valorPagado){
+        double x=0.02*valorPagado;
+        this.comision=+x;
     }
 
     // CONSTRUCTOR
@@ -30,11 +35,11 @@ public class Empleado extends Persona {
         this.cargo = cargo;
     }
 
-    public int getComision() {
+    public double getComision() {
         return comision;
     }
 
-    public void setComision(int comision) {
+    public void setComision(double comision) {
         this.comision = comision;
     }
 

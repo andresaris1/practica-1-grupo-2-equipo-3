@@ -57,9 +57,7 @@ public class Factura {
 
     /*
      * Metodo FacturasEnDeuda se encarga de recopilar totas las facturas no pagas de
-     * un cliente
-     * recibe como parametro usuario y regresa un array con todas las facturas no
-     * pagas
+     * un cliente recibe como parametro usuario y regresa un array con todas las facturas no pagas
      */
     public ArrayList<Factura> facturasEnDeuda(Usuario user) {
         ArrayList<Factura> facturasDeudas = new ArrayList<Factura>();
@@ -75,16 +73,21 @@ public class Factura {
      * Metodo realizarCobro realizar el cobro mediante Efectivo de la factura que
      * recibe por parametro
      */
-    public int realizarCobro(Factura factura, int valorIngresado) {
-
+    static public int realizarCobro(Factura factura, int valorIngresado) {
         int vuelto=valorIngresado-factura.getValorTotal();
-
         factura.setEstado(1);
+        factura.getEmpleado().calcularComision(factura.getValorTotal());
         return vuelto;
     }
 
-    // Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
-    // Met CobrarDeuda
+    public void realizarCobro(ArrayList<Factura> facturasDeudas,int valorIngresado){
+        for (Factura factura : facturasDeudas) {
+            int vuelto=Factura.realizarCobro(factura, valorIngresado);
+            System.out.println(valorIngresado);
+            valorIngresado=-vuelto;
+            System.out.println(valorIngresado);
+        }
+    }
 
     /*
      * Metodo imprimir factura se engarda de imprimir la imformacion principal
