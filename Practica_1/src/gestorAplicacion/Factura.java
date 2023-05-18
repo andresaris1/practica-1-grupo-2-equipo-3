@@ -3,36 +3,71 @@ package gestorAplicacion;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Factura {
-    int codigo;
-    String date;
-    Usuario cliente;
-    Empleado empleado;
-    Servicio[] items;
-    int valorTotal;
-    int estado; //0 Deudo 1 Pago
+    private int codigo;
+    private String date;
+    private Usuario cliente;
+    private Empleado empleado;
+    private Servicio[] items;
+    private int valorTotal;
+    private int estado; // 0 Deudo 1 Pago
     static int contador = 0;
 
     // METODOS
 
-    //Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
-    //Met CobrarDeuda
-    //Metodo para imprimir codigos
-    //Met generar factura
-    
-    public void valorTotal() {
-        int total=0;
+    // Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
+    // Met CobrarDeuda
+    // Metodo para imprimir codigos
+    // Met generar factura
 
-        for (int i = 0; i < items.length; i++){
-            int x=items[i].getValor();
-            total=+x;
+    /*
+     * Metodo para sumar el valor total que debe un cliente, recibe como parametro
+     * un objeto de tipo usuario y regresa en entero el valor total de la deuda
+     */
+    public int sumarDeuda(Usuario user) {
+        int valorDeuda = 0;
+        for (int i = 0; i < user.listaFacturas.size(); i++) {
+            if (user.listaFacturas.get(i).getEstado() == 0) {
+                valorDeuda = +user.listaFacturas.get(i).getValorTotal();
+            }
         }
-        this.valorTotal=total;
-
+        return valorDeuda;
     }
-        
-    public String PrintFactura() {
+
+    /*
+     * Metodo FacturasEnDeuda se encarga de recopilar totas las facturas no pagas de
+     * un cliente
+     * recibe como parametro usuario y regresa un array con todas las facturas no
+     * pagas
+     */
+    public ArrayList<Factura> facturasEnDeuda(Usuario user) {
+        ArrayList<Factura> facturasDeudas = new ArrayList<Factura>();
+        for (Factura factura : user.listaFacturas) {
+            if (factura.getEstado() == 0) {
+                facturasDeudas.add(factura);
+            }
+        }
+        return facturasDeudas;
+    }
+
+    /* Metodo que calcula el valor o precio total de cada factura */
+    public void valorTotal() {
+        int total = 0;
+
+        for (int i = 0; i < items.length; i++) {
+            int x = items[i].getValor();
+            total = +x;
+        }
+        this.valorTotal = total;
+    }
+
+    /*
+     * Metodo imprimir factura se engarda de imprimir la imformacion principal
+     * de la factura con formato de interfaz
+     */
+    public String imprimirFactura() {
 
         String lista = "";
         for (int i = 0; i < items.length; i++) {
@@ -40,28 +75,20 @@ public class Factura {
             lista = lista + cadena + "\n";
         }
 
-        String PrintFactura = 
-                ("-------------------------------------------" + "\n" +
+        String PrintFactura = ("-------------------------------------------" + "\n" +
                 "Codigo de factura: " + this.codigo + "\n" +
                 "Fecha y Hora: " + this.date + "\n" +
                 "Empleado: " + this.empleado.getNombre() + "\n" +
                 "Cliente: " + this.cliente.getNombre() + "\n" +
 
                 "Cosa                        Valor" + "\n" +
-                lista+"\n"+
-                "Valor total:  "+valorTotal+"\n" +
+                lista + "\n" +
+                "Valor total:  " + valorTotal + "\n" +
 
                 "-------------------------------------------");
 
         return PrintFactura;
-
     }
-
-    public void Cobros(){
-        
-    }
-
-
 
     // CONSTRUCTOR
     public Factura(Usuario cliente, Empleado empleado, Servicio[] items) {
@@ -141,7 +168,5 @@ public class Factura {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
-    
 
 }
