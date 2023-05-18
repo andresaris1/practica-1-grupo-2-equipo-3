@@ -14,6 +14,10 @@ public class Usuario extends Persona {
         return "d";
     }
 
+    //Met sumarDeuda
+    //Met FacturasEnDeuda
+    
+
     //CONSTRUCTOR
     public Usuario(String nombre, int identificacion, int telefono, String tipo, int cuentaBancaria) {
         super(nombre, identificacion, telefono);

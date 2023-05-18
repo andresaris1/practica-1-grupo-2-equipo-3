@@ -15,6 +15,12 @@ public class Factura {
     static int contador = 0;
 
     // METODOS
+
+    //Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
+    //Met CobrarDeuda
+    //Metodo para imprimir codigos
+    //Met generar factura
+    
     public void valorTotal() {
         int total=0;
 
