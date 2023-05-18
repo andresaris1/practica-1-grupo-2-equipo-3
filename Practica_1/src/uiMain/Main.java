@@ -12,7 +12,7 @@ public class Main {
   static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
   static Habitacion hab1 = new Habitacion(0, 0, null, 0);
   static Servicio ser1 = new Servicio("piscina", 34);
-  static Factura f1 = new Factura(usuario1, empleado1, null);
+  static Factura f1 = new Factura(usuario1, empleado1, null, null);
 
   static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
 

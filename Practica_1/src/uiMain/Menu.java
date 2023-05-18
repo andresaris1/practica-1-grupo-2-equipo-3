@@ -43,14 +43,15 @@ public class Menu {
                 System.out.println(reserva);
                 break;
 
+            /*
+             * case 2:
+             * // Codigo de la funcionalidad reserva de tours
+             * System.out.println("Ingrese la identificacion del usuario: ");
+             * String id = sc.next();
+             * break;
+             */
+
             case 2:
-                // Codigo de la funcionalidad reserva de tours
-                System.out.println("Ingrese la identificacion del usuario: ");
-                String id = sc.next();
-                break;
-            case 3:
-<<<<<<< HEAD
-=======
                 ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
                 while (true) {
@@ -73,9 +74,10 @@ public class Menu {
                         Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
                         destinosSeleccionados.add(destinoSeleccionado);
                         System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
-                        
+
                         // Crear la factura y registrarla en la lista del cliente
-                        Factura factura = new Factura(Main.usuario1, Main.empleado1, new Servicio[0], destinoSeleccionado);
+                        Factura factura = new Factura(Main.usuario1, Main.empleado1, new Servicio[0],
+                                destinoSeleccionado);
                         Main.usuario1.getListaFacturas().add(factura);
 
                     } else {
@@ -89,13 +91,12 @@ public class Menu {
                 }
                 // Codigo de la funcionalidad reserva de tours
                 break;
-            case 4:
->>>>>>> 1d69e64b72e549e17eb9f1faedd7193241e995cf
+            case 3:
                 // Codigo para la funcionalidad Reserva de eventos
 
                 // Le pedimos su información al cliente
                 System.out.println("Escribe tu identificacion: ");
-                id = sc.next();
+                String id = sc.next();
                 System.out.println("Escribe tu nombre:");
                 String nombre = sc.next();
                 System.out.println("Escribe el lugar en el que desea su evento: ");
@@ -159,8 +160,8 @@ public class Menu {
                 ArrayList<Factura> listaDeuda = Factura.facturasEnDeuda(user);
                 int deudaTotal = Factura.sumarDeuda(user);
 
-                System.out.println("Se tiene una deuda de "+deudaTotal+"correspondiente a las facturas"+Factura.imprimirCodigos(listaDeuda));
-                        
+                System.out.println("Se tiene una deuda de " + deudaTotal + "correspondiente a las facturas"
+                        + Factura.imprimirCodigos(listaDeuda));
 
                 break;
             case 5:
