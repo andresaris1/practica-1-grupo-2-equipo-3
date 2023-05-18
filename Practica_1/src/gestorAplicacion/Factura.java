@@ -17,10 +17,20 @@ public class Factura {
 
     // METODOS
 
+    /*Metodo generarFactura se encarga de crear las facturas ademas de almacenar 
+    la misma en la lista de cada cliente, recibe como parametro objetos de tipo 
+    usuario, empleado y una array con los servicios escogidos--
+     */
+    public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items){
+        
+        
+    }
+
     // Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
     // Met CobrarDeuda
     // Metodo para imprimir codigos
-    // Met generar factura
+    
+
 
     /*
      * Metodo para sumar el valor total que debe un cliente, recibe como parametro
