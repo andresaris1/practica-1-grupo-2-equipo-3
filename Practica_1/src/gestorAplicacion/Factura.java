@@ -17,20 +17,29 @@ public class Factura {
 
     // METODOS
 
-    /*Metodo generarFactura se encarga de crear las facturas ademas de almacenar 
-    la misma en la lista de cada cliente, recibe como parametro objetos de tipo 
-    usuario, empleado y una array con los servicios escogidos--
+    /*
+     * Metodo generarFactura se encarga de crear las facturas ademas de almacenar
+     * la misma en la lista de cada cliente, recibe como parametro objetos de tipo
+     * usuario, empleado y una array con los servicios escogidos--
      */
-    public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items){
-        
-        
+    public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items) {
+        int x = Factura.contador + 1;
+        String name = "Fac" + Integer.toString(x);
+        // Encontrar la manera que todos los objetos queden con nombre diferente??
     }
 
-    // Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
-    // Met CobrarDeuda
-    // Metodo para imprimir codigos
-    
+    /* Metodo que calcula el valor o precio total de cada factura */
+    public void valorTotal() {
+        int total = 0;
 
+        for (int i = 0; i < items.length; i++) {
+            int x = items[i].getValor();
+            total = +x;
+        }
+        this.valorTotal = total;
+    }
+
+    // Metodo para imprimir codigos
 
     /*
      * Metodo para sumar el valor total que debe un cliente, recibe como parametro
@@ -62,16 +71,20 @@ public class Factura {
         return facturasDeudas;
     }
 
-    /* Metodo que calcula el valor o precio total de cada factura */
-    public void valorTotal() {
-        int total = 0;
+    /*
+     * Metodo realizarCobro realizar el cobro mediante Efectivo de la factura que
+     * recibe por parametro
+     */
+    public int realizarCobro(Factura factura, int valorIngresado) {
 
-        for (int i = 0; i < items.length; i++) {
-            int x = items[i].getValor();
-            total = +x;
-        }
-        this.valorTotal = total;
+        int vuelto=valorIngresado-factura.getValorTotal();
+
+        factura.setEstado(1);
+        return vuelto;
     }
+
+    // Met RealizarCobro con sobrecarga de la opcion efectivo y tarjeta
+    // Met CobrarDeuda
 
     /*
      * Metodo imprimir factura se engarda de imprimir la imformacion principal
@@ -99,6 +112,8 @@ public class Factura {
 
         return PrintFactura;
     }
+
+    // metodo imprimir codigos--toString
 
     // CONSTRUCTOR
     public Factura(Usuario cliente, Empleado empleado, Servicio[] items) {
