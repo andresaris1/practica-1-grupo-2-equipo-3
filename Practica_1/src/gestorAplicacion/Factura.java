@@ -14,6 +14,7 @@ public class Factura {
     private int valorTotal;
     private int estado; // 0 Deudo 1 Pago
     static int contador = 0;
+    private Destinos destino;
 
     // METODOS
 
@@ -25,6 +26,7 @@ public class Factura {
     public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items) {
         int x = Factura.contador + 1;
         String name = "Fac" + Integer.toString(x);
+        
         // Encontrar la manera que todos los objetos queden con nombre diferente??
     }
 
@@ -119,10 +121,11 @@ public class Factura {
     // metodo imprimir codigos--toString
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Servicio[] items) {
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items,Destinos destino) {
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
+        this.destino = destino;
 
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
         this.date = dateFormat.format(new Date());
@@ -195,6 +198,14 @@ public class Factura {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+    
+    public Destinos getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destinos destino) {
+        this.destino = destino;
     }
 
 }
