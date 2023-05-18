@@ -46,6 +46,23 @@ public class Menu {
 
                 break;
             case 3:
+                  System.out.println("Seleccione un destino:");
+
+                int index = 1;
+                for (Destinos destino : Destinos.values()) {
+                    System.out.println(index + ". " + destino);
+                    index++;
+                }
+
+                System.out.println("Ingrese el número del destino seleccionado: ");
+                int numDestino = sc.nextInt();
+
+                if (numDestino >= 1 && numDestino <= Destinos.values().length) {
+                    Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
+                    System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
+                } else {
+                    System.out.println("Opción inválida");
+                }
                 // Codigo de la funcionalidad reserva de tours
                 break;
             case 4:
