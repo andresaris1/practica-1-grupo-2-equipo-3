@@ -25,10 +25,20 @@ public class Menu {
 
         System.out.println("Eliga una opción: ");
         int opcion = sc.nextInt();
+        
+        String hola=Main.usuario1.getNombre();
+        System.out.print(hola);
 
         switch (opcion) {
             case 1:
-                // Codigo de la funcionalidad reserva
+                System.out.println("Buen dia.\nPor favor ingrese el numero de documento con el que desea hacer la reserva:\n");
+                String ide = sc.next();
+                System.out.println("Por favor ingrese la fecha de entrada en formato dd/mm/aaaa");
+                String fentrada = sc.next();
+                System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
+                String fsalida = sc.next();
+                Reserva reserva =new Reserva(Main.f1,fentrada,fsalida,2000,Main.usuario1);
+                System.out.println(reserva);
                 break;
             case 2:
                 System.out.println("Ingrese la identificacion del usuario: ");
