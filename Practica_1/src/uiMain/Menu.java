@@ -29,11 +29,6 @@ public class Menu {
 				Main.reservar();
 				break;
 
-			/*
-			 * case 2: // Codigo de la funcionalidad reserva de tours
-			 * System.out.println("Ingrese la identificacion del usuario: "); String id =
-			 * sc.next(); break;
-			 */
 
 			case 2:
 				System.out.println("Ingrese la identificación del usuario: ");
