@@ -57,14 +57,14 @@ public class Lugar extends Servicio {
     }
 
 
-    private static int valorSegunTipo(String tipo){
-        if (tipo == "Habitación familiar"){
+    public static int valorSegunTipo(String tipo){
+        if (tipo.equals("Habitación familiar")){
             return 100000;
         }
-        else if (tipo == "Habitación doble"){
+        else if (tipo.equals("Habitación doble")){
             return 80000;
         }
-        else if (tipo == "Habitación individual"){
+        else if (tipo.equals("Habitación individual")){
             return 50000;
         }
         else if (tipo == "Terraza"){
@@ -79,6 +79,10 @@ public class Lugar extends Servicio {
         else{
             return -1;
         }
+    }
+    
+    public String toString() {
+    	return "Habitacion: " + numero + " " + tipo + " con capacidad para "+capacidad+" personas";
     }
     
 }

@@ -17,6 +17,19 @@ public class Main implements Serializable {
 	private static List<Factura> facturas = new ArrayList<Factura>();
 	private static List<Usuario> clientes = new ArrayList<Usuario>();
 	
+	static Lugar h1=new Lugar(101,"Habitación individual",1);
+	static Lugar h2=new Lugar(102,"Habitación individual",1);
+	static Lugar h3=new Lugar(201,"Habitación doble",2);
+	static Lugar h4=new Lugar(202,"Habitación doble",2);
+	static Lugar h5=new Lugar(301,"Habitación familiar",4);
+	static Lugar h6=new Lugar(302,"Habitación familiar",4);
+	
+	private static List<Lugar> habitaciones = new ArrayList<Lugar>();
+	private static List<Lugar> habitacionesocupadas = new ArrayList<Lugar>();
+
+	
+	
+	
 	static Scanner sc = new Scanner(System.in);
 	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
 	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, 0);
@@ -24,8 +37,18 @@ public class Main implements Serializable {
 	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, 0);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
 	
+	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
+	
 	public Main() {
 		Deserializador.deserializar(this);
+		clientes.add(usuario1);
+		habitaciones.add(h1);
+		habitaciones.add(h2);
+		habitaciones.add(h3);
+		habitaciones.add(h4);
+		habitaciones.add(h5);
+		habitaciones.add(h6);
+		
 	}
 	
 	public static List<Reserva> getReservas() {
@@ -88,8 +111,8 @@ public class Main implements Serializable {
 		return null;
 	}
 	
-	public static Reserva nuevaReserva(Factura factura, String fechaEntrada, String fechaSalida, float aporte, Usuario cliente) {
-		Reserva reserva= new Reserva(factura, fechaEntrada, fechaSalida, aporte, cliente);
+	public static Reserva nuevaReserva(Factura factura, String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte, Usuario cliente) {
+		Reserva reserva= new Reserva(factura, fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
 		reservas.add(reserva);
 		return reserva;
 	}
@@ -100,6 +123,36 @@ public class Main implements Serializable {
 			Reserva reserva = (Reserva) iterator.next();
 			if (reserva.getCliente().getIdentificacion() == id) {
 				return reserva;
+
+			}
+		}
+		return null;
+	}
+	
+	public static Lugar nuevaHabitacion(int numero, String tipo, int capacidad) {
+		Lugar habitacion= new Lugar(numero, tipo,  capacidad);
+		habitaciones.add(habitacion);
+		return habitacion;
+	}
+	
+	public static Lugar buscarHabitacion(int id) {
+		Iterator<Lugar> iterator = habitaciones.iterator();
+		while (iterator.hasNext()) {
+			Lugar habitacion = (Lugar) iterator.next();
+			if (habitacion.getNumero() == id) {
+				return habitacion;
+
+			}
+		}
+		return null;
+	}
+	
+	public static Lugar buscarHabitacionocupadas(int id) {
+		Iterator<Lugar> iterator = habitacionesocupadas.iterator();
+		while (iterator.hasNext()) {
+			Lugar habitacion = (Lugar) iterator.next();
+			if (habitacion.getNumero() == id) {
+				return habitacion;
 
 			}
 		}
@@ -136,8 +189,36 @@ public class Main implements Serializable {
 		return lista.toString();
 	}
 	
-
-	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
+	public static String listaHabitaciones() {
+		Iterator<Lugar> iterator = habitaciones.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Lugar habitacion = (Lugar) iterator.next();
+			lista.append(habitacion.toString()+"\n");
+		}
+		return lista.toString();
+	}
+	
+	public static String listaHabitacionesocupadas() {
+		Iterator<Lugar> iterator = habitacionesocupadas.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Lugar habitacion = (Lugar) iterator.next();
+			lista.append(habitacion.toString()+"\n");
+		}
+		return lista.toString();
+	}
+	
+	public static void nodisponible(Lugar hb) {
+		habitaciones.remove(hb);
+		habitacionesocupadas.add(hb);
+	}
+	
+	public static void disponible(Lugar hb) {
+		habitaciones.add(hb);
+		habitacionesocupadas.remove(hb);
+	}
+	
 
 
 	static public Usuario buscarUsuario(int documento) {

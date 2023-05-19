@@ -5,6 +5,9 @@ package uiMain;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 import gestorAplicacion.*;
 import baseDatos.Serializador;
 
@@ -275,7 +278,10 @@ public class Menu {
 	}
 
 	static void reservar(Main main) {
+		List<Lugar> habitaciones = new ArrayList<Lugar>();
 		System.out.println("Escribe tu identificacion:");
+		int personas;
+		int valor=0;
 		int ide = sc.nextInt();
 		Usuario user = Main.buscar(ide);
 		if (user == null) {
@@ -285,13 +291,41 @@ public class Menu {
 				return;
 			}
 		}
+		System.out.println("Hola "+ user.getNombre()+ ", bienvenido");
 		System.out.println("Por favor ingrese la fecha de entrada en formato dd/mm/aaaa");
 		String fentrada = sc.next();
 		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
 		String fsalida = sc.next();
+		System.out.println("¿Para cuantas personas es la reserva?");
+		personas = sc.nextInt();
+		int suma=0;
+		do {
+			System.out.println("-- - - Habitaciones disponibles - - - -");
+			System.out.println(Main.listaHabitaciones());
+			System.out.println("¿Que habitacion desea reservar?");
+			int hb = sc.nextInt();
+			Lugar habitacion=main.buscarHabitacion(hb);
+			if (habitacion!=null) {
+				habitaciones.add(habitacion);
+				main.nodisponible(habitacion);
+				suma+=habitacion.getCapacidad();
+				valor+=habitacion.valorSegunTipo(habitacion.getTipo());
+				System.out.println("Habitacion reservada con exito");
+			}else {
+				System.out.println("Esta habitacion no está disponible");
+			}
+		}while(suma<personas);
+		System.out.println("Su reserva tiene un valor de: "+ valor);
+		System.out.println("¿Cuanto desea abonar?");
+		int abonado =sc.nextInt();
 		Factura f1 = main.nuevaFactura(user, null, null, null);
-		Reserva reserva = main.nuevaReserva(f1, fentrada, fsalida, 2000, user);
+		Reserva reserva = main.nuevaReserva(f1, fentrada, fsalida, habitaciones,(valor-abonado), user);
 		System.out.println("\n" + reserva + "\n");
+		System.out.println("Valor de la reserva: "+ valor+"\nAbonó: "+abonado+"\nResta: "+(valor-abonado));
+	}
+	
+	static void comprobarDisponibilidad() {
+		
 	}
 
 	static Usuario registro(Main main) {

@@ -3,7 +3,10 @@ package gestorAplicacion;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class Reserva {
@@ -12,24 +15,22 @@ public class Reserva {
 	private Date fechaSalida;
 	private float aporte;
 	private Usuario cliente;
-	
+	private List<Lugar> habitaciones = new ArrayList<Lugar>();
 	
 	
 	//CONSTRUCTOR
-	public Reserva(Factura factura, String fechaEntrada, String fechaSalida, float aporte, Usuario cliente) {
+	public Reserva(Factura factura, String fechaEntrada, String fechaSalida, List<Lugar> habitaciones,float aporte, Usuario cliente) {
 		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 		Date fEntrada=new Date();
 		try {
 			fEntrada = fecha.parse(fechaEntrada);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Date fSalida=new Date();
 		try {
 			fSalida = fecha.parse(fechaSalida);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.factura=factura;
@@ -37,10 +38,19 @@ public class Reserva {
 		this.fechaSalida=fSalida;
 		this.aporte=aporte;
 		this.cliente=cliente;
+		this.habitaciones=habitaciones;
 	}
 	
 	//METODOS
-	
+	public String listaHabitaciones() {
+		Iterator<Lugar> iterator = habitaciones.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Lugar habitacion = (Lugar) iterator.next();
+			lista.append(habitacion.numero+" "+habitacion.tipo+"\n");
+		}
+		return lista.toString();
+	}
 	
 	//GETTERS Y SETTERS
 	public Factura getFactura() {
@@ -73,7 +83,18 @@ public class Reserva {
 	}
 	
 	public String toString() {
-		return "la reserva se hizo Entre los dias: " + getFechaEntrada() + " y " + getFechaSalida();
+		String habitaciones=listaHabitaciones();
+		return "la reserva se hizo a nombre de: "+ cliente.nombre + " Entre los dias: " + getFechaEntrada() + " y " + getFechaSalida()+ " para las habitaciones:\n"+ habitaciones;
 	}
+
+	public List<Lugar> getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(List<Lugar> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+	
+	
 	
 }
