@@ -6,6 +6,13 @@ public class ServicioExterno extends Servicio {
     String empresaContratada;
     String descripcion;
 
+    @Override
+    public String toString() {
+        return("Servicio de "+ this.nombre +" contratado con la empresa "
+        + this.empresaContratada +" por un valor de "+this.valor+" COP"  );
+    }
+
+
     ServicioExterno(String nombre, int valor, String empresaContratada) {
         super(nombre, valor);
         this.empresaContratada = empresaContratada;
