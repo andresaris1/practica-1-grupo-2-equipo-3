@@ -73,7 +73,7 @@ public class Reserva {
 	}
 	
 	public String toString() {
-		return "la reserva se hizo a nombre de: "+ cliente.getNombre()+" Entre los dias: " + getFechaEntrada() + " y " + getFechaSalida();
+		return "la reserva se hizo Entre los dias: " + getFechaEntrada() + " y " + getFechaSalida();
 	}
 	
 }

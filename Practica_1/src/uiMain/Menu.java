@@ -238,6 +238,10 @@ public class Menu {
 				System.out.println("Gracias por preferirnos");
 				Serializador.serializar(main);
 				System.exit(0);
+				break;
+			case 7:
+				System.out.println(Main.listaReservas());
+				break;
 
 			default:
 				System.out.println("Opcion Invalida");
@@ -245,7 +249,7 @@ public class Menu {
 
 			}
 
-		} while (opcion != 5);
+		} while (opcion != 6);
 
 		sc.close();
 	}

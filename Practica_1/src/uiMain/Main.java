@@ -23,10 +23,6 @@ public class Main implements Serializable {
 	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, 0);
 	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, 0);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
-	static Lugar hab1 = new Lugar(0, null, 0);
-	static Servicio ser1 = new Servicio("piscina", 34);
-	static Factura f1 = new Factura(usuario1, empleado1, null, null);
-	static Reserva r1 = new Reserva(f1, "23/04/2023", "35/07/2024", 5000, usuario1);
 	
 	public Main() {
 		Deserializador.deserializar(this);
