@@ -16,4 +16,43 @@ public class Evento extends Servicio{
         super("Evento en "+lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes));
         this.lugar = lugar;
     }
+
+    public int calcularValor(Lugar lugar, ServicioExterno[] servicios, int duracion, int numeroAsistentes){
+        int valor = 0;
+        valor += lugar.getValor();
+        for (ServicioExterno servicioExterno : servicios) {
+            valor += servicioExterno.getValor();
+        }
+        valor += duracion*10000;
+        valor += numeroAsistentes*10000;
+        return valor;
+    }
+
+    //GETTERS AND SETTERS
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
+        this.setNombre("Evento en "+lugar.getNombre());
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+        this.setNombre("Evento de "+cliente.getNombre());
+    }
+
+    public ServicioExterno[] getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(ServicioExterno[] servicios) {
+        this.servicios = servicios;
+    }
+
 }
