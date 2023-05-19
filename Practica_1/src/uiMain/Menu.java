@@ -29,11 +29,6 @@ public class Menu {
 				Main.reservar();
 				break;
 
-			/*
-			 * case 2: // Codigo de la funcionalidad reserva de tours
-			 * System.out.println("Ingrese la identificacion del usuario: "); String id =
-			 * sc.next(); break;
-			 */
 
 			case 2:
 				System.out.println("Ingrese la identificación del usuario: ");
@@ -84,17 +79,31 @@ public class Menu {
 						Factura factura = new Factura(usuario, Main.empleado1, new Servicio[0], destinoSeleccionado);
 						usuario.getListaFacturas().add(factura);
 
-					} else {
+					} 
+					else {
 						System.out.println("Opción inválida, elija una opcion valida porfavor.");
 						continue;
 						// vuelve al inicio del bucle
 					}
 				}
-
+					
+				//muestro los destinos seleccionados 1 o mas si fue el caso
+				//del usuario
 				System.out.println("Destinos seleccionados:");
+					
 				for (Destinos destino : destinosSeleccionados) {
 					System.out.println(destino);
+					
 				}
+					
+				//
+				int valorTotalTours = 0;
+				for (Destinos destino : destinosSeleccionados) {
+					valorTotalTours += destino.getValor();
+				
+				}
+				//valor total de los tours seleccionados
+				System.out.println("Valor total de los tours seleccionados: $" + valorTotalTours);
 				// Codigo de la funcionalidad reserva de tours
 				break;
 
