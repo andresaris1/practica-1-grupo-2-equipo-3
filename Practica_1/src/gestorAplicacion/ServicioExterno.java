@@ -4,6 +4,7 @@ public class ServicioExterno extends Servicio {
     String nombre;
     int valor;
     String empresaContratada;
+    String descripcion;
 
     ServicioExterno(String nombre, int valor, String empresaContratada) {
         super(nombre, valor);
@@ -16,5 +17,13 @@ public class ServicioExterno extends Servicio {
     }
     public void setEmpresaContratada(String empresaContratada) {
         this.empresaContratada = empresaContratada;
+    }
+
+    public String getDescripcion(){
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
