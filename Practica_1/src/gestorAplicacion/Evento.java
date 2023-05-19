@@ -1,6 +1,12 @@
 package gestorAplicacion;
 
+
+
+
 import gestorAplicacion.*;
+import java.util.ArrayList;
+
+
 
 public class Evento extends Servicio{
     //ATRIBUTOS
@@ -11,13 +17,15 @@ public class Evento extends Servicio{
     private int duracion;
     private int numeroAsistentes;
 
-    //METODOS
+    //Constructor
     public Evento(Lugar lugar, Usuario Cliente, ServicioExterno[] servicios, String fecha, int duracion, int numeroAsistentes) {
         super("Evento en "+lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes));
         this.lugar = lugar;
     }
 
-    public int calcularValor(Lugar lugar, ServicioExterno[] servicios, int duracion, int numeroAsistentes){
+    //Métodos relevantes -----------------------------------------------------
+    public static int calcularValor(Lugar lugar, ServicioExterno[] servicios, int duracion, int numeroAsistentes)
+    {
         int valor = 0;
         valor += lugar.getValor();
         for (ServicioExterno servicioExterno : servicios) {
@@ -28,6 +36,9 @@ public class Evento extends Servicio{
         return valor;
     }
 
+    
+
+    //-----------------------------------------------
     //GETTERS AND SETTERS
     public Lugar getLugar() {
         return lugar;
@@ -79,4 +90,8 @@ public class Evento extends Servicio{
     public void setNumeroAsistentes(int numeroAsistentes){
         this.numeroAsistentes = numeroAsistentes;
     }
+
+
+    //otros getters no tan obvios
+    //public ArrayList<String> getEmpresasContratadas(){}
 }
