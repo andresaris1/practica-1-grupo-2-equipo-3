@@ -5,8 +5,6 @@ package uiMain;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import uiMain.Main;
 import gestorAplicacion.*;
 
 public class Menu {

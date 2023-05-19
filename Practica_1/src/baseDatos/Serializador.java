@@ -6,12 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import gestorAplicacion.*;
+import uiMain.*;
 
 public class Serializador {
 	private static File ruta=new File("src\\baseDatos\\temp");
 	
-	public static void serializar(Reserva reserva) {
+	public static void serializar(Main main) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = ruta.listFiles();
@@ -31,7 +31,7 @@ public class Serializador {
 			try {
 				fos = new FileOutputStream(file);
 				oos = new ObjectOutputStream(fos);
-				oos.writeObject(reserva.getCliente());
+				oos.writeObject(main.);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

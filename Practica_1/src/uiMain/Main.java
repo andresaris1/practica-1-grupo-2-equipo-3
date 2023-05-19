@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	static ArrayList<Usuario> clientes = new ArrayList<Usuario>();
-	static ArrayList<Usuario> reservas = new ArrayList<Usuario>();
-	static ArrayList<Usuario> lugares = new ArrayList<Usuario>();
+	
+	private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+	private static ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+	private static ArrayList<Usuario> clientes = new ArrayList<Usuario>();
 	static Scanner sc = new Scanner(System.in);
 	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
 	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, 0);
@@ -20,11 +21,7 @@ public class Main {
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
 
-	/*
-	 * Metodo de busqueda de usuario en la "base de datos" busca un usuario segun su
-	 * documento entre un array que contiene todos los usuarios creados recide
-	 * comoparemtro el documento de indentidad del usuario y regresa el objeto
-	 */
+	
 	public static Usuario registro() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite el numero de documento:\n");
@@ -100,5 +97,30 @@ public class Main {
 		}
 		return null;
 	}
+
+	public static ArrayList<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public static void setReservas(ArrayList<Reserva> reservas) {
+		Main.reservas = reservas;
+	}
+
+	public static ArrayList<Lugar> getLugares() {
+		return lugares;
+	}
+
+	public static void setLugares(ArrayList<Lugar> lugares) {
+		Main.lugares = lugares;
+	}
+	
+	public static ArrayList<Usuario> getclientes() {
+		return clientes;
+	}
+
+	public static void setLClientes(ArrayList<Usuario> clientes) {
+		Main.clientes = clientes;
+	}
+
 
 }
