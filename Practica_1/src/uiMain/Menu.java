@@ -135,7 +135,7 @@ public class Menu {
 				// Se le consulta sobre la cantidad de personas que
 				// asistirán a su evento
 				System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
-				int int numAsistentes = sc.nextInt();
+				int numAsistentes = sc.nextInt();
 
 				// Instanciamos el Diccionario que usaremos para guardar la información sobre
 				// los
