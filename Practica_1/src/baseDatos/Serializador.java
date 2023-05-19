@@ -26,7 +26,7 @@ public class Serializador {
 		}
 
 		for (File file : docs) {
-			if (file.getAbsolutePath().contains("cliente")) {
+			if (file.getAbsolutePath().contains("clientes")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
@@ -36,7 +36,7 @@ public class Serializador {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else if (file.getAbsolutePath().contains("factura")) {
+			} else if (file.getAbsolutePath().contains("facturas")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
@@ -46,7 +46,7 @@ public class Serializador {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else if (file.getAbsolutePath().contains("reserva")) {
+			} else if (file.getAbsolutePath().contains("reservas")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);

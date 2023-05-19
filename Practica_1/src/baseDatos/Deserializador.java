@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
+import java.util.List;
 import uiMain.*;
 import gestorAplicacion.*;
 
@@ -23,7 +23,7 @@ public class Deserializador {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 
-					main.setClientes((ArrayList<Usuario>) ois.readObject());
+					main.setClientes((List<Usuario>) ois.readObject());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -36,7 +36,7 @@ public class Deserializador {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 
-					main.setFacturas((ArrayList<Factura>) ois.readObject());
+					main.setFacturas((List<Factura>) ois.readObject());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -49,7 +49,7 @@ public class Deserializador {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 
-					main.setReservas((ArrayList<Reserva>) ois.readObject());
+					main.setReservas((List<Reserva>) ois.readObject());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
