@@ -20,4 +20,6 @@ public enum Destinos {
     public int getValor() {
         return valor;
     }
+
+
 }
