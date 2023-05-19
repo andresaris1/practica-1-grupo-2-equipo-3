@@ -3,6 +3,7 @@ package uiMain;
 import gestorAplicacion.*;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Scanner;
 import baseDatos.Deserializador;
@@ -44,7 +45,7 @@ public class Main implements Serializable {
 		Main.facturas = facturas;
 	}
 	
-	public Usuario registro(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
+	public static Usuario registro(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
 		Usuario cliente= new Usuario(nombre,id,telefono,tipo,cuentaBancaria);
 		clientes.add(cliente);
 		return cliente;
@@ -85,13 +86,13 @@ public class Main implements Serializable {
 		return user;
 	}
 	
-	public Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
 		Factura factura= new Factura(cliente,empleado,items,destino);
 		facturas.add(factura);
 		return factura;
 	}
 	
-	public Factura buscarFactura(int id) {
+	public static Factura buscarFactura(int id) {
 		Factura user = null;
 		for (Factura factura : facturas) {
 			if (factura.getCliente().getIdentificacion() == id) {
@@ -107,28 +108,57 @@ public class Main implements Serializable {
 		return user;
 	}
 	
-	public Factura nuevaReserva(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+	public static Factura nuevaReserva(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
 		Factura factura= new Factura(cliente,empleado,items,destino);
 		facturas.add(factura);
 		return factura;
 	}
 	
-	public Factura buscarReserva(int id) {
-		Factura user = null;
-		for (Factura factura : facturas) {
-			if (factura.getCliente().getIdentificacion() == id) {
-				System.out.println("Este factura se registra a nombre de: " + factura.getCliente().getNombre());
-				user = factura;
+	public static Reserva buscarReserva(int id) {
+		Reserva user = null;
+		for (Reserva reserva : reservas) {
+			if (reserva.getCliente().getIdentificacion() == id) {
+				System.out.println("Este factura se registra a nombre de: " + reserva.getCliente().getNombre());
+				user = reserva;
 				break;
 
 			}
 		}
 		if (user == null) {
-				System.out.println("Este cliente no tiene una factura asociada, confirme su identificacion");
+				System.out.println("Este cliente no tiene una reserva asociada, confirme su identificacion");
 		}
 		return user;
 	}
+
+	public static String listaClientes() {
+		Iterator<Usuario> iterator = clientes.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Usuario usuario = (Usuario) iterator.next();
+			lista.append(usuario.informacion()+"\n");
+		}
+		return lista.toString();
+	}
 	
+	public static String listaReservas() {
+		Iterator<Reserva> iterator = reservas.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Reserva reserva = (Reserva) iterator.next();
+			lista.append(reserva.toString()+"\n");
+		}
+		return lista.toString();
+	}
+	
+	public static String listaFacturas() {
+		Iterator<Factura> iterator = facturas.iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Factura factura = (Factura) iterator.next();
+			lista.append(factura.toString()+"\n");
+		}
+		return lista.toString();
+	}
 	
 	static Scanner sc = new Scanner(System.in);
 	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
