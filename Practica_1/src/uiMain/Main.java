@@ -3,8 +3,9 @@ package uiMain;
 import gestorAplicacion.*;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import baseDatos.Deserializador;
 
@@ -12,36 +13,46 @@ public class Main implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
-	private static ArrayList<Factura> facturas = new ArrayList<Factura>();
-	private static ArrayList<Usuario> clientes = new ArrayList<Usuario>();
+	private static List<Reserva> reservas = new ArrayList<Reserva>();
+	private static List<Factura> facturas = new ArrayList<Factura>();
+	private static List<Usuario> clientes = new ArrayList<Usuario>();
 	
+	static Scanner sc = new Scanner(System.in);
+	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
+	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, 0);
+	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, 0);
+	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, 0);
+	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
+	static Lugar hab1 = new Lugar(0, null, 0);
+	static Servicio ser1 = new Servicio("piscina", 34);
+	static Factura f1 = new Factura(usuario1, empleado1, null, null);
+	static Reserva r1 = new Reserva(f1, "23/04/2023", "35/07/2024", 5000, usuario1);
 	
 	public Main() {
 		Deserializador.deserializar(this);
 	}
 	
-	public static ArrayList<Reserva> getReservas() {
-		return reservas;
+	public static List<Reserva> getReservas() {
+		return  reservas;
 	}
 
-	public static void setReservas(ArrayList<Reserva> reservas) {
+	public static void setReservas(List<Reserva> reservas) {
 		Main.reservas = reservas;
 	}
 
-	public static ArrayList<Usuario> getClientes() {
+	public static List<Usuario> getClientes() {
 		return clientes;
 	}
 
-	public static void setClientes(ArrayList<Usuario> clientes) {
+	public static void setClientes(List<Usuario> clientes) {
 		Main.clientes = clientes;
 	}
 
-	public static ArrayList<Factura> getFacturas() {
+	public static List<Factura> getFacturas() {
 		return facturas;
 	}
 
-	public static void setFacturas(ArrayList<Factura> facturas) {
+	public static void setFacturas(List<Factura> facturas) {
 		Main.facturas = facturas;
 	}
 	
@@ -52,38 +63,15 @@ public class Main implements Serializable {
 	}
 	
 	public static Usuario buscar(int id) {
-		Usuario user = null;
-		for (Usuario usuario : clientes) {
-			if (usuario.getIdentificacion() == id) {
-				System.out.println("Este usuario está registrado como: " + usuario.getNombre());
-				user = usuario;
-				break;
+		Iterator<Usuario> iterator = clientes.iterator();
+		while (iterator.hasNext()) {
+			Usuario cliente = (Usuario) iterator.next();
+			if (cliente.getIdentificacion() == id) {
+				return cliente;
 
 			}
 		}
-		if (user == null) {
-			int opcion;
-			do {
-				System.out.println("Este usuario no existe \n ¿Desea registrarlo?");
-				System.out.println("1)Si \n2)No");
-				opcion = sc.nextInt();
-
-				switch (opcion) {
-				case 1:
-					user = registro();
-					opcion = 2;
-					System.out.println(user);
-					break;
-				case 2:
-					System.out.println("Ok");
-					break;
-				default:
-					System.out.println("Opcion no valida");
-					break;
-				}
-			} while (opcion != 2);
-		}
-		return user;
+		return null;
 	}
 	
 	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
@@ -93,41 +81,33 @@ public class Main implements Serializable {
 	}
 	
 	public static Factura buscarFactura(int id) {
-		Factura user = null;
-		for (Factura factura : facturas) {
+		Iterator<Factura> iterator = facturas.iterator();
+		while (iterator.hasNext()) {
+			Factura factura = (Factura) iterator.next();
 			if (factura.getCliente().getIdentificacion() == id) {
-				System.out.println("Este factura se registra a nombre de: " + factura.getCliente().getNombre());
-				user = factura;
-				break;
+				return factura;
 
 			}
 		}
-		if (user == null) {
-				System.out.println("Este cliente no tiene una factura asociada, confirme su identificacion");
-		}
-		return user;
+		return null;
 	}
 	
-	public static Factura nuevaReserva(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
-		Factura factura= new Factura(cliente,empleado,items,destino);
-		facturas.add(factura);
-		return factura;
+	public static Reserva nuevaReserva(Factura factura, String fechaEntrada, String fechaSalida, float aporte, Usuario cliente) {
+		Reserva reserva= new Reserva(factura, fechaEntrada, fechaSalida, aporte, cliente);
+		reservas.add(reserva);
+		return reserva;
 	}
 	
 	public static Reserva buscarReserva(int id) {
-		Reserva user = null;
-		for (Reserva reserva : reservas) {
+		Iterator<Reserva> iterator = reservas.iterator();
+		while (iterator.hasNext()) {
+			Reserva reserva = (Reserva) iterator.next();
 			if (reserva.getCliente().getIdentificacion() == id) {
-				System.out.println("Este factura se registra a nombre de: " + reserva.getCliente().getNombre());
-				user = reserva;
-				break;
+				return reserva;
 
 			}
 		}
-		if (user == null) {
-				System.out.println("Este cliente no tiene una reserva asociada, confirme su identificacion");
-		}
-		return user;
+		return null;
 	}
 
 	public static String listaClientes() {
@@ -160,15 +140,6 @@ public class Main implements Serializable {
 		return lista.toString();
 	}
 	
-	static Scanner sc = new Scanner(System.in);
-	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
-	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, 0);
-	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, 0);
-	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, 0);
-	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
-	static Lugar hab1 = new Lugar(0, null, 0);
-	static Servicio ser1 = new Servicio("piscina", 34);
-	static Factura f1 = new Factura(usuario1, empleado1, null, null);
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
 
@@ -187,24 +158,6 @@ public class Main implements Serializable {
 		return cliente;
 	}
 
-	
-
-	public static void reservar() {
-		clientes.add(usuario1);
-		clientes.add(usuario2);
-		clientes.add(usuario3);
-		clientes.add(usuario4);
-		System.out.println("Escribe tu identificacion:");
-		int ide = sc.nextInt();
-		Usuario user = buscar(ide);
-		System.out.println("Por favor ingrese la fecha de entrada en formato dd/mm/aaaa");
-		String fentrada = sc.next();
-		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
-		String fsalida = sc.next();
-		Reserva reserva = new Reserva(Main.f1, fentrada, fsalida, 2000, user);
-
-		System.out.println(reserva);
-	}
 
 	static public Usuario buscarUsuario(int documento) {
 		for (Usuario usuario : ListaUsuarios) {

@@ -6,29 +6,29 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import gestorAplicacion.*;
+import baseDatos.Serializador;
 
 public class Menu {
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		Main main = new Main();
 		int opcion;
 		do {
 			System.out.println("-- - - FUNCIONALIDADES - - - -");
-			System.out.println("1.Reservar Alojamiento");
-			System.out.println("2.Reservar Turística");
-			System.out.println("3.Reservar Evento");
-			System.out.println("4.Cobro");
-			System.out.println("5.Mostrar información de habitaciones");
-
+			System.out.println("1. Reservar Alojamiento");
+			System.out.println("2. Reservar Turística");
+			System.out.println("3. Reservar Evento");
+			System.out.println("4. Cobro");
+			System.out.println("5. Mostrar información de habitaciones");
+			System.out.println("6. Salir del sistema");
 			System.out.println("Eliga una opción: ");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
 			case 1:
-				Main.reservar();
+				reservar(main);
 				break;
-
 
 			case 2:
 				System.out.println("Ingrese la identificación del usuario: ");
@@ -79,30 +79,29 @@ public class Menu {
 						Factura factura = new Factura(usuario, Main.empleado1, new Servicio[0], destinoSeleccionado);
 						usuario.getListaFacturas().add(factura);
 
-					} 
-					else {
+					} else {
 						System.out.println("Opción inválida, elija una opcion valida porfavor.");
 						continue;
 						// vuelve al inicio del bucle
 					}
 				}
-					
-				//muestro los destinos seleccionados 1 o mas si fue el caso
-				//del usuario
+
+				// muestro los destinos seleccionados 1 o mas si fue el caso
+				// del usuario
 				System.out.println("Destinos seleccionados:");
-					
+
 				for (Destinos destino : destinosSeleccionados) {
 					System.out.println(destino);
-					
+
 				}
-					
+
 				//
 				int valorTotalTours = 0;
 				for (Destinos destino : destinosSeleccionados) {
 					valorTotalTours += destino.getValor();
-				
+
 				}
-				//valor total de los tours seleccionados
+				// valor total de los tours seleccionados
 				System.out.println("Valor total de los tours seleccionados: $" + valorTotalTours);
 				// Codigo de la funcionalidad reserva de tours
 				break;
@@ -166,12 +165,12 @@ public class Menu {
 				System.out.println("Buen día.\nPor favor ingrese el número de documento de quien desea pagar:\n");
 				int documento = sc.nextInt();
 				Usuario user = Main.buscarUsuario(documento);
-					
+
 				if (user == null) {
 					System.out.println("Usuario no encontrado en la base de datos");
-					return; 
+					return;
 					// Sale del caso 4 si el usuario no se encuentra
-				
+
 				}
 
 				System.out.println("La información ingresada corresponde a:");
@@ -181,10 +180,10 @@ public class Menu {
 				int deudaTotal = Factura.sumarDeuda(user);
 
 				System.out.println("Se tiene una deuda de " + deudaTotal + " correspondiente a las facturas "
-					+ Factura.imprimirCodigos(listaDeuda));
+						+ Factura.imprimirCodigos(listaDeuda));
 
 				System.out.println("¿Desea realizar el pago de la deuda? (S/N):");
-					String opcionPago = sc.next();
+				String opcionPago = sc.next();
 
 				if (opcionPago.equalsIgnoreCase("S")) {
 					System.out.println("Ingrese el valor a pagar: ");
@@ -192,62 +191,74 @@ public class Menu {
 
 					if (valorIngresado < deudaTotal) {
 						System.out.println("El valor ingresado es menor a la deuda total.");
-					
+
 					}
-					
+
 					else {
 						int vuelto = valorIngresado - deudaTotal;
 
 						for (Factura factura : listaDeuda) {
 							factura.setEstado(1);
-			
+
 						}
 
 						System.out.println("Pago realizado con éxito.");
 						System.out.println("Vuelto: $" + vuelto);
-					
+
 					}
-	
-				} 
-				else {
+
+				} else {
 					System.out.println("Opción inválida. Se asume que desea realizar el pago.");
 					System.out.println("Ingrese el valor a pagar: ");
 					int valorIngresado = sc.nextInt();
-					
+
 					if (valorIngresado < deudaTotal) {
 						System.out.println("El valor ingresado es menor a la deuda total.");
-		
-					} 
-					else {
+
+					} else {
 						int vuelto = valorIngresado - deudaTotal;
-			
+
 						for (Factura factura : listaDeuda) {
 							factura.setEstado(1);
-			
+
 						}
 
 						System.out.println("Pago realizado con éxito.");
 						System.out.println("Vuelto: $" + vuelto);
-		
+
 					}
-	
+
 				}
 
-	
 				break;
 			case 5:
 				// Codigo para la funcionalidad de mostrar informacion de habitaciones
 				break;
+			case 6:
+				System.out.println("Gracias por preferirnos");
+				Serializador.serializar(main);
+				System.exit(0);
 
 			default:
 				System.out.println("Opcion Invalida");
 				break;
 
 			}
-			
 
 		} while (opcion != 5);
-		
+
 		sc.close();
+	}
+
+	static void reservar(Main main) {
+		System.out.println("Escribe tu identificacion:");
+		int ide = sc.nextInt();
+		Usuario user = Main.buscar(ide);
+		System.out.println("Por favor ingrese la fecha de entrada en formato dd/mm/aaaa");
+		String fentrada = sc.next();
+		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
+		String fsalida = sc.next();
+		Factura f1=main.nuevaFactura(user,null,null,null);
+		Reserva reserva = main.nuevaReserva(f1, fentrada, fsalida, 2000, user);
 	}
 }

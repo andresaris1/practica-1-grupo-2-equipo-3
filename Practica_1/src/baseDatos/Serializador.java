@@ -10,7 +10,6 @@ import uiMain.*;
 
 public class Serializador {
 	private static File ruta = new File("src\\baseDatos\\temp");
-
 	public static void serializar(Main main) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
