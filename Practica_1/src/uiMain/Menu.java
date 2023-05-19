@@ -163,22 +163,77 @@ public class Menu {
 				break;
 			case 4:
 				// codigo para la funcionalidad de cobro final
-				System.out.println("Buen dia.\nPor favor ingrese el numero de documento de quien desea pagar:\n");
+				System.out.println("Buen día.\nPor favor ingrese el número de documento de quien desea pagar:\n");
 				int documento = sc.nextInt();
 				Usuario user = Main.buscarUsuario(documento);
+					
 				if (user == null) {
-					System.out.print("Usuario no encontrado en la base de datos");
+					System.out.println("Usuario no encontrado en la base de datos");
+					return; 
+					// Sale del caso 4 si el usuario no se encuentra
+				
 				}
 
-				System.out.print("La informacion ingresada corresponde a: ");
-				System.out.print(user.informacion());
+				System.out.println("La información ingresada corresponde a:");
+				System.out.println(user.informacion());
 
 				ArrayList<Factura> listaDeuda = Factura.facturasEnDeuda(user);
 				int deudaTotal = Factura.sumarDeuda(user);
 
-				System.out.println("Se tiene una deuda de " + deudaTotal + "correspondiente a las facturas"
-						+ Factura.imprimirCodigos(listaDeuda));
+				System.out.println("Se tiene una deuda de " + deudaTotal + " correspondiente a las facturas "
+					+ Factura.imprimirCodigos(listaDeuda));
 
+				System.out.println("¿Desea realizar el pago de la deuda? (S/N):");
+					String opcionPago = sc.next();
+
+				if (opcionPago.equalsIgnoreCase("S")) {
+					System.out.println("Ingrese el valor a pagar: ");
+					int valorIngresado = sc.nextInt();
+
+					if (valorIngresado < deudaTotal) {
+						System.out.println("El valor ingresado es menor a la deuda total.");
+					
+					}
+					
+					else {
+						int vuelto = valorIngresado - deudaTotal;
+
+						for (Factura factura : listaDeuda) {
+							factura.setEstado(1);
+			
+						}
+
+						System.out.println("Pago realizado con éxito.");
+						System.out.println("Vuelto: $" + vuelto);
+					
+					}
+	
+				} 
+				else {
+					System.out.println("Opción inválida. Se asume que desea realizar el pago.");
+					System.out.println("Ingrese el valor a pagar: ");
+					int valorIngresado = sc.nextInt();
+					
+					if (valorIngresado < deudaTotal) {
+						System.out.println("El valor ingresado es menor a la deuda total.");
+		
+					} 
+					else {
+						int vuelto = valorIngresado - deudaTotal;
+			
+						for (Factura factura : listaDeuda) {
+							factura.setEstado(1);
+			
+						}
+
+						System.out.println("Pago realizado con éxito.");
+						System.out.println("Vuelto: $" + vuelto);
+		
+					}
+	
+				}
+
+	
 				break;
 			case 5:
 				// Codigo para la funcionalidad de mostrar informacion de habitaciones
