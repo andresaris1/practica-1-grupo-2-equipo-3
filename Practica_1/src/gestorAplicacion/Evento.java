@@ -93,5 +93,14 @@ public class Evento extends Servicio{
 
 
     //otros getters no tan obvios
-    //public ArrayList<String> getEmpresasContratadas(){}
+    public ArrayList<String> getEmpresasContratadas(){
+        ArrayList<String> lista = new ArrayList<String>();
+    
+        for (ServicioExterno servicio: servicios)
+        {
+            lista.add(servicio.getEmpresaContratada()); 
+        }
+
+        return lista;
+    }
 }
