@@ -50,45 +50,64 @@ public class Menu {
              */
 
             case 2:
+                System.out.println("Ingrese la identificación del usuario: ");
+                
+                String identificacion = sc.next();
+    
+                Usuario usuario = Main.buscarUsuario(identificacion);
+                
+                if (usuario == null) {
+                    
+                 System.out.println("Usuario no encontrado en la base de datos");
+                    
+                 return; // Sale del caso 2 si el usuario no se encuentra
+                    
+                }
+
                 ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
                 while (true) {
+                    
                     System.out.println("Seleccione un destino:");
 
                     int index = 1;
                     for (Destinos destino : Destinos.values()) {
+                        
                         System.out.println(index + ". " + destino);
+                        
                         index++;
+                        
                     }
 
                     System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
                     int numDestino = sc.nextInt();
 
                     if (numDestino == 0) {
-                        break; // Salir del bucle si se ingresa 0
+                      break; // Salir del bucle si se ingresa 0
                     }
 
                     if (numDestino >= 1 && numDestino <= Destinos.values().length) {
-                        Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
-                        destinosSeleccionados.add(destinoSeleccionado);
-                        System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
+                       Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
+                       destinosSeleccionados.add(destinoSeleccionado);
+                       System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
 
-                        // Crear la factura y registrarla en la lista del cliente
-                        Factura factura = new Factura(Main.usuario1, Main.empleado1, new Servicio[0],
-                                destinoSeleccionado);
-                        Main.usuario1.getListaFacturas().add(factura);
+                       // Crear la factura y registrarla en la lista del cliente
+                       Factura factura = new Factura(usuario, Main.empleado1, new Servicio[0], destinoSeleccionado);
+                       usuario.getListaFacturas().add(factura);
 
-                    } else {
-                        System.out.println("Opción inválida");
+                    } 
+                    else :
+                    System.out.println("Opción inválida");
                     }
                 }
 
                 System.out.println("Destinos seleccionados:");
                 for (Destinos destino : destinosSeleccionados) {
-                    System.out.println(destino);
+                  System.out.println(destino);
                 }
                 // Codigo de la funcionalidad reserva de tours
                 break;
+
             case 3:
                 // Codigo para la funcionalidad Reserva de eventos
 
