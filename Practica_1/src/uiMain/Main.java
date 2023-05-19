@@ -52,7 +52,7 @@ public class Main implements Serializable {
 		Main.facturas = facturas;
 	}
 	
-	public static Usuario registro(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
+	public static Usuario registrarUsuario(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
 		Usuario cliente= new Usuario(nombre,id,telefono,tipo,cuentaBancaria);
 		clientes.add(cliente);
 		return cliente;
@@ -138,21 +138,6 @@ public class Main implements Serializable {
 	
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
-
-	public static Usuario registro() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Digite el numero de documento:\n");
-		int id = sc.nextInt();
-		System.out.println("Ingrese el nombre:\n");
-		String nombre = sc.next();
-		System.out.print("Ingrese un numero de telefono:\n");
-		int tel = sc.nextInt();
-		System.out.print("Ingrese una cuenta bancaria:\n");
-		int cb = sc.nextInt();
-		Usuario cliente = new Usuario(nombre, id, tel, null, cb);
-		clientes.add(cliente);
-		return cliente;
-	}
 
 
 	static public Usuario buscarUsuario(int documento) {

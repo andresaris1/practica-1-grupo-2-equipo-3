@@ -31,7 +31,7 @@ public class Menu {
 				break;
 
 			case 2:
-            //reserva turística
+				// reserva turística
 				System.out.println("Ingrese la identificación del usuario: ");
 
 				int identificacion = sc.nextInt();
@@ -116,26 +116,26 @@ public class Menu {
 				System.out.println("Escribe tu nombre:");
 				String nombre = sc.next();
 
-                //Se le consulta sobre el lugar que requiere
-                //para su evento
+				// Se le consulta sobre el lugar que requiere
+				// para su evento
 				System.out.println("Escribe el lugar en el que desea su evento: ");
 				System.out.println("1. Terraza");
 				System.out.println("2. Piscina");
 				System.out.println("3. Salon");
 
-                //se instancia un diccionario que le dará significado
-                //a su respuesta
-                HashMap<Integer, String> lugares = new HashMap<Integer, String>();
-                lugares.put(1, "Terraza");
-                lugares.put(2, "Piscina");
-                lugares.put(3, "Salon");
+				// se instancia un diccionario que le dará significado
+				// a su respuesta
+				HashMap<Integer, String> lugares = new HashMap<Integer, String>();
+				lugares.put(1, "Terraza");
+				lugares.put(2, "Piscina");
+				lugares.put(3, "Salon");
 				int numLugar = sc.nextInt();
-                String tipoLugar = lugares.get(numLugar);
+				String tipoLugar = lugares.get(numLugar);
 
-                //Se le consulta sobre la cantidad de personas que
-                //asistirán a su evento
-                System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
-                int numAsistentes = sc.nextInt();
+				// Se le consulta sobre la cantidad de personas que
+				// asistirán a su evento
+				System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
+				int int numAsistentes = sc.nextInt();
 
 				// Instanciamos el Diccionario que usaremos para guardar la información sobre
 				// los
@@ -255,7 +255,12 @@ public class Menu {
 				System.exit(0);
 				break;
 			case 7:
+				System.out.println("-- - - Reservas Existentes - - - -");
 				System.out.println(Main.listaReservas());
+				System.out.println("-- - - Clientes Existentes - - - -");
+				System.out.println(Main.listaClientes());
+				System.out.println("-- - - Facturas Existentes - - - -");
+				System.out.println(Main.listaFacturas());
 				break;
 
 			default:
@@ -273,11 +278,54 @@ public class Menu {
 		System.out.println("Escribe tu identificacion:");
 		int ide = sc.nextInt();
 		Usuario user = Main.buscar(ide);
+		if (user == null) {
+			user = registro(main);
+			if (user == null) {
+				System.out.println("No se pudo realizar la reserva pues no hay un cliente a registrar\n");
+				return;
+			}
+		}
 		System.out.println("Por favor ingrese la fecha de entrada en formato dd/mm/aaaa");
 		String fentrada = sc.next();
 		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
 		String fsalida = sc.next();
-		Factura f1=main.nuevaFactura(user,null,null,null);
+		Factura f1 = main.nuevaFactura(user, null, null, null);
 		Reserva reserva = main.nuevaReserva(f1, fentrada, fsalida, 2000, user);
+		System.out.println("\n" + reserva + "\n");
+	}
+
+	static Usuario registro(Main main) {
+		int opcion;
+		Usuario cli=null;
+		do {
+			System.out.println("Este numero de identificación no está registrado\n¿Desea registrarlo?");
+			System.out.println("1. Si \n2. No ");
+			opcion = sc.nextInt();
+			switch (opcion) {
+			case 1:
+				System.out.println("Digite el numero de documento:\n");
+				int id = sc.nextInt();
+				System.out.println("Ingrese el nombre:\n");
+				String nombre = sc.next();
+				System.out.print("Ingrese un numero de telefono:\n");
+				int tel = sc.nextInt();
+				System.out.print("Ingrese una cuenta bancaria:\n");
+				int cb = sc.nextInt();
+				Usuario cliente = main.registrarUsuario(nombre, id, tel, null, cb);
+				cli=cliente;
+				System.out.println("Usuario creado con exito");
+				System.out.println(cli.informacion());
+				opcion=2;
+				break;
+			case 2:
+				cli= null;
+				break;
+			default:
+				System.out.println("Esta opcion no es valida");
+				break;
+			}
+		} while (opcion != 2);
+	return cli;
+
 	}
 }
