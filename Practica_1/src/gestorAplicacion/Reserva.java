@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
+
 public class Reserva {
 	private Factura factura;
 	private Date fechaEntrada;
@@ -57,9 +58,7 @@ public class Reserva {
 	public Usuario getCliente() {
 		return cliente;
 	}
-	public void setCliente(Usuario cliente) {
-		this.cliente = cliente;
-	}
+	
 	public Date getFechaEntrada() {
 		return fechaEntrada;
 	}

@@ -180,8 +180,10 @@ public class Menu {
 				break;
 
 			}
-			sc.close();
+			
 
 		} while (opcion != 5);
+		
+		sc.close();
 	}
 }

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
 	
 	private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
-	private static ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+	private static ArrayList<Factura> facturas = new ArrayList<Factura>();
 	private static ArrayList<Usuario> clientes = new ArrayList<Usuario>();
 	static Scanner sc = new Scanner(System.in);
 	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
@@ -105,21 +105,21 @@ public class Main {
 	public static void setReservas(ArrayList<Reserva> reservas) {
 		Main.reservas = reservas;
 	}
-
-	public static ArrayList<Lugar> getLugares() {
-		return lugares;
-	}
-
-	public static void setLugares(ArrayList<Lugar> lugares) {
-		Main.lugares = lugares;
-	}
 	
-	public static ArrayList<Usuario> getclientes() {
+	public static ArrayList<Usuario> getClientes() {
 		return clientes;
 	}
 
-	public static void setLClientes(ArrayList<Usuario> clientes) {
+	public static void setClientes(ArrayList<Usuario> clientes) {
 		Main.clientes = clientes;
+	}
+
+	public static ArrayList<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public static void setFacturas(ArrayList<Factura> facturas) {
+		Main.facturas = facturas;
 	}
 
 

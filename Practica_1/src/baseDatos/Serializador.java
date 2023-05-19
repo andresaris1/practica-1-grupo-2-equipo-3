@@ -9,45 +9,55 @@ import java.io.PrintWriter;
 import uiMain.*;
 
 public class Serializador {
-	private static File ruta=new File("src\\baseDatos\\temp");
-	
+	private static File ruta = new File("src\\baseDatos\\temp");
+
 	public static void serializar(Main main) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = ruta.listFiles();
 		PrintWriter pw;
-		
-	for (File file:docs) {
-		try {
-			pw = new PrintWriter(file);
-			
-		}catch(FileNotFoundException e){
-			e.printStackTrace();
-		}
-	}
-	
-	for (File file:docs) {
-		if (file.getAbsolutePath().contains("cliente")) {
+
+		for (File file : docs) {
 			try {
-				fos = new FileOutputStream(file);
-				oos = new ObjectOutputStream(fos);
-				oos.writeObject(main.);
+				pw = new PrintWriter(file);
+
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else if (file.getAbsolutePath().contains("factura")) {
-			try {
-				fos = new FileOutputStream(file);
-				oos = new ObjectOutputStream(fos);
-				oos.writeObject(reserva.getFactura());
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-	}
+
+		for (File file : docs) {
+			if (file.getAbsolutePath().contains("cliente")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(main.getClientes());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("factura")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(main.getFacturas());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("reserva")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(main.getReservas());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
