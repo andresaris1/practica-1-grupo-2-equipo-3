@@ -55,4 +55,28 @@ public class Evento extends Servicio{
         this.servicios = servicios;
     }
 
+    //getter fecha
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
+
+    public int getDuracion(){
+        return duracion;
+    }
+
+    public void setDuracion(int duracion){
+        this.duracion = duracion;
+    }
+
+    public int getNumeroAsistentes(){
+        return numeroAsistentes;
+    }
+
+    public void setNumeroAsistentes(int numeroAsistentes){
+        this.numeroAsistentes = numeroAsistentes;
+    }
 }
