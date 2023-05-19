@@ -31,6 +31,7 @@ public class Menu {
 				break;
 
 			case 2:
+            //reserva turística
 				System.out.println("Ingrese la identificación del usuario: ");
 
 				int identificacion = sc.nextInt();
@@ -114,12 +115,27 @@ public class Menu {
 				String id = sc.next();
 				System.out.println("Escribe tu nombre:");
 				String nombre = sc.next();
+
+                //Se le consulta sobre el lugar que requiere
+                //para su evento
 				System.out.println("Escribe el lugar en el que desea su evento: ");
 				System.out.println("1. Terraza");
 				System.out.println("2. Piscina");
-				System.out.println("3. Salon de eventos");
-				System.out.println("4. Gran salón de eventos");
-				int tipoLugar = sc.nextInt();
+				System.out.println("3. Salon");
+
+                //se instancia un diccionario que le dará significado
+                //a su respuesta
+                HashMap<Integer, String> lugares = new HashMap<Integer, String>();
+                lugares.put(1, "Terraza");
+                lugares.put(2, "Piscina");
+                lugares.put(3, "Salon");
+				int numLugar = sc.nextInt();
+                String tipoLugar = lugares.get(numLugar);
+
+                //Se le consulta sobre la cantidad de personas que
+                //asistirán a su evento
+                System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
+                numAsistentes = sc.nextInt();
 
 				// Instanciamos el Diccionario que usaremos para guardar la información sobre
 				// los
@@ -131,8 +147,7 @@ public class Menu {
 
 				// Pedimos al cliente que nos especifique cuántos empleados requiere
 				// de cada uno de los tres tipos que le podemos ofrecer, validadando e
-				// insistiendo
-				// el formato específico que sus respuestas deben tener
+				// insistiendo en respetar el formato específico que sus respuestas deben tener
 				for (String x : empleadosNecesarios.keySet()) {
 					while (empleadosNecesarios.get(x) < 0) {
 						System.out.println("¿Cuántos " + x + " requiere?");
