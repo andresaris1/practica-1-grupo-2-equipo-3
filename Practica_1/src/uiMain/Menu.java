@@ -83,10 +83,12 @@ public class Menu {
                     int numDestino = sc.nextInt();
 
                     if (numDestino == 0) {
-                      break; // Salir del bucle si se ingresa 0
+                      break; 
+                      // Salir del bucle si se ingresa 0
                     }
 
                     if (numDestino >= 1 && numDestino <= Destinos.values().length) {
+                        //revisar que el numero ingresado cuente como una opcion valida ofrecida para el tour
                        Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
                        destinosSeleccionados.add(destinoSeleccionado);
                        System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
@@ -97,7 +99,9 @@ public class Menu {
 
                     } 
                     else :
-                    System.out.println("Opción inválida");
+                    System.out.println("Opción inválida, elija una opcion valida porfavor.");
+                    continue;
+                    //vuelve al inicio del bucle
                     }
                 }
 
