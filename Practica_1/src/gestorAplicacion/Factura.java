@@ -82,14 +82,17 @@ public class Factura {
         factura.getEmpleado().calcularComision(factura.getValorTotal());
         return vuelto;
     }
-
-    public void realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
+//en pruebas
+    public static int realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
         for (Factura factura : facturasDeudas) {
             int vuelto = Factura.realizarCobro(factura, valorIngresado);
+            
+            valorIngresado = vuelto;
             System.out.println(valorIngresado);
-            valorIngresado = -vuelto;
-            System.out.println(valorIngresado);
+            System.out.println(vuelto);
+        
         }
+        return 2;
     }
 
     /*
