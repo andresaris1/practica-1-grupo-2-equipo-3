@@ -18,6 +18,12 @@ public class ServicioExterno extends Servicio {
         this.empresaContratada = empresaContratada;
     }
 
+    ServicioExterno(String nombre, int valor, String empresaContratada, String descripcion) {
+        super(nombre, valor);
+        this.empresaContratada = empresaContratada;
+        this.descripcion = descripcion;
+    }
+
     //Getters y setters
     public String getEmpresaContratada() {
         return empresaContratada;

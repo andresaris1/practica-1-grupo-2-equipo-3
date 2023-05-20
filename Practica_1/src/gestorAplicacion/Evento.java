@@ -1,13 +1,20 @@
 package gestorAplicacion;
 
-
-
-
 import gestorAplicacion.*;
 import java.util.ArrayList;
 
 
 
+/*
+ * Esta clase es la encargada de crear los eventos, los cuales son un tipo de servicio
+ * que se le ofrece a los clientes, estos eventos pueden ser de diferentes tipos,
+ * como por ejemplo: bodas, cumpleaños, fiestas, etc.
+ * El evento puede usar diferentes servicios externos, como por ejemplo:
+ * Sonido, Entretenimiento, etc.
+ * El evento también puede realizarse en distintos lugares del Hotel:
+ * Piscina, Salón, Terraza.
+ * 
+ */
 public class Evento extends Servicio{
     //ATRIBUTOS
     private Lugar lugar;
