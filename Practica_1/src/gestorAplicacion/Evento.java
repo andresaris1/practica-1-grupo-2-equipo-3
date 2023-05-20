@@ -31,6 +31,12 @@ public class Evento extends Servicio{
     }
 
     //Métodos relevantes -----------------------------------------------------
+    /*
+     * Este método se encarga de calcular el valor monetario de un evento.
+     * Este valor lo calcula sumando el valor del lugar en el que se realizará, el valor individual
+     * de cada uno de los servicios externos que se contrataron, la duración del evento
+     * y los asistentes a este.
+     */
     public static int calcularValor(Lugar lugar, ServicioExterno[] servicios, int duracion, int numeroAsistentes)
     {
         int valor = 0;
