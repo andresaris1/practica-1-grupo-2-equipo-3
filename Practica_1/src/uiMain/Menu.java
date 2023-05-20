@@ -159,9 +159,11 @@ public class Menu {
 					empleadosNecesarios.put("Meseros", -1);
 					empleadosNecesarios.put("Bartenders", -1);
 
-					// Pedimos al cliente que nos especifique cuántos empleados requiere
-					// de cada uno de los tres tipos que le podemos ofrecer, validadando e
-					// insistiendo en respetar el formato específico que sus respuestas deben tener
+					/*
+					 * Pedimos al cliente que nos especifique cuántos empleados requiere
+					 * de cada uno de los tres tipos que le podemos ofrecer, validadando e
+					 * insistiendo en respetar el formato específico que sus respuestas deben tener
+					 */
 					for (String x : empleadosNecesarios.keySet()) {
 						while (empleadosNecesarios.get(x) < 0) {
 							System.out.println("¿Cuántos " + x + " requiere?");

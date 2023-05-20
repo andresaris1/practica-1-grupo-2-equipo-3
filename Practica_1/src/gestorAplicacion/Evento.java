@@ -106,6 +106,10 @@ public class Evento extends Servicio{
 
 
     //otros getters no tan obvios
+    /*
+     * Este método se encarga de retornar un ArrayList con los nombres de cada una de las
+     * empresas externas cuyos servicios fueron contratados para el evento.
+     */
     public ArrayList<String> getEmpresasContratadas(){
         ArrayList<String> lista = new ArrayList<String>();
     
