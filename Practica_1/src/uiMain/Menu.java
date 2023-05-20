@@ -220,6 +220,17 @@ public class Menu {
 					break;
 				case 5:
 					// Codigo para la funcionalidad de mostrar informacion de habitaciones
+					//Se le preguntara al usuario si desea saber luego sobre los eventos a realizar en el hotel o las habitaciones
+					System.out.println("Que desea ver?");
+					System.out.println("1:Informacion de habitaciones");
+					System.out.println("2:informacion de eventos");
+					int res = sc.nextInt();
+					if(res == 1){
+						//Informacion categorizada por el tipo de habitacion
+						
+					}else{
+						//Informacion categorizada por el tipo de evento
+					}
 					break;
 				case 6:
 					System.out.println("Gracias por preferirnos");
