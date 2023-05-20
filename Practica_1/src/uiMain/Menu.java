@@ -1,5 +1,5 @@
 //Clase destinada a la interfaz "grafica" que se mostrar al usuario
-
+//Librerias a importar
 package uiMain;
 
 import java.util.Scanner;
