@@ -1,6 +1,15 @@
 package uiMain;
 
-import gestorAplicacion.*;
+import gestorAplicacion.Destinos;
+import gestorAplicacion.Empleado;
+import gestorAplicacion.Evento;
+import gestorAplicacion.Factura;
+import gestorAplicacion.Lugar;
+import gestorAplicacion.Persona;
+import gestorAplicacion.Reserva;
+import gestorAplicacion.Servicio;
+import gestorAplicacion.ServicioExterno;
+import gestorAplicacion.Usuario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -75,6 +84,7 @@ public class Main implements Serializable {
 		Main.facturas = facturas;
 	}
 	
+
 	public static Usuario registrarUsuario(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
 		Usuario cliente= new Usuario(nombre,id,telefono,tipo,cuentaBancaria);
 		clientes.add(cliente);
