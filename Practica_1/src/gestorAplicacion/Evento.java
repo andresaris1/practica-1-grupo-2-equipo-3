@@ -1,6 +1,5 @@
 package gestorAplicacion;
 
-import gestorAplicacion.*;
 import java.util.ArrayList;
 
 
