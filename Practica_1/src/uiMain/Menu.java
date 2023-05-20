@@ -228,7 +228,18 @@ public class Menu {
           				int res = sc.nextInt();
           				if (res == 1) {
           				  // Informacion categorizada por el tipo de habitacion
-          				  System.out.println("Que tipo de habitacion desea?");
+          				  System.out.println("Sobre que tipo de habitacion desea tener informacion?");
+          				  System.out.println("1: Habitacion Familiar");
+          				  System.out.println("2: Habitacion Doble");
+          				  System.out.println("3: Habitacion individual");
+          				  res = sc.nextInt();
+					  if (res == 1) {
+          				    // Informacion de las habitaciones familiares
+          				  } else if (res == 2) {
+          				    // informacion de las habitaciones dobles
+          				  } else {
+          				    // informacion de las habitaciones individuales
+          				  }
           				} else {
           				  // Informacion categorizada por el tipo de evento
           				}
