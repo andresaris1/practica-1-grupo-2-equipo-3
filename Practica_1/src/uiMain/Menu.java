@@ -165,7 +165,7 @@ public class Menu {
 					for (String x : empleadosNecesarios.keySet()) {
 						while (empleadosNecesarios.get(x) < 0) {
 							System.out.println("¿Cuántos " + x + " requiere?");
-							System.out.println("Ingrese un natural mayor o igual que cero");
+							System.out.println("Ingrese un numero natural mayor o igual que cero");
 							empleadosNecesarios.put(x, sc.nextInt());
 						}
 					}
