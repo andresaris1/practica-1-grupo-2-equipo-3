@@ -194,6 +194,7 @@ public class Menu {
 
 					break;
 				case 4:
+
 					// codigo para la funcionalidad de cobro final
 					System.out.println("Por favor ingrese el número de documento de quien desea pagar:\n");
 					int documento = sc.nextInt();
@@ -216,23 +217,34 @@ public class Menu {
 							+ Factura.imprimirCodigos(listaDeuda));
 					
 							Menu.cobro(listaDeuda, deudaTotal);
-//
 					
 
 					break;
 				case 5:
 					// Codigo para la funcionalidad de mostrar informacion de habitaciones
-					//Se le preguntara al usuario si desea saber luego sobre los eventos a realizar en el hotel o las habitaciones
-					System.out.println("Que desea ver?");
-					System.out.println("1:Informacion de habitaciones");
-					System.out.println("2:informacion de eventos");
-					int res = sc.nextInt();
-					if(res == 1){
-						//Informacion categorizada por el tipo de habitacion
-						
-					}else{
-						//Informacion categorizada por el tipo de evento
-					}
+          				// Se le preguntara al usuario si desea saber luego sobre los eventos a realizar
+          				// en el hotel o las habitaciones
+          				System.out.println("Que desea ver?");
+          				System.out.println("1:Informacion de habitaciones");
+          				System.out.println("2:informacion de eventos");
+          				int res = sc.nextInt();
+          				if (res == 1) {
+          				  // Informacion categorizada por el tipo de habitacion
+          				  System.out.println("Sobre que tipo de habitacion desea tener informacion?");
+          				  System.out.println("1: Habitacion Familiar");
+          				  System.out.println("2: Habitacion Doble");
+          				  System.out.println("3: Habitacion individual");
+          				  res = sc.nextInt();
+					  if (res == 1) {
+          				    // Informacion de las habitaciones familiares
+          				  } else if (res == 2) {
+          				    // informacion de las habitaciones dobles
+          				  } else {
+          				    // informacion de las habitaciones individuales
+          				  }
+          				} else {
+          				  // Informacion categorizada por el tipo de evento
+          				}
 					break;
 				case 6:
 					System.out.println("Gracias por preferirnos");
