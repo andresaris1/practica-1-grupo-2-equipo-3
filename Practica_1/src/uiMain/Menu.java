@@ -129,6 +129,8 @@ public class Menu {
 					String id = sc.next();
 					System.out.println("Escribe tu nombre:");
 					String nombre = sc.next();
+					System.out.println("Escribre tu cuenta bancaria:");
+					String cuenta = sc.next();
 
 					// Se le consulta sobre el lugar que requiere
 					// para su evento
