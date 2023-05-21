@@ -49,6 +49,59 @@ public class Evento extends Servicio{
     }
 
     
+    //-----------------------------------------------
+    //GETTERS AND SETTERS
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
+        this.setNombre("Evento en "+lugar.getNombre());
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+        this.setNombre("Evento de "+cliente.getNombre());
+    }
+
+    public ServicioExterno[] getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(ServicioExterno[] servicios) {
+        this.servicios = servicios;
+    }
+
+    //getter fecha
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
+
+    public int getDuracion(){
+        return duracion;
+    }
+
+    public void setDuracion(int duracion){
+        this.duracion = duracion;
+    }
+
+    public int getNumeroAsistentes(){
+        return numeroAsistentes;
+    }
+
+    public void setNumeroAsistentes(int numeroAsistentes){
+        this.numeroAsistentes = numeroAsistentes;
+    }
+
 
     //otros getters no tan obvios
     /*
