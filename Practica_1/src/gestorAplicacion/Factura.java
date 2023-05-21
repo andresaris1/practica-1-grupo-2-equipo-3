@@ -119,6 +119,102 @@ public class Factura {
 
         return sb.toString();
     }
-////
+
+    //Metodo imrpimir codigos
+    static public String imprimirCodigos(ArrayList<Factura> facturas) {
+        StringBuilder sb = new StringBuilder();
+        for (Factura factura : facturas) {
+            String x = Integer.toString(factura.getCodigo());
+            sb.append(x);
+        }
+        return sb.toString();
+    }
+
+    // CONSTRUCTOR
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+        this.cliente = cliente;
+        this.empleado = empleado;
+        this.items = items;
+        this.destino = destino;
+
+        DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
+        this.date = dateFormat.format(new Date());
+
+        Factura.contador += 1;
+        this.codigo = Factura.contador;
+    }
+
+    // GETTERS AND SETTERS
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public int getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(int valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Servicio[] getItems() {
+        return items;
+    }
+
+    public void setItems(Servicio[] items) {
+        this.items = items;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int contador) {
+        Factura.contador = contador;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
+    public Destinos getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destinos destino) {
+        this.destino = destino;
+    }
 
 }
