@@ -192,6 +192,7 @@ public class Menu {
 
 					break;
 				case 4:
+
 					// codigo para la funcionalidad de cobro final
 					System.out.println("Por favor ingrese el número de documento de quien desea pagar:\n");
 					int documento = sc.nextInt();
@@ -214,7 +215,6 @@ public class Menu {
 							+ Factura.imprimirCodigos(listaDeuda));
 					
 							Menu.cobro(listaDeuda, deudaTotal);
-//
 					
 
 					break;
