@@ -61,6 +61,10 @@ public class Main implements Serializable {
 		
 	}
 	
+	public static List<Lugar> getHabitaciones(){
+		return habitaciones;
+	}
+	
 	public static List<Reserva> getReservas() {
 		return  reservas;
 	}
