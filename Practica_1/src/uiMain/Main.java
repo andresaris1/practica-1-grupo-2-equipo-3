@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 import baseDatos.Deserializador;
 
+//clase
 public class Main implements Serializable {
 
 	private static final long serialVersionUID = 1L;
