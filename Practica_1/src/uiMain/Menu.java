@@ -199,7 +199,6 @@ public class Menu {
 					System.out.println("Por favor ingrese el número de documento de quien desea pagar:\n");
 					int documento = sc.nextInt();
 					Usuario user = Main.buscarUsuario(documento);
-					
 
 					if (user == null) {
 						System.out.println("Usuario no encontrado en la base de datos");
@@ -215,49 +214,48 @@ public class Menu {
 
 					System.out.println("Se tiene una deuda de " + deudaTotal + " correspondiente a las facturas "
 							+ Factura.imprimirCodigos(listaDeuda));
-					
-							Menu.cobro(listaDeuda, deudaTotal);
-					
+
+					Menu.cobro(listaDeuda, deudaTotal);
 
 					break;
 				case 5:
 					// Codigo para la funcionalidad de mostrar informacion de habitaciones
-          				// Se le preguntara al usuario si desea saber luego sobre los eventos a realizar
-          				// en el hotel o las habitaciones
-          				System.out.println("Que desea ver?");
-          				System.out.println("1:Informacion de habitaciones");
-          				System.out.println("2:informacion de eventos");
-          				int res = sc.nextInt();
-          				if (res == 1) {
-          				  // Informacion categorizada por el tipo de habitacion
-          				  System.out.println("Sobre que tipo de habitacion desea tener informacion?");
-          				  System.out.println("1: Habitacion Familiar");
-          				  System.out.println("2: Habitacion Doble");
-          				  System.out.println("3: Habitacion individual");
-          				  res = sc.nextInt();
-					          if (res == 1) {
-          				    List<Lugar> hab_dis = new ArrayList<Lugar>();
-					      hab_dis = Main.habitaciones;
-					      int num = 0;
-					      for (int i = 0; i < hab_dis.size(); i++) {
-						if (hab_dis.get(i).getTipo() == "Habitación familiar"){
-						  num++;
+					// Se le preguntara al usuario si desea saber luego sobre los eventos a realizar
+					// en el hotel o las habitaciones
+					System.out.println("Que desea ver?");
+					System.out.println("1:Informacion de habitaciones");
+					System.out.println("2:informacion de eventos");
+					int res = sc.nextInt();
+					if (res == 1) {
+						// Informacion categorizada por el tipo de habitacion
+						System.out.println("Sobre que tipo de habitacion desea tener informacion?");
+						System.out.println("1: Habitacion Familiar");
+						System.out.println("2: Habitacion Doble");
+						System.out.println("3: Habitacion individual");
+						res = sc.nextInt();
+						if (res == 1) {
+							List<Lugar> hab_dis = new ArrayList<Lugar>();
+							hab_dis = Main.habitaciones;
+							int num = 0;
+							for (int i = 0; i < hab_dis.size(); i++) {
+								if (hab_dis.get(i).getTipo() == "Habitación familiar") {
+									num++;
+								}
+							}
+							if (num != 0) {
+								System.out.println("Tenemos " + num + " habitaciones familiares disponibles");
+								System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
+							} else {
+								System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
+							}
+						} else if (res == 2) {
+							// informacion de las habitaciones dobles
+						} else {
+							// informacion de las habitaciones individuales
 						}
-					      }
-					      if (num != 0){
-						System.out.println("Tenemos " + num + " habitaciones familiares disponibles");
-						System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
-					      }else{
-						System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
-					      }
-          				  } else if (res == 2) {
-          				    // informacion de las habitaciones dobles
-          				  } else {
-          				    // informacion de las habitaciones individuales
-          				  }
-          				} else {
-          				  // Informacion categorizada por el tipo de evento
-          				}
+					} else {
+						// Informacion categorizada por el tipo de evento
+					}
 					break;
 				case 6:
 					System.out.println("Gracias por preferirnos");
@@ -284,35 +282,32 @@ public class Menu {
 		sc.close();
 	}
 
-	static void cobro(ArrayList<Factura> lista, int deudaTotal){
+	static void cobro(ArrayList<Factura> lista, int deudaTotal) {
 		System.out.println("¿Desea realizar el pago total de la deuda?");
-					System.out.println("1. Si \n2. No ");
-					int opcionPago = sc.nextInt();
+		System.out.println("1. Si \n2. No ");
+		int opcionPago = sc.nextInt();
 
-					if (opcionPago==2){
-						//regresar al menuprincipal
-						return;
-					}
-					if (opcionPago==1) {
-						System.out.println("Ingrese el valor entregado: ");
-						int valorIngresado = sc.nextInt();
-						if(valorIngresado<deudaTotal){
-							System.out.println("El valor ingresado es menor al de la deuda");
-							//Regresar al menu
-							return;
-						}
-						else{
-							Factura.realizarCobro(lista,valorIngresado);
-							System.out.println("Pago realizado con éxito.");
-							
-						}
-						
-					}else{
-						System.out.println("Opcion Invalida");
-						//Regresar al menuprincipal
-					}
+		if (opcionPago == 2) {
+			// regresar al menuprincipal
+			return;
+		}
+		if (opcionPago == 1) {
+			System.out.println("Ingrese el valor entregado: ");
+			int valorIngresado = sc.nextInt();
+			if (valorIngresado < deudaTotal) {
+				System.out.println("El valor ingresado es menor al de la deuda");
+				// Regresar al menu
+				return;
+			} else {
+				Factura.realizarCobro(lista, valorIngresado);
+				System.out.println("Pago realizado con éxito.");
 
+			}
 
+		} else {
+			System.out.println("Opcion Invalida");
+			// Regresar al menuprincipal
+		}
 
 	}
 
@@ -403,5 +398,3 @@ public class Menu {
 	}
 
 }
-
-

@@ -18,18 +18,6 @@ public class Factura {
 
     // METODOS
 
-    /*
-     * Metodo generarFactura se encarga de crear las facturas ademas de almacenar
-     * la misma en la lista de cada cliente, recibe como parametro objetos de tipo
-     * usuario, empleado y una array con los servicios escogidos--
-     */
-    public void generarFactura(Usuario cliente, Empleado empleado, Servicio[] items) {
-        int x = Factura.contador + 1;
-        String name = "Fac" + Integer.toString(x);
-        
-        // Encontrar la manera que todos los objetos queden con nombre diferente??
-    }
-
     /* Metodo que calcula el valor o precio total de cada factura */
     public void valorTotal() {
         int total = 0;
@@ -40,8 +28,6 @@ public class Factura {
         }
         this.valorTotal = total;
     }
-
-    // Metodo para imprimir codigos
 
     /*
      * Metodo para sumar el valor total que debe un cliente, recibe como parametro
@@ -132,16 +118,21 @@ public class Factura {
 
     // CONSTRUCTOR
     public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+        this.estado=0;
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
         this.destino = destino;
+        this.valorTotal();
 
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
         this.date = dateFormat.format(new Date());
 
         Factura.contador += 1;
         this.codigo = Factura.contador;
+
+        cliente.listaFacturas.add(this);
+        empleado.calcularComision(valorTotal);
     }
 
     // GETTERS AND SETTERS
