@@ -225,39 +225,61 @@ public class Menu {
           				System.out.println("Que desea ver?");
           				System.out.println("1:Informacion de habitaciones");
           				System.out.println("2:informacion de eventos");
-          				int res = sc.nextInt();
+          
+          				int res = sc.nextInt(); 
+          
           				if (res == 1) {
+                 			  System.out.println("Por ahora tenemos 5 habitaciones disponibles");
+                    
           				  // Informacion categorizada por el tipo de habitacion
           				  System.out.println("Sobre que tipo de habitacion desea tener informacion?");
+                    
           				  System.out.println("1: Habitacion Familiar");
           				  System.out.println("2: Habitacion Doble");
           				  System.out.println("3: Habitacion individual");
+                    
           				  res = sc.nextInt();
+
+
+                    
 					          if (res == 1) {
-                      //informacion de las habitaciones familiares
+                      				//informacion de las habitaciones familiares
+                      
           				    List<Lugar> hab_dis = new ArrayList<Lugar>();
 					      hab_dis = Main.habitaciones;
 					      int num = 0;
+
 					      for (int i = 0; i < hab_dis.size(); i++) {
+
 						if (hab_dis.get(i).getTipo() == "Habitación familiar"){
 						  num++;
 						}
 					      }
+
+
 					      if (num != 0){
 						System.out.println("Tenemos " + num + " habitaciones familiares disponibles");
 						System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
+
 					      }else{
+
 						System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
 					      }
+
           				  } else if (res == 2) {
           				    // informacion de las habitaciones dobles
+
 					      List<Lugar> hab_dis = new ArrayList<Lugar>();
 					      hab_dis = Main.habitaciones;
 					      int num = 0;
+
 					      for (int i = 0; i < hab_dis.size(); i++) {
+
 						if (hab_dis.get(i).getTipo() == "Habitación doble"){
 						  num++;
 						}
+
+
 					      }
 					      if (num != 0){
 						System.out.println("Tenemos " + num + " habitaciones dobles disponibles");
@@ -265,26 +287,36 @@ public class Menu {
 					      }else{
 						System.out.println("Lo sentimos, no tenemos habitaciones dobles disponibles");
 					      }
+                      
           				  } else {
           				    // informacion de las habitaciones individuales
+
 					      List<Lugar> hab_dis = new ArrayList<Lugar>();
 					      hab_dis = Main.habitaciones;
 					      int num = 0;
 					      for (int i = 0; i < hab_dis.size(); i++) {
+
 						if (hab_dis.get(i).getTipo() == "Habitación individual"){
+
 						  num++;
 						}
 					      }
+
+
 					      if (num != 0){
+
 						System.out.println("Tenemos " + num + " habitaciones individuales disponibles");
 						System.out.println("La habitacion individual tiene una capacidad para 4 personas");
 					      }else{
 						System.out.println("Lo sentimos, no tenemos habitaciones individuales disponibles");
 					      }
           				  }
+
+                    
           				} else {
           				  // Informacion categorizada por el tipo de evento
           				}
+				break;
 				case 6:
 					System.out.println("Gracias por preferirnos");
 					Serializador.serializar(main);
