@@ -2,24 +2,18 @@
 //Librerias a importar
 package uiMain;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-
-import gestorAplicacion.Destinos;
-import gestorAplicacion.Empleado;
-import gestorAplicacion.Evento;
-import gestorAplicacion.Factura;
-import gestorAplicacion.Lugar;
-import gestorAplicacion.Persona;
-import gestorAplicacion.Reserva;
-import gestorAplicacion.Servicio;
-import gestorAplicacion.ServicioExterno;
-import gestorAplicacion.Usuario;
+import java.util.Scanner;
 
 import baseDatos.Serializador;
+import gestorAplicacion.Destinos;
+import gestorAplicacion.Factura;
+import gestorAplicacion.Lugar;
+import gestorAplicacion.Reserva;
+import gestorAplicacion.Servicio;
+import gestorAplicacion.Usuario;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
