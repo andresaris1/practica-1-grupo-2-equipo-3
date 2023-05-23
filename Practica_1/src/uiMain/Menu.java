@@ -126,12 +126,16 @@ public class Menu {
 
 					// Le pedimos su información al cliente
 					System.out.println("Escribe tu identificacion: ");
-					String id = sc.next();
+					int id = sc.nextInt();
 					System.out.println("Escribe tu nombre:");
 					String nombre = sc.next();
 					System.out.println("Escribre tu cuenta bancaria:");
 					String cuenta = sc.next();
+					System.out.println("Escribe tu telefono: ");
+					int telefono = sc.nextInt();
 
+
+					usuario = new Usuario(nombre,id,telefono,"", cuenta);
 					// Se le consulta sobre el lugar que requiere
 					// para su evento
 					System.out.println("Escribe el lugar en el que desea su evento: ");
@@ -185,6 +189,8 @@ public class Menu {
 							System.out.println("3. Pantalla");
 							int servicio = sc.nextInt();
 
+
+							
 							break;
 						case "no":
 							break;
