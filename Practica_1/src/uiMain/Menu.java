@@ -246,7 +246,7 @@ public class Menu {
 							// informacion de las habitaciones familiares
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.habitaciones;
+							hab_dis = Main.getHabitaciones();
 							int num = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
@@ -273,7 +273,7 @@ public class Menu {
 							// informacion de las habitaciones dobles
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.habitaciones;
+							hab_dis = Main.getHabitaciones;
 							int num = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
@@ -295,15 +295,32 @@ public class Menu {
 							}
 
 						} else if (res == 4){
+							//Tabla de informacion general
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.habitaciones;
+							hab_dis = Main.getHabitaciones();
 							int num = 0;
+							
+							Sytem.out.println("-----------------------------------------------------");
+							
+							for (int i = 0; i < hab_dis.size(); i++) {
+								Sytem.out.println("---------------------------------------------");
+								
+								System.out.println("Habitacion "+ hab_dis.get(i).getNumero());
+								Sytem.out.println("Tipo: " + hab_dis.get(i).getTipo());
+								Sytem.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
+								Sytem.out.println("Precio: " + valorSegunTipo(hab_dis.get(i).getTipo()));
+								
+								Sytem.out.println("---------------------------------------------");
+
+							}
+							
+							Sytem.out.println("-----------------------------------------------------");
 							
 						}else {
 							// informacion de las habitaciones individuales
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.habitaciones;
+							hab_dis = Main.getHabitaciones();
 							int num = 0;
 							for (int i = 0; i < hab_dis.size(); i++) {
 
