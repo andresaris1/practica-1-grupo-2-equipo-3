@@ -30,7 +30,7 @@ public class Main implements Serializable {
 	static Lugar h5 = new Lugar(301, "Habitación familiar", 4);
 	static Lugar h6 = new Lugar(302, "Habitación familiar", 4);
 
-	static List<Lugar> habitaciones = new ArrayList<Lugar>();
+	private static List<Lugar> habitaciones = new ArrayList<Lugar>();
 	private static List<Lugar> habitacionesocupadas = new ArrayList<Lugar>();
 
 	static Scanner sc = new Scanner(System.in);
@@ -52,6 +52,10 @@ public class Main implements Serializable {
 		habitaciones.add(h5);
 		habitaciones.add(h6);
 
+	}
+	
+	public static List<Lugar> getHabitaciones(){
+		return habitaciones;
 	}
 
 	public static List<Reserva> getReservas() {
