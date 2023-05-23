@@ -6,7 +6,7 @@ public class Empleado extends Persona {
 
     private String cargo;
     private double comision;
-    private int nomina; // Valor prestablecido para cada uno de los empleados
+    private final int nomina=560000; // Valor prestablecido para cada uno de los empleados
 
     // METODOS
     /*
@@ -37,7 +37,6 @@ public class Empleado extends Persona {
         super(nombre, identificacion, telefono);
         this.cargo = cargo;
         this.comision = comision;
-        this.nomina = nomina;
     }
 
     // GETTERS AND SETTERS
@@ -61,8 +60,5 @@ public class Empleado extends Persona {
         return nomina;
     }
 
-    public void setNomina(int nomina) {
-        this.nomina = nomina;
-    }
 
 }
