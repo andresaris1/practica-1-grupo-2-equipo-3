@@ -229,7 +229,7 @@ public class Menu {
           				int res = sc.nextInt(); 
           
           				if (res == 1) {
-                 			  System.out.println("Por ahora tenemos 5 habitaciones disponibles");
+                    			System.out.println("Por ahora tenemos 5 habitaciones disponibles");
                     
           				  // Informacion categorizada por el tipo de habitacion
           				  System.out.println("Sobre que tipo de habitacion desea tener informacion?");
@@ -260,15 +260,19 @@ public class Menu {
 					      if (num != 0){
 						System.out.println("Tenemos " + num + " habitaciones familiares disponibles");
 						System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
+						//Costo habitacion familiar
+
+						int valor = Lugar.valorSegunTipo("Habitacion familiar");
+						System.out.println("La habitacion familiar tiene un costo de " + valor);
 
 					      }else{
 
 						System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
 					      }
-
+                      
           				  } else if (res == 2) {
           				    // informacion de las habitaciones dobles
-
+                      
 					      List<Lugar> hab_dis = new ArrayList<Lugar>();
 					      hab_dis = Main.habitaciones;
 					      int num = 0;
@@ -284,13 +288,17 @@ public class Menu {
 					      if (num != 0){
 						System.out.println("Tenemos " + num + " habitaciones dobles disponibles");
 						System.out.println("La habitacion doble tiene una capacidad para 2 personas");
+						//costo habitacion doble
+
+						int valor = Lugar.valorSegunTipo("Habitacion doble");
+						System.out.println("La habitacion doble tiene un costo de " + valor);
 					      }else{
 						System.out.println("Lo sentimos, no tenemos habitaciones dobles disponibles");
 					      }
                       
           				  } else {
           				    // informacion de las habitaciones individuales
-
+                      
 					      List<Lugar> hab_dis = new ArrayList<Lugar>();
 					      hab_dis = Main.habitaciones;
 					      int num = 0;
@@ -307,6 +315,10 @@ public class Menu {
 
 						System.out.println("Tenemos " + num + " habitaciones individuales disponibles");
 						System.out.println("La habitacion individual tiene una capacidad para 4 personas");
+						//costo habitacion individual
+
+						int valor = Lugar.valorSegunTipo("Habitacion individual");
+						System.out.println("La habitacion doble tiene un costo de " + valor);
 					      }else{
 						System.out.println("Lo sentimos, no tenemos habitaciones individuales disponibles");
 					      }
