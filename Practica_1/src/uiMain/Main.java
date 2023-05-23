@@ -33,7 +33,7 @@ public class Main implements Serializable {
 	static Lugar h5=new Lugar(301,"Habitación familiar",4);
 	static Lugar h6=new Lugar(302,"Habitación familiar",4);
 	
-	private static List<Lugar> habitaciones = new ArrayList<Lugar>();
+	 static List<Lugar> habitaciones = new ArrayList<Lugar>();
 	private static List<Lugar> habitacionesocupadas = new ArrayList<Lugar>();
 
 	
@@ -103,7 +103,7 @@ public class Main implements Serializable {
 		return null;
 	}
 	
-	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+	public Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
 		Factura factura= new Factura(cliente,empleado,items,destino);
 		facturas.add(factura);
 		return factura;

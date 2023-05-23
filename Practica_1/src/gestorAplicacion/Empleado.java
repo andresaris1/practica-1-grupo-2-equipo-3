@@ -13,6 +13,9 @@ public class Empleado extends Persona {
         return "Empleado " + nombre;
     }
 
+    /*Metodo calcularComision se encarga de modificar dicha la comision de cada empleado cada
+    que se realiza una factura a si nombre y recibe por paramtro el valor total de dicha factura
+     */
     public void calcularComision(int valorPagado){
         double x=0.02*valorPagado;
         this.comision=+x;
