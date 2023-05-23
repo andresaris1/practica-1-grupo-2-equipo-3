@@ -190,7 +190,7 @@ public class Menu {
 							int servicio = sc.nextInt();
 
 
-							
+
 							break;
 						case "no":
 							break;
@@ -309,18 +309,18 @@ public class Menu {
 							Sytem.out.println("-----------------------------------------------------");
 							
 							for (int i = 0; i < hab_dis.size(); i++) {
-								Sytem.out.println("---------------------------------------------");
+								System.out.println("---------------------------------------------");
 								
 								System.out.println("Habitacion "+ hab_dis.get(i).getNumero());
-								Sytem.out.println("Tipo: " + hab_dis.get(i).getTipo());
-								Sytem.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
-								Sytem.out.println("Precio: " + valorSegunTipo(hab_dis.get(i).getTipo()));
+								System.out.println("Tipo: " + hab_dis.get(i).getTipo());
+								System.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
+								System.out.println("Precio: " + valorSegunTipo(hab_dis.get(i).getTipo()));
 								
-								Sytem.out.println("---------------------------------------------");
+								System.out.println("---------------------------------------------");
 
 							}
 							
-							Sytem.out.println("-----------------------------------------------------");
+							System.out.println("-----------------------------------------------------");
 							
 						}else {
 							// informacion de las habitaciones individuales
