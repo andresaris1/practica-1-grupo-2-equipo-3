@@ -1,43 +1,38 @@
 package gestorAplicacion;
+/*Clase Usuario se usa para crear los clientes que realizen reservas en el hotel */
 
 import java.util.ArrayList;
 
 public class Usuario extends Persona {
     String tipo;
-    int cuentaBancaria;
     ArrayList<Factura> listaFacturas;
-    
-    //METODOS
 
+    // METODOS
+
+    /*
+     * Metod sobreescrito de Persona que devuelve la impormacion mas importante el
+     * usurio
+     */
     @Override
     public String informacion() {
-        return ("Nombre: "+this.getNombre()+"\n"+
-                "Telefono: "+this.getTelefono()+"\n"+
-                "Documento: "+this.getIdentificacion()+"\n");
+        return ("Nombre: " + this.getNombre() + "\n" +
+                "Telefono: " + this.getTelefono() + "\n" +
+                "Documento: " + this.getIdentificacion() + "\n");
     }
 
-    //CONSTRUCTOR
-    public Usuario(String nombre, int identificacion, int telefono, String tipo, int cuentaBancaria) {
+    // CONSTRUCTOR
+    public Usuario(String nombre, int identificacion, int telefono, String tipo) {
         super(nombre, identificacion, telefono);
         this.tipo = tipo;
-        this.cuentaBancaria = cuentaBancaria;
     }
 
-    //GETTERS AND SETTERS
+    // GETTERS AND SETTERS
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public int getCuentaBancaria() {
-        return cuentaBancaria;
-    }
-
-    public void setCuentaBancaria(int cuentaBancaria) {
-        this.cuentaBancaria = cuentaBancaria;
     }
 
     public ArrayList<Factura> getListaFacturas() {
@@ -48,10 +43,4 @@ public class Usuario extends Persona {
         this.listaFacturas = listaFacturas;
     }
 
-
-
-    
-
-
-    
 }

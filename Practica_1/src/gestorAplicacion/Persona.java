@@ -1,12 +1,13 @@
 package gestorAplicacion;
 
+/*Clase  abstracta creada para la herencia de Usuario y empleado*/
 abstract public class Persona {
     protected String nombre;
     protected int identificacion;
     protected int telefono;
 
     // METODOS
-
+    /* Metodo a heredar que muestra la imformacion importante del objeto */
     public abstract String informacion();
 
     // CONSTRUCTOR

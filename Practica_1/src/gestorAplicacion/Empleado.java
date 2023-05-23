@@ -1,24 +1,33 @@
 package gestorAplicacion;
 
-//crear una clase abstracta llamada persona que tenga los atributos abstractos nombrey valor, ademas que tenga un metodo abstracto llamado obtener
+/*Clase Empleado hereda de Persona los atributos nombre, identificacion y telefono*/
 
 public class Empleado extends Persona {
     private String cargo;
     private double comision;
-    private int nomina; // Valor prestablecido
+    private int nomina; // Valor prestablecido para cada uno de los empleados
 
     // METODOS
+    /*
+     * Metod sobreescrito de Persona que devuelve la impormacion mas importante el
+     * empleado
+     */
     @Override
     public String informacion() {
-        return "Empleado " + nombre;
+        return ("Nombre: " + this.getNombre() + "\n" +
+                "Documento: " + this.getIdentificacion() + "\n" +
+                "Cargo: " + this.getCargo() +
+                "Nomina: " + this.getNomina() + "\n");
     }
 
-    /*Metodo calcularComision se encarga de modificar dicha la comision de cada empleado cada
-    que se realiza una factura a si nombre y recibe por paramtro el valor total de dicha factura
+    /*
+     * Metodo calcularComision se encarga de modificar la comision de cada empleado en funcion de
+     * sus ventas, cada que se realiza una factura a su nombre y recibe por paramtro 
+     *  valor total de dicha factura
      */
-    public void calcularComision(int valorPagado){
-        double x=0.02*valorPagado;
-        this.comision=+x;
+    public void calcularComision(int valorPagado) {
+        double x = 0.02 * valorPagado;
+        this.comision = +x;
     }
 
     // CONSTRUCTOR

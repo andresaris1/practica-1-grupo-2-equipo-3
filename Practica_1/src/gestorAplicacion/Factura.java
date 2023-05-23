@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 
+/*Clase Factura encargada de gaurdar cada una de las compras de los usurios, cada que un usrurio realiza 
+la compra o contato de un servicio diferente ser realiza una factura diferente gestionar los cobros */
+
 public class Factura {
     private int codigo;
     private String date;
@@ -12,13 +15,13 @@ public class Factura {
     private Empleado empleado;
     private Servicio[] items;
     private int valorTotal;
-    private int estado; // 0 Deudo 1 Pago
+    private int estado; // 0 Deuda 1 Paga
     static int contador = 0;
     private Destinos destino;
 
     // METODOS
 
-    /* Metodo que calcula el valor o precio total de cada factura */
+    /* Metodo valorTotal se encarga de calcula el valor total de cada factura */
     public void valorTotal() {
         int total = 0;
 
@@ -59,8 +62,9 @@ public class Factura {
     }
 
     /*
-     * Metodo realizarCobro realizar el cobro mediante Efectivo de la factura que
-     * recibe por parametro
+     * Metodo realizarCobro realizar el cobro mediante Efectivo, recibe como
+     * parametro la factura
+     * a pagar y el valor del dinero ingresado por el usurio
      */
     static public int realizarCobro(Factura factura, int valorIngresado) {
         int vuelto = valorIngresado - factura.getValorTotal();
@@ -68,22 +72,28 @@ public class Factura {
         factura.getEmpleado().calcularComision(factura.getValorTotal());
         return vuelto;
     }
-//en pruebas
+
+    /*
+     * Segundo metodo realizarCobro recibe como parametro la lista de facturas
+     * deudas por un usuario
+     * mas el dinero ingresado y se encarga de cancelar cada un de esta
+     */
+    // Esta en pruebas
     public static int realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
         for (Factura factura : facturasDeudas) {
             int vuelto = Factura.realizarCobro(factura, valorIngresado);
-            
+
             valorIngresado = vuelto;
             System.out.println(valorIngresado);
             System.out.println(vuelto);
-        
+
         }
         return 2;
     }
 
     /*
-     * Metodo imprimirFactura se encarga de imprimir la imformacion principal
-     * de la factura con formato de interfaz
+     * Metodo imprimirFactura se encarga de imprimir la informacion principal
+     * de la factura con formato entendible por el usuario
      */
     public String imprimirFactura() {
         StringBuilder sb = new StringBuilder();
@@ -106,7 +116,11 @@ public class Factura {
         return sb.toString();
     }
 
-    //Metodo imrpimir codigos
+    /*
+     * Metodo impimir codigos se encarga de imprimir los codigos de las facturas
+     * ingresadas
+     * como parametro en una rray, primcipalmente para las facturas deudas
+     */
     static public String imprimirCodigos(ArrayList<Factura> facturas) {
         StringBuilder sb = new StringBuilder();
         for (Factura factura : facturas) {
@@ -118,19 +132,23 @@ public class Factura {
 
     // CONSTRUCTOR
     public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
-        this.estado=0;
+        this.estado = 0;
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
         this.destino = destino;
-        this.valorTotal();
+        this.valorTotal(); // Se ejecuta el metodo de valor total para la factura creada
 
+        // Establece la fecha en la que se creo la factura
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
         this.date = dateFormat.format(new Date());
 
+        // Estalece el codigo de factura en funcion del numero total de facturas creadas
+        // hasta el momento
         Factura.contador += 1;
         this.codigo = Factura.contador;
 
+        // Se agrega la factura al usuario y empleado correspondiente
         cliente.listaFacturas.add(this);
         empleado.calcularComision(valorTotal);
     }
@@ -199,7 +217,7 @@ public class Factura {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
+
     public Destinos getDestino() {
         return destino;
     }

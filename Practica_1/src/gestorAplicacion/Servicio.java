@@ -1,5 +1,5 @@
 package gestorAplicacion;
-
+/*Clase Servio se usa para crear los diferentes servicios que puedo reserva un cliente (comida,masajes)*/
 public class Servicio {
     String nombre;
     int valor;
