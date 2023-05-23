@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Usuario extends Persona {
     String tipo;
     ArrayList<Factura> listaFacturas;
+    String cuentaBancaria;
 
     // METODOS
 
@@ -21,9 +22,10 @@ public class Usuario extends Persona {
     }
 
     // CONSTRUCTOR
-    public Usuario(String nombre, int identificacion, int telefono, String tipo) {
+    public Usuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria) {
         super(nombre, identificacion, telefono);
         this.tipo = tipo;
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     // GETTERS AND SETTERS
@@ -41,6 +43,14 @@ public class Usuario extends Persona {
 
     public void setListaFacturas(ArrayList<Factura> listaFacturas) {
         this.listaFacturas = listaFacturas;
+    }
+
+    public String getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(String cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 
 }
