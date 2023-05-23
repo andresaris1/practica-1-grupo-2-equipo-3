@@ -300,7 +300,7 @@ public class Menu {
 							hab_dis = Main.getHabitaciones();
 							int num = 0;
 							
-							Sytem.out.println("-----------------------------------------------------");
+							System.out.println("-----------------------------------------------------");
 							
 							for (int i = 0; i < hab_dis.size(); i++) {
 								System.out.println("---------------------------------------------");
