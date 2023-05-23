@@ -279,7 +279,7 @@ public class Menu {
 							// informacion de las habitaciones dobles
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.getHabitaciones;
+							hab_dis = Main.getHabitaciones();
 							int num = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
@@ -314,7 +314,7 @@ public class Menu {
 								System.out.println("Habitacion "+ hab_dis.get(i).getNumero());
 								System.out.println("Tipo: " + hab_dis.get(i).getTipo());
 								System.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
-								System.out.println("Precio: " + valorSegunTipo(hab_dis.get(i).getTipo()));
+								System.out.println("Precio: " + Lugar.valorSegunTipo(hab_dis.get(i).getTipo()));
 								
 								System.out.println("---------------------------------------------");
 
