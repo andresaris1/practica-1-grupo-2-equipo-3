@@ -1,5 +1,6 @@
 package gestorAplicacion;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /*Clase Factura encargada de gaurdar cada una de las compras de los usurios, cada que un usrurio realiza 
 la compra o contato de un servicio diferente ser realiza una factura diferente gestionar los cobros */
 
-public class Factura {
+public class Factura implements Serializable{
     private int codigo;
     private String date;
     private Usuario cliente;

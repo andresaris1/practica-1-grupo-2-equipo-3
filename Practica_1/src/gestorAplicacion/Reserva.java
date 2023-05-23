@@ -1,15 +1,15 @@
 package gestorAplicacion;
 /*Clase reverva se usapara almacenar la informacion incluida en la reserva de cada cliente */
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class Reserva {
+public class Reserva implements Serializable{
 	private Factura factura;
 	private Date fechaEntrada;
 	private Date fechaSalida;

@@ -34,10 +34,10 @@ public class Main implements Serializable {
 	private static List<Lugar> habitacionesocupadas = new ArrayList<Lugar>();
 
 	static Scanner sc = new Scanner(System.in);
-	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, 0);
-	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, 0);
-	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, 0);
-	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, 0);
+	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null);
+	static Usuario usuario2 = new Usuario("Maria", 345, 0, null);
+	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null);
+	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
@@ -79,7 +79,7 @@ public class Main implements Serializable {
 	}
 
 	public static Usuario registrarUsuario(String nombre, int id, int telefono, String tipo, int cuentaBancaria) {
-		Usuario cliente = new Usuario(nombre, id, telefono, tipo, cuentaBancaria);
+		Usuario cliente = new Usuario(nombre, id, telefono, tipo);
 		clientes.add(cliente);
 		return cliente;
 	}

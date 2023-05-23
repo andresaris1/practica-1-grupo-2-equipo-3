@@ -3,6 +3,7 @@ package gestorAplicacion;
 /*Clase Empleado hereda de Persona los atributos nombre, identificacion y telefono*/
 
 public class Empleado extends Persona {
+
     private String cargo;
     private double comision;
     private int nomina; // Valor prestablecido para cada uno de los empleados
@@ -21,9 +22,10 @@ public class Empleado extends Persona {
     }
 
     /*
-     * Metodo calcularComision se encarga de modificar la comision de cada empleado en funcion de
-     * sus ventas, cada que se realiza una factura a su nombre y recibe por paramtro 
-     *  valor total de dicha factura
+     * Metodo calcularComision se encarga de modificar la comision de cada empleado
+     * en funcion de
+     * sus ventas, cada que se realiza una factura a su nombre y recibe por paramtro
+     * valor total de dicha factura
      */
     public void calcularComision(int valorPagado) {
         double x = 0.02 * valorPagado;
