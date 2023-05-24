@@ -184,11 +184,7 @@ public class Main implements Serializable {
 		return null;
 	}
 
-	public static Lugar nuevaHabitacion(int numero, String tipo, int capacidad) {
-		Lugar habitacion = new Lugar(numero, tipo, capacidad);
-		habitaciones.add(habitacion);
-		return habitacion;
-	}
+	
 
 	
 	public static Lugar buscarHabitacion(int id) {
@@ -203,6 +199,9 @@ public class Main implements Serializable {
 		return null;
 	}
 
+	
+	//Metodos que tengo que copiar en almacenamiento
+
 	public static String listaClientes() {
 		Iterator<Usuario> iterator = clientes.iterator();
 		StringBuffer lista = new StringBuffer();
@@ -212,6 +211,8 @@ public class Main implements Serializable {
 		}
 		return lista.toString();
 	}
+
+	
 
 	public static String listaReservas() {
 		Iterator<Reserva> iterator = reservas.iterator();
@@ -242,6 +243,7 @@ public class Main implements Serializable {
 		}
 		return lista.toString();
 	}
+
 
 	public static String listaHabitaciones() {
 		Iterator<Lugar> iterator = habitaciones.iterator();
@@ -306,13 +308,5 @@ public class Main implements Serializable {
 
 	}
 
-	static public Usuario buscarUsuario(int documento) {
-		for (Usuario usuario : ListaUsuarios) {
-			if (usuario.getIdentificacion() == documento) {
-				return usuario;
-			}
-		}
-		return null;
-	}
 
 }
