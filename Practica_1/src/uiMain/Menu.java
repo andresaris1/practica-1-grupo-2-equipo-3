@@ -2,7 +2,10 @@
 //Librerias a importar
 package uiMain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -444,11 +447,10 @@ public class Menu {
 		String fsalida = sc.next();
 		System.out.println("¿Para cuantas personas es la reserva?");
 		personas = sc.nextInt();
-		Reserva reserva = main.nuevaReserva(fentrada, fsalida, null, 0, user);
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Main.listarDisponibles(reserva.getFechaEntrada(),reserva.getFechaSalida()));
+			System.out.println(Main.listarDisponibles(fentrada,fsalida));
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
 			Lugar habitacion = main.buscarHabitacion(hb);
@@ -464,7 +466,7 @@ public class Menu {
 		} while (suma < personas);
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
-		reserva.setHabitaciones(habitaciones);
+		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, 0, user);
 		Factura f1=main.nuevaFactura(user,null,servicios,null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);

@@ -12,7 +12,12 @@ import gestorAplicacion.ServicioExterno;
 import gestorAplicacion.Usuario;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +41,7 @@ public class Main implements Serializable {
 	static Lugar h6 = new Lugar(302, "Habitación familiar", 4);
 
 	private static List<Lugar> habitaciones = new ArrayList<Lugar>();
+	private static List<Lugar> habitaciondis = new ArrayList<Lugar>();
 
 	static Scanner sc = new Scanner(System.in);
 	private static ArrayList<Factura> hola = new ArrayList<Factura>();
@@ -44,18 +50,21 @@ public class Main implements Serializable {
 	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, "", null);
 	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, "", null);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
+	static List<Lugar> habitacionese = new ArrayList<>(Arrays.asList(h1, h3));
+	static Reserva reserva = new Reserva("23/05/2023", "24/05/2023", habitacionese, 5000, usuario1);
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
 
 	public Main() {
 		Deserializador.deserializar(this);
 		clientes.add(usuario1);
-		habitaciones.add(h1);
+		// habitaciones.add(h1);
 		habitaciones.add(h2);
-		habitaciones.add(h3);
+		// habitaciones.add(h3);
 		habitaciones.add(h4);
 		habitaciones.add(h5);
 		habitaciones.add(h6);
+		reservas.add(reserva);
 
 	}
 
@@ -150,7 +159,7 @@ public class Main implements Serializable {
 	}
 
 	public static Lugar buscarHabitacion(int id) {
-		Iterator<Lugar> iterator = habitaciones.iterator();
+		Iterator<Lugar> iterator = habitaciondis.iterator();
 		while (iterator.hasNext()) {
 			Lugar habitacion = (Lugar) iterator.next();
 			if (habitacion.getNumero() == id) {
@@ -210,9 +219,9 @@ public class Main implements Serializable {
 		}
 		return lista.toString();
 	}
-	
+
 	public static String listaHabitaciones(List<Lugar> esto) {
-		Iterator<Lugar> iterator = habitaciones.iterator();
+		Iterator<Lugar> iterator = esto.iterator();
 		StringBuffer lista = new StringBuffer();
 		while (iterator.hasNext()) {
 			Lugar habitacion = (Lugar) iterator.next();
@@ -221,34 +230,45 @@ public class Main implements Serializable {
 		return lista.toString();
 	}
 
-
 	public static void nodisponible(Lugar hb) {
 		habitaciones.remove(hb);
 	}
 
-	public static String listarDisponibles(Date fentrada, Date fsalida) {
-		List<Lugar> habitaciondis = new ArrayList<Lugar>();
-		Iterator<Reserva> iter = reservas.iterator();
-		while (iter.hasNext()) {
-			Reserva reserva = (Reserva) iter.next();
-			if (fentrada.after(reserva.getFechaEntrada()) && fsalida.after(reserva.getFechaSalida())
-					|| fentrada.before(reserva.getFechaEntrada()) && fsalida.before(reserva.getFechaSalida())) {
-				habitaciondis.addAll(reserva.getHabitaciones());
+	public static String listarDisponibles(String fechaEntrada, String fechaSalida) {
+		
+		habitaciondis.clear();
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fEntrada = new Date();
+		try {
+			fEntrada = fecha.parse(fechaEntrada);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date fSalida = new Date();
+		try {
+			fSalida = fecha.parse(fechaSalida);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		for (Reserva re : reservas) {
+			for (Lugar h : re.getHabitaciones()) {
+				if (fEntrada.after(re.getFechaEntrada()) && fSalida.after(re.getFechaSalida())
+						|| fEntrada.before(re.getFechaEntrada()) && fSalida.before(re.getFechaSalida())) {
+					habitaciondis.add(h);
+				}
 			}
 		}
 		Iterator<Lugar> iterator = habitaciones.iterator();
 		while (iterator.hasNext()) {
 			Lugar habitacion = (Lugar) iterator.next();
-			if (habitaciondis.contains(habitacion)) {
-				continue;
-			} else {
-				habitaciondis.add(habitacion);
-			}
+			habitaciondis.add(habitacion);
 		}
-	
+		Collections.sort(habitaciondis, new Comparator<Lugar>() {
+			public int compare(Lugar p1, Lugar p2) {
+				return new Integer(p1.getNumero()).compareTo(new Integer(p2.getNumero()));
+			}
+		});
 		String lista = listaHabitaciones(habitaciondis);
-
-		
 		return lista;
 
 	}
