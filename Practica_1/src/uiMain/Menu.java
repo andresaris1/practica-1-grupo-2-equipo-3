@@ -457,7 +457,7 @@ public class Menu {
 		Evento evento = Main.nuevoEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(main) );
 
 		//Facturación del evento:
-
+		Servicio servicioEvento = evento;
 	
 	}
 	
