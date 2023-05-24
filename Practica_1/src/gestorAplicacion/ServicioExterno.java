@@ -1,7 +1,6 @@
 package gestorAplicacion;
 
 public class ServicioExterno extends Servicio {
-    String nombre;
     int valor;
     String empresaContratada;
     String descripcion;
@@ -12,18 +11,32 @@ public class ServicioExterno extends Servicio {
         + this.empresaContratada +" por un valor de "+this.valor+" COP"  );
     }
 
+    
 
-    ServicioExterno(String nombre, int valor, String empresaContratada) {
-        super(nombre, valor);
-        this.empresaContratada = empresaContratada;
-    }
-
-    ServicioExterno(String nombre, int valor, String empresaContratada, String descripcion) {
-        super(nombre, valor);
-        this.empresaContratada = empresaContratada;
+    public ServicioExterno(String nombre, String descripcion) {
+        super(nombre, valorSegunTipo(nombre));
+        this.empresaContratada = empresaSegunTipo(nombre);
         this.descripcion = descripcion;
     }
 
+    private static int valorSegunTipo(String nombre){
+        if(nombre.equals("entretenimiento")){
+            return 100000;
+        }else if (nombre.equals("sonido")){
+            return 50000;
+        }else if (nombre.equals("decoracion")){
+            return 200000;
+        }else{return -1;}
+    }
+    private static String empresaSegunTipo(String nombre){
+        if(nombre.equals("entretenimiento")){
+            return "Entretenimiento S.A.S";
+        }else if (nombre.equals("sonido")){
+            return "Sonido S.A.S";
+        }else if (nombre.equals("decoracion")){
+            return "Decoracion S.A.S";
+        }else{return null;}
+    }
     //Getters y setters
     public String getEmpresaContratada() {
         return empresaContratada;

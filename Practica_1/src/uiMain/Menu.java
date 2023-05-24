@@ -14,6 +14,8 @@ import gestorAplicacion.Lugar;
 import gestorAplicacion.Reserva;
 import gestorAplicacion.Servicio;
 import gestorAplicacion.Usuario;
+import gestorAplicacion.ServicioExterno;
+import gestorAplicacion.Evento;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
@@ -120,6 +122,7 @@ public class Menu {
 
 					// Le pedimos su información al cliente
 					System.out.println("Escribe tu identificacion: ");
+					//	IMPORTANTE: REGISTRO
 					int id = sc.nextInt();
 					System.out.println("Escribe tu nombre:");
 					String nombre = sc.next();
@@ -172,23 +175,35 @@ public class Menu {
 						}
 					}
 
+					ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
 					// le preguntamos al cliente si desea que contratemos algún servicio extra para
 					// él
-					System.out.println("¿Desea contratar algún servicio extra? (si/no)");
-					switch (sc.next()) {
-						case "si":
-							System.out.println("¿Qué servicio desea contratar?");
-							System.out.println("1. Entretenimiento");
-							System.out.println("2. Sonido");
-							System.out.println("3. Pantalla");
-							int servicio = sc.nextInt();
-
-
-
+					String res = "si";
+					while(res.equals("si")) {
+						System.out.println("¿Qué servicio desea contratar?");
+						System.out.println("1. entretenimiento");
+						System.out.println("2. sonido");
+						System.out.println("3. decoracion");
+						String servicio;
+						switch (sc.nextInt()) {
+						case 1:
+							servicio = "entretenimiento";
 							break;
-						case "no":
+						case 2:
+							servicio = "sonido";
 							break;
+						case 3:
+							servicio = "decoracion";
+							break;
+						}
+
+						ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
+						serviciosExternos.add(servicioExterno);
+						
+						System.out.println("¿Desea contratar algún servicio extra? (si/no)");
+						res = sc.next();
 					}
+					
 
 					// Generar la factura para el cliente tomando en cuenta todo lo solicitado.
 
