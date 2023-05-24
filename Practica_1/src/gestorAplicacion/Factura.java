@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ArrayList;
 
 /*Clase Factura encargada de gaurdar cada una de las compras de los usurios, cada que un usrurio realiza 
@@ -14,7 +16,7 @@ public class Factura implements Serializable{
     private String date;
     private Usuario cliente;
     private Empleado empleado;
-    private Servicio[] items;
+    private List<Servicio> items;
     private int valorTotal;
     private int estado; // 0 Deuda 1 Paga
     static int contador = 0;
@@ -26,13 +28,13 @@ public class Factura implements Serializable{
     /* Metodo valorTotal se encarga de calcula el valor total de cada factura */
     public void valorTotal() {
         int total = 0;
-
-        for (int i = 0; i < items.length; i++) {
-            int x = items[i].getValor();
-            total += x;
-        }
-        this.valorTotal = total;
-    }
+    	Iterator<Servicio> iterator = items.iterator();
+    		while (iterator.hasNext()) {
+    			Servicio servicio = (Servicio) iterator.next();
+    			total+=(servicio.valor);
+    		}
+    		this.valorTotal = total;
+    	}
 
     /*
      * Metodo para sumar el valor total que debe un cliente, recibe como parametro
@@ -99,18 +101,25 @@ public class Factura implements Serializable{
      */
     public String imprimirFactura() {
         StringBuilder sb = new StringBuilder();
-        String lista = "";
-        for (int i = 0; i < items.length; i++) {
-            String cadena = items[i].toString();
-            lista = lista + cadena + "\n";
-        }
+        StringBuffer lista=new StringBuffer();
+        String empleado="";
+        lista.append("Concepto \t Valor\n");
+    	Iterator<Servicio> iterator = items.iterator();
+    	if (this.empleado!=null) {
+    		empleado=this.empleado.getNombre();
+    	}else {
+    		empleado="Recepcion";
+    	}
+    		while (iterator.hasNext()) {
+    			Servicio servicio = (Servicio) iterator.next();
+    			lista.append(servicio.nombre+" \t"+ servicio.valor+"\n");
+    		}
 
         sb.append("-------------------------------------------").append("\n");
         sb.append("Codigo de factura: ").append(this.codigo).append("\n");
         sb.append("Fecha y Hora: ").append(this.date).append("\n");
-        sb.append("Empleado: ").append(this.empleado.getNombre()).append("\n");
+        sb.append("Empleado: ").append(empleado).append("\n");
         sb.append("Cliente: ").append(this.cliente.getNombre()).append("\n");
-        sb.append("Cosa                        Valor").append("\n");
         sb.append(lista).append("\n");
         sb.append("Valor total:  ").append(valorTotal).append("\n");
         sb.append("-------------------------------------------");
@@ -133,13 +142,13 @@ public class Factura implements Serializable{
     }
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino, String concepto) {
+    public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, Destinos destino, String concepto) {
         this.estado = 0;
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
         this.destino = destino;
-        this.concepto = concepto;
+        this.setConcepto(concepto);
         //this.valorTotal(); // Se ejecuta el metodo de valor total para la factura creada COMENTARIO PROVISIONAL
 
         // Establece la fecha en la que se creo la factura
@@ -205,14 +214,6 @@ public class Factura implements Serializable{
         this.valorTotal = valorTotal;
     }
 
-    public Servicio[] getItems() {
-        return items;
-    }
-
-    public void setItems(Servicio[] items) {
-        this.items = items;
-    }
-
     public static int getContador() {
         return contador;
     }
@@ -236,5 +237,22 @@ public class Factura implements Serializable{
     public void setDestino(Destinos destino) {
         this.destino = destino;
     }
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+	
+	public List<Servicio> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Servicio> items) {
+		this.items = items;
+	}
+
 
 }

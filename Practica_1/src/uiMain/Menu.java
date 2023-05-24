@@ -87,7 +87,8 @@ public class Menu {
 							System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
 
 							// Crear la factura y registrarla en la lista del cliente
-							Factura factura = new Factura(usuario, Main.empleado1, new Servicio[0],
+							List<Servicio> servicio=new ArrayList<Servicio>();
+							Factura factura = new Factura(usuario, Main.empleado1, servicio,
 									destinoSeleccionado,"Turismo");
 							usuario.getListaFacturas().add(factura);
 
@@ -460,13 +461,15 @@ public class Menu {
 				System.out.println("Esta habitacion no está disponible");
 			}
 		} while (suma < personas);
+		List<Servicio> servicios=new ArrayList<Servicio>();
+		servicios.add(new Servicio("Reserva", valor));
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
 		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, (valor - abonado), user);
-		Factura f1=main.nuevaFactura(user,null,null,null, "Reserva");
+		Factura f1=main.nuevaFactura(user,null,servicios,null, "Reserva");
+		System.out.println(f1.imprimirFactura());
 		System.out.println("\n" + reserva + "\n");
-		System.out.println("Valor de la reserva: " + valor + "\nAbonó: " + abonado + "\nResta: " + (valor - abonado));
 		
 	}
 

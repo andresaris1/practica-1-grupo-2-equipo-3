@@ -109,7 +109,7 @@ public class Main implements Serializable {
 		return null;
 	}
 	
-	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino, String concepto) {
+	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, List<Servicio> items, Destinos destino, String concepto) {
 		Factura factura= new Factura(cliente,empleado,items,destino,concepto);
 		facturas.add(factura);
 		return factura;
