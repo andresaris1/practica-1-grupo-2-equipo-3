@@ -118,8 +118,8 @@ public class Almacenamiento implements Serializable {
 
     public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo,
             String cuentaBancaria,
-            ArrayList<Factura> listaFacturas) {
-        Usuario usuario = new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, listaFacturas);
+            ArrayList<String> arrayList) {
+        Usuario usuario = new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, new ArrayList<Factura>());
         Almacenamiento.listaUsuarios.add(usuario);
         return usuario;
     }
@@ -162,6 +162,13 @@ public class Almacenamiento implements Serializable {
         Almacenamiento.listaEventos.add(evento);
         return evento;
     }
+
+    public static Factura crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, Destinos destino,
+			String concepto) {
+		Factura factura = new Factura(cliente, empleado, items, destino, concepto);
+		listaFacturas.add(factura);
+		return factura;
+	}
 
     // METODOS COPIADOS DE LA CLASE MAIN
     // Metodos que tengo que copiar en almacenamiento

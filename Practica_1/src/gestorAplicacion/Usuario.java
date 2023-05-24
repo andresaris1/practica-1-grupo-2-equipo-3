@@ -21,8 +21,7 @@ public class Usuario extends Persona {
 	}
 
 	// CONSTRUCTOR
-	public Usuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria,
-			ArrayList<Factura> listaFacturas) {
+	public Usuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria, ArrayList<Factura> listaFacturas) {
 		super(nombre, identificacion, telefono);
 		this.tipo = tipo;
 		this.cuentaBancaria = cuentaBancaria;

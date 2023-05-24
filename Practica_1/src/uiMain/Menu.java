@@ -24,7 +24,7 @@ import gestorAplicacion.Evento;
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void almacenamiento(String[] args) {
         Almacenamiento almacen= new Almacenamiento();
 		int opcion;
 		do {
@@ -52,7 +52,7 @@ public class Menu {
 
 					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
 
-					Usuario usuario = Main.buscarUsuario(identificacion);
+					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
 					
 					if (usuario == null) {
 						System.out.println("Usuario no encontrado en la base de datos");
@@ -104,13 +104,13 @@ public class Menu {
 
 					}
 					
-					Factura factura = Main.nuevaFactura(usuario, servicios);
+					Factura factura = Almacenamiento.nuevaFactura(usuario, servicios);
 					usuario.getListaFacturas().add(factura);
 
 					break;
 				case 3:
 					//FUNCIONALIDAD RESERVA DE EVENTOS
-					reservarEvento(main);
+					reservarEvento(almacenamiento);
 					break;
 				case 4:
 
@@ -118,7 +118,7 @@ public class Menu {
 					//Queda aregar una opcion mas de consulta que deriva en cobro
 					System.out.println("Por favor ingrese el número de documento de quien desea pagar:\n");
 					int documento = sc.nextInt();
-					Usuario user = Main.buscarUsuario(documento);
+					Usuario user = Almacenamiento.buscarUsuario(documento);
 
 					if (user == null) {
 						System.out.println("Usuario no encontrado en la base de datos");
@@ -295,23 +295,23 @@ public class Menu {
 					}
 					break;
 				case 6:
-					Servicioad(main);
+					Servicioad(almacenamiento);
 					break;
 				case 7:
 					System.out.println("Gracias por preferirnos");
-					Serializador.serializar(main);
+					Serializador.serializar(almacenamiento);
 					System.exit(0);
 					break;
 				case 8:
 					System.out.println("-- - - Reservas Existentes - - - -");
-					System.out.println(Main.listaReservas());
+					System.out.println(Almacenamiento.listaReservas());
 					System.out.println("-- - - Clientes Existentes - - - -");
-					System.out.println(Main.listaClientes());
+					System.out.println(Almacenamiento.listaClientes());
 					System.out.println("-- - - Facturas de Cliente - - - -");
-					Usuario usere=Main.usuario1;
-					System.out.println(Main.listaFacturascliente(usere));
+					Usuario usere=Almacenamiento.usuario1;
+					System.out.println(Almacenamiento.listaFacturascliente(usere));
 					System.out.println("-- - - Facturas Existentes - - - -");
-					System.out.println(Main.listaFacturas());
+					System.out.println(Almacenamiento.listaFacturas());
 					break;
 
 				default:
@@ -354,7 +354,7 @@ public class Menu {
 
 	}
 
-	static void reservar(Almacenamiento main) {
+	static void reservar(Almacenamiento almacenamiento) {
 		List<Lugar> habitaciones = new ArrayList<Lugar>();
 		System.out.println("Escribe tu identificacion:");
 		int personas;
@@ -362,7 +362,7 @@ public class Menu {
 		int ide = sc.nextInt();
 		Usuario user = Almacenamiento.buscarUsuario(ide);
 		if (user == null) {
-			user = registro(main);
+			user = registro(almacenamiento);
 			if (user == null) {
 				System.out.println("No se pudo realizar la reserva pues no hay un cliente a registrar\n");
 				return;
@@ -378,15 +378,15 @@ public class Menu {
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Main.listarDisponibles(fentrada,fsalida));
+			System.out.println(Almacenamiento.listarDisponibles(fentrada,fsalida));
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
-			Lugar habitacion = main.buscarHabitacion(hb);
+			Lugar habitacion = Almacenamiento.buscarHabitacion(hb);
 			if (habitacion != null) {
 				habitaciones.add(habitacion);
-				main.nodisponible(habitacion);
+				Almacenamiento.nodisponible(habitacion);
 				suma += habitacion.getCapacidad();
-				valor += habitacion.valorSegunTipo(habitacion.getTipo());
+				valor += Lugar.valorSegunTipo(habitacion.getTipo());
 				System.out.println("Habitacion reservada con exito");
 			} else {
 				System.out.println("Esta habitacion no está disponible");
@@ -394,8 +394,8 @@ public class Menu {
 		} while (suma < personas);
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
-		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, 0, user);
-		Factura f1=main.nuevaFactura(user,null,servicios,null, "Reserva");
+		Reserva reserva = Almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
+		Factura f1=Almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
@@ -406,15 +406,15 @@ public class Menu {
 		
 	}
 
-	static void reservarEvento(Main main){
+	static void reservarEvento(Almacenamiento almacenamiento){
 		// Le pedimos su información al cliente
 		System.out.println("Escribe tu identificacion: ");
 		//Se valida si el usuario ya está en la base de datos.
 		//En caso de que no, ingresarlo a la base de datos.
 		int id = sc.nextInt();
-		Usuario usuario = Main.buscar(id);
+		Usuario usuario = Almacenamiento.buscarUsuario(id);
 		if (usuario == null) {
-			usuario = registro(main);
+			usuario = registro(almacenamiento);
 			if (usuario == null) {
 				System.out.println("No se pudo realizar la reserva pues no hay un cliente a registrar\n");
 				return;
@@ -441,7 +441,7 @@ public class Menu {
 		lugares.put(2, "piscina");
 		lugares.put(3, "salon");
 		int numLugar = sc.nextInt();
-		Lugar tipoLugar = Main.nuevoLugarDeEventos(lugares.get(numLugar));
+		Lugar tipoLugar = Almacenamiento.crearLugar(lugares.get(numLugar));
 
 		// Se le consulta sobre la cantidad de personas que
 		// asistirán a su evento
@@ -459,14 +459,14 @@ public class Menu {
 		ArrayList<ServicioExterno> serviciosExternos;
 
 		if(respuesta==1){
-			serviciosExternos = crearServiciosExternos(main);
+			serviciosExternos = crearServiciosExternos(almacenamiento);
 		}else{
 			System.out.println("No se contrataron servicios externos");
 			serviciosExternos =null;
 		}
 		
 		//Finalmente, creación del evento
-		Evento evento = Main.nuevoEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(main) );
+		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(almacenamiento) );
 
 		//Facturación del evento:
 		Servicio servicioEvento = evento;
@@ -478,7 +478,7 @@ public class Menu {
 	 * evento  necesita
 	 * dentro de la funcionalidad reserva de Eventos
 	 */
-	static ArrayList<Empleado> empleadosNecesarios(Main main){
+	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento){
 
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		// Instanciamos el Diccionario que usaremos para guardar la información sobre
@@ -514,7 +514,7 @@ public class Menu {
 	 * que necesita
 	 * dentro de la funcionalidad reserva de Eventos
 	 */
-	static ArrayList<ServicioExterno> crearServiciosExternos(Main main) {
+	static ArrayList<ServicioExterno> crearServiciosExternos(Almacenamiento almacenamiento) {
 
 		// Instanciamos el Diccionario que usaremos para guardar los servicios
 
@@ -555,7 +555,7 @@ public class Menu {
 	}
 	
 	
-	static Usuario registro(Main main) {
+	static Usuario registro(Almacenamiento almacenamiento) {
 		int opcion;
 		Usuario cli = null;
 		do {
@@ -572,8 +572,9 @@ public class Menu {
 					int tel = sc.nextInt();
 					System.out.print("Ingrese una cuenta bancaria:\n");
 					String cb = sc.next();
-					Usuario cliente = main.registrarUsuario(nombre, id, tel, null, cb);
+					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb,new ArrayList<String>());
 					cli = cliente;
+
 					System.out.println("Usuario creado con exito");
 					System.out.println(cli.informacion());
 					opcion = 2;
@@ -590,13 +591,13 @@ public class Menu {
 
 	}
 	
-	static void Servicioad(Main main) {
+	static void Servicioad(Almacenamiento almacenamiento) {
 		int opcion;
 		int con=0;
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		System.out.println("Escribe tu identificacion:");
 		int ide = sc.nextInt();
-		Usuario user = Main.buscar(ide);
+		Usuario user = Almacenamiento.buscarUsuario(ide);
 		if (user == null) {
 			System.out.println("Usuario no registrado\n");
 			return;
@@ -609,7 +610,7 @@ public class Menu {
 			opcion = sc.nextInt();
 			switch (opcion) {
 				case 1:
-					servicios.add(main.buscarServicio("Comida"));
+					servicios.add(Almacenamiento.buscarServicio("Comida"));
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
@@ -618,7 +619,7 @@ public class Menu {
 					}
 					break;
 				case 2:
-					servicios.add(main.buscarServicio("Masaje"));
+					servicios.add(Almacenamiento.buscarServicio("Masaje"));
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
@@ -632,7 +633,7 @@ public class Menu {
 			}
 		} while (con != 2);
 		
-		Factura f1=main.nuevaFactura(user,null,servicios,null, "Adicional");
+		Factura f1=Almacenamiento.crearFactura(user,null,servicios,null, "Adicional");
 		System.out.println(f1.imprimirFactura());
 
 	}
