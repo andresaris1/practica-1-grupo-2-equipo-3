@@ -203,6 +203,7 @@ public class Menu {
 							int num = 0;
 							int num2 = 0;
 							
+							
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación doble") {
@@ -231,6 +232,7 @@ public class Menu {
 							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
 							int num2 = 0;
+							Usuario cliente = Reserva.getCliente();
 							
 							System.out.println("-----------------------------------------------------");
 							
@@ -241,6 +243,11 @@ public class Menu {
 								System.out.println("Tipo: " + hab_dis.get(i).getTipo());
 								System.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
 								System.out.println("Precio: " + Lugar.valorSegunTipo(hab_dis.get(i).getTipo()));
+								if(hab_ocu.contains(hab_dis.get(i))){
+									System.out.println("Cliente asociado a esta: ");
+									System.out.println(cliente);
+								
+								}
 								
 								System.out.println("---------------------------------------------");
 
