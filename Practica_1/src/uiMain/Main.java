@@ -41,7 +41,8 @@ public class Main implements Serializable {
 	
 	
 	static Scanner sc = new Scanner(System.in);
-	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, "", null);
+	private static ArrayList<Factura> hola=new ArrayList<Factura>();
+	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, "", hola);
 	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, "", null);
 	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, "", null);
 	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, "", null);
@@ -91,7 +92,7 @@ public class Main implements Serializable {
 	
 
 	public static Usuario registrarUsuario(String nombre, int id, int telefono, String tipo, String cuentaBancaria) {
-		Usuario cliente= new Usuario(nombre,id,telefono,tipo,cuentaBancaria);
+		Usuario cliente= new Usuario(nombre,id,telefono,tipo,cuentaBancaria, null);
 		clientes.add(cliente);
 		return cliente;
 	}
@@ -108,8 +109,8 @@ public class Main implements Serializable {
 		return null;
 	}
 	
-	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
-		Factura factura= new Factura(cliente,empleado,items,destino);
+	public static Factura nuevaFactura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino, String concepto) {
+		Factura factura= new Factura(cliente,empleado,items,destino,concepto);
 		facturas.add(factura);
 		return factura;
 	}
@@ -190,6 +191,16 @@ public class Main implements Serializable {
 		while (iterator.hasNext()) {
 			Reserva reserva = (Reserva) iterator.next();
 			lista.append(reserva.toString()+"\n");
+		}
+		return lista.toString();
+	}
+	
+	public static String listaFacturascliente(Usuario cliente) {
+		Iterator<Factura> iterator = cliente.getListaFacturas().iterator();
+		StringBuffer lista=new StringBuffer();
+		while (iterator.hasNext()) {
+			Factura factura = (Factura) iterator.next();
+			lista.append(factura.toString()+"\n");
 		}
 		return lista.toString();
 	}

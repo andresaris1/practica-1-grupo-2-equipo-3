@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import baseDatos.Serializador;
 import gestorAplicacion.Destinos;
+import gestorAplicacion.Empleado;
 import gestorAplicacion.Factura;
 import gestorAplicacion.Lugar;
 import gestorAplicacion.Reserva;
@@ -87,7 +88,7 @@ public class Menu {
 
 							// Crear la factura y registrarla en la lista del cliente
 							Factura factura = new Factura(usuario, Main.empleado1, new Servicio[0],
-									destinoSeleccionado);
+									destinoSeleccionado,"Turismo");
 							usuario.getListaFacturas().add(factura);
 
 						} else {
@@ -374,6 +375,9 @@ public class Menu {
 					System.out.println(Main.listaReservas());
 					System.out.println("-- - - Clientes Existentes - - - -");
 					System.out.println(Main.listaClientes());
+					System.out.println("-- - - Facturas de Cliente - - - -");
+					Usuario usere=Main.usuario1;
+					System.out.println(Main.listaFacturascliente(usere));
 					System.out.println("-- - - Facturas Existentes - - - -");
 					System.out.println(Main.listaFacturas());
 					break;
@@ -460,8 +464,10 @@ public class Menu {
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
 		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, (valor - abonado), user);
+		Factura f1=main.nuevaFactura(user,null,null,null, "Reserva");
 		System.out.println("\n" + reserva + "\n");
 		System.out.println("Valor de la reserva: " + valor + "\nAbonó: " + abonado + "\nResta: " + (valor - abonado));
+		
 	}
 
 	static void comprobarDisponibilidad() {

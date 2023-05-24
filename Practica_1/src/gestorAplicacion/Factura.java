@@ -19,7 +19,7 @@ public class Factura implements Serializable{
     private int estado; // 0 Deuda 1 Paga
     static int contador = 0;
     private Destinos destino;
-
+    private String concepto;
 
     // METODOS
 
@@ -133,12 +133,13 @@ public class Factura implements Serializable{
     }
 
     // CONSTRUCTOR
-    public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino) {
+    public Factura(Usuario cliente, Empleado empleado, Servicio[] items, Destinos destino, String concepto) {
         this.estado = 0;
         this.cliente = cliente;
         this.empleado = empleado;
         this.items = items;
         this.destino = destino;
+        this.concepto = concepto;
         //this.valorTotal(); // Se ejecuta el metodo de valor total para la factura creada COMENTARIO PROVISIONAL
 
         // Establece la fecha en la que se creo la factura
@@ -151,9 +152,17 @@ public class Factura implements Serializable{
         this.codigo = Factura.contador;
 
         // Se agrega la factura al usuario y empleado correspondiente
-        //cliente.listaFacturas.add(this); //COMENTARIO PROVICIONAL
-        empleado.calcularComision(valorTotal);
+        cliente.listaFacturas.add(this);
+        if (empleado!=null) {
+        	empleado.calcularComision(valorTotal);
+        }
+        
     }
+    
+    public Factura(Usuario cliente, String concepto) {
+    	this(cliente, null, null, null, "Reserva");
+    }
+
 
     // GETTERS AND SETTERS
     public int getCodigo() {
