@@ -165,7 +165,7 @@ public class Menu {
 							// informacion de las habitaciones familiares
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.getHabitaciones();
+							hab_dis = Almacenamiento.getListaHabitaciones();
 							int num = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
@@ -185,14 +185,14 @@ public class Menu {
 
 							} else {
 
-								System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
+								System.out.println("No tenemos habitaciones familiares disponibles");
 							}
 
 						} else if (res2 == 2) {
 							// informacion de las habitaciones dobles
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.getHabitaciones();
+							hab_dis = Almacenamiento.getListaHabitaciones();
 							int num = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
@@ -210,13 +210,13 @@ public class Menu {
 								int valor = Lugar.valorSegunTipo("Habitacion doble");
 								System.out.println("La habitacion doble tiene un costo de " + valor);
 							} else {
-								System.out.println("Lo sentimos, no tenemos habitaciones dobles disponibles");
+								System.out.println("No tenemos habitaciones dobles disponibles");
 							}
 
 						} else if (res2 == 4){
 							//Tabla de informacion general
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.getHabitaciones();
+							hab_dis = Almacenamiento.getListaHabitaciones();
 							int num = 0;
 							
 							System.out.println("-----------------------------------------------------");
@@ -239,7 +239,7 @@ public class Menu {
 							// informacion de las habitaciones individuales
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							hab_dis = Main.getHabitaciones();
+							hab_dis = Almacenamiento.getListaHabitaciones();
 							int num = 0;
 							for (int i = 0; i < hab_dis.size(); i++) {
 
@@ -258,7 +258,7 @@ public class Menu {
 								int valor = Lugar.valorSegunTipo("Habitacion individual");
 								System.out.println("La habitacion doble tiene un costo de " + valor);
 							} else {
-								System.out.println("Lo sentimos, no tenemos habitaciones individuales disponibles");
+								System.out.println("No tenemos habitaciones individuales disponibles");
 							}
 						}
 
