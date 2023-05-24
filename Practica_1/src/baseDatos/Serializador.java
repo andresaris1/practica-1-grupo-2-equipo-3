@@ -27,7 +27,7 @@ public class Serializador {
 			}
 		}
 
-		//bucle para serializar cada lista de objetos
+		// bucle para serializar cada lista de objetos
 
 		for (File file : docs) {
 			if (file.getAbsolutePath().contains("usuarios")) {
@@ -80,17 +80,7 @@ public class Serializador {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else if (file.getAbsolutePath().contains("serviciosExternos")) {
-				try {
-					fos = new FileOutputStream(file);
-					oos = new ObjectOutputStream(fos);
-					oos.writeObject(Almacenamiento.getListaServiciosExternos());
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}else if (file.getAbsolutePath().contains("reservas")) {
+			} else if (file.getAbsolutePath().contains("reservas")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
@@ -105,6 +95,16 @@ public class Serializador {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
 					oos.writeObject(Almacenamiento.getListaEventos());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("serviciosExternos")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaServiciosExternos());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
