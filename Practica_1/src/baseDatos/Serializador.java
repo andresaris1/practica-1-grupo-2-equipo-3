@@ -11,7 +11,7 @@ import uiMain.*;
 public class Serializador {
 	private static File ruta = new File("src\\baseDatos\\temp");
 
-	public static void serializar(Main main) {
+	public static void serializar(Almacenamiento almacenamiento) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = ruta.listFiles();

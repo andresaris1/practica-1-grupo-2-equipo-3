@@ -1,3 +1,4 @@
+/*
 package uiMain;
 
 import gestorAplicacion.Destinos;
@@ -310,3 +311,4 @@ public class Main implements Serializable {
 
 
 }
+ */

@@ -230,7 +230,7 @@ public class Almacenamiento implements Serializable {
     public static void nodisponible(Lugar hb) {
         listaHabitaciones.remove(hb);
     }
-
+/*
     public static String listarDisponibles(String fechaEntrada, String fechaSalida) {
 
         habitaciondis.clear();
@@ -269,7 +269,7 @@ public class Almacenamiento implements Serializable {
         return lista;
 
     }
-
+*/
     // CONSTRUCTOR
     public Almacenamiento() {
         Deserializador.deserializar(this);
