@@ -409,6 +409,12 @@ public class Menu {
 			}
 		}
 
+		System.out.println("Escriba la fecha en la que desea su evento: (dd/mm/aaaa))");
+		String fecha = sc.next();
+
+		System.out.println("Ecriba la duración en minutos de su evento: ");
+		int duracion = sc.nextInt();
+
 		// Se le consulta sobre el lugar que requiere
 		// para su evento
 		System.out.println("Escribe el lugar en el que desea su evento: ");
@@ -423,7 +429,7 @@ public class Menu {
 		lugares.put(2, "piscina");
 		lugares.put(3, "salon");
 		int numLugar = sc.nextInt();
-		String tipoLugar = lugares.get(numLugar);
+		Lugar tipoLugar = Main.nuevoLugarDeEventos(lugares.get(numLugar));
 
 		// Se le consulta sobre la cantidad de personas que
 		// asistirán a su evento
@@ -435,13 +441,23 @@ public class Menu {
 		System.out.println("¿Desea contratar algún servicio externo?");
 		System.out.println("1. Si");
 		System.out.println("2. No");
+
 		int respuesta = sc.nextInt();
+
+		ArrayList<ServicioExterno> serviciosExternos;
+
 		if(respuesta==1){
-			ArrayList<ServicioExterno> servicioExternos = crearServiciosExternos(main);
+			serviciosExternos = crearServiciosExternos(main);
 		}else{
 			System.out.println("No se contrataron servicios externos");
+			serviciosExternos =null;
 		}
 		
+		//Finalmente, creación del evento
+		Main.nuevoEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(main) );
+
+		//Falta la factura de evento
+	
 	}
 	
 	/*
@@ -449,8 +465,9 @@ public class Menu {
 	 * evento  necesita
 	 * dentro de la funcionalidad reserva de Eventos
 	 */
-	static HashMap<String,Integer> empleadosNecesarios(Main main){
+	static ArrayList<Empleado> empleadosNecesarios(Main main){
 
+		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		// Instanciamos el Diccionario que usaremos para guardar la información sobre
 		// los
 		// empleados que el cliente necesita
@@ -471,8 +488,12 @@ public class Menu {
 				empleadosNecesarios.put(x, sc.nextInt());
 			}
 		}
-
-		return empleadosNecesarios;
+        int variable = 0;
+		for (String x : empleadosNecesarios.keySet()) {
+			variable += 1;
+			empleados.add(new Empleado("Rigoberto "+String.valueOf(variable) ,variable, x.toLowerCase()  ));
+		}
+		return empleados;
 	}
 
 	/*
