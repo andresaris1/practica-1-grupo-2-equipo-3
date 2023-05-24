@@ -120,7 +120,7 @@ public class Menu {
 					}
 
 					Factura factura = new Factura(cliente, empleado, servicios, destinos, "Factura por destinos");
-					cliente.agregarFactura(factura);
+					usuario.agregarFactura(factura);
 					Almacenamiento.getListaFacturas().add(factura);
 
 					System.out.println("Valor total de los destinos: "+ valorTotal);
