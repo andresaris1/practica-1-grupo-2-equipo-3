@@ -45,29 +45,39 @@ public class Menu {
 					reservar(almacen);
 					break;
 
-				case 2:
-					// FUNCIONALIDAD RESERVA TURÍSTICA
+				case 2:					 // FUNCIONALIDAD RESERVA TURÍSTICA
 					System.out.println("Ingrese la identificación del usuario: ");
 					int identificacion = sc.nextInt();
 
 					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
-
+					
 					if (usuario == null) {
 						System.out.println("Usuario no encontrado en la base de datos");
 						return; // Sale del caso 2 si el usuario no se encuentra
+   
+					}
+					
+					System.out.print("Ingrese la identificación del empleado: ");
+					int idEmpleado = scanner.nextInt();
+					Empleado empleado = Almacenamiento.buscarEmpleado(idEmpleado);
+
+					if (empleado == null) {
+						System.out.println("El empleado no existe.");
+						break;
 
 					}
 
 					ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
+    
 					while (true) {
-
+        
 						System.out.println("Seleccione un destino:");
 						int index = 1;
 						for (Destinos destino : Destinos.values()) {
 							System.out.println(index + ". " + destino);
 							index++;
-
+        
 						}
 
 						System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
@@ -75,18 +85,18 @@ public class Menu {
 
 						if (numDestino == 0) {
 							break; // Salir del bucle si se ingresa 0
-
+        
 						}
 
 						if (numDestino >= 1 && numDestino <= Destinos.values().length) {
 
-							// Revisar que el número ingresado cuente como una opción válida ofrecida para
-							// el tour
+							// Revisar que el número ingresado cuente como una opción válida ofrecida para el tour
 							Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
 							destinosSeleccionados.add(destinoSeleccionado);
 							System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
 
-						} else {
+						}
+						else {
 							System.out.println("Opción inválida, elija una opción válida por favor.");
 							continue; // Vuelve al inicio del bucle
 
@@ -94,17 +104,24 @@ public class Menu {
 					}
 
 					// Crear la factura y registrarla en la lista del cliente
-					List<Servicio> servicios = new ArrayList<Servicio>();
-					for (Destinos destino : destinosSeleccionados) {
-						Servicio servicioTurismo = new Servicio("Turismo", destino.getValor());
-						servicios.add(servicioTurismo);
+					List<Servicio> servicios = new ArrayList<>();
+					int valorTotal= 0;
+
+					for (Destinos destino : destinos) {
+						servicios.add(new Servicio(destino.toString(), destino.getValor()));
+						System.out.println(destino.toString());
+						calorTotal += destino.getValor();
 
 					}
 
-					Factura factura = Almacenamiento.crearFactura(usuario, servicios);
-					usuario.getListaFacturas().add(factura);
+					Factura factura = new Factura(cliente, empleado, servicios, destinos, "Factura por destinos");
+					cliente.agregarFactura(factura);
+					Almacenamiento.getListaFacturas().add(factura);
 
+					System.out.println("Valor total de los destinos: "+ valorTotal);
+					System.out.println("Factura agregada exitosamente.");
 					break;
+					
 				case 3:
 					// FUNCIONALIDAD RESERVA DE EVENTOS
 					reservarEvento(almacen);
