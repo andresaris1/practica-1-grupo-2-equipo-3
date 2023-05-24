@@ -25,7 +25,7 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Main main = new Main();
+        Almacenamiento almacen= new Almacenamiento();
 		int opcion;
 		do {
 			System.out.println("-- - - FUNCIONALIDADES - - - -");
@@ -42,7 +42,7 @@ public class Menu {
 
 			switch (opcion) {
 				case 1:
-					reservar(main);
+					reservar(almacen);
 					break;
 
 				case 2:
@@ -354,13 +354,13 @@ public class Menu {
 
 	}
 
-	static void reservar(Main main) {
+	static void reservar(Almacenamiento main) {
 		List<Lugar> habitaciones = new ArrayList<Lugar>();
 		System.out.println("Escribe tu identificacion:");
 		int personas;
 		int valor = 0;
 		int ide = sc.nextInt();
-		Usuario user = Main.buscar(ide);
+		Usuario user = Almacenamiento.buscarUsuario(ide);
 		if (user == null) {
 			user = registro(main);
 			if (user == null) {
