@@ -132,6 +132,13 @@ public class Main implements Serializable {
 		Evento evento = new Evento(lugar, Cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
 		return evento;
 	}
+
+	public static Reserva nuevaReserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
+			Usuario cliente) {
+		Reserva reserva = new Reserva(fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
+		reservas.add(reserva);
+		return reserva;
+	}
 	
 	public static Servicio buscarServicio(String id) {
 		Iterator<Servicio> iterator = serviciosad.iterator();
@@ -157,12 +164,7 @@ public class Main implements Serializable {
 		return null;
 	}
 
-	public static Reserva nuevaReserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
-			Usuario cliente) {
-		Reserva reserva = new Reserva(fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
-		reservas.add(reserva);
-		return reserva;
-	}
+	
 
 	public static Reserva buscarReserva(int id) {
 		Iterator<Reserva> iterator = reservas.iterator();

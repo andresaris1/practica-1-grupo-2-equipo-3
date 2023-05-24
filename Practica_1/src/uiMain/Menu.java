@@ -430,6 +430,21 @@ public class Menu {
 		System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
 		int numAsistentes = sc.nextInt();
 
+		
+
+		System.out.println("¿Desea contratar algún servicio externo?");
+		System.out.println("1. Si");
+		System.out.println("2. No");
+		int respuesta = sc.nextInt();
+		if(respuesta==1){
+			ArrayList<ServicioExterno> servicioExternos = crearServiciosExternos(main);
+		}else{
+			System.out.println("No se contrataron servicios externos");
+		}
+		
+	}
+	
+	static HashMap<String,Integer> empleadosNecesarios(Main main){
 		// Instanciamos el Diccionario que usaremos para guardar la información sobre
 		// los
 		// empleados que el cliente necesita
@@ -451,9 +466,18 @@ public class Menu {
 			}
 		}
 
+		return empleadosNecesarios;
+	}
+	static ArrayList<ServicioExterno> crearServiciosExternos(Main main) {
+
+		// Instanciamos el Diccionario que usaremos para guardar los servicios
+
 		ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
+
+
 		// le preguntamos al cliente si desea que contratemos algún servicio extra para
 		// él
+		
 		String res = "si";
 		while(res.equals("si")) {
 			System.out.println("¿Qué servicio desea contratar?");
@@ -478,15 +502,12 @@ public class Menu {
 			ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
 			serviciosExternos.add(servicioExterno);
 			
-			System.out.println("¿Desea contratar algún servicio extra? (si/no)");
+			System.out.println("¿Desea contratar algún otro servicio extra? (si/no)");
 			res = sc.next();
 		}
-		
-
-		// Generar la factura para el cliente tomando en cuenta todo lo solicitado.
-
-		
+		return serviciosExternos;
 	}
+	
 	
 	static Usuario registro(Main main) {
 		int opcion;
