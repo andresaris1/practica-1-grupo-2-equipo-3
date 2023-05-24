@@ -4,6 +4,7 @@ public class ServicioExterno extends Servicio {
     int valor;
     String empresaContratada;
     String descripcion;
+    Usuario cliente;
 
     @Override
     public String toString() {
@@ -13,10 +14,11 @@ public class ServicioExterno extends Servicio {
 
     
 
-    public ServicioExterno(String nombre, String descripcion) {
+    public ServicioExterno(String nombre, String descripcion, Usuario cliente) {
         super(nombre, valorSegunTipo(nombre));
         this.empresaContratada = empresaSegunTipo(nombre);
         this.descripcion = descripcion;
+        this.cliente = cliente;
     }
 
     private static int valorSegunTipo(String nombre){
@@ -51,5 +53,13 @@ public class ServicioExterno extends Servicio {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente= cliente;
     }
 }
