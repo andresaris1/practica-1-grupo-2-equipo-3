@@ -149,7 +149,7 @@ public class Menu {
 					int res2 = sc.nextInt();
 
 					if (res2 == 1) {
-						System.out.println("Por ahora tenemos 5 habitaciones disponibles");
+						System.out.println("Por ahora tenemos " + Almacenamiento.getListaHabitaciones().size() + " habitaciones disponibles");
 
 						// Informacion categorizada por el tipo de habitacion
 						System.out.println("Sobre que tipo de habitacion desea tener informacion?");
