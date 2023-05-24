@@ -52,7 +52,7 @@ public class Menu {
 					// FUNCIONALIDAD RESERVA TURÍSTICA
 					
 					System.out.print("Ingrese la identificación del empleado: ");
-					int idEmpleado = scanner.nextInt();
+					int idEmpleado = sc.nextInt();
 					Empleado empleado = Almacenamiento.buscarEmpleado(idEmpleado);
 
 					if (empleado == null) {
