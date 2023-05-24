@@ -3,7 +3,11 @@ package uiMain;
 import gestorAplicacion.*;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import baseDatos.Deserializador;
@@ -28,8 +32,14 @@ public class Almacenamiento implements Serializable {
     private static List<Evento> listaEventos = new ArrayList<Evento>();
     // lista Servicios
     private static List<Servicio> listaServicios = new ArrayList<Servicio>();
+
+    // lista Facturas
+    private static List<Factura> listaFacturas = new ArrayList<Factura>();
     // lista Servicios Externos
     private static List<ServicioExterno> listaServiciosExternos = new ArrayList<ServicioExterno>();
+
+    // lista copiada de main
+    private static List<Lugar> habitaciondis = new ArrayList<Lugar>();
 
     // METODOS DE BUSQUEDA
     public static Usuario buscarUsuario(int id) {
@@ -153,6 +163,113 @@ public class Almacenamiento implements Serializable {
         return evento;
     }
 
+    // METODOS COPIADOS DE LA CLASE MAIN
+    // Metodos que tengo que copiar en almacenamiento
+
+    public static String listaUsuarios() {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Usuario usuario = (Usuario) iterator.next();
+            lista.append(usuario.informacion() + "\n");
+        }
+        return lista.toString();
+    }
+
+    public static String listaReservas() {
+        Iterator<Reserva> iterator = listaReservas.iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Reserva reserva = (Reserva) iterator.next();
+            lista.append(reserva.toString() + "\n");
+        }
+        return lista.toString();
+    }
+
+    public static String listaFacturascliente(Usuario cliente) {
+        Iterator<Factura> iterator = cliente.getListaFacturas().iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Factura factura = (Factura) iterator.next();
+            lista.append(factura.toString() + "\n");
+        }
+        return lista.toString();
+    }
+
+    public static String listaFacturas() {
+        Iterator<Factura> iterator = listaFacturas.iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Factura factura = (Factura) iterator.next();
+            lista.append(factura.toString() + "\n");
+        }
+        return lista.toString();
+    }
+
+    public static String listaHabitaciones() {
+        Iterator<Lugar> iterator = listaHabitaciones.iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Lugar habitacion = (Lugar) iterator.next();
+            lista.append(habitacion.toString() + "\n");
+        }
+        return lista.toString();
+    }
+
+    // Sobrecarga de metodos
+    public static String listaHabitaciones(List<Lugar> esto) {
+        Iterator<Lugar> iterator = esto.iterator();
+        StringBuffer lista = new StringBuffer();
+        while (iterator.hasNext()) {
+            Lugar habitacion = (Lugar) iterator.next();
+            lista.append(habitacion.toString() + "\n");
+        }
+        return lista.toString();
+    }
+
+    public static void nodisponible(Lugar hb) {
+        listaHabitaciones.remove(hb);
+    }
+
+    public static String listarDisponibles(String fechaEntrada, String fechaSalida) {
+
+        habitaciondis.clear();
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        Date fEntrada = new Date();
+        try {
+            fEntrada = fecha.parse(fechaEntrada);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date fSalida = new Date();
+        try {
+            fSalida = fecha.parse(fechaSalida);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        for (Reserva re : listaReservas) {
+            for (Lugar h : re.getHabitaciones()) {
+                if (fEntrada.after(re.getFechaEntrada()) && fSalida.after(re.getFechaSalida())
+                        || fEntrada.before(re.getFechaEntrada()) && fSalida.before(re.getFechaSalida())) {
+                    habitaciondis.add(h);
+                }
+            }
+        }
+        Iterator<Lugar> iterator = listaHabitaciones.iterator();
+        while (iterator.hasNext()) {
+            Lugar habitacion = (Lugar) iterator.next();
+            habitaciondis.add(habitacion);
+        }
+        Collections.sort(habitaciondis, new Comparator<Lugar>() {
+            public int compare(Lugar p1, Lugar p2) {
+                return new Integer(p1.getNumero()).compareTo(new Integer(p2.getNumero()));
+            }
+        });
+        String lista = listaHabitaciones(habitaciondis);
+        return lista;
+
+    }
+
     // CONSTRUCTOR
     public Almacenamiento() {
         Deserializador.deserializar(this);
@@ -221,6 +338,14 @@ public class Almacenamiento implements Serializable {
 
     public static void setListaServiciosExternos(List<ServicioExterno> listaServiciosExternos) {
         Almacenamiento.listaServiciosExternos = listaServiciosExternos;
+    }
+
+    public static List<Factura> getListaFacturas() {
+        return listaFacturas;
+    }
+
+    public static void setListaFacturas(List<Factura> listaFacturas) {
+        Almacenamiento.listaFacturas = listaFacturas;
     }
 
 }

@@ -111,6 +111,19 @@ public class Deserializador {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
+			} else if (file.getAbsolutePath().contains("facturas")) {
+				try {
+					fis = new FileInputStream(file);
+					ois = new ObjectInputStream(fis);
+
+					Almacenamiento.setListaFacturas((List<Factura>) ois.readObject());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			} else if (file.getAbsolutePath().contains("serviciosExternos")) {
 				try {
 					fis = new FileInputStream(file);
