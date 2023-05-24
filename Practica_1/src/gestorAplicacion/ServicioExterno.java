@@ -14,12 +14,17 @@ public class ServicioExterno extends Servicio {
 
     
 
-    public ServicioExterno(String nombre, String descripcion, Usuario cliente) {
+    public ServicioExterno(String nombre, Usuario cliente, String descripcion) {
         super(nombre, valorSegunTipo(nombre));
         this.empresaContratada = empresaSegunTipo(nombre);
         this.descripcion = descripcion;
         this.cliente = cliente;
     }
+
+    public ServicioExterno(String nombre, Usuario cliente) {
+        this(nombre, cliente, null);
+    }
+
 
     private static int valorSegunTipo(String nombre){
         if(nombre.equals("entretenimiento")){
