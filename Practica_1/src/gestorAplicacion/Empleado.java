@@ -2,7 +2,7 @@ package gestorAplicacion;
 
 /*Clase Empleado hereda de Persona los atributos nombre, identificacion y telefono*/
 
-public class Empleado extends Persona {
+public class Empleado extends Persona{
 
     private String cargo;
     private double comision;

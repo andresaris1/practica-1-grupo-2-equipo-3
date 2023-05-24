@@ -19,7 +19,6 @@ import gestorAplicacion.Reserva;
 import gestorAplicacion.Servicio;
 import gestorAplicacion.Usuario;
 import gestorAplicacion.ServicioExterno;
-import gestorAplicacion.Evento;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);

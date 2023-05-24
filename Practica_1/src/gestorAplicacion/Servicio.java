@@ -1,6 +1,11 @@
 package gestorAplicacion;
+
+import java.io.Serializable;
+
 /*Clase Servio se usa para crear los diferentes servicios que puedo reserva un cliente (comida,masajes)*/
-public class Servicio {
+public class Servicio implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     String nombre;
     int valor;
 

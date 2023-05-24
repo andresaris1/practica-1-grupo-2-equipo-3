@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Reserva implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private float aporte;

@@ -3,7 +3,7 @@ package gestorAplicacion;
 import java.io.Serializable;
 
 /*Clase lugar hereda de servicio y se usa para crear los diferentes lugares ofrecidos(habitaciones y zonas sociales) */
-public class Lugar extends Servicio implements Serializable{
+public class Lugar extends Servicio {
     int numero;
     String tipo;
     int capacidad;

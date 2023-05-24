@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Piscina, Salón, Terraza.
  * 
  */
-public class Evento extends Servicio {
+public class Evento extends Servicio{
     // ATRIBUTOS
     private Lugar lugar;
     private Usuario cliente;

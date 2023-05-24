@@ -10,12 +10,14 @@ import uiMain.*;
 
 public class Serializador {
 	private static File ruta = new File("src\\baseDatos\\temp");
+
 	public static void serializar(Main main) {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		File[] docs = ruta.listFiles();
 		PrintWriter pw;
 
+		// Limpia los archivos para evitar copias de informacion
 		for (File file : docs) {
 			try {
 				pw = new PrintWriter(file);
@@ -25,32 +27,84 @@ public class Serializador {
 			}
 		}
 
+		//bucle para serializar cada lista de objetos
+
 		for (File file : docs) {
-			if (file.getAbsolutePath().contains("clientes")) {
+			if (file.getAbsolutePath().contains("usuarios")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(main.getClientes());
+					oos.writeObject(Almacenamiento.getListaUsuarios());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else if (file.getAbsolutePath().contains("facturas")) {
+			} else if (file.getAbsolutePath().contains("empleados")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(main.getFacturas());
+					oos.writeObject(Almacenamiento.getListaEmpleados());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else if (file.getAbsolutePath().contains("reservas")) {
+			} else if (file.getAbsolutePath().contains("habitaciones")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(main.getReservas());
+					oos.writeObject(Almacenamiento.getListaHabitaciones());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("lugares")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaLugares());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("servicios")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaServicios());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("serviciosExternos")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaServiciosExternos());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else if (file.getAbsolutePath().contains("reservas")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaReservas());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if (file.getAbsolutePath().contains("eventos")) {
+				try {
+					fos = new FileOutputStream(file);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Almacenamiento.getListaEventos());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
