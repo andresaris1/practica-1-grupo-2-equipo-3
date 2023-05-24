@@ -180,26 +180,35 @@ public class Menu {
 
 						if (res2 == 1) {
 							// informacion de las habitaciones familiares
+							//Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
+							
+							//Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación familiar") {
+									
 									num++;
+									
 								}
 
 								if (hab_ocu.get(i).getTipo() == "Habitación familiar") {
+									
 									num2++;
+									
 								}
 							}
 
 							if (num != 0) {
-								System.out.println("Tenemos " + num - num2 + " habitaciones familiares disponibles");
+								System.out.println("Tenemos " + (num - num2) + " habitaciones familiares disponibles");
 								System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
 								// Costo habitacion familiar
 
@@ -213,25 +222,34 @@ public class Menu {
 
 						} else if (res2 == 2) {
 							// informacion de las habitaciones dobles
+							//Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
+							
+							//Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación doble") {
+									
 									num++;
+									
 								}
 								if (hab_ocu.get(i).getTipo() == "Habitación doble") {
+									
 									num2++;
+									
 								}
 
 							}
 							if (num != 0) {
-								System.out.println("Tenemos " + num - num2 + " habitaciones dobles disponibles");
+								System.out.println("Tenemos " + (num - num2) + " habitaciones dobles disponibles");
 								System.out.println("La habitacion doble tiene una capacidad para 2 personas");
 								// costo habitacion doble
 
@@ -243,9 +261,15 @@ public class Menu {
 
 						} else if (res2 == 4) {
 							// Tabla de informacion general
+							
+							//Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva informacion de ambas
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
+							
+							//Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
 							Usuario cliente = Reserva.getCliente();
@@ -254,12 +278,16 @@ public class Menu {
 
 							for (int i = 0; i < hab_dis.size(); i++) {
 								System.out.println("---------------------------------------------");
-
+								
+								//info de habitacion
 								System.out.println("Habitacion " + hab_dis.get(i).getNumero());
 								System.out.println("Tipo: " + hab_dis.get(i).getTipo());
 								System.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
 								System.out.println("Precio: " + Lugar.valorSegunTipo(hab_dis.get(i).getTipo()));
+								
+								//informacion de cliente asociado
 								if (hab_ocu.contains(hab_dis.get(i))) {
+									
 									System.out.println("Cliente asociado a esta: ");
 									System.out.println(cliente);
 
@@ -273,10 +301,15 @@ public class Menu {
 
 						} else {
 							// informacion de las habitaciones individuales
+							//Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
+							
+							//Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
 
@@ -295,14 +328,17 @@ public class Menu {
 
 							if (num != 0) {
 
-								System.out.println("Tenemos " + num - num2 + " habitaciones individuales disponibles");
+								System.out.println("Tenemos " + (num - num2) + " habitaciones individuales disponibles");
 								System.out.println("La habitacion individual tiene una capacidad para 4 personas");
 								// costo habitacion individual
 
 								int valor = Lugar.valorSegunTipo("Habitacion individual");
 								System.out.println("La habitacion doble tiene un costo de " + valor);
+								
 							} else {
+								
 								System.out.println("No tenemos habitaciones individuales disponibles");
+								
 							}
 						}
 
