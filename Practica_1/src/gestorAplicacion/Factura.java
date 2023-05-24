@@ -20,6 +20,7 @@ public class Factura implements Serializable{
     static int contador = 0;
     private Destinos destino;
 
+
     // METODOS
 
     /* Metodo valorTotal se encarga de calcula el valor total de cada factura */
@@ -138,7 +139,7 @@ public class Factura implements Serializable{
         this.empleado = empleado;
         this.items = items;
         this.destino = destino;
-        this.valorTotal(); // Se ejecuta el metodo de valor total para la factura creada
+        //this.valorTotal(); // Se ejecuta el metodo de valor total para la factura creada COMENTARIO PROVISIONAL
 
         // Establece la fecha en la que se creo la factura
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy, HH:mm:ss ");
@@ -150,7 +151,7 @@ public class Factura implements Serializable{
         this.codigo = Factura.contador;
 
         // Se agrega la factura al usuario y empleado correspondiente
-        cliente.listaFacturas.add(this);
+        //cliente.listaFacturas.add(this); //COMENTARIO PROVICIONAL
         empleado.calcularComision(valorTotal);
     }
 

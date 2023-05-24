@@ -468,7 +468,7 @@ public class Menu {
 					System.out.print("Ingrese un numero de telefono:\n");
 					int tel = sc.nextInt();
 					System.out.print("Ingrese una cuenta bancaria:\n");
-					int cb = sc.nextInt();
+					String cb = sc.next();
 					Usuario cliente = main.registrarUsuario(nombre, id, tel, null, cb);
 					cli = cliente;
 					System.out.println("Usuario creado con exito");
