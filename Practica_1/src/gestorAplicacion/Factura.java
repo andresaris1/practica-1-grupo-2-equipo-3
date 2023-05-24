@@ -167,11 +167,6 @@ public class Factura implements Serializable{
         }
         
     }
-    
-    public Factura(Usuario cliente, String concepto) {
-    	this(cliente, null, null, null, "Reserva");
-    }
-
 
     // GETTERS AND SETTERS
     public int getCodigo() {
