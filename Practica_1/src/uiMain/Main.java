@@ -127,10 +127,14 @@ public class Main implements Serializable {
 		return factura;
 	}
 
-	public static Evento nuevoEvento(Lugar lugar, Usuario Cliente, ServicioExterno[] servicios, String fecha, int duracion,
-	int numeroAsistentes, Empleado[] empleados)  {
-		Evento evento = new Evento(lugar, Cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
+	public static Evento nuevoEvento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha, int duracion,
+	int numeroAsistentes, ArrayList<Empleado> empleados)  {
+		Evento evento = new Evento(lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
 		return evento;
+	}
+	public static Lugar nuevoLugarDeEventos(String tipo){
+		Lugar lugar = new Lugar(tipo);
+		return lugar;
 	}
 
 	

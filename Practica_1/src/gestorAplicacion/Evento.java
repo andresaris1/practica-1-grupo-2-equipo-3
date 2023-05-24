@@ -16,15 +16,15 @@ public class Evento extends Servicio {
     // ATRIBUTOS
     private Lugar lugar;
     private Usuario cliente;
-    private ServicioExterno[] servicios;
+    private ArrayList<ServicioExterno> servicios;
     private String fecha;
     private int duracion;
     private int numeroAsistentes;
-    private Empleado[] empleados;
+    private ArrayList<Empleado> empleados;
 
     // CONSTRUCTOR
-    public Evento(Lugar lugar, Usuario cliente, ServicioExterno[] servicios, String fecha, int duracion,
-            int numeroAsistentes, Empleado[] empleados) {
+    public Evento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha, int duracion,
+            int numeroAsistentes, ArrayList<Empleado> empleados) {
         super("Evento en " + lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes));
         this.lugar = lugar;
         this.cliente = cliente;
@@ -43,7 +43,7 @@ public class Evento extends Servicio {
      * evento
      * y los asistentes a este.
      */
-    public static int calcularValor(Lugar lugar, ServicioExterno[] servicios, int duracion, int numeroAsistentes) {
+    public static int calcularValor(Lugar lugar, ArrayList<ServicioExterno> servicios, int duracion, int numeroAsistentes) {
         int valor = 0;
         valor += lugar.getValor();
         for (ServicioExterno servicioExterno : servicios) {
@@ -74,11 +74,11 @@ public class Evento extends Servicio {
         this.setNombre("Evento de " + cliente.getNombre());
     }
 
-    public ServicioExterno[] getServicios() {
+    public ArrayList<ServicioExterno> getServicios() {
         return servicios;
     }
 
-    public void setServicios(ServicioExterno[] servicios) {
+    public void setServicios(ArrayList<ServicioExterno> servicios) {
         this.servicios = servicios;
     }
 
@@ -107,11 +107,11 @@ public class Evento extends Servicio {
         this.numeroAsistentes = numeroAsistentes;
     }
     
-    public Empleado[] getEmpleados() {
+    public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
-    
-    public void setEmpleados(Empleado[] empleados) {
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
         this.empleados = empleados;
     }
 

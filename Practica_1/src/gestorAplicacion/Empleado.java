@@ -39,6 +39,12 @@ public class Empleado extends Persona {
         this.comision = comision;
     }
 
+    //este constructor alternativo fué creado en aras de facilitar masivamente 
+    //la creación de empleados para la funcionalidad reserva de evento
+    public Empleado(String nombre,int identificacion, String cargo){
+        this(nombre,identificacion, 0, cargo, 0, 0);
+    }
+
     // GETTERS AND SETTERS
     public String getCargo() {
         return cargo;
