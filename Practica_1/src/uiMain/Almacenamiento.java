@@ -121,10 +121,31 @@ public class Almacenamiento implements Serializable {
 
     // METODOS PARA CREAR OBJETOS
 
+    public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria,
+    ArrayList<Factura> listaFacturas) {
+        Usuario usuario=new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, listaFacturas);
+        Almacenamiento.listaUsuarios.add(usuario);
+        return usuario;
+    }
+
+    public static Empleado crearEmpleado(String nombre, int identificacion, int telefono, String cargo) {
+        Empleado empleado= new Empleado(nombre, identificacion, cargo);
+        Almacenamiento.listaEmpleados.add(empleado);
+        return empleado;
+    }
+
     public static Lugar crearHabitacion(int numero, String tipo, int capacidad) {
         Lugar habitacion = new Lugar(numero, tipo, capacidad);
         Almacenamiento.listaHabitaciones.add(habitacion);
         return habitacion;
+
+    }
+
+    public static Lugar crearLugar(String tipo) {
+        Lugar lugar = new Lugar(tipo);
+        Almacenamiento.listaLugares.add(lugar);
+        return lugar;
+        
     }
 
     public static Evento crearEvento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha,

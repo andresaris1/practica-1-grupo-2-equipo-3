@@ -51,7 +51,7 @@ public class Menu {
 
 					int identificacion = sc.nextInt();
 
-					Usuario usuario = Main.buscarUsuario(identificacion);
+					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
 
 					if (usuario == null) {
 
