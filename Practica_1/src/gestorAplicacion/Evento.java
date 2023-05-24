@@ -25,7 +25,7 @@ public class Evento extends Servicio{
     // CONSTRUCTOR
     public Evento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha, int duracion,
             int numeroAsistentes, ArrayList<Empleado> empleados) {
-        super("Evento en " + lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes));
+        super("Evento en " + lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados));
         this.lugar = lugar;
         this.cliente = cliente;
         this.servicios = servicios;
@@ -43,7 +43,7 @@ public class Evento extends Servicio{
      * evento
      * y los asistentes a este.
      */
-    public static int calcularValor(Lugar lugar, ArrayList<ServicioExterno> servicios, int duracion, int numeroAsistentes) {
+    public static int calcularValor(Lugar lugar, ArrayList<ServicioExterno> servicios, int duracion, int numeroAsistentes, ArrayList<Empleado> empleados) {
         int valor = 0;
         valor += lugar.getValor();
         for (ServicioExterno servicioExterno : servicios) {
@@ -51,6 +51,9 @@ public class Evento extends Servicio{
         }
         valor += duracion * 10000;
         valor += numeroAsistentes * 10000;
+        for (Empleado empleado : empleados) {
+            valor += empleado.getNomina();
+        }
         return valor;
     }
 
