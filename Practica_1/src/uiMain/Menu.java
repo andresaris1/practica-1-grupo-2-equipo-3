@@ -46,84 +46,68 @@ public class Menu {
 					break;
 
 				case 2:
-					// FUNCIONALIDAD RESERVA TURISTICA
+					 // FUNCIONALIDAD RESERVA TURÍSTICA
 					System.out.println("Ingrese la identificación del usuario: ");
-
 					int identificacion = sc.nextInt();
 
 					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
 
+					Usuario usuario = Main.buscarUsuario(identificacion);
+					
 					if (usuario == null) {
-
 						System.out.println("Usuario no encontrado en la base de datos");
-
 						return; // Sale del caso 2 si el usuario no se encuentra
-
+   
 					}
 
 					ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
+    
 					while (true) {
-
+        
 						System.out.println("Seleccione un destino:");
-
 						int index = 1;
 						for (Destinos destino : Destinos.values()) {
-
 							System.out.println(index + ". " + destino);
-
 							index++;
-
+        
 						}
 
 						System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
 						int numDestino = sc.nextInt();
 
 						if (numDestino == 0) {
-							break;
-							// Salir del bucle si se ingresa 0
+							break; // Salir del bucle si se ingresa 0
+        
 						}
 
 						if (numDestino >= 1 && numDestino <= Destinos.values().length) {
-							// revisar que el numero ingresado cuente como una opcion valida ofrecida para
-							// el tour
+
+							// Revisar que el número ingresado cuente como una opción válida ofrecida para el tour
 							Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
 							destinosSeleccionados.add(destinoSeleccionado);
 							System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
 
-							// Crear la factura y registrarla en la lista del cliente
-							List<Servicio> servicio=new ArrayList<Servicio>();
-							Factura factura = new Factura(usuario, Main.empleado1, servicio,
-									destinoSeleccionado,"Turismo");
-							usuario.getListaFacturas().add(factura);
+						}
+						else {
+							System.out.println("Opción inválida, elija una opción válida por favor.");
+							continue; // Vuelve al inicio del bucle
 
-						} else {
-							System.out.println("Opción inválida, elija una opcion valida porfavor.");
-							continue;
-							// vuelve al inicio del bucle
 						}
 					}
 
-					// muestro los destinos seleccionados 1 o mas si fue el caso
-					// del usuario
-					System.out.println("Destinos seleccionados:");
-
+					// Crear la factura y registrarla en la lista del cliente
+					List<Servicio> servicios = new ArrayList<Servicio>();
 					for (Destinos destino : destinosSeleccionados) {
-						System.out.println(destino);
+						Servicio servicioTurismo = new Servicio("Turismo", destino.getPrecio());
+						servicios.add(servicioTurismo);
 
 					}
+					
+					Factura factura = Main.nuevaFactura(usuario, servicios);
+					usuario.getListaFacturas().add(factura);
 
-					//
-					int valorTotalTours = 0;
-					for (Destinos destino : destinosSeleccionados) {
-						valorTotalTours += destino.getValor();
-
-					}
-					// valor total de los tours seleccionados
-					System.out.println("Valor total de los tours seleccionados: $" + valorTotalTours);
-					// Codigo de la funcionalidad reserva de tours
 					break;
-
 				case 3:
 					//FUNCIONALIDAD RESERVA DE EVENTOS
 					reservarEvento(main);
