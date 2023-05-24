@@ -115,7 +115,7 @@ public class Menu {
 					for (Destinos destino : destinos) {
 						servicios.add(new Servicio(destino.toString(), destino.getValor()));
 						System.out.println(destino.toString());
-						calorTotal += destino.getValor();
+						valorTotal += destino.getValor();
 
 					}
 
