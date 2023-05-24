@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class Reserva implements Serializable{
+public class Reserva extends Servicio implements Serializable{
 	private Factura factura;
 	private Date fechaEntrada;
 	private Date fechaSalida;
