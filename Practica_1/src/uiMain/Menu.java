@@ -47,16 +47,6 @@ public class Menu {
 
 				case 2:	
 					// FUNCIONALIDAD RESERVA TURÍSTICA
-					System.out.println("Ingrese la identificación del usuario: ");
-					int identificacion = sc.nextInt();
-
-					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
-					
-					if (usuario == null) {
-						System.out.println("Usuario no encontrado en la base de datos");
-						return; // Sale del caso 2 si el usuario no se encuentra
-   
-					}
 					
 					System.out.print("Ingrese la identificación del empleado: ");
 					int idEmpleado = scanner.nextInt();
@@ -68,6 +58,17 @@ public class Menu {
 
 					}
 
+					System.out.println("Ingrese la identificación del usuario: ");
+					int identificacion = sc.nextInt();
+
+					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
+					
+					if (usuario == null) {
+						System.out.println("Usuario no encontrado en la base de datos");
+						return; // Sale del caso 2 si el usuario no se encuentra
+   
+					}
+					
 					ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
     
