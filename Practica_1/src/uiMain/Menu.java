@@ -29,9 +29,9 @@ public class Menu {
 		int opcion;
 		do {
 			System.out.println("-- - - FUNCIONALIDADES - - - -");
-			System.out.println("1. Reservar Alojamiento");
-			System.out.println("2. Reservar Turística");
-			System.out.println("3. Reservar Evento");
+			System.out.println("1. Reserva Alojamiento");
+			System.out.println("2. Reserva Turística");
+			System.out.println("3. Reserva Evento");
 			System.out.println("4. Cobro");
 			System.out.println("5. Mostrar información de habitaciones");
 			System.out.println("6. Servicios Adicionales");
@@ -126,96 +126,7 @@ public class Menu {
 
 				case 3:
 					//FUNCIONALIDAD RESERVA DE EVENTOS
-
-					// Le pedimos su información al cliente
-					System.out.println("Escribe tu identificacion: ");
-					//	IMPORTANTE: REGISTRO
-					int id = sc.nextInt();
-					System.out.println("Escribe tu nombre:");
-					String nombre = sc.next();
-					System.out.println("Escribre tu cuenta bancaria:");
-					String cuenta = sc.next();
-					System.out.println("Escribe tu telefono: ");
-					int telefono = sc.nextInt();
-
-
-					usuario = new Usuario(nombre,id,telefono,"", cuenta, null);
-					// Se le consulta sobre el lugar que requiere
-					// para su evento
-					System.out.println("Escribe el lugar en el que desea su evento: ");
-					System.out.println("1. Terraza");
-					System.out.println("2. Piscina");
-					System.out.println("3. Salon");
-
-					// se instancia un diccionario que le dará significado
-					// a su respuesta
-					HashMap<Integer, String> lugares = new HashMap<Integer, String>();
-					lugares.put(1, "Terraza");
-					lugares.put(2, "Piscina");
-					lugares.put(3, "Salon");
-					int numLugar = sc.nextInt();
-					String tipoLugar = lugares.get(numLugar);
-
-					// Se le consulta sobre la cantidad de personas que
-					// asistirán a su evento
-					System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
-					int numAsistentes = sc.nextInt();
-
-					// Instanciamos el Diccionario que usaremos para guardar la información sobre
-					// los
-					// empleados que el cliente necesita
-					HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
-					empleadosNecesarios.put("Cocineros", -1);
-					empleadosNecesarios.put("Meseros", -1);
-					empleadosNecesarios.put("Bartenders", -1);
-
-					/*
-					 * Pedimos al cliente que nos especifique cuántos empleados requiere
-					 * de cada uno de los tres tipos que le podemos ofrecer, validadando e
-					 * insistiendo en respetar el formato específico que sus respuestas deben tener
-					 */
-					for (String x : empleadosNecesarios.keySet()) {
-						while (empleadosNecesarios.get(x) < 0) {
-							System.out.println("¿Cuántos " + x + " requiere?");
-							System.out.println("Ingrese un numero natural mayor o igual que cero");
-							empleadosNecesarios.put(x, sc.nextInt());
-						}
-					}
-
-					ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
-					// le preguntamos al cliente si desea que contratemos algún servicio extra para
-					// él
-					String res = "si";
-					while(res.equals("si")) {
-						System.out.println("¿Qué servicio desea contratar?");
-						System.out.println("1. entretenimiento");
-						System.out.println("2. sonido");
-						System.out.println("3. decoracion");
-						String servicio;
-						switch (sc.nextInt()) {
-						case 1:
-							servicio = "entretenimiento";
-							break;
-						case 2:
-							servicio = "sonido";
-							break;
-						case 3:
-							servicio = "decoracion";
-							break;
-							default:
-								servicio=null;
-						}
-
-						ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
-						serviciosExternos.add(servicioExterno);
-						
-						System.out.println("¿Desea contratar algún servicio extra? (si/no)");
-						res = sc.next();
-					}
-					
-
-					// Generar la factura para el cliente tomando en cuenta todo lo solicitado.
-
+					reservarEvento(main);
 					break;
 				case 4:
 
@@ -483,6 +394,100 @@ public class Menu {
 		
 	}
 
+	static void reservarEvento(Main main){
+		// Le pedimos su información al cliente
+		System.out.println("Escribe tu identificacion: ");
+		//Se valida si el usuario ya está en la base de datos.
+		//En caso de que no, ingresarlo a la base de datos.
+		int id = sc.nextInt();
+		Usuario usuario = Main.buscar(id);
+		if (usuario == null) {
+			usuario = registro(main);
+			if (usuario == null) {
+				System.out.println("No se pudo realizar la reserva pues no hay un cliente a registrar\n");
+				return;
+			}
+		}
+
+		// Se le consulta sobre el lugar que requiere
+		// para su evento
+		System.out.println("Escribe el lugar en el que desea su evento: ");
+		System.out.println("1. Terraza");
+		System.out.println("2. Piscina");
+		System.out.println("3. Salon");
+
+		// se instancia un diccionario que le dará significado
+		// a su respuesta
+		HashMap<Integer, String> lugares = new HashMap<Integer, String>();
+		lugares.put(1, "Terraza");
+		lugares.put(2, "Piscina");
+		lugares.put(3, "Salon");
+		int numLugar = sc.nextInt();
+		String tipoLugar = lugares.get(numLugar);
+
+		// Se le consulta sobre la cantidad de personas que
+		// asistirán a su evento
+		System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
+		int numAsistentes = sc.nextInt();
+
+		// Instanciamos el Diccionario que usaremos para guardar la información sobre
+		// los
+		// empleados que el cliente necesita
+		HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
+		empleadosNecesarios.put("Cocineros", -1);
+		empleadosNecesarios.put("Meseros", -1);
+		empleadosNecesarios.put("Bartenders", -1);
+
+		/*
+		 * Pedimos al cliente que nos especifique cuántos empleados requiere
+		 * de cada uno de los tres tipos que le podemos ofrecer, validadando e
+		 * insistiendo en respetar el formato específico que sus respuestas deben tener
+		 */
+		for (String x : empleadosNecesarios.keySet()) {
+			while (empleadosNecesarios.get(x) < 0) {
+				System.out.println("¿Cuántos " + x + " requiere?");
+				System.out.println("Ingrese un numero natural mayor o igual que cero");
+				empleadosNecesarios.put(x, sc.nextInt());
+			}
+		}
+
+		ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
+		// le preguntamos al cliente si desea que contratemos algún servicio extra para
+		// él
+		String res = "si";
+		while(res.equals("si")) {
+			System.out.println("¿Qué servicio desea contratar?");
+			System.out.println("1. entretenimiento");
+			System.out.println("2. sonido");
+			System.out.println("3. decoracion");
+			String servicio;
+			switch (sc.nextInt()) {
+			case 1:
+				servicio = "entretenimiento";
+				break;
+			case 2:
+				servicio = "sonido";
+				break;
+			case 3:
+				servicio = "decoracion";
+				break;
+				default:
+					servicio=null;
+			}
+
+			ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
+			serviciosExternos.add(servicioExterno);
+			
+			System.out.println("¿Desea contratar algún servicio extra? (si/no)");
+			res = sc.next();
+		}
+		
+
+		// Generar la factura para el cliente tomando en cuenta todo lo solicitado.
+
+		
+	}
+	
 	static Usuario registro(Main main) {
 		int opcion;
 		Usuario cli = null;
