@@ -21,10 +21,11 @@ public class Evento extends Servicio{
     private int duracion;
     private int numeroAsistentes;
     private ArrayList<Empleado> empleados;
+    private int codigo;
 
     // CONSTRUCTOR
     public Evento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha, int duracion,
-            int numeroAsistentes, ArrayList<Empleado> empleados) {
+            int numeroAsistentes, ArrayList<Empleado> empleados, int codigo) {
         super("Evento en " + lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados));
         this.lugar = lugar;
         this.cliente = cliente;
@@ -32,6 +33,8 @@ public class Evento extends Servicio{
         this.duracion = duracion;
         this.numeroAsistentes = numeroAsistentes;
         this.empleados = empleados;
+        this.fecha = fecha;
+        this.codigo = codigo;
     }
 
     // Métodos relevantes -----------------------------------------------------

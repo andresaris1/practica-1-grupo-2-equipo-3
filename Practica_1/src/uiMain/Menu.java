@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.random.RandomGenerator;
+import java.util.Random;
 
 import baseDatos.Serializador;
 import gestorAplicacion.Destinos;
@@ -25,6 +27,7 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void almacenamiento(String[] args) {
+		Random rand = new Random(); 
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
 		do {
@@ -460,9 +463,10 @@ public class Menu {
 			serviciosExternos = null;
 		}
 
+		int codigoEvento = (int)Math.floor(Math.random() * (1000000 - 10 + 1) + 10);
 		// Finalmente, creación del evento
 		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
-				numAsistentes, empleadosNecesarios(almacenamiento));
+				numAsistentes, empleadosNecesarios(almacenamiento), codigoEvento);
 
 		// Facturación del evento:
 		Servicio servicioEvento = evento;

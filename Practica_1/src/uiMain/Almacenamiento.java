@@ -157,8 +157,8 @@ public class Almacenamiento implements Serializable {
     }
 
     public static Evento crearEvento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha,
-            int duracion, int numeroAsistentes, ArrayList<Empleado> empleados) {
-        Evento evento = new Evento(lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
+            int duracion, int numeroAsistentes, ArrayList<Empleado> empleados, int codigo) {
+        Evento evento = new Evento(lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados, codigo);
         Almacenamiento.listaEventos.add(evento);
         return evento;
     }
