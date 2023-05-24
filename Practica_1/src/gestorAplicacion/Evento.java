@@ -20,12 +20,18 @@ public class Evento extends Servicio {
     private String fecha;
     private int duracion;
     private int numeroAsistentes;
+    private Empleado[] empleados;
 
     // CONSTRUCTOR
-    public Evento(Lugar lugar, Usuario Cliente, ServicioExterno[] servicios, String fecha, int duracion,
-            int numeroAsistentes) {
+    public Evento(Lugar lugar, Usuario cliente, ServicioExterno[] servicios, String fecha, int duracion,
+            int numeroAsistentes, Empleado[] empleados) {
         super("Evento en " + lugar, calcularValor(lugar, servicios, duracion, numeroAsistentes));
         this.lugar = lugar;
+        this.cliente = cliente;
+        this.servicios = servicios;
+        this.duracion = duracion;
+        this.numeroAsistentes = numeroAsistentes;
+        this.empleados = empleados;
     }
 
     // Métodos relevantes -----------------------------------------------------
@@ -99,6 +105,14 @@ public class Evento extends Servicio {
 
     public void setNumeroAsistentes(int numeroAsistentes) {
         this.numeroAsistentes = numeroAsistentes;
+    }
+    
+    public Empleado[] getEmpleados() {
+        return empleados;
+    }
+    
+    public void setEmpleados(Empleado[] empleados) {
+        this.empleados = empleados;
     }
 
     // otros getters no tan obvios

@@ -10,6 +10,8 @@ import gestorAplicacion.Reserva;
 import gestorAplicacion.Servicio;
 import gestorAplicacion.ServicioExterno;
 import gestorAplicacion.Usuario;
+import gestorAplicacion.Evento;
+import gestorAplicacion.ServicioExterno;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -124,6 +126,12 @@ public class Main implements Serializable {
 		facturas.add(factura);
 		return factura;
 	}
+
+	public static Evento nuevoEvento(Lugar lugar, Usuario Cliente, ServicioExterno[] servicios, String fecha, int duracion,
+	int numeroAsistentes, Empleado[] empleados)  {
+		Evento evento = new Evento(lugar, Cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
+		return evento;
+	}
 	
 	public static Servicio buscarServicio(String id) {
 		Iterator<Servicio> iterator = serviciosad.iterator();
@@ -174,6 +182,7 @@ public class Main implements Serializable {
 		return habitacion;
 	}
 
+	
 	public static Lugar buscarHabitacion(int id) {
 		Iterator<Lugar> iterator = habitaciondis.iterator();
 		while (iterator.hasNext()) {
