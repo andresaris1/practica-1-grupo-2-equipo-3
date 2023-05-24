@@ -19,6 +19,7 @@ import gestorAplicacion.Reserva;
 import gestorAplicacion.Servicio;
 import gestorAplicacion.Usuario;
 import gestorAplicacion.ServicioExterno;
+import gestorAplicacion.Evento;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
@@ -453,9 +454,10 @@ public class Menu {
 		}
 		
 		//Finalmente, creación del evento
-		Main.nuevoEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(main) );
+		Evento evento = Main.nuevoEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(main) );
 
-		//Falta la factura de evento
+		//Facturación del evento:
+
 	
 	}
 	
