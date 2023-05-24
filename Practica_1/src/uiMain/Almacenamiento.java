@@ -104,32 +104,18 @@ public class Almacenamiento implements Serializable {
         return null;
     }
 
-    /*
-     * /
-     * public static Factura buscarFactura(int id) {
-     * Iterator<Factura> iterator = facturas.iterator();
-     * while (iterator.hasNext()) {
-     * Factura factura = (Factura) iterator.next();
-     * if (factura.getCliente().getIdentificacion() == id) {
-     * return factura;
-     * 
-     * }
-     * }
-     * return null;
-     * }
-     */
-
     // METODOS PARA CREAR OBJETOS
 
-    public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria,
-    ArrayList<Factura> listaFacturas) {
-        Usuario usuario=new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, listaFacturas);
+    public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo,
+            String cuentaBancaria,
+            ArrayList<Factura> listaFacturas) {
+        Usuario usuario = new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, listaFacturas);
         Almacenamiento.listaUsuarios.add(usuario);
         return usuario;
     }
 
     public static Empleado crearEmpleado(String nombre, int identificacion, int telefono, String cargo) {
-        Empleado empleado= new Empleado(nombre, identificacion, cargo);
+        Empleado empleado = new Empleado(nombre, identificacion, cargo);
         Almacenamiento.listaEmpleados.add(empleado);
         return empleado;
     }
@@ -138,26 +124,33 @@ public class Almacenamiento implements Serializable {
         Lugar habitacion = new Lugar(numero, tipo, capacidad);
         Almacenamiento.listaHabitaciones.add(habitacion);
         return habitacion;
-
     }
 
     public static Lugar crearLugar(String tipo) {
         Lugar lugar = new Lugar(tipo);
         Almacenamiento.listaLugares.add(lugar);
         return lugar;
-        
+
+    }
+
+    public static Servicio crearServico(String nombre, int valor) {
+        Servicio servicio = new Servicio(nombre, valor);
+        Almacenamiento.listaServicios.add(servicio);
+        return servicio;
+    }
+
+    public static Reserva crearReserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
+            Usuario cliente) {
+        Reserva reserva = new Reserva(fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
+        Almacenamiento.listaReservas.add(reserva);
+        return reserva;
     }
 
     public static Evento crearEvento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha,
-                                    int duracion, int numeroAsistentes, ArrayList<Empleado> empleados) {
+            int duracion, int numeroAsistentes, ArrayList<Empleado> empleados) {
         Evento evento = new Evento(lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados);
         Almacenamiento.listaEventos.add(evento);
         return evento;
-    }
-
-    public static Lugar nuevoLugarDeEventos(String tipo) {
-        Lugar lugar = new Lugar(tipo);
-        return lugar;
     }
 
     // CONSTRUCTOR
