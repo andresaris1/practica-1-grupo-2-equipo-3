@@ -45,7 +45,8 @@ public class Menu {
 					reservar(almacen);
 					break;
 
-				case 2:					 // FUNCIONALIDAD RESERVA TURÍSTICA
+				case 2:	
+					// FUNCIONALIDAD RESERVA TURÍSTICA
 					System.out.println("Ingrese la identificación del usuario: ");
 					int identificacion = sc.nextInt();
 
