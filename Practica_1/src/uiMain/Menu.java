@@ -166,17 +166,23 @@ public class Menu {
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Almacenamiento.getListaHabitaciones();
+							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
+							int num2 = 0;
 
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación familiar") {
 									num++;
 								}
+								
+								if (hab_ocu.get(i).getTipo() == "Habitación familiar") {
+									num2++;
+								}
 							}
 
 							if (num != 0) {
-								System.out.println("Tenemos " + num + " habitaciones familiares disponibles");
+								System.out.println("Tenemos " + num - num2 + " habitaciones familiares disponibles");
 								System.out.println("La habitacion familiar tiene una capacidad para 4 personas");
 								// Costo habitacion familiar
 
@@ -193,17 +199,22 @@ public class Menu {
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Almacenamiento.getListaHabitaciones();
+							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
-
+							int num2 = 0;
+							
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación doble") {
 									num++;
 								}
+								if (hab_ocu.get(i).getTipo() == "Habitación doble") {
+									num2++;
+								}
 
 							}
 							if (num != 0) {
-								System.out.println("Tenemos " + num + " habitaciones dobles disponibles");
+								System.out.println("Tenemos " + num - num2 + " habitaciones dobles disponibles");
 								System.out.println("La habitacion doble tiene una capacidad para 2 personas");
 								// costo habitacion doble
 
@@ -217,7 +228,9 @@ public class Menu {
 							//Tabla de informacion general
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Almacenamiento.getListaHabitaciones();
+							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
+							int num2 = 0;
 							
 							System.out.println("-----------------------------------------------------");
 							
@@ -240,18 +253,26 @@ public class Menu {
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Almacenamiento.getListaHabitaciones();
+							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
+							int num2 = 0;
+							
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación individual") {
 
 									num++;
 								}
+								
+								if (hab_dis.ocu(i).getTipo() == "Habitación individual") {
+
+									num2++;
+								}
 							}
 
 							if (num != 0) {
 
-								System.out.println("Tenemos " + num + " habitaciones individuales disponibles");
+								System.out.println("Tenemos " + num - num2 + " habitaciones individuales disponibles");
 								System.out.println("La habitacion individual tiene una capacidad para 4 personas");
 								// costo habitacion individual
 
