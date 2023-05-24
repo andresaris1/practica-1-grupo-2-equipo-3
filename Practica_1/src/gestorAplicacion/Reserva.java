@@ -66,7 +66,7 @@ public class Reserva implements Serializable {
 		this.fechaSalida = fechaSalida;
 	}
 
-	public Usuario getCliente() {
+	public static Usuario getCliente() {
 		return cliente;
 	}
 
@@ -86,7 +86,7 @@ public class Reserva implements Serializable {
 		this.aporte = aporte;
 	}
 
-	public List<Lugar> getHabitaciones() {
+	public static List<Lugar> getHabitaciones() {
 		return habitaciones;
 	}
 

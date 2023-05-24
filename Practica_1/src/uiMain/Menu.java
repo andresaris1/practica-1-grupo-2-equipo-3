@@ -25,7 +25,7 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void almacenamiento(String[] args) {
-        Almacenamiento almacen= new Almacenamiento();
+		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
 		do {
 			System.out.println("-- - - FUNCIONALIDADES - - - -");
@@ -37,7 +37,7 @@ public class Menu {
 			System.out.println("6. Servicios Adicionales");
 			System.out.println("7. Salir del sistema");
 			System.out.println("Eliga una opción: ");
-			
+
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -46,31 +46,28 @@ public class Menu {
 					break;
 
 				case 2:
-					 // FUNCIONALIDAD RESERVA TURÍSTICA
+					// FUNCIONALIDAD RESERVA TURÍSTICA
 					System.out.println("Ingrese la identificación del usuario: ");
 					int identificacion = sc.nextInt();
 
 					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
 
-					Usuario usuario = Almacenamiento.buscarUsuario(identificacion);
-					
 					if (usuario == null) {
 						System.out.println("Usuario no encontrado en la base de datos");
 						return; // Sale del caso 2 si el usuario no se encuentra
-   
+
 					}
 
 					ArrayList<Destinos> destinosSeleccionados = new ArrayList<>();
 
-    
 					while (true) {
-        
+
 						System.out.println("Seleccione un destino:");
 						int index = 1;
 						for (Destinos destino : Destinos.values()) {
 							System.out.println(index + ". " + destino);
 							index++;
-        
+
 						}
 
 						System.out.println("Ingrese el número del destino seleccionado (0 para salir): ");
@@ -78,18 +75,18 @@ public class Menu {
 
 						if (numDestino == 0) {
 							break; // Salir del bucle si se ingresa 0
-        
+
 						}
 
 						if (numDestino >= 1 && numDestino <= Destinos.values().length) {
 
-							// Revisar que el número ingresado cuente como una opción válida ofrecida para el tour
+							// Revisar que el número ingresado cuente como una opción válida ofrecida para
+							// el tour
 							Destinos destinoSeleccionado = Destinos.values()[numDestino - 1];
 							destinosSeleccionados.add(destinoSeleccionado);
 							System.out.println("Ha seleccionado el destino: " + destinoSeleccionado);
 
-						}
-						else {
+						} else {
 							System.out.println("Opción inválida, elija una opción válida por favor.");
 							continue; // Vuelve al inicio del bucle
 
@@ -99,23 +96,23 @@ public class Menu {
 					// Crear la factura y registrarla en la lista del cliente
 					List<Servicio> servicios = new ArrayList<Servicio>();
 					for (Destinos destino : destinosSeleccionados) {
-						Servicio servicioTurismo = new Servicio("Turismo", destino.getPrecio());
+						Servicio servicioTurismo = new Servicio("Turismo", destino.getValor());
 						servicios.add(servicioTurismo);
 
 					}
-					
-					Factura factura = Almacenamiento.nuevaFactura(usuario, servicios);
+
+					Factura factura = Almacenamiento.crearFactura(usuario, servicios);
 					usuario.getListaFacturas().add(factura);
 
 					break;
 				case 3:
-					//FUNCIONALIDAD RESERVA DE EVENTOS
-					reservarEvento(almacenamiento);
+					// FUNCIONALIDAD RESERVA DE EVENTOS
+					reservarEvento(almacen);
 					break;
 				case 4:
 
-					// FUNCIONALIDAD DE COBROS 
-					//Queda aregar una opcion mas de consulta que deriva en cobro
+					// FUNCIONALIDAD DE COBROS
+					// Queda aregar una opcion mas de consulta que deriva en cobro
 					System.out.println("Por favor ingrese el número de documento de quien desea pagar:\n");
 					int documento = sc.nextInt();
 					Usuario user = Almacenamiento.buscarUsuario(documento);
@@ -149,7 +146,8 @@ public class Menu {
 					int res2 = sc.nextInt();
 
 					if (res2 == 1) {
-						System.out.println("Por ahora tenemos " + Almacenamiento.getListaHabitaciones().size() + " habitaciones disponibles");
+						System.out.println("Por ahora tenemos " + Almacenamiento.getListaHabitaciones().size()
+								+ " habitaciones disponibles");
 
 						// Informacion categorizada por el tipo de habitacion
 						System.out.println("Sobre que tipo de habitacion desea tener informacion?");
@@ -175,7 +173,7 @@ public class Menu {
 								if (hab_dis.get(i).getTipo() == "Habitación familiar") {
 									num++;
 								}
-								
+
 								if (hab_ocu.get(i).getTipo() == "Habitación familiar") {
 									num2++;
 								}
@@ -202,8 +200,7 @@ public class Menu {
 							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
 							int num2 = 0;
-							
-							
+
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación doble") {
@@ -225,37 +222,37 @@ public class Menu {
 								System.out.println("No tenemos habitaciones dobles disponibles");
 							}
 
-						} else if (res2 == 4){
-							//Tabla de informacion general
+						} else if (res2 == 4) {
+							// Tabla de informacion general
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
 							int num2 = 0;
 							Usuario cliente = Reserva.getCliente();
-							
+
 							System.out.println("-----------------------------------------------------");
-							
+
 							for (int i = 0; i < hab_dis.size(); i++) {
 								System.out.println("---------------------------------------------");
-								
-								System.out.println("Habitacion "+ hab_dis.get(i).getNumero());
+
+								System.out.println("Habitacion " + hab_dis.get(i).getNumero());
 								System.out.println("Tipo: " + hab_dis.get(i).getTipo());
 								System.out.println("Capacidad: " + hab_dis.get(i).getCapacidad());
 								System.out.println("Precio: " + Lugar.valorSegunTipo(hab_dis.get(i).getTipo()));
-								if(hab_ocu.contains(hab_dis.get(i))){
+								if (hab_ocu.contains(hab_dis.get(i))) {
 									System.out.println("Cliente asociado a esta: ");
 									System.out.println(cliente);
-								
+
 								}
-								
+
 								System.out.println("---------------------------------------------");
 
 							}
-							
+
 							System.out.println("-----------------------------------------------------");
-							
-						}else {
+
+						} else {
 							// informacion de las habitaciones individuales
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
@@ -263,14 +260,14 @@ public class Menu {
 							hab_ocu = Reserva.getHabitaciones();
 							int num = 0;
 							int num2 = 0;
-							
+
 							for (int i = 0; i < hab_dis.size(); i++) {
 
 								if (hab_dis.get(i).getTipo() == "Habitación individual") {
 
 									num++;
 								}
-								
+
 								if (hab_dis.ocu(i).getTipo() == "Habitación individual") {
 
 									num2++;
@@ -295,20 +292,20 @@ public class Menu {
 					}
 					break;
 				case 6:
-					Servicioad(almacenamiento);
+					Servicioad(almacen);
 					break;
 				case 7:
 					System.out.println("Gracias por preferirnos");
-					Serializador.serializar(almacenamiento);
+					Serializador.serializar(almacen);
 					System.exit(0);
 					break;
 				case 8:
 					System.out.println("-- - - Reservas Existentes - - - -");
 					System.out.println(Almacenamiento.listaReservas());
 					System.out.println("-- - - Clientes Existentes - - - -");
-					System.out.println(Almacenamiento.listaClientes());
+					System.out.println(Almacenamiento.listaUsuarios());
 					System.out.println("-- - - Facturas de Cliente - - - -");
-					Usuario usere=Almacenamiento.usuario1;
+					Usuario usere = Almacenamiento.usuario1;
 					System.out.println(Almacenamiento.listaFacturascliente(usere));
 					System.out.println("-- - - Facturas Existentes - - - -");
 					System.out.println(Almacenamiento.listaFacturas());
@@ -378,7 +375,7 @@ public class Menu {
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Almacenamiento.listarDisponibles(fentrada,fsalida));
+			System.out.println(Almacenamiento.listarDisponibles(fentrada, fsalida));
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
 			Lugar habitacion = Almacenamiento.buscarHabitacion(hb);
@@ -392,25 +389,25 @@ public class Menu {
 				System.out.println("Esta habitacion no está disponible");
 			}
 		} while (suma < personas);
-		List<Servicio> servicios=new ArrayList<Servicio>();
+		List<Servicio> servicios = new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
 		Reserva reserva = Almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
-		Factura f1=Almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
+		Factura f1 = Almacenamiento.crearFactura(user, null, servicios, null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
-		float t=valor-abonado;
+		float t = valor - abonado;
 		reserva.setAporte(t);
 		System.out.println("\n" + reserva + "\n");
-		
+
 	}
 
-	static void reservarEvento(Almacenamiento almacenamiento){
+	static void reservarEvento(Almacenamiento almacenamiento) {
 		// Le pedimos su información al cliente
 		System.out.println("Escribe tu identificacion: ");
-		//Se valida si el usuario ya está en la base de datos.
-		//En caso de que no, ingresarlo a la base de datos.
+		// Se valida si el usuario ya está en la base de datos.
+		// En caso de que no, ingresarlo a la base de datos.
 		int id = sc.nextInt();
 		Usuario usuario = Almacenamiento.buscarUsuario(id);
 		if (usuario == null) {
@@ -448,8 +445,6 @@ public class Menu {
 		System.out.println("Escribe la cantidad de personas que asistirán al evento: ");
 		int numAsistentes = sc.nextInt();
 
-		
-
 		System.out.println("¿Desea contratar algún servicio externo?");
 		System.out.println("1. Si");
 		System.out.println("2. No");
@@ -458,27 +453,28 @@ public class Menu {
 
 		ArrayList<ServicioExterno> serviciosExternos;
 
-		if(respuesta==1){
+		if (respuesta == 1) {
 			serviciosExternos = crearServiciosExternos(almacenamiento);
-		}else{
+		} else {
 			System.out.println("No se contrataron servicios externos");
-			serviciosExternos =null;
+			serviciosExternos = null;
 		}
-		
-		//Finalmente, creación del evento
-		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion, numAsistentes,empleadosNecesarios(almacenamiento) );
 
-		//Facturación del evento:
+		// Finalmente, creación del evento
+		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
+				numAsistentes, empleadosNecesarios(almacenamiento));
+
+		// Facturación del evento:
 		Servicio servicioEvento = evento;
-	
+
 	}
-	
+
 	/*
-	 * Este método fue creado para preguntarle al cliente por los empleados para el 
-	 * evento  necesita
+	 * Este método fue creado para preguntarle al cliente por los empleados para el
+	 * evento necesita
 	 * dentro de la funcionalidad reserva de Eventos
 	 */
-	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento){
+	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento) {
 
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		// Instanciamos el Diccionario que usaremos para guardar la información sobre
@@ -501,10 +497,10 @@ public class Menu {
 				empleadosNecesarios.put(x, sc.nextInt());
 			}
 		}
-        int variable = 0;
+		int variable = 0;
 		for (String x : empleadosNecesarios.keySet()) {
 			variable += 1;
-			empleados.add(new Empleado("Rigoberto "+String.valueOf(variable) ,variable, x.toLowerCase()  ));
+			empleados.add(new Empleado("Rigoberto " + String.valueOf(variable), variable, x.toLowerCase()));
 		}
 		return empleados;
 	}
@@ -520,41 +516,39 @@ public class Menu {
 
 		ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
 
-
 		// le preguntamos al cliente si desea que contratemos algún servicio extra para
 		// él
-		
+
 		String res = "si";
-		while(res.equals("si")) {
+		while (res.equals("si")) {
 			System.out.println("¿Qué servicio desea contratar?");
 			System.out.println("1. entretenimiento");
 			System.out.println("2. sonido");
 			System.out.println("3. decoracion");
 			String servicio;
 			switch (sc.nextInt()) {
-			case 1:
-				servicio = "entretenimiento";
-				break;
-			case 2:
-				servicio = "sonido";
-				break;
-			case 3:
-				servicio = "decoracion";
-				break;
+				case 1:
+					servicio = "entretenimiento";
+					break;
+				case 2:
+					servicio = "sonido";
+					break;
+				case 3:
+					servicio = "decoracion";
+					break;
 				default:
-					servicio=null;
+					servicio = null;
 			}
 
-			ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
+			ServicioExterno servicioExterno = new ServicioExterno(servicio, null);
 			serviciosExternos.add(servicioExterno);
-			
+
 			System.out.println("¿Desea contratar algún otro servicio extra? (si/no)");
 			res = sc.next();
 		}
 		return serviciosExternos;
 	}
-	
-	
+
 	static Usuario registro(Almacenamiento almacenamiento) {
 		int opcion;
 		Usuario cli = null;
@@ -572,7 +566,7 @@ public class Menu {
 					int tel = sc.nextInt();
 					System.out.print("Ingrese una cuenta bancaria:\n");
 					String cb = sc.next();
-					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb,new ArrayList<String>());
+					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb, new ArrayList<String>());
 					cli = cliente;
 
 					System.out.println("Usuario creado con exito");
@@ -590,19 +584,19 @@ public class Menu {
 		return cli;
 
 	}
-	
+
 	static void Servicioad(Almacenamiento almacenamiento) {
 		int opcion;
-		int con=0;
-		List<Servicio> servicios=new ArrayList<Servicio>();
+		int con = 0;
+		List<Servicio> servicios = new ArrayList<Servicio>();
 		System.out.println("Escribe tu identificacion:");
 		int ide = sc.nextInt();
 		Usuario user = Almacenamiento.buscarUsuario(ide);
 		if (user == null) {
 			System.out.println("Usuario no registrado\n");
 			return;
-		}else {
-			System.out.println("Hola"+user.getNombre());
+		} else {
+			System.out.println("Hola" + user.getNombre());
 		}
 		do {
 			System.out.println("¿Que servicio adicional desea adquirir?");
@@ -614,8 +608,8 @@ public class Menu {
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
-					if(con==2){
-						opcion=2;
+					if (con == 2) {
+						opcion = 2;
 					}
 					break;
 				case 2:
@@ -623,8 +617,8 @@ public class Menu {
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
-					if(con==2){
-						opcion=2;
+					if (con == 2) {
+						opcion = 2;
 					}
 					break;
 				default:
@@ -632,8 +626,8 @@ public class Menu {
 					break;
 			}
 		} while (con != 2);
-		
-		Factura f1=Almacenamiento.crearFactura(user,null,servicios,null, "Adicional");
+
+		Factura f1 = Almacenamiento.crearFactura(user, null, servicios, null, "Adicional");
 		System.out.println(f1.imprimirFactura());
 
 	}
