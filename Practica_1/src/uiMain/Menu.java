@@ -34,8 +34,10 @@ public class Menu {
 			System.out.println("3. Reservar Evento");
 			System.out.println("4. Cobro");
 			System.out.println("5. Mostrar información de habitaciones");
-			System.out.println("6. Salir del sistema");
+			System.out.println("6. Servicios Adicionales");
+			System.out.println("7. Salir del sistema");
 			System.out.println("Eliga una opción: ");
+			
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -370,11 +372,14 @@ public class Menu {
 					}
 					break;
 				case 6:
+					Servicioad(main);
+					break;
+				case 7:
 					System.out.println("Gracias por preferirnos");
 					Serializador.serializar(main);
 					System.exit(0);
 					break;
-				case 7:
+				case 8:
 					System.out.println("-- - - Reservas Existentes - - - -");
 					System.out.println(Main.listaReservas());
 					System.out.println("-- - - Clientes Existentes - - - -");
@@ -392,7 +397,7 @@ public class Menu {
 
 			}
 
-		} while (opcion != 6);
+		} while (opcion != 7);
 
 		sc.close();
 	}
@@ -478,10 +483,6 @@ public class Menu {
 		
 	}
 
-	static void comprobarDisponibilidad() {
-
-	}
-
 	static Usuario registro(Main main) {
 		int opcion;
 		Usuario cli = null;
@@ -514,6 +515,53 @@ public class Menu {
 			}
 		} while (opcion != 2);
 		return cli;
+
+	}
+	
+	static void Servicioad(Main main) {
+		int opcion;
+		int con=0;
+		List<Servicio> servicios=new ArrayList<Servicio>();
+		System.out.println("Escribe tu identificacion:");
+		int ide = sc.nextInt();
+		Usuario user = Main.buscar(ide);
+		if (user == null) {
+			System.out.println("Usuario no registrado\n");
+			return;
+		}else {
+			System.out.println("Hola"+user.getNombre());
+		}
+		do {
+			System.out.println("¿Que servicio adicional desea adquirir?");
+			System.out.println("1. Comida \n2. Masaje ");
+			opcion = sc.nextInt();
+			switch (opcion) {
+				case 1:
+					servicios.add(main.buscarServicio("Comida"));
+					System.out.println("¿Desea añadir otro servicio?");
+					System.out.println("1. Si \n2. No ");
+					con = sc.nextInt();
+					if(con==2){
+						opcion=2;
+					}
+					break;
+				case 2:
+					servicios.add(main.buscarServicio("Masaje"));
+					System.out.println("¿Desea añadir otro servicio?");
+					System.out.println("1. Si \n2. No ");
+					con = sc.nextInt();
+					if(con==2){
+						opcion=2;
+					}
+					break;
+				default:
+					System.out.println("Esta opcion no es valida");
+					break;
+			}
+		} while (con != 2);
+		
+		Factura f1=main.nuevaFactura(user,null,servicios,null, "Adicional");
+		System.out.println(f1.imprimirFactura());
 
 	}
 

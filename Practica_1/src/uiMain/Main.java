@@ -50,21 +50,25 @@ public class Main implements Serializable {
 	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, "", null);
 	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, "", null);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
-	static List<Lugar> habitacionese = new ArrayList<>(Arrays.asList(h1, h3));
-	static Reserva reserva = new Reserva("23/05/2023", "24/05/2023", habitacionese, 5000, usuario1);
 
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
+	
+	private static List<Servicio> serviciosad = new ArrayList<Servicio>();
+	
+	static Servicio comida=new Servicio("Comida",2000);
+	static Servicio masaje=new Servicio("Masaje",2000);
 
 	public Main() {
 		Deserializador.deserializar(this);
-		clientes.add(usuario1);
-		// habitaciones.add(h1);
+		habitaciones.add(h1);
 		habitaciones.add(h2);
-		// habitaciones.add(h3);
+		habitaciones.add(h3);
 		habitaciones.add(h4);
 		habitaciones.add(h5);
 		habitaciones.add(h6);
-		reservas.add(reserva);
+		serviciosad.add(masaje);
+		serviciosad.add(comida);
+		clientes.add(usuario1);
 
 	}
 
@@ -119,6 +123,18 @@ public class Main implements Serializable {
 		Factura factura = new Factura(cliente, empleado, items, destino, concepto);
 		facturas.add(factura);
 		return factura;
+	}
+	
+	public static Servicio buscarServicio(String id) {
+		Iterator<Servicio> iterator = serviciosad.iterator();
+		while (iterator.hasNext()) {
+			Servicio servicio = (Servicio) iterator.next();
+			if (servicio.getNombre().equals(id)) {
+				return servicio;
+
+			}
+		}
+		return null;
 	}
 
 	public static Factura buscarFactura(int id) {
