@@ -41,10 +41,10 @@ public class Main implements Serializable {
 	
 	
 	static Scanner sc = new Scanner(System.in);
-	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, "");
-	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, "");
-	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, "");
-	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, "");
+	static Usuario usuario1 = new Usuario("carlos", 1234, 0, null, "", null);
+	static Usuario usuario2 = new Usuario("Maria", 345, 0, null, "", null);
+	static Usuario usuario3 = new Usuario("Ximena", 763, 0, null, "", null);
+	static Usuario usuario4 = new Usuario("Valentin", 2468, 0, null, "", null);
 	static Empleado empleado1 = new Empleado("luis pedro", 0, 0, null, 0, 0);
 	
 	static public Usuario[] ListaUsuarios = { usuario1, usuario2, usuario3, usuario4 };
@@ -126,8 +126,8 @@ public class Main implements Serializable {
 		return null;
 	}
 	
-	public static Reserva nuevaReserva(Factura factura, String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte, Usuario cliente) {
-		Reserva reserva= new Reserva(factura, fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
+	public static Reserva nuevaReserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte, Usuario cliente) {
+		Reserva reserva= new Reserva(fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
 		reservas.add(reserva);
 		return reserva;
 	}

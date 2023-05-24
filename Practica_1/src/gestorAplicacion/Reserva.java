@@ -9,14 +9,38 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class Reserva extends Servicio implements Serializable{
-	private Factura factura;
+public class Reserva implements Serializable{
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private float aporte;
 	private Usuario cliente;
 	private List<Lugar> habitaciones = new ArrayList<Lugar>();
-
+	
+	
+	// CONSTRUCTOR
+	public Reserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
+			Usuario cliente) {
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fEntrada = new Date();
+		try {
+			fEntrada = fecha.parse(fechaEntrada);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date fSalida = new Date();
+		try {
+			fSalida = fecha.parse(fechaSalida);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.fechaEntrada = fEntrada;
+		this.fechaSalida = fSalida;
+		this.aporte = aporte;
+		this.cliente = cliente;
+		this.habitaciones = habitaciones;
+	}
+	
+	
 	// METODOS
 	public String listaHabitaciones() {
 		Iterator<Lugar> iterator = habitaciones.iterator();
@@ -34,39 +58,7 @@ public class Reserva extends Servicio implements Serializable{
 				+ getFechaSalida() + " para las habitaciones:\n" + habitaciones;
 	}
 
-	// CONSTRUCTOR
-	public Reserva(Factura factura, String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
-			Usuario cliente) {
-		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-		Date fEntrada = new Date();
-		try {
-			fEntrada = fecha.parse(fechaEntrada);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		Date fSalida = new Date();
-		try {
-			fSalida = fecha.parse(fechaSalida);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		this.factura = factura;
-		this.fechaEntrada = fEntrada;
-		this.fechaSalida = fSalida;
-		this.aporte = aporte;
-		this.cliente = cliente;
-		this.habitaciones = habitaciones;
-	}
-
 	// GETTERS Y SETTERS
-	public Factura getFactura() {
-		return factura;
-	}
-
-	public void setFactura(Factura factura) {
-		this.factura = factura;
-	}
-
 	public Date getFechaSalida() {
 		return fechaSalida;
 	}

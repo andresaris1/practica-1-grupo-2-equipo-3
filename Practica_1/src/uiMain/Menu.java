@@ -132,7 +132,7 @@ public class Menu {
 					int telefono = sc.nextInt();
 
 
-					usuario = new Usuario(nombre,id,telefono,"", cuenta);
+					usuario = new Usuario(nombre,id,telefono,"", cuenta, null);
 					// Se le consulta sobre el lugar que requiere
 					// para su evento
 					System.out.println("Escribe el lugar en el que desea su evento: ");
@@ -195,6 +195,8 @@ public class Menu {
 						case 3:
 							servicio = "decoracion";
 							break;
+							default:
+								servicio=null;
 						}
 
 						ServicioExterno servicioExterno = new ServicioExterno(servicio,null);
@@ -242,9 +244,9 @@ public class Menu {
 					System.out.println("1:Informacion de habitaciones");
 					System.out.println("2:informacion de eventos");
 
-					int res = sc.nextInt();
+					int res2 = sc.nextInt();
 
-					if (res == 1) {
+					if (res2 == 1) {
 						System.out.println("Por ahora tenemos 5 habitaciones disponibles");
 
 						// Informacion categorizada por el tipo de habitacion
@@ -255,9 +257,9 @@ public class Menu {
 						System.out.println("3: Habitacion individual");
 						System.out.println("4: Ver informacion completa");
 
-						res = sc.nextInt();
+						res2 = sc.nextInt();
 
-						if (res == 1) {
+						if (res2 == 1) {
 							// informacion de las habitaciones familiares
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
@@ -284,7 +286,7 @@ public class Menu {
 								System.out.println("Lo sentimos, no tenemos habitaciones familiares disponibles");
 							}
 
-						} else if (res == 2) {
+						} else if (res2 == 2) {
 							// informacion de las habitaciones dobles
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
@@ -309,7 +311,7 @@ public class Menu {
 								System.out.println("Lo sentimos, no tenemos habitaciones dobles disponibles");
 							}
 
-						} else if (res == 4){
+						} else if (res2 == 4){
 							//Tabla de informacion general
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
 							hab_dis = Main.getHabitaciones();
@@ -457,8 +459,7 @@ public class Menu {
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
-		Factura f1 = main.nuevaFactura(user, null, null, null);
-		Reserva reserva = main.nuevaReserva(f1, fentrada, fsalida, habitaciones, (valor - abonado), user);
+		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, (valor - abonado), user);
 		System.out.println("\n" + reserva + "\n");
 		System.out.println("Valor de la reserva: " + valor + "\nAbonó: " + abonado + "\nResta: " + (valor - abonado));
 	}
