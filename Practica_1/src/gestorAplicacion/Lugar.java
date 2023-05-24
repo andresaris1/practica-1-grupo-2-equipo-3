@@ -40,7 +40,7 @@ public class Lugar extends Servicio implements Serializable{
         return "Habitacion: " + numero + " " + tipo + " con capacidad para " + capacidad + " personas";
     }
 
-    // CONSTRUCTORES
+	// CONSTRUCTORES
 
     /*
      * Constructor para habitaciones

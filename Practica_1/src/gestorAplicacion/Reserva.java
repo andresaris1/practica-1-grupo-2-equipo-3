@@ -9,17 +9,15 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class Reserva implements Serializable{
+public class Reserva implements Serializable {
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private float aporte;
 	private Usuario cliente;
 	private List<Lugar> habitaciones = new ArrayList<Lugar>();
-	
-	
+
 	// CONSTRUCTOR
-	public Reserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
-			Usuario cliente) {
+	public Reserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte, Usuario cliente) {
 		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 		Date fEntrada = new Date();
 		try {
@@ -39,8 +37,7 @@ public class Reserva implements Serializable{
 		this.cliente = cliente;
 		this.habitaciones = habitaciones;
 	}
-	
-	
+
 	// METODOS
 	public String listaHabitaciones() {
 		Iterator<Lugar> iterator = habitaciones.iterator();

@@ -11,9 +11,9 @@ public class Servicio {
     }
 
     //CONSTRUCTOR
-    public Servicio(String nombre, int valor) {
-        this.nombre = nombre;
-        this.valor = valor;
+	public Servicio(String nombre, int valor) {
+		this.nombre = nombre;
+		this.valor = valor;
     }
 
     //GETTERS AND SETTERS

@@ -444,10 +444,11 @@ public class Menu {
 		String fsalida = sc.next();
 		System.out.println("¿Para cuantas personas es la reserva?");
 		personas = sc.nextInt();
+		Reserva reserva = main.nuevaReserva(fentrada, fsalida, null, 0, user);
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Main.listaHabitaciones());
+			System.out.println(Main.listarDisponibles(reserva.getFechaEntrada(),reserva.getFechaSalida()));
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
 			Lugar habitacion = main.buscarHabitacion(hb);
@@ -463,12 +464,14 @@ public class Menu {
 		} while (suma < personas);
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
+		reserva.setHabitaciones(habitaciones);
+		Factura f1=main.nuevaFactura(user,null,servicios,null, "Reserva");
+		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
-		Reserva reserva = main.nuevaReserva(fentrada, fsalida, habitaciones, (valor - abonado), user);
-		Factura f1=main.nuevaFactura(user,null,servicios,null, "Reserva");
-		System.out.println(f1.imprimirFactura());
+		float t=valor-abonado;
+		reserva.setAporte(t);
 		System.out.println("\n" + reserva + "\n");
 		
 	}
