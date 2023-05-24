@@ -419,9 +419,9 @@ public class Menu {
 		// se instancia un diccionario que le dará significado
 		// a su respuesta
 		HashMap<Integer, String> lugares = new HashMap<Integer, String>();
-		lugares.put(1, "Terraza");
-		lugares.put(2, "Piscina");
-		lugares.put(3, "Salon");
+		lugares.put(1, "terraza");
+		lugares.put(2, "piscina");
+		lugares.put(3, "salon");
 		int numLugar = sc.nextInt();
 		String tipoLugar = lugares.get(numLugar);
 
@@ -444,7 +444,13 @@ public class Menu {
 		
 	}
 	
+	/*
+	 * Este método fue creado para preguntarle al cliente por los empleados para el 
+	 * evento  necesita
+	 * dentro de la funcionalidad reserva de Eventos
+	 */
 	static HashMap<String,Integer> empleadosNecesarios(Main main){
+
 		// Instanciamos el Diccionario que usaremos para guardar la información sobre
 		// los
 		// empleados que el cliente necesita
@@ -468,6 +474,12 @@ public class Menu {
 
 		return empleadosNecesarios;
 	}
+
+	/*
+	 * Este método fue creado para preguntarle al cliente por los servicios externos
+	 * que necesita
+	 * dentro de la funcionalidad reserva de Eventos
+	 */
 	static ArrayList<ServicioExterno> crearServiciosExternos(Main main) {
 
 		// Instanciamos el Diccionario que usaremos para guardar los servicios

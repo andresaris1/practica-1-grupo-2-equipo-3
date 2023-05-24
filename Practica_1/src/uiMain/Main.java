@@ -133,6 +133,8 @@ public class Main implements Serializable {
 		return evento;
 	}
 
+	
+
 	public static Reserva nuevaReserva(String fechaEntrada, String fechaSalida, List<Lugar> habitaciones, float aporte,
 			Usuario cliente) {
 		Reserva reserva = new Reserva(fechaEntrada, fechaSalida, habitaciones, aporte, cliente);
