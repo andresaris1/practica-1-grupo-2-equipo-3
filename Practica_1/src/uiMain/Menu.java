@@ -384,8 +384,10 @@ public class Menu {
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
-		float t=valor-abonado;
+		int t=valor-abonado;
 		reserva.setAporte(t);
+		f1.setValorTotal(t);
+		System.out.println(f1.imprimirFactura());
 		System.out.println("\n" + reserva + "\n");
 
 	}
