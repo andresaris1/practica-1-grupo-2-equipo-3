@@ -112,8 +112,6 @@ public class Factura implements Serializable {
 			int vuelto = Factura.realizarCobro(factura, valorIngresado);
 
 			valorIngresado = vuelto;
-			System.out.println(valorIngresado);
-			System.out.println(vuelto);
 
 		}
 	}

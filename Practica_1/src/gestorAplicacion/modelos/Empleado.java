@@ -19,7 +19,7 @@ public class Empleado extends Persona{
     public String informacion() {
         return ("Nombre: " + this.getNombre() + "\n" +
                 "Documento: " + this.getIdentificacion() + "\n" +
-                "Cargo: " + this.getCargo() +
+                "Cargo: " + this.getCargo() +"\n"+
                 "Nomina: " + this.getNomina() + "\n");
     }
 
