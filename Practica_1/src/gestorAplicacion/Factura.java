@@ -225,11 +225,11 @@ public class Factura implements Serializable {
 		this.estado = estado;
 	}
 
-	public Destinos getDestino() {
+	public List<Destinos> getDestino() {
 		return destino;
 	}
 
-	public void setDestino(Destinos destino) {
+	public void setDestino(List<Destinos> destino) {
 		this.destino = destino;
 	}
 
