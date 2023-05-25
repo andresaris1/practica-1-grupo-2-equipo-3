@@ -570,7 +570,7 @@ public class Menu {
 
 	}
 	
-		static void reservarTur(Almacenamiento almacenamiento){
+	static void reservarTur(Almacenamiento almacenamiento){
 			
 		System.out.print("Ingrese la identificación del empleado: ");
 		int idEmpleado = sc.nextInt();
