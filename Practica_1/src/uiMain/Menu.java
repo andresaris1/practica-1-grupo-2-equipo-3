@@ -323,7 +323,7 @@ public class Menu {
 									num++;
 								}
 
-								if (hab_dis.ocu(i).getTipo() == "Habitación individual") {
+								if (hab_ocu.get(i).getTipo() == "Habitación individual") {
 
 									num2++;
 								}
