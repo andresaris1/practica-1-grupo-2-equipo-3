@@ -393,8 +393,15 @@ public class Menu {
 	}
 
 	static void reservarEvento(Almacenamiento almacenamiento) {
+
+		//pedimos la información del empleado  encargado de la reserva
+		System.out.println("Ingrese la identificacion del empleado encargado de la reserva: ");
+		int idEmpleado = sc.nextInt();
+		Empleado empleadoEncargado = Almacenamiento.buscarEmpleado(idEmpleado);
+
 		// Le pedimos su información al cliente
-		System.out.println("Escribe tu identificacion: ");
+		System.out.println("Identificacion del usuario a realizar la reserva: ");
+
 		// Se valida si el usuario ya está en la base de datos.
 		// En caso de que no, ingresarlo a la base de datos.
 		int id = sc.nextInt();
@@ -453,6 +460,7 @@ public class Menu {
 		// Finalmente, creación del evento
 		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
 				numAsistentes, empleadosNecesarios(almacenamiento), codigoEvento);
+				
 
 		// Facturación del evento:
 		Servicio servicioEvento = evento;
