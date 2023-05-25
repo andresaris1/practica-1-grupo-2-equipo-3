@@ -1,11 +1,14 @@
-package gestorAplicacion;
+package gestorAplicacion.modelos;
+
 /*Clase Usuario se usa para crear los clientes que realizen reservas en el hotel */
 
 import java.util.ArrayList;
 
+import gestorAplicacion.reservacion.Factura;
+
 public class Usuario extends Persona {
 	String tipo;
-	ArrayList<Factura> listaFacturas;
+	public ArrayList<Factura> listaFacturas;
 	String cuentaBancaria;
 
 	// METODOS

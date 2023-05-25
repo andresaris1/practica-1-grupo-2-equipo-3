@@ -2,6 +2,9 @@
 //Librerias a importar
 package uiMain;
 
+import gestorAplicacion.modelos.*;
+import gestorAplicacion.reservacion.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,15 +16,7 @@ import java.util.random.RandomGenerator;
 import java.util.Random;
 
 import baseDatos.Serializador;
-import gestorAplicacion.Destinos;
-import gestorAplicacion.Empleado;
-import gestorAplicacion.Factura;
-import gestorAplicacion.Lugar;
-import gestorAplicacion.Reserva;
-import gestorAplicacion.Servicio;
-import gestorAplicacion.Usuario;
-import gestorAplicacion.ServicioExterno;
-import gestorAplicacion.Evento;
+
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);

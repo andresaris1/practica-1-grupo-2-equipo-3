@@ -2,8 +2,9 @@ package uiMain;
 
 import java.util.ArrayList;
 
-import gestorAplicacion.*;
 
+import gestorAplicacion.modelos.*;
+import gestorAplicacion.reservacion.*;
 import uiMain.*;
 //CLase temporar para la creacion de los objetos estables de la serializacion
 

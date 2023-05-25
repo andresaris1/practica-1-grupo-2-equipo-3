@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.reservacion;
 
 
 /*Clase lugar hereda de servicio y se usa para crear los diferentes lugares ofrecidos(habitaciones y zonas sociales) */

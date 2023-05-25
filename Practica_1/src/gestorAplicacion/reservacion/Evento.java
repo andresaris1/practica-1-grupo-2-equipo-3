@@ -1,6 +1,9 @@
-package gestorAplicacion;
+package gestorAplicacion.reservacion;
+
 
 import java.util.ArrayList;
+
+import gestorAplicacion.modelos.*;
 
 /*
  * Clase Evento encargada de crear los eventos, los cuales son un tipo de servicio

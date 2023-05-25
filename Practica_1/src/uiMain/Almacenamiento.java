@@ -1,6 +1,7 @@
 package uiMain;
 
-import gestorAplicacion.*;
+import gestorAplicacion.modelos.*;
+import gestorAplicacion.reservacion.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import baseDatos.Deserializador;
+
 
 public class Almacenamiento implements Serializable {
 

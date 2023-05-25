@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import uiMain.*;
-import gestorAplicacion.*;
+import gestorAplicacion.modelos.*;
+import gestorAplicacion.reservacion.*;
 
 public class Deserializador {
 	private static File ruta = new File("src\\baseDatos\\temp");

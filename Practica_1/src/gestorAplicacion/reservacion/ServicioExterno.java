@@ -1,4 +1,6 @@
-package gestorAplicacion;
+package gestorAplicacion.reservacion;
+
+import gestorAplicacion.modelos.*;
 
 public class ServicioExterno extends Servicio {
     private int valor;

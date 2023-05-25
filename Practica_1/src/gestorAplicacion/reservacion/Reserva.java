@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.reservacion;
 /*Clase reverva se usapara almacenar la informacion incluida en la reserva de cada cliente */
 
 import java.io.Serializable;
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import gestorAplicacion.modelos.*;
 
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;

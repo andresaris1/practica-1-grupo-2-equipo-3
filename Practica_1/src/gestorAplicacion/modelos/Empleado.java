@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.modelos;
 
 /*Clase Empleado hereda de Persona los atributos nombre, identificacion y telefono*/
 

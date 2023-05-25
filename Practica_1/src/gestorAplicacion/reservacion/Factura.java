@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.reservacion;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import gestorAplicacion.modelos.*;
+
 import java.util.ArrayList;
 
 /*Clase Factura encargada de gaurdar cada una de las compras de los usurios, cada que un usrurio realiza 
