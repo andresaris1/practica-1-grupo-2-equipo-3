@@ -575,8 +575,7 @@ public class Menu {
 					int tel = sc.nextInt();
 					System.out.print("Ingrese una cuenta bancaria:\n");
 					String cb = sc.next();
-					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb, new ArrayList<String>());
-					cli = cliente;
+					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb, new ArrayList<Factura>());
 
 					System.out.println("Usuario creado con exito");
 					System.out.println(cli.informacion());
