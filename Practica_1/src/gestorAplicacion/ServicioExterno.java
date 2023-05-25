@@ -1,10 +1,10 @@
 package gestorAplicacion;
 
 public class ServicioExterno extends Servicio {
-    int valor;
-    String empresaContratada;
-    String descripcion;
-    Usuario cliente;
+    private int valor;
+    private String empresaContratada;
+    private String descripcion;
+    private Usuario cliente;
 
     @Override
     public String toString() {

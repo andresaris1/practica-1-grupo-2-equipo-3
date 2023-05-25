@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /*Clase  abstracta creada para la herencia de Usuario y empleado*/
 abstract public class Persona implements Serializable{
-    private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
     protected String nombre;
     protected int identificacion;
     protected int telefono;

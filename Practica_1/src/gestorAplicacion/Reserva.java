@@ -46,7 +46,7 @@ public class Reserva implements Serializable {
 		StringBuffer lista = new StringBuffer();
 		while (iterator.hasNext()) {
 			Lugar habitacion = (Lugar) iterator.next();
-			lista.append(habitacion.numero + " " + habitacion.tipo + "\n");
+			lista.append(habitacion.getNumero() + " " + habitacion.getTipo() + "\n");
 		}
 		return lista.toString();
 	}

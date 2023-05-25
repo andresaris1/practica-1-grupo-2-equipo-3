@@ -3,9 +3,9 @@ package gestorAplicacion;
 
 /*Clase lugar hereda de servicio y se usa para crear los diferentes lugares ofrecidos(habitaciones y zonas sociales) */
 public class Lugar extends Servicio {
-    int numero;
-    String tipo;
-    int capacidad;
+    private int numero;
+    private String tipo;
+    private int capacidad;
 
     // METODOS
 

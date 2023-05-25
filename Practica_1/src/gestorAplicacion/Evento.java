@@ -121,6 +121,14 @@ public class Evento extends Servicio{
         this.empleados = empleados;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     // otros getters no tan obvios
     /*
      * Este método se encarga de retornar un ArrayList con los nombres de cada una
@@ -136,4 +144,6 @@ public class Evento extends Servicio{
 
         return lista;
     }
+
+    
 }

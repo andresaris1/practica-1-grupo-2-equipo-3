@@ -114,6 +114,18 @@ public class Almacenamiento implements Serializable {
         return null;
     }
 
+    public static Evento buscarEvento(int id) {
+        Iterator<Evento> iterator = Almacenamiento.getListaEventos().iterator();
+        while (iterator.hasNext()) {
+            Evento evento = (Evento) iterator.next();
+            if (evento.getCodigo() == id) {
+                return evento;
+
+            }
+        }
+        return null;
+    }
+
     // METODOS PARA CREAR OBJETOS
 
     public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo,
