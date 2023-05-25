@@ -225,6 +225,14 @@ public class Factura implements Serializable {
 		this.estado = estado;
 	}
 
+	public List<Destinos> getDestino() {
+		return destino;
+	}
+
+	public void setDestino(List<Destinos> destino) {
+		this.destino = destino;
+	}
+
 	public String getConcepto() {
 		return concepto;
 	}
