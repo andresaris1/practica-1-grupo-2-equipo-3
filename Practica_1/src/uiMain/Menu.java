@@ -92,6 +92,9 @@ public class Menu {
 					System.out.println("2:informacion de eventos");
 
 					int res2 = sc.nextInt();
+					
+					List<Reserva> reservas = new ArrayList<Reserva>();
+					reservas = Almacenamiento.getListaReservas();
 
 					if (res2 == 1) {
 						System.out.println("Por ahora tenemos " + Almacenamiento.getListaHabitaciones().size()
@@ -113,10 +116,10 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
-							hab_ocu = Reserva.getHabitaciones();
+							hab_ocu = reservas.get(0).getHabitaciones();
 
 							// Contador de habitaciones
 							int num = 0;
@@ -156,10 +159,10 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
-							hab_ocu = Reserva.getHabitaciones();
+							hab_ocu = reservas.get(0).getHabitaciones();
 
 							// Contador de habitaciones
 							int num = 0;
@@ -196,15 +199,15 @@ public class Menu {
 							// Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva
 							// informacion de ambas
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
-							hab_ocu = Reserva.getHabitaciones();
+							hab_ocu = reservas.get(0).getHabitaciones();
 
 							// Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
-							public Usuario cliente = Reserva.getCliente();
+							Usuario cliente = reservas.get(0).getCliente();
 
 							System.out.println("-----------------------------------------------------");
 
@@ -237,10 +240,10 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
-							hab_ocu = Reserva.getHabitaciones();
+							hab_ocu = reservas.get(0).getHabitaciones();
 
 							// Contador de habitaciones
 							int num = 0;
