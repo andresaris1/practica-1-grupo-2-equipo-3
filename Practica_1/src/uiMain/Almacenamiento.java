@@ -95,7 +95,7 @@ public class Almacenamiento implements Serializable {
 		Iterator<Servicio> iterator = Almacenamiento.getListaServicios().iterator();
 		while (iterator.hasNext()) {
 			Servicio servicio = (Servicio) iterator.next();
-			if (servicio.getNombre() == nombre) {
+			if (servicio.getNombre().equals(nombre)) {
 				return servicio;
 
 			}

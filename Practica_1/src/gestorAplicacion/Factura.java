@@ -26,22 +26,22 @@ public class Factura implements Serializable {
 	// METODOS
 
 	/* Metodo valorTotal se encarga de calcula el valor total de cada factura */
-	public void valorTotal() {
-		int total = 34;
+	public int valorTotal() {
+		int total = 0;
 
 		for (Servicio servicio : items) {
 			int x = servicio.getValor();
-			total = +x;
+			total += x;
 
 		}
 		if (this.destinos != null) {
 			for (Destinos destino : destinos) {
 				int x = destino.getValor();
-				total = +x;
+				total += x;
 
 			}
-			this.valorTotal = total;
 		}
+		return total;
 
 	}
 
@@ -157,7 +157,7 @@ public class Factura implements Serializable {
 		this.items = items;
 		this.destinos = destino;
 		this.setConcepto(concepto);
-		this.valorTotal(); // Se ejecuta el metodo de valor total para la factura
+		this.valorTotal=valorTotal(); // Se ejecuta el metodo de valor total para la factura
 		// creada COMENTARIO PROVISIONAL
 
 		// Establece la fecha en la que se creo la factura
