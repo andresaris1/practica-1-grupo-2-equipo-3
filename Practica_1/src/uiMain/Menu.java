@@ -664,9 +664,7 @@ public class Menu {
 		}
 
 		//Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto)
-		Factura factura = new Factura(usuario, empleado, servicios, destinosSeleccionados, "Factura por destinos");
 		usuario.crearFactura(factura);
-		Almacenamiento.getListaFacturas().add(factura);
 
 		System.out.println("Valor total de los destinos: " + valorTotal);
 		System.out.println("Factura agregada exitosamente.");
