@@ -652,7 +652,7 @@ public class Menu {
 
 		}
 
-		Factura factura = new Factura(usuario, empleado, servicios, valorTotal, "Factura por destinos");
+		Factura factura = new Factura(usuario, empleado, servicios, destinosseleccionados, "Factura por destinos");
 		usuario.agregarFactura(factura);
 		Almacenamiento.getListaFacturas().add(factura);
 
