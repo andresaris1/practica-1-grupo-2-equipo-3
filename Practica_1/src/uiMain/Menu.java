@@ -390,6 +390,9 @@ public class Menu {
 		System.out.println("Ingrese la identificacion del empleado encargado de la reserva: ");
 		int idEmpleado = sc.nextInt();
 		Empleado empleadoEncargado = Almacenamiento.buscarEmpleado(idEmpleado);
+		if (empleadoEncargado == null) {
+			System.out.println("El empleado no existe");
+		}
 
 		// Le pedimos su información al cliente
 		System.out.println("Identificacion del usuario a realizar la reserva: ");
