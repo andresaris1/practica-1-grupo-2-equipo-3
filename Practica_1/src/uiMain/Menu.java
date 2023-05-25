@@ -473,7 +473,7 @@ public class Menu {
 
 		List<Servicio> items = new ArrayList<Servicio>();
 		items.add(servicioEvento);
-		Factura factura = Almacenamiento.crearFactura(usuario, empleadoEncargado, items, null, "Evento");
+		Almacenamiento.crearFactura(usuario, empleadoEncargado, items, null, "Evento");
 	}
 
 	/*
