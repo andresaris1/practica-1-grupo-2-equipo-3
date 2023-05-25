@@ -460,6 +460,7 @@ public class Menu {
 		// Finalmente, creación del evento
 		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
 				numAsistentes, empleadosNecesarios(almacenamiento), codigoEvento);
+				
 
 		// Facturación del evento:
 		Servicio servicioEvento = evento;
