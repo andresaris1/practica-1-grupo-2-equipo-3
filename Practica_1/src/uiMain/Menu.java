@@ -460,7 +460,7 @@ public class Menu {
 		// Finalmente, creación del evento
 		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
 				numAsistentes, empleadosNecesarios(almacenamiento), codigoEvento);
-				
+
 
 		// Facturación del evento:
 		Servicio servicioEvento = evento;
@@ -645,7 +645,7 @@ public class Menu {
 		List<Servicio> servicios = new ArrayList<>();
 		int valorTotal = 0;
 
-		for (Destinos destino : destinos) {
+		for (Destinos destino : destinosSeleccionados) {
 			servicios.add(new Servicio(destino.toString(), destino.getValor()));
 			System.out.println(destino.toString());
 			valorTotal += destino.getValor();
