@@ -159,6 +159,13 @@ public class Menu {
 		System.out.println("Escriba su ID de empleado:");
 		int idex = sc.nextInt();
 		Empleado empleado  = almacenamiento.buscarEmpleado(idex);
+		if (empleado==null) {
+			System.out.println("Este empleado no está registrado con nosotros");
+			return;
+		}else {
+			System.out.println("Bienvenido");
+			System.out.println(empleado.informacion());
+		}
 		System.out.println("Escriba la identificacion de quien va a reservar:");
 		int personas;
 		int valor = 0;
