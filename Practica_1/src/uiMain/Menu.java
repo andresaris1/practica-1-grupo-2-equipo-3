@@ -374,6 +374,9 @@ public class Menu {
 		servicios.add(new Servicio("Reserva", valor));
 		Reserva reserva = almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
 		Factura f1=almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
+		System.out.println(f1.getValorTotal());
+		
+		
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");

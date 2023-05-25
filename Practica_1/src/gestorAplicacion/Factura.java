@@ -31,7 +31,8 @@ public class Factura implements Serializable {
 
 		for (Servicio servicio : items) {
 			int x = servicio.getValor();
-			total = +x;
+			System.out.println("Valor de x: "+x);
+			total = total+x;
 
 		}
 		if (this.destinos != null) {

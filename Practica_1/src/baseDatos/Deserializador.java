@@ -13,6 +13,7 @@ import gestorAplicacion.*;
 
 public class Deserializador {
 	private static File ruta = new File("src\\baseDatos\\temp");
+	@SuppressWarnings("unchecked")
 
 	public static void deserializar(Almacenamiento almacenamiento) {
 		File[] docs = ruta.listFiles();
