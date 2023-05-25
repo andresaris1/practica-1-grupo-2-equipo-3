@@ -652,7 +652,7 @@ public class Menu {
 		}
 
 		//Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto)
-		usuario.crearFactura(factura);
+		usuario.crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, "Reserva de destinos turisticos");
 
 		System.out.println("Valor total de los destinos: " + valorTotal);
 		System.out.println("Factura agregada exitosamente.");
