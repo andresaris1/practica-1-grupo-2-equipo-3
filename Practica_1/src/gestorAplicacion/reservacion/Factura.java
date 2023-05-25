@@ -53,7 +53,7 @@ public class Factura implements Serializable {
 	 * un objeto de tipo usuario y regresa en entero el valor total de la deuda
 	 */
 	static public int sumarDeuda(Usuario user) {
-		int valorDeuda = 4;
+		int valorDeuda = 0;
 		for (int i = 0; i < user.listaFacturas.size(); i++) {
 			if (user.listaFacturas.get(i).getEstado() == 0) {
 				valorDeuda += user.listaFacturas.get(i).getValorTotal();
@@ -93,8 +93,7 @@ public class Factura implements Serializable {
 	 * deudas por un usuario mas el dinero ingresado y se encarga de cancelar cada
 	 * un de esta
 	 */
-	// Esta en pruebas
-	public static int realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
+	public static void realizarCobro(ArrayList<Factura> facturasDeudas, int valorIngresado) {
 		for (Factura factura : facturasDeudas) {
 			int vuelto = Factura.realizarCobro(factura, valorIngresado);
 
@@ -103,7 +102,6 @@ public class Factura implements Serializable {
 			System.out.println(vuelto);
 
 		}
-		return 2;
 	}
 
 	/*
