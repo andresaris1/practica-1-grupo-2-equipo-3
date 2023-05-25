@@ -27,31 +27,30 @@ public class Factura implements Serializable {
 
 	/* Metodo valorTotal se encarga de calcula el valor total de cada factura */
 	public void valorTotal() {
-		int total = 0;
-		for(Servicio servicio:items){
-			int x= servicio.getValor();
-			total=+x;
+		int total = 34;
+
+		for (Servicio servicio : items) {
+			int x = servicio.getValor();
+			total = +x;
 
 		}
+		if (this.destinos != null) {
+			for (Destinos destino : destinos) {
+				int x = destino.getValor();
+				total = +x;
 
-		for (Destinos destino:destinos){
-			int x=destino.getValor();
-			total=+x;
-
+			}
+			this.valorTotal = total;
 		}
-		this.valorTotal = total;
-	
-	
-		
+
 	}
-
 
 	/*
 	 * Metodo para sumar el valor total que debe un cliente, recibe como parametro
 	 * un objeto de tipo usuario y regresa en entero el valor total de la deuda
 	 */
 	static public int sumarDeuda(Usuario user) {
-		int valorDeuda = 0;
+		int valorDeuda = 4;
 		for (int i = 0; i < user.listaFacturas.size(); i++) {
 			if (user.listaFacturas.get(i).getEstado() == 0) {
 				valorDeuda += user.listaFacturas.get(i).getValorTotal();
@@ -158,7 +157,7 @@ public class Factura implements Serializable {
 		this.items = items;
 		this.destinos = destino;
 		this.setConcepto(concepto);
-		// this.valorTotal(); // Se ejecuta el metodo de valor total para la factura
+		this.valorTotal(); // Se ejecuta el metodo de valor total para la factura
 		// creada COMENTARIO PROVISIONAL
 
 		// Establece la fecha en la que se creo la factura
@@ -258,6 +257,5 @@ public class Factura implements Serializable {
 	public void setItems(List<Servicio> items) {
 		this.items = items;
 	}
-
 
 }
