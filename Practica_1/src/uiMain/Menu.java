@@ -865,6 +865,11 @@ public class Menu {
 
 		} else {
 			// Informacion categorizada por el tipo de evento
+			List<Evento> eventos = new ArrayList<Evento>();
+			eventos = Almacenamiento.getListaEventos();
+			for(int i = 1; i <= eventos.size(); i++){
+				System.out.println(eventos.get(i));
+			}
 		}
 	}
 
