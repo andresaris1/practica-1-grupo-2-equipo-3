@@ -20,7 +20,7 @@ public class Factura implements Serializable {
 	private int valorTotal;
 	private int estado; // 0 Deuda 1 Paga
 	static int contador = 0;
-	private Destinos destino;
+	private List<Destinos> destino;
 	private String concepto;
 
 	// METODOS
