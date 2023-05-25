@@ -33,16 +33,16 @@ public class Empleado extends Persona{
     }
 
     // CONSTRUCTOR
-    public Empleado(String nombre, int identificacion, int telefono, String cargo, int comision, int nomina) {
+    public Empleado(String nombre, int identificacion, int telefono, String cargo) {
         super(nombre, identificacion, telefono);
         this.cargo = cargo;
-        this.comision = comision;
+        this.comision = 1000; //Valor inical para todos los empleados
     }
 
     //este constructor alternativo fué creado en aras de facilitar masivamente 
     //la creación de empleados para la funcionalidad reserva de evento
     public Empleado(String nombre,int identificacion, String cargo){
-        this(nombre,identificacion, 0, cargo, 0, 0);
+        this(nombre,identificacion, 0, cargo);
     }
 
     // GETTERS AND SETTERS

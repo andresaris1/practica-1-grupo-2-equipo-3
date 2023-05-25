@@ -141,7 +141,7 @@ public class Factura implements Serializable {
 	}
 
 	// CONSTRUCTOR
-	public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, Destinos destino, String concepto) {
+	public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, list<Destinos> destino, String concepto) {
 		this.estado = 0;
 		this.cliente = cliente;
 		this.empleado = empleado;
