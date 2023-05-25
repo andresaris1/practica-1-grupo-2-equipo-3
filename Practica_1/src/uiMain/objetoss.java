@@ -29,9 +29,9 @@ public class objetoss {
     Lugar lugar2= new Lugar("Piscina");
     Lugar lugar3= new Lugar("Salon");
 
-    Servicio servicio1 = new Servicio(null, 0);
-    Servicio servicio2 = new Servicio(null, 0);
-    Servicio servicio3 = new Servicio(null, 0);
+    Servicio servicio1 = new Servicio("Comida", 20000);
+    Servicio servicio2 = new Servicio("Masaje", 30000);
+    Servicio servicio3 = new Servicio("Transporte", 40000);
     
     ServicioExterno externo1 = new ServicioExterno("Entretenimiento",null );
     ServicioExterno externo2 = new ServicioExterno("Sonido", null);
