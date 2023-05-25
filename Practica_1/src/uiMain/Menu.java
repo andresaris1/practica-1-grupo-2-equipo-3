@@ -396,8 +396,8 @@ public class Menu {
 
 		//pedimos la información del empleado  encargado de la reserva
 		System.out.println("Ingrese la identificacion del empleado encargado de la reserva: ");
-		int idEmpleqado = sc.nextInt();
-		Empleado empleadoEncargado = Almacenamiento.buscarEmpleado(idEmpleqado);
+		int idEmpleado = sc.nextInt();
+		Empleado empleadoEncargado = Almacenamiento.buscarEmpleado(idEmpleado);
 
 		// Le pedimos su información al cliente
 		System.out.println("Identificacion del usuario a realizar la reserva: ");
