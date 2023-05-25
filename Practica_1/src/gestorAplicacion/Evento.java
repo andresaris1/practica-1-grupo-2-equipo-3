@@ -59,6 +59,10 @@ public class Evento extends Servicio{
         }
         return valor;
     }
+    public String toString() {
+		return ("Lugar del evento: " + this.getLugar() + "\n" + "Cliente asociado: " + this.getCliente() + "\n" + "Fecha: "
+				+ this.getFecha() + "\n" + "Duracion: " + this.getDuracion() + "Numero de asistentes: " + this.getNumeroAsistentes());
+	}
 
     // -----------------------------------------------
     // GETTERS AND SETTERS
