@@ -417,25 +417,25 @@ public class Menu {
 	//-----------------------------------------------------------------
 	static void reservarEvento(Almacenamiento almacenamiento) {
 
-			/*Esta funcionalidad consiste en brindarle al cliente la posibilidad de rentar, por un día,
-			* uno de los espacios designados para este fin, para la realización de eventos sociales.
-			* Descrita paso a paso, esta funcionalidad consiste en lo siguiente:
-			* 1. La recepcionista ingresa su identificación, de modo tal que quede registrado
-			*	  que la reserva fuera realizada por ella.
-			* 2. Se le pide al cliente que ingrese su identificación, para así buscarlo en la base
-			*    de datos. En caso de que no se encuentre, se le pide que se registre.
-			* 3. Tras haberse encontrado en la base de datos o, en su defecto, haberse registrado, se le
-			*    pide al cliente que ingrese la fecha en la que planea realizar el evento. (no validé 
-			*    que la fecha no estuviese ocupada)
-			* 4. Se le pregunta al cliente por la duración de su Evento
-			* 5. Se le pregunta al cliente por el tipo de espacio que desea alquilar para el evento
-			*    en cuestión: Terraza, Salón o Piscina.
-			* 6. Se le pregunta al usuario cuantas personas asistirán al evento.
-			* 7. Se le pregunta al usuario si desea contratar algún/os servicio/s externo/s 
-			*    (decoración, entretenimiento, sonido)
-			* 8. Se genera un código aleatorio unico e inmutable para identificar al Evento.
-			* 9. Se realiza la Facturación y se imprime la factura
-			*/
+		/*Esta funcionalidad consiste en brindarle al cliente la posibilidad de rentar, por un día,
+		* uno de los espacios designados para este fin, para la realización de eventos sociales.
+		* Descrita paso a paso, esta funcionalidad consiste en lo siguiente:
+		* 1. La recepcionista ingresa su identificación, de modo tal que quede registrado
+		*	  que la reserva fuera realizada por ella.
+		* 2. Se le pide al cliente que ingrese su identificación, para así buscarlo en la base
+		*    de datos. En caso de que no se encuentre, se le pide que se registre.
+		* 3. Tras haberse encontrado en la base de datos o, en su defecto, haberse registrado, se le
+		*    pide al cliente que ingrese la fecha en la que planea realizar el evento. (no validé 
+		*    que la fecha no estuviese ocupada)
+		* 4. Se le pregunta al cliente por la duración de su Evento
+		* 5. Se le pregunta al cliente por el tipo de espacio que desea alquilar para el evento
+		*    en cuestión: Terraza, Salón o Piscina.
+		* 6. Se le pregunta al usuario cuantas personas asistirán al evento.
+		* 7. Se le pregunta al usuario si desea contratar algún/os servicio/s externo/s 
+		*    (decoración, entretenimiento, sonido)
+		* 8. Se genera un código aleatorio unico e inmutable para identificar al Evento.
+		* 9. Se realiza la Facturación y se imprime la factura
+		*/
 		//pedimos la información del empleado  encargado de la reserva
 		System.out.println("Ingrese la identificacion del empleado encargado de la reserva: ");
 		int idEmpleado = sc.nextInt();
@@ -522,85 +522,85 @@ public class Menu {
 		factura.imprimirFactura();
 	}
 
-		/*
-		* Este método fue creado para preguntarle al cliente por los empleados para el
-		* evento necesita
-		* dentro de la funcionalidad reserva de Eventos
-		*/
-		static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento) {
+	/*
+	 * Este método fue creado para preguntarle al cliente por los empleados para el
+	 * evento necesita
+	 * dentro de la funcionalidad reserva de Eventos
+	 */
+	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento) {
 
-			ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-			// Instanciamos el Diccionario que usaremos para guardar la información sobre
-			// los
-			// empleados que el cliente necesita
-			HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
-			empleadosNecesarios.put("Cocineros", -1);
-			empleadosNecesarios.put("Meseros", -1);
-			empleadosNecesarios.put("Bartenders", -1);
-
-			/*
-			* Pedimos al cliente que nos especifique cuántos empleados requiere
-			* de cada uno de los tres tipos que le podemos ofrecer, validadando e
-			* insistiendo en respetar el formato específico que sus respuestas deben tener
-			*/
-			for (String x : empleadosNecesarios.keySet()) {
-				while (empleadosNecesarios.get(x) < 0) {
-					System.out.println("¿Cuántos " + x + " requiere?");
-					System.out.println("Ingrese un numero natural mayor o igual que cero");
-					empleadosNecesarios.put(x, sc.nextInt());
-				}
-			}
-			int variable = 0;
-			for (String x : empleadosNecesarios.keySet()) {
-				variable += 1;
-				empleados.add(new Empleado("Rigoberto " + String.valueOf(variable), variable, x.toLowerCase()));
-			}
-			return empleados;
-		}
+		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+		// Instanciamos el Diccionario que usaremos para guardar la información sobre
+		// los
+		// empleados que el cliente necesita
+		HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
+		empleadosNecesarios.put("Cocineros", -1);
+		empleadosNecesarios.put("Meseros", -1);
+		empleadosNecesarios.put("Bartenders", -1);
 
 		/*
-		* Este método fue creado para preguntarle al cliente por los servicios externos
-		* que necesita
-		* dentro de la funcionalidad reserva de Eventos
-		*/
-		static ArrayList<ServicioExterno> crearServiciosExternos(Almacenamiento almacenamiento) {
-
-			// Instanciamos el Diccionario que usaremos para guardar los servicios
-
-			ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
-
-			// le preguntamos al cliente si desea que contratemos algún servicio extra para
-			// él
-
-			String res = "si";
-			while (res.equals("si")) {
-				System.out.println("¿Qué servicio desea contratar?");
-				System.out.println("1. entretenimiento");
-				System.out.println("2. sonido");
-				System.out.println("3. decoracion");
-				String servicio;
-				switch (sc.nextInt()) {
-					case 1:
-						servicio = "entretenimiento";
-						break;
-					case 2:
-						servicio = "sonido";
-						break;
-					case 3:
-						servicio = "decoracion";
-						break;
-					default:
-						servicio = null;
-				}
-
-				ServicioExterno servicioExterno = new ServicioExterno(servicio, null);
-				serviciosExternos.add(servicioExterno);
-
-				System.out.println("¿Desea contratar algún otro servicio extra? (si/no)");
-				res = sc.next();
+		 * Pedimos al cliente que nos especifique cuántos empleados requiere
+		 * de cada uno de los tres tipos que le podemos ofrecer, validadando e
+		 * insistiendo en respetar el formato específico que sus respuestas deben tener
+		 */
+		for (String x : empleadosNecesarios.keySet()) {
+			while (empleadosNecesarios.get(x) < 0) {
+				System.out.println("¿Cuántos " + x + " requiere?");
+				System.out.println("Ingrese un numero natural mayor o igual que cero");
+				empleadosNecesarios.put(x, sc.nextInt());
 			}
-			return serviciosExternos;
 		}
+		int variable = 0;
+		for (String x : empleadosNecesarios.keySet()) {
+			variable += 1;
+			empleados.add(new Empleado("Rigoberto " + String.valueOf(variable), variable, x.toLowerCase()));
+		}
+		return empleados;
+	}
+
+	/*
+	 * Este método fue creado para preguntarle al cliente por los servicios externos
+	 * que necesita
+	 * dentro de la funcionalidad reserva de Eventos
+	 */
+	static ArrayList<ServicioExterno> crearServiciosExternos(Almacenamiento almacenamiento) {
+
+		// Instanciamos el Diccionario que usaremos para guardar los servicios
+
+		ArrayList<ServicioExterno> serviciosExternos = new ArrayList<>();
+
+		// le preguntamos al cliente si desea que contratemos algún servicio extra para
+		// él
+
+		String res = "si";
+		while (res.equals("si")) {
+			System.out.println("¿Qué servicio desea contratar?");
+			System.out.println("1. entretenimiento");
+			System.out.println("2. sonido");
+			System.out.println("3. decoracion");
+			String servicio;
+			switch (sc.nextInt()) {
+				case 1:
+					servicio = "entretenimiento";
+					break;
+				case 2:
+					servicio = "sonido";
+					break;
+				case 3:
+					servicio = "decoracion";
+					break;
+				default:
+					servicio = null;
+			}
+
+			ServicioExterno servicioExterno = new ServicioExterno(servicio, null);
+			serviciosExternos.add(servicioExterno);
+
+			System.out.println("¿Desea contratar algún otro servicio extra? (si/no)");
+			res = sc.next();
+		}
+		return serviciosExternos;
+	}
 
 	static Usuario registro(Almacenamiento almacenamiento) {
 		int opcion;
