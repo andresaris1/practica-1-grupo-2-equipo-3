@@ -2,9 +2,12 @@
 //Librerias a importar
 package uiMain;
 
+
 //importaciones del proyecto
 import gestorAplicacion.modelos.*;
 import gestorAplicacion.reservacion.*;
+
+
 
 //importaciones de java
 import java.text.ParseException;
@@ -17,7 +20,10 @@ import java.util.Scanner;
 //import java.util.random.RandomGenerator;
 import java.util.Random;
 
+
+
 import baseDatos.Serializador;
+
 
 
 public class Menu {
@@ -643,6 +649,9 @@ public class Menu {
 		System.out.println(f1.imprimirFactura());
 
 	}
+
+
+
 
 
 
