@@ -130,7 +130,7 @@ public class Almacenamiento implements Serializable {
 
     public static Usuario crearUsuario(String nombre, int identificacion, int telefono, String tipo,
             String cuentaBancaria,
-            ArrayList<String> arrayList) {
+            ArrayList<Factura> arrayList) {
         Usuario usuario = new Usuario(nombre, identificacion, telefono, tipo, cuentaBancaria, new ArrayList<Factura>());
         Almacenamiento.listaUsuarios.add(usuario);
         return usuario;

@@ -9,6 +9,10 @@ import uiMain.*;
 
 public class objetoss {
 
+    public static void main(String[] args) {
+        
+    
+
     Usuario usuario1 = new Usuario("Carlos", 123, 0, null, "", new ArrayList<Factura>());
 	Usuario usuario2 = new Usuario("Maria", 456, 0, null, "",new ArrayList<Factura>() );
 	Usuario usuario3 = new Usuario("Ximena", 789, 0, null, "", new ArrayList<Factura>());
@@ -37,6 +41,10 @@ public class objetoss {
     ServicioExterno externo2 = new ServicioExterno("Sonido", null);
     ServicioExterno externo3 = new ServicioExterno("Decoracion", null);    
 
+    Almacenamiento.crearUsuario("Carlos", 123, 0, null, "", new ArrayList<Factura>());
 
+
+
+    }
     
 }
