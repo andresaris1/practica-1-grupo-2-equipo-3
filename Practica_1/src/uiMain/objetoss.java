@@ -1,4 +1,4 @@
-/*package uiMain;
+package uiMain;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import uiMain.*;
 
 public class objetoss {
 
-    public static void main(String[] args) {
+    public static void hola() {
 
         Usuario usuario1 = new Usuario("Carlos", 123, 0, null, "", new ArrayList<Factura>());
         Usuario usuario2 = new Usuario("Maria", 456, 0, null, "", new ArrayList<Factura>());
@@ -71,4 +71,4 @@ public class objetoss {
     }
 
 }
-*/
+

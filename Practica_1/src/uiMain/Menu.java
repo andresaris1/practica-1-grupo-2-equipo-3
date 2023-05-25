@@ -27,6 +27,7 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		objetoss.hola();
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
@@ -337,7 +338,7 @@ public class Menu {
 		int personas;
 		int valor = 0;
 		int ide = sc.nextInt();
-		Usuario user = Almacenamiento.buscarUsuario(ide);
+		Usuario user = almacenamiento.buscarUsuario(ide);
 		if (user == null) {
 			user = registro(almacenamiento);
 			if (user == null) {
@@ -355,29 +356,29 @@ public class Menu {
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Almacenamiento.getListaHabitaciones());
+			System.out.println(almacenamiento.listarDisponibles(fentrada,fsalida));
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
-			Lugar habitacion = Almacenamiento.buscarHabitacion(hb);
+			Lugar habitacion = almacenamiento.buscarHabitacion(hb);
 			if (habitacion != null) {
 				habitaciones.add(habitacion);
-				Almacenamiento.nodisponible(habitacion);
+				almacenamiento.nodisponible(habitacion);
 				suma += habitacion.getCapacidad();
-				valor += Lugar.valorSegunTipo(habitacion.getTipo());
+				valor += habitacion.valorSegunTipo(habitacion.getTipo());
 				System.out.println("Habitacion reservada con exito");
 			} else {
 				System.out.println("Esta habitacion no está disponible");
 			}
 		} while (suma < personas);
-		List<Servicio> servicios = new ArrayList<Servicio>();
+		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
-		Reserva reserva = Almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
-		Factura f1 = Almacenamiento.crearFactura(user, null, servicios, null, "Reserva");
+		Reserva reserva = almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
+		Factura f1=almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
 		int abonado = sc.nextInt();
-		float t = valor - abonado;
+		float t=valor-abonado;
 		reserva.setAporte(t);
 		System.out.println("\n" + reserva + "\n");
 
@@ -564,7 +565,7 @@ public class Menu {
 					System.out.print("Ingrese una cuenta bancaria:\n");
 					String cb = sc.next();
 					Usuario cliente = Almacenamiento.crearUsuario(nombre, id, tel, null, cb, new ArrayList<Factura>());
-
+					cli=cliente;
 					System.out.println("Usuario creado con exito");
 					System.out.println(cli.informacion());
 					opcion = 2;
