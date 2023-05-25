@@ -589,7 +589,7 @@ public class Menu {
 
 		if (empleado == null) {
 			System.out.println("El empleado no existe.");
-			break;
+			return;
 
 		}
 
