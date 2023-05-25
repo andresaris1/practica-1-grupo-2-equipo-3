@@ -26,7 +26,7 @@ import gestorAplicacion.Evento;
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
-	public static void almacenamiento(String[] args) {
+	public static void main(String[] args) {
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;

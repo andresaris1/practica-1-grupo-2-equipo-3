@@ -31,7 +31,7 @@ public class Factura implements Serializable {
 		Iterator<Servicio> iterator = items.iterator();
 		while (iterator.hasNext()) {
 			Servicio servicio = (Servicio) iterator.next();
-			total += (servicio.valor);
+			total =+ (servicio.valor);
 		}
 		this.valorTotal = total;
 	}
