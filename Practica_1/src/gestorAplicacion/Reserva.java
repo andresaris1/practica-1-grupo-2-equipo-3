@@ -14,6 +14,8 @@ public class Reserva implements Serializable {
 
 	private Date fechaEntrada;
 	private Date fechaSalida;
+	private String fe;
+	private String fs;
 	private float aporte;
 	private Usuario cliente;
 	private List<Lugar> habitaciones = new ArrayList<Lugar>();
@@ -38,6 +40,8 @@ public class Reserva implements Serializable {
 		this.aporte = aporte;
 		this.cliente = cliente;
 		this.habitaciones = habitaciones;
+		this.setFe(fechaEntrada);
+		this.setFs(fechaSalida);
 	}
 
 	// METODOS
@@ -53,8 +57,8 @@ public class Reserva implements Serializable {
 
 	public String toString() {
 		String habitaciones = listaHabitaciones();
-		return "la reserva se hizo a nombre de: " + cliente.nombre + " Entre los dias: " + getFechaEntrada() + " y "
-				+ getFechaSalida() + " para las habitaciones:\n" + habitaciones;
+		return "la reserva se hizo a nombre de: " + cliente.nombre + " Entre los dias: " + getFe() + " y "
+				+ getFs() + " para las habitaciones:\n" + habitaciones;
 	}
 
 	// GETTERS Y SETTERS
@@ -92,6 +96,22 @@ public class Reserva implements Serializable {
 
 	public void setHabitaciones(List<Lugar> habitaciones) {
 		this.habitaciones = habitaciones;
+	}
+
+	public String getFe() {
+		return fe;
+	}
+
+	public void setFe(String fe) {
+		this.fe = fe;
+	}
+
+	public String getFs() {
+		return fs;
+	}
+
+	public void setFs(String fs) {
+		this.fs = fs;
 	}
 
 }
