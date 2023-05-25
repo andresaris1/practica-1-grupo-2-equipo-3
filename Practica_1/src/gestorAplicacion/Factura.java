@@ -20,7 +20,7 @@ public class Factura implements Serializable {
 	private int valorTotal;
 	private int estado; // 0 Deuda 1 Paga
 	static int contador = 0;
-	private Destinos destino;
+	private List<Destinos> destino;
 	private String concepto;
 
 	// METODOS
@@ -141,7 +141,7 @@ public class Factura implements Serializable {
 	}
 
 	// CONSTRUCTOR
-	public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, list<Destinos> destino, String concepto) {
+	public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto) {
 		this.estado = 0;
 		this.cliente = cliente;
 		this.empleado = empleado;
@@ -225,14 +225,6 @@ public class Factura implements Serializable {
 		this.estado = estado;
 	}
 
-	public Destinos getDestino() {
-		return destino;
-	}
-
-	public void setDestino(Destinos destino) {
-		this.destino = destino;
-	}
-
 	public String getConcepto() {
 		return concepto;
 	}
@@ -247,6 +239,14 @@ public class Factura implements Serializable {
 
 	public void setItems(List<Servicio> items) {
 		this.items = items;
+	}
+
+	public List<Destinos> getDestino() {
+		return destino;
+	}
+
+	public void setDestino(List<Destinos> destino) {
+		this.destino = destino;
 	}
 
 }
