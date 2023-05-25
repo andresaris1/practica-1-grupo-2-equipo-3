@@ -334,7 +334,10 @@ public class Menu {
 
 	static void reservar(Almacenamiento almacenamiento) {
 		List<Lugar> habitaciones = new ArrayList<Lugar>();
-		System.out.println("Escribe tu identificacion:");
+		System.out.println("Escriba su ID de empleado:");
+		int idex = sc.nextInt();
+		Empleado empleado  = almacenamiento.buscarEmpleado(idex);
+		System.out.println("Escriba la identificacion de quien va a reservar:");
 		int personas;
 		int valor = 0;
 		int ide = sc.nextInt();
@@ -376,7 +379,7 @@ public class Menu {
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
 		Reserva reserva = almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
-		Factura f1=almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
+		Factura f1=almacenamiento.crearFactura(user,empleado,servicios,null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
