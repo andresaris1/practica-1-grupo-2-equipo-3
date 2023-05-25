@@ -291,18 +291,6 @@ public class Menu {
 					Serializador.serializar(almacen);
 					System.exit(0);
 					break;
-				case 8:
-					System.out.println("-- - - Reservas Existentes - - - -");
-					System.out.println(Almacenamiento.listaReservas());
-					System.out.println("-- - - Clientes Existentes - - - -");
-					System.out.println(Almacenamiento.listaUsuarios());
-					System.out.println("-- - - Facturas de Cliente - - - -");
-					Usuario usere = Almacenamiento.usuario1;
-					System.out.println(Almacenamiento.listaFacturascliente(usere));
-					System.out.println("-- - - Facturas Existentes - - - -");
-					System.out.println(Almacenamiento.listaFacturas());
-					break;
-
 				default:
 					System.out.println("Opcion Invalida");
 					break;
@@ -663,7 +651,7 @@ public class Menu {
 		}
 
 		//Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto)
-		usuario.crearFactura(factura);
+		usuario.crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, "Reserva de destinos turisticos");
 
 		System.out.println("Valor total de los destinos: " + valorTotal);
 		System.out.println("Factura agregada exitosamente.");
