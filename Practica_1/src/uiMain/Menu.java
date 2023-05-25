@@ -25,7 +25,6 @@ public class Menu {
 	
 
 	public static void main(String[] args) {
-		objetoss.hola();
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
@@ -371,7 +370,7 @@ public class Menu {
 	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento) {
 
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-		// Instanciamos el Diccionario que usaremos para guardar la información sobre
+		// Instanciamos el D1iccionario que usaremos para guardar la información sobre
 		// los
 		// empleados que el cliente necesita
 		HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();
