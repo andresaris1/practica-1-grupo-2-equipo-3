@@ -113,7 +113,7 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
@@ -156,7 +156,7 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
@@ -196,7 +196,7 @@ public class Menu {
 							// Creamos listas de las habitaciones disponibles y ocupadas para dar respectiva
 							// informacion de ambas
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
@@ -204,7 +204,7 @@ public class Menu {
 							// Contador de habitaciones
 							int num = 0;
 							int num2 = 0;
-							Usuario cliente = Reserva.getCliente();
+							public Usuario cliente = Reserva.getCliente();
 
 							System.out.println("-----------------------------------------------------");
 
@@ -237,7 +237,7 @@ public class Menu {
 							// informacion de ambas
 
 							List<Lugar> hab_dis = new ArrayList<Lugar>();
-							List<Lugar> hab_ocu = new ArrayList<Lugar>();
+							public List<Lugar> hab_ocu = new ArrayList<Lugar>();
 
 							hab_dis = Almacenamiento.getListaHabitaciones();
 							hab_ocu = Reserva.getHabitaciones();
