@@ -428,10 +428,9 @@ public class Menu {
 
 		// Le pedimos su información al cliente
 		System.out.println("Identificacion del usuario a realizar la reserva: ");
-
+		int id = sc.nextInt();
 		// Se valida si el usuario ya está en la base de datos.
 		// En caso de que no, ingresarlo a la base de datos.
-		int id = sc.nextInt();
 		Usuario usuario = Almacenamiento.buscarUsuario(id);
 		if (usuario == null) {
 			usuario = registro(almacenamiento);
