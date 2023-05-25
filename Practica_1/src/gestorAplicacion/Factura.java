@@ -44,7 +44,7 @@ public class Factura implements Serializable {
 	
 		
 	}
-}
+
 
 	/*
 	 * Metodo para sumar el valor total que debe un cliente, recibe como parametro
@@ -156,7 +156,7 @@ public class Factura implements Serializable {
 		this.cliente = cliente;
 		this.empleado = empleado;
 		this.items = items;
-		this.destino = destino;
+		this.destinos = destino;
 		this.setConcepto(concepto);
 		// this.valorTotal(); // Se ejecuta el metodo de valor total para la factura
 		// creada COMENTARIO PROVISIONAL
@@ -236,11 +236,11 @@ public class Factura implements Serializable {
 	}
 
 	public List<Destinos> getDestino() {
-		return destino;
+		return destinos;
 	}
 
 	public void setDestino(List<Destinos> destino) {
-		this.destino = destino;
+		this.destinos = destino;
 	}
 
 	public String getConcepto() {
