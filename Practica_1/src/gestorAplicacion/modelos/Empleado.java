@@ -4,11 +4,13 @@ package gestorAplicacion.modelos;
 
 public class Empleado extends Persona{
 
+    // ATRIBUTOS
     private String cargo;
     private double comision;
     private final int nomina=560000; // Valor prestablecido para cada uno de los empleados
 
     // METODOS
+
     /*
      * Metod sobreescrito de Persona que devuelve la impormacion mas importante el
      * empleado
@@ -39,8 +41,16 @@ public class Empleado extends Persona{
         this.comision = 1000; //Valor inical para todos los empleados
     }
 
-    //este constructor alternativo fué creado en aras de facilitar masivamente 
-    //la creación de empleados para la funcionalidad reserva de evento
+    //Este siguiente constructor alternativo fué creado en aras de facilitar masivamente 
+    //la creación de empleados para la funcionalidad reserva de evento.
+    //Esto pues en la contratación de empleados adicionales de la reserva de evento, tales 
+    //como chefs, meseros, etc, no se requiere de un un telefono para cada uno de los
+    //empleados contratados.
+    
+    /*
+     * Constructor alternativo para la creacion de empleados, solo recibe nombre,
+     * identificacion y cargo.
+     */
     public Empleado(String nombre,int identificacion, String cargo){
         this(nombre,identificacion, 0, cargo);
     }

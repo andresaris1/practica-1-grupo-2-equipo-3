@@ -1,20 +1,26 @@
 package gestorAplicacion.reservacion;
 
+//Importaciones de java
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import gestorAplicacion.modelos.*;
-
 import java.util.ArrayList;
 
-/*Clase Factura encargada de gaurdar cada una de las compras de los usurios, cada que un usrurio realiza 
-la compra o contato de un servicio diferente ser realiza una factura diferente gestionar los cobros */
+//importaciones del proyecto
+import gestorAplicacion.modelos.*;
+
+
+
+/* Clase Factura encargada de gaurdar cada una de las compras de los usurios, 
+ * cada que un usuario realiza la compra o contato de un servicio
+ * diferente ser realiza una factura diferente gestionar los cobros */
 
 public class Factura implements Serializable {
+
+	// ATRIBUTOS
 	private int codigo;
 	private String date;
 	private Usuario cliente;
@@ -48,6 +54,8 @@ public class Factura implements Serializable {
 
 	}
 
+
+
 	/*
 	 * Metodo para sumar el valor total que debe un cliente, recibe como parametro
 	 * un objeto de tipo usuario y regresa en entero el valor total de la deuda
@@ -61,6 +69,8 @@ public class Factura implements Serializable {
 		}
 		return valorDeuda;
 	}
+
+
 
 	/*
 	 * Metodo FacturasEnDeuda se encarga de recopilar totas las facturas no pagas de
@@ -77,6 +87,8 @@ public class Factura implements Serializable {
 		return facturasDeudas;
 	}
 
+
+
 	/*
 	 * Metodo realizarCobro realizar el cobro mediante Efectivo, recibe como
 	 * parametro la factura a pagar y el valor del dinero ingresado por el usurio
@@ -87,6 +99,8 @@ public class Factura implements Serializable {
 		factura.getEmpleado().calcularComision(factura.getValorTotal());
 		return vuelto;
 	}
+
+
 
 	/*
 	 * Segundo metodo realizarCobro recibe como parametro la lista de facturas
@@ -103,6 +117,8 @@ public class Factura implements Serializable {
 
 		}
 	}
+
+
 
 	/*
 	 * Metodo imprimirFactura se encarga de imprimir la informacion principal de la
@@ -136,6 +152,8 @@ public class Factura implements Serializable {
 		return sb.toString();
 	}
 
+
+
 	/*
 	 * Metodo impimir codigos se encarga de imprimir los codigos de las facturas
 	 * ingresadas como parametro en una rray, primcipalmente para las facturas
@@ -149,6 +167,7 @@ public class Factura implements Serializable {
 		}
 		return sb.toString();
 	}
+
 
 	// CONSTRUCTOR
 	public Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto) {
@@ -178,6 +197,7 @@ public class Factura implements Serializable {
 
 	}
 
+	
 	// GETTERS AND SETTERS
 	public int getCodigo() {
 		return codigo;

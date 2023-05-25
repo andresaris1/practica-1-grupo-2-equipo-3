@@ -2,11 +2,15 @@ package gestorAplicacion.modelos;
 
 /*Clase Usuario se usa para crear los clientes que realizen reservas en el hotel */
 
+//importaciones de java
 import java.util.ArrayList;
 
+//importaciones del proyecto
 import gestorAplicacion.reservacion.Factura;
 
 public class Usuario extends Persona {
+
+	// ATRIBUTOS
 	String tipo;
 	public ArrayList<Factura> listaFacturas;
 	String cuentaBancaria;
@@ -23,6 +27,7 @@ public class Usuario extends Persona {
 				+ this.getIdentificacion() + "\n");
 	}
 
+
 	// CONSTRUCTOR
 	public Usuario(String nombre, int identificacion, int telefono, String tipo, String cuentaBancaria, ArrayList<Factura> listaFacturas) {
 		super(nombre, identificacion, telefono);
@@ -31,6 +36,7 @@ public class Usuario extends Persona {
 		this.listaFacturas = listaFacturas;
 	}
 
+	
 	// GETTERS AND SETTERS
 	public String getTipo() {
 		return tipo;

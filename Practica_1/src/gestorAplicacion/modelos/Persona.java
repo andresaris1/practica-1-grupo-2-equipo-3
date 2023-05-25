@@ -1,15 +1,20 @@
 package gestorAplicacion.modelos;
 
+//importaciones de java
 import java.io.Serializable;
 
 /*Clase  abstracta creada para la herencia de Usuario y empleado*/
 abstract public class Persona implements Serializable{
 private static final long serialVersionUID = 1L;
+    
+    // ATRIBUTOS
     public String nombre;
     protected int identificacion;
     protected int telefono;
 
     // METODOS
+
+    //Método abstracto.
     /* Metodo a heredar que muestra la imformacion importante del objeto */
     public abstract String informacion();
 

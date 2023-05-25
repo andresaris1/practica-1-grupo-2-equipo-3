@@ -1,8 +1,10 @@
 package uiMain;
 
+//importaciones del proyecto
 import gestorAplicacion.modelos.*;
 import gestorAplicacion.reservacion.*;
 
+//importaciones de java
 import java.io.Serializable;
 import java.util.Date;
 import java.text.ParseException;

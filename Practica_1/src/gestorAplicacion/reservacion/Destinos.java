@@ -1,5 +1,6 @@
 package gestorAplicacion.reservacion;
-/*Clase de unumerados utilizada para guardar la informacion hacerca de los tours y el valor de cada una */
+/* Clase de unumerados utilizada para guardar la informacion hacerca 
+ * de los tours y el valor de cada una */
 
 public enum Destinos {
     TORRE_EIFFEL(60),
