@@ -25,6 +25,7 @@ public class Menu {
 	
 
 	public static void main(String[] args) {
+		
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;

@@ -16,10 +16,10 @@ public class objetoss {
         Usuario usuario2 = new Usuario("Maria", 456, 0, null, "", new ArrayList<Factura>());
         Usuario usuario3 = new Usuario("Ximena", 789, 0, null, "", new ArrayList<Factura>());
 
-        Empleado empleado1 = new Empleado("Liliana", 0, 0, "Cocina");
-        Empleado empleado2 = new Empleado("José", 0, 0, "Mesero");
-        Empleado empleado3 = new Empleado("Maria", 0, 0, "Bartenders");
-        Empleado empleado4 = new Empleado("Luis", 0, 0, "Recepcion");
+        Empleado empleado1 = new Empleado("Liliana", 123, 0, "Cocina");
+        Empleado empleado2 = new Empleado("José", 456, 0, "Mesero");
+        Empleado empleado3 = new Empleado("Maria", 789, 0, "Bartenders");
+        Empleado empleado4 = new Empleado("Luis", 012, 0, "Recepcion");
 
         Lugar h1 = new Lugar(101, "Habitación individual", 1);
         Lugar h2 = new Lugar(102, "Habitación individual", 1);
