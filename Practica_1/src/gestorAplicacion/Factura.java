@@ -20,7 +20,7 @@ public class Factura implements Serializable {
 	private int valorTotal;
 	private int estado; // 0 Deuda 1 Paga
 	static int contador = 0;
-	private List<Destinos> destino;
+	private List<Destinos> destinos;
 	private String concepto;
 
 	// METODOS
@@ -28,13 +28,23 @@ public class Factura implements Serializable {
 	/* Metodo valorTotal se encarga de calcula el valor total de cada factura */
 	public void valorTotal() {
 		int total = 0;
-		Iterator<Servicio> iterator = items.iterator();
-		while (iterator.hasNext()) {
-			Servicio servicio = (Servicio) iterator.next();
-			total =+ (servicio.valor);
+		for(Servicio servicio:items){
+			int x= servicio.getValor();
+			total=+x;
+
+		}
+
+		for (Destinos destino:destinos){
+			int x=destino.getValor();
+			total=+x;
+
 		}
 		this.valorTotal = total;
+	
+	
+		
 	}
+}
 
 	/*
 	 * Metodo para sumar el valor total que debe un cliente, recibe como parametro
