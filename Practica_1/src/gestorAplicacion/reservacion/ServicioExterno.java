@@ -1,8 +1,23 @@
 package gestorAplicacion.reservacion;
 
+
+
+
 import gestorAplicacion.modelos.*;
 
+
+
+/*
+ * Clase ServicioExterno encargada de crear los servicios externos que se le ofrecen
+ * a los clientes dentro de la reserva de eventos.
+ * Estos servicios externos pueden ser de diferentes tipos,
+ * como por ejemplo: Sonido, Entretenimiento, Decoración, etc.
+ * 
+ */
 public class ServicioExterno extends Servicio {
+
+
+    //ATRIBUTOS
     private int valor;
     private String empresaContratada;
     private String descripcion;
@@ -76,7 +91,7 @@ public class ServicioExterno extends Servicio {
 
 
 
-    
+
 
     //GETTERS Y SETTERS
     public String getEmpresaContratada() {

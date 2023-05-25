@@ -1,16 +1,21 @@
 package gestorAplicacion.reservacion;
 
 
-/*Clase lugar hereda de servicio y se usa para crear los diferentes lugares ofrecidos(habitaciones y zonas sociales) */
+/* Clase lugar hereda de servicio y se usa para crear los diferentes
+ * lugares ofrecidos(habitaciones y zonas sociales) */
 public class Lugar extends Servicio {
+
+
+    // ATRIBUTOS
     private int numero;
     private String tipo;
     private int capacidad;
 
-    // METODOS
 
+
+    // METODOS
     /*
-     * Metodo encargado de consultar el valor de una habitacion segun el tipo que es
+     * Metodo encargado de consultar el valor monetario de una habitacion segun el tipo que es
      * ingresado como parametro
      */
     public static int valorSegunTipo(String tipo) {
@@ -31,6 +36,7 @@ public class Lugar extends Servicio {
         }
     }
 
+
     /*
      * Metodo toString imprime toda la impormacion importante de la habitacion sobre
      * la que se ejecute el metodo
@@ -38,6 +44,8 @@ public class Lugar extends Servicio {
     public String toString() {
         return "Habitacion: " + numero + " " + tipo + " con capacidad para " + capacidad + " personas";
     }
+
+
 
 	// CONSTRUCTORES
 
@@ -61,6 +69,11 @@ public class Lugar extends Servicio {
         super(tipo, valorSegunTipo(tipo));
         this.tipo = tipo;
     }
+
+    //----------------------------------------------------------------
+
+
+
 
     // GETTERS AND SETTERS
     public int getNumero() {
@@ -86,5 +99,6 @@ public class Lugar extends Servicio {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+
 
 }

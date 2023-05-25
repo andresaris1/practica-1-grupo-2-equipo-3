@@ -2,9 +2,11 @@
 //Librerias a importar
 package uiMain;
 
+//importaciones del proyecto
 import gestorAplicacion.modelos.*;
 import gestorAplicacion.reservacion.*;
 
+//importaciones de java
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.random.RandomGenerator;
+//import java.util.random.RandomGenerator;
 import java.util.Random;
 
 import baseDatos.Serializador;

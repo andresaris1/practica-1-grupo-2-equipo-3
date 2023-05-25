@@ -1,9 +1,13 @@
 package gestorAplicacion.reservacion;
 
 
+//importaciones de java
 import java.util.ArrayList;
 
+
+//importaciones del proyecto
 import gestorAplicacion.modelos.*;
+
 
 /*
  * Clase Evento encargada de crear los eventos, los cuales son un tipo de servicio
@@ -16,6 +20,9 @@ import gestorAplicacion.modelos.*;
  * 
  */
 public class Evento extends Servicio{
+
+
+
     // ATRIBUTOS
     private Lugar lugar;
     private Usuario cliente;
@@ -25,6 +32,8 @@ public class Evento extends Servicio{
     private int numeroAsistentes;
     private ArrayList<Empleado> empleados;
     private int codigo;
+
+
 
     // CONSTRUCTOR
     public Evento(Lugar lugar, Usuario cliente, ArrayList<ServicioExterno> servicios, String fecha, int duracion,
@@ -39,6 +48,8 @@ public class Evento extends Servicio{
         this.fecha = fecha;
         this.codigo = codigo;
     }
+
+
 
     // Métodos relevantes -----------------------------------------------------
     /*
@@ -70,6 +81,8 @@ public class Evento extends Servicio{
 	}
 
     // -----------------------------------------------
+
+
     // GETTERS AND SETTERS
     public Lugar getLugar() {
         return lugar;
@@ -137,6 +150,9 @@ public class Evento extends Servicio{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+    // -----------------------------------------------
+
+
 
     // otros getters no tan obvios
     /*
