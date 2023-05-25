@@ -175,7 +175,7 @@ public class Almacenamiento implements Serializable {
         return evento;
     }
 
-    public static Factura crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, Destinos destino,
+    public static Factura crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino,
 			String concepto) {
 		Factura factura = new Factura(cliente, empleado, items, destino, concepto);
 		listaFacturas.add(factura);
