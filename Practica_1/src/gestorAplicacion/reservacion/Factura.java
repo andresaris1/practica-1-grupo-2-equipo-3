@@ -197,7 +197,7 @@ public class Factura implements Serializable {
 
 	}
 
-	
+
 	// GETTERS AND SETTERS
 	public int getCodigo() {
 		return codigo;
