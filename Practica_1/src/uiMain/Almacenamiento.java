@@ -68,7 +68,7 @@ public class Almacenamiento implements Serializable {
 	}
 
 	public static Lugar buscarHabitacion(int id) {
-		Iterator<Lugar> iterator = Almacenamiento.getListaHabitaciones().iterator();
+		Iterator<Lugar> iterator = Almacenamiento.getHabitaciondis().iterator();
 		while (iterator.hasNext()) {
 			Lugar habitacion = (Lugar) iterator.next();
 			if (habitacion.getNumero() == id) {
