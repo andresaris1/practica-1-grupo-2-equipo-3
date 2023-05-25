@@ -334,7 +334,10 @@ public class Menu {
 
 	static void reservar(Almacenamiento almacenamiento) {
 		List<Lugar> habitaciones = new ArrayList<Lugar>();
-		System.out.println("Escribe tu identificacion:");
+		System.out.println("Escriba su ID de empleado:");
+		int idex = sc.nextInt();
+		Empleado empleado  = almacenamiento.buscarEmpleado(idex);
+		System.out.println("Escriba la identificacion de quien va a reservar:");
 		int personas;
 		int valor = 0;
 		int ide = sc.nextInt();
@@ -351,6 +354,9 @@ public class Menu {
 		String fentrada = sc.next();
 		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
 		String fsalida = sc.next();
+		if(comprobarfecha(fentrada,fsalida)) {
+			return;
+		}
 		System.out.println("¿Para cuantas personas es la reserva?");
 		personas = sc.nextInt();
 		int suma = 0;
@@ -373,10 +379,7 @@ public class Menu {
 		List<Servicio> servicios=new ArrayList<Servicio>();
 		servicios.add(new Servicio("Reserva", valor));
 		Reserva reserva = almacenamiento.crearReserva(fentrada, fsalida, habitaciones, 0, user);
-		Factura f1=almacenamiento.crearFactura(user,null,servicios,null, "Reserva");
-		System.out.println(f1.getValorTotal());
-		
-		
+		Factura f1=almacenamiento.crearFactura(user,empleado,servicios,null, "Reserva");
 		System.out.println(f1.imprimirFactura());
 		System.out.println("Su reserva tiene un valor de: " + valor);
 		System.out.println("¿Cuanto desea abonar?");
@@ -385,6 +388,32 @@ public class Menu {
 		reserva.setAporte(t);
 		System.out.println("\n" + reserva + "\n");
 
+	}
+
+	static boolean comprobarfecha(String fentrada, String fsalida) {
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fEntrada = new Date();
+		try {
+			fEntrada = fecha.parse(fentrada);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date fSalida = new Date();
+		try {
+			fSalida = fecha.parse(fsalida);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date date=new Date();
+		if ((fEntrada.before(date)) || (fEntrada.after(fSalida))) {
+			System.out.println("Fechas de entrada invalida");
+			return true;
+		}else if ((fSalida.before(date)) || (fSalida.before(fEntrada))){
+			System.out.println("Fechas de salida invalida");
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	static void reservarEvento(Almacenamiento almacenamiento) {
@@ -659,11 +688,12 @@ public class Menu {
 
 		//Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto)
 		String concepto = "Reserva de destinos turísticos";
-		Factura factura = almacenamiento.crearFactura(usuario, empleado, servicios, destinosSeleccionados, concepto);
+		Factura factura = Almacenamiento.crearFactura(usuario, empleado, servicios, destinosSeleccionados, concepto);
 
 
 		System.out.println("Valor total de los destinos: " + valorTotal);
 		System.out.println("Factura agregada exitosamente.");
+		factura.imprimirFactura();
 
 	}
 
@@ -682,7 +712,7 @@ public class Menu {
 		}
 		do {
 			System.out.println("¿Que servicio adicional desea adquirir?");
-			System.out.println("1. Comida \n2. Masaje ");
+			System.out.println("1. Comida \n2. Masaje \n3. Transporte ");
 			opcion = sc.nextInt();
 			switch (opcion) {
 				case 1:
@@ -696,6 +726,15 @@ public class Menu {
 					break;
 				case 2:
 					servicios.add(Almacenamiento.buscarServicio("Masaje"));
+					System.out.println("¿Desea añadir otro servicio?");
+					System.out.println("1. Si \n2. No ");
+					con = sc.nextInt();
+					if (con == 2) {
+						opcion = 2;
+					}
+					break;
+				case 3:
+					servicios.add(Almacenamiento.buscarServicio("Transporte"));
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
