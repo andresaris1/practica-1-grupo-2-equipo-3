@@ -351,6 +351,9 @@ public class Menu {
 		String fentrada = sc.next();
 		System.out.println("Ingrese la fecha de Salida en formato dd/mm/aaaa");
 		String fsalida = sc.next();
+		if(comprobarfecha(fentrada,fsalida)) {
+			return;
+		}
 		System.out.println("¿Para cuantas personas es la reserva?");
 		personas = sc.nextInt();
 		int suma = 0;
@@ -382,6 +385,32 @@ public class Menu {
 		reserva.setAporte(t);
 		System.out.println("\n" + reserva + "\n");
 
+	}
+
+	static boolean comprobarfecha(String fentrada, String fsalida) {
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fEntrada = new Date();
+		try {
+			fEntrada = fecha.parse(fentrada);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date fSalida = new Date();
+		try {
+			fSalida = fecha.parse(fsalida);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date date=new Date();
+		if ((fEntrada.before(date)) || (fEntrada.after(fSalida))) {
+			System.out.println("Fechas de entrada invalida");
+			return true;
+		}else if ((fSalida.before(date)) || (fSalida.before(fEntrada))){
+			System.out.println("Fechas de salida invalida");
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	static void reservarEvento(Almacenamiento almacenamiento) {
@@ -679,7 +708,7 @@ public class Menu {
 		}
 		do {
 			System.out.println("¿Que servicio adicional desea adquirir?");
-			System.out.println("1. Comida \n2. Masaje ");
+			System.out.println("1. Comida \n2. Masaje \n3. Transporte ");
 			opcion = sc.nextInt();
 			switch (opcion) {
 				case 1:
@@ -693,6 +722,15 @@ public class Menu {
 					break;
 				case 2:
 					servicios.add(Almacenamiento.buscarServicio("Masaje"));
+					System.out.println("¿Desea añadir otro servicio?");
+					System.out.println("1. Si \n2. No ");
+					con = sc.nextInt();
+					if (con == 2) {
+						opcion = 2;
+					}
+					break;
+				case 3:
+					servicios.add(Almacenamiento.buscarServicio("Transporte"));
 					System.out.println("¿Desea añadir otro servicio?");
 					System.out.println("1. Si \n2. No ");
 					con = sc.nextInt();
