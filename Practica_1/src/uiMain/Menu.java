@@ -639,7 +639,7 @@ public class Menu {
 
 		}
 
-		Factura factura = new Factura(cliente, empleado, servicios, destinos, "Factura por destinos");
+		Factura factura = new Factura(usuario, empleado, servicios, valorTotal, "Factura por destinos");
 		usuario.agregarFactura(factura);
 		Almacenamiento.getListaFacturas().add(factura);
 
