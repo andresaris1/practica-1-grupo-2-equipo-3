@@ -465,6 +465,12 @@ public class Menu {
 		// Facturación del evento:
 		Servicio servicioEvento = evento;
 
+		//Factura crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, 
+		//Destinos destino, String concepto)
+
+		List<Servicio> items = new ArrayList<Servicio>();
+		items.add(servicioEvento);
+		Factura factura = Almacenamiento.crearFactura(usuario, empleadoEncargado, items, null, "Evento");
 	}
 
 	/*
@@ -652,6 +658,7 @@ public class Menu {
 
 		}
 
+		//Factura(Usuario cliente, Empleado empleado, List<Servicio> items, List<Destinos> destino, String concepto)
 		Factura factura = new Factura(usuario, empleado, servicios, valorTotal, "Factura por destinos");
 		usuario.agregarFactura(factura);
 		Almacenamiento.getListaFacturas().add(factura);
