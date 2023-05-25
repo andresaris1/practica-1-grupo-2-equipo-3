@@ -22,7 +22,6 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		objetoss.hola();
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
