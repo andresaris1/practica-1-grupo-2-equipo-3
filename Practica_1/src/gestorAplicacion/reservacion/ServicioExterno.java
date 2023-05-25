@@ -31,7 +31,7 @@ public class ServicioExterno extends Servicio {
         + this.empresaContratada +" por un valor de "+this.valor+" COP"  );
     }
 
-    
+    //CONSTRUCTORES
 
     //CONSTRUCTORES
 

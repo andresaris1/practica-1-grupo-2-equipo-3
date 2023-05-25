@@ -28,8 +28,10 @@ import baseDatos.Serializador;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
+	
 
 	public static void main(String[] args) {
+		
 		Random rand = new Random();
 		Almacenamiento almacen = new Almacenamiento();
 		int opcion;
@@ -163,6 +165,13 @@ public class Menu {
 		System.out.println("Escriba su ID de empleado:");
 		int idex = sc.nextInt();
 		Empleado empleado  = almacenamiento.buscarEmpleado(idex);
+		if (empleado==null) {
+			System.out.println("Este empleado no está registrado con nosotros");
+			return;
+		}else {
+			System.out.println("Bienvenido");
+			System.out.println(empleado.informacion());
+		}
 		System.out.println("Escriba la identificacion de quien va a reservar:");
 		int personas;
 		int valor = 0;
@@ -375,7 +384,7 @@ public class Menu {
 	static ArrayList<Empleado> empleadosNecesarios(Almacenamiento almacenamiento) {
 
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-		// Instanciamos el Diccionario que usaremos para guardar la información sobre
+		// Instanciamos el D1iccionario que usaremos para guardar la información sobre
 		// los
 		// empleados que el cliente necesita
 		HashMap<String, Integer> empleadosNecesarios = new HashMap<String, Integer>();

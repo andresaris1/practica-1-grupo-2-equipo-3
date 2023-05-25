@@ -60,7 +60,9 @@ public class Evento extends Servicio{
      * evento
      * y los asistentes a este.
      */
-    public static int calcularValor(Lugar lugar, ArrayList<ServicioExterno> servicios, int duracion, int numeroAsistentes, ArrayList<Empleado> empleados) {
+    
+    public static int calcularValor(Lugar lugar, ArrayList<ServicioExterno> servicios, int duracion, 
+                                    int numeroAsistentes, ArrayList<Empleado> empleados) {
         int valor = 0;
         valor += lugar.getValor();
         for (ServicioExterno servicioExterno : servicios) {
