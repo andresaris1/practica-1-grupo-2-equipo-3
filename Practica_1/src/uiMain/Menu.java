@@ -418,6 +418,25 @@ public class Menu {
 
 	static void reservarEvento(Almacenamiento almacenamiento) {
 
+		/*Esta funcionalidad consiste en brindarle al cliente la posibilidad de rentar, por un día,
+		 * uno de los espacios designados para este fin, para la realización de eventos sociales.
+		 * Descrita paso a paso, esta funcionalidad consiste en lo siguiente:
+		 * 1. La recepcionista ingresa su identificación, de modo tal que quede registrado
+		 *	  que la reserva fuera realizada por ella.
+		 * 2. Se le pide al cliente que ingrese su identificación, para así buscarlo en la base
+		 *    de datos. En caso de que no se encuentre, se le pide que se registre.
+		 * 3. Tras haberse encontrado en la base de datos o, en su defecto, haberse registrado, se le
+		 *    pide al cliente que ingrese la fecha en la que planea realizar el evento. (no validé 
+		 *    que la fecha no estuviese ocupada)
+		 * 4. Se le pregunta al cliente por la duración de su Evento
+		 * 5. Se le pregunta al cliente por el tipo de espacio que desea alquilar para el evento
+		 *    en cuestión: Terraza, Salón o Piscina.
+		 * 6. Se le pregunta al usuario cuantas personas asistirán al evento.
+		 * 7. Se le pregunta al usuario si desea contratar algún/os servicio/s externo/s 
+		 *    (decoración, entretenimiento, sonido)
+		 * 8. Se genera un código aleatorio unico e inmutable para identificar al Evento.
+		 * 9. Se realiza la Facturación y se imprime la factura
+		 */
 		//pedimos la información del empleado  encargado de la reserva
 		System.out.println("Ingrese la identificacion del empleado encargado de la reserva: ");
 		int idEmpleado = sc.nextInt();
@@ -482,7 +501,9 @@ public class Menu {
 			serviciosExternos = null;
 		}
 
+		//se genera un codigo aleatorio para el evento
 		int codigoEvento = (int) Math.floor(Math.random() * (1000000 - 10 + 1) + 10);
+
 		// Finalmente, creación del evento
 		Evento evento = Almacenamiento.crearEvento(tipoLugar, usuario, serviciosExternos, fecha, duracion,
 				numAsistentes, empleadosNecesarios(almacenamiento), codigoEvento);
@@ -490,9 +511,6 @@ public class Menu {
 
 		// Facturación del evento:
 		Servicio servicioEvento = evento;
-
-		//Factura crearFactura(Usuario cliente, Empleado empleado, List<Servicio> items, 
-		//Destinos destino, String concepto)
 
 		List<Servicio> items = new ArrayList<Servicio>();
 		items.add(servicioEvento);
