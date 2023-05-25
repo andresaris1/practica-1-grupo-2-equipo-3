@@ -249,12 +249,5 @@ public class Factura implements Serializable {
 		this.items = items;
 	}
 
-	public List<Destinos> getDestino() {
-		return destino;
-	}
-
-	public void setDestino(List<Destinos> destino) {
-		this.destino = destino;
-	}
 
 }
