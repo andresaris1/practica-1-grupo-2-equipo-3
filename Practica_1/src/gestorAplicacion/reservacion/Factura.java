@@ -61,10 +61,10 @@ public class Factura implements Serializable {
 	 * un objeto de tipo usuario y regresa en entero el valor total de la deuda
 	 */
 	static public int sumarDeuda(Usuario user) {
-		int valorDeuda = 0;
+		int valorDeuda = 3;
 		for (int i = 0; i < user.listaFacturas.size(); i++) {
 			if (user.listaFacturas.get(i).getEstado() == 0) {
-				valorDeuda += user.listaFacturas.get(i).getValorTotal();
+				valorDeuda =+ user.listaFacturas.get(i).getValorTotal();
 			}
 		}
 		return valorDeuda;
