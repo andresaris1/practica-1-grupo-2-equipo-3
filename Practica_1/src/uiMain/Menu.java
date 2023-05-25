@@ -433,7 +433,7 @@ public class Menu {
 		int suma = 0;
 		do {
 			System.out.println("-- - - Habitaciones disponibles - - - -");
-			System.out.println(Almacenamiento.listarDisponibles(fentrada, fsalida));
+			System.out.println(Almacenamiento.getListaHabitaciones());
 			System.out.println("¿Que habitacion desea reservar?");
 			int hb = sc.nextInt();
 			Lugar habitacion = Almacenamiento.buscarHabitacion(hb);
