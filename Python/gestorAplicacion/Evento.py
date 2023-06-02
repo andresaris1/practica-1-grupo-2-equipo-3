@@ -9,7 +9,7 @@ El evento también puede realizarse en distintos lugares del Hotel:
 Piscina, Salón, Terraza.
 """
 
-class Evento:
+class Evento(Servicio):
     
     """
     Constructor de la clase Evento:
