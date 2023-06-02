@@ -1,4 +1,4 @@
-
+import Servicio
 
 """
 Clase ServicioExterno encargada de crear los servicios externos que se le ofrecen
@@ -19,7 +19,7 @@ class ServicioExterno(Servicio):
         descripcion (opcional): Descripción del servicio externo.
     """
     def __init__(self, nombre, cliente, eventoAsociado, descripcion=""):
-        super().__init__(nombre, self.valorSegunTipo(nombre))
+        super().__init__(nombre, self.valorSegunTipo(nombre),descripcion)
         self.empresaContratada = self.empresaSegunTipo(nombre)
         self.descripcion = descripcion
         self.cliente = cliente
@@ -65,12 +65,6 @@ class ServicioExterno(Servicio):
 
     def setEmpresaContratada(self, empresaContratada):
         self.empresaContratada = empresaContratada
-
-    def getDescripcion(self):
-        return self.descripcion
-
-    def setDescripcion(self, descripcion):
-        self.descripcion = descripcion
 
     def getCliente(self):
         return self.cliente

@@ -1,4 +1,6 @@
 
+import Servicio
+import ServicioExterno
 """
 Clase Evento encargada de crear los eventos, los cuales son un tipo de servicio
 que se le ofrece a los clientes, estos eventos pueden ser de diferentes tipos,
@@ -25,7 +27,7 @@ class Evento(Servicio):
         descripcion (opcional): Descripción del evento.
     """
     def __init__(self, codigo, lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados,descripcion=""):
-        super().__init__(f"Evento en {lugar}" , self.calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados))
+        super().__init__(f"Evento en {lugar}" , self.calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados),descripcion)
         self.lugar = lugar
         self.cliente = cliente
         self.servicios = servicios
@@ -110,18 +112,8 @@ class Evento(Servicio):
     
     def setCodigo(self, codigo):
         self.codigo = codigo
-        
-    def getValor(self):
-        return self.valor
     
-    def setValor(self, valor):
-        self.valor = valor
         
-    def getDescripcion(self):
-        return self.descripcion
-    
-    def setDescripcion(self, descripcion):
-        self.descripcion = descripcion
         
     """
     Este es un getter no tan obvio: se encarga de recorrer cada uno de los 
