@@ -1,5 +1,30 @@
+from gestorAplicacion.Persona import Persona
+from gestorAplicacion.Factura import Factura
 
+class Usuario(Persona):
+    def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria, lista_facturas):
+        super().__init__(nombre, identificacion, telefono)
+        self.tipo = tipo
+        self.cuenta_bancaria = cuenta_bancaria
+        self.lista_facturas = lista_facturas
 
+    def informacion(self):
+        return f"Nombre: {self.nombre}\nTelefono: {self.telefono}\nDocumento: {self.identificacion}"
 
-class Usuario:
-    pass
+    def get_tipo(self):
+        return self.tipo
+
+    def set_tipo(self, tipo):
+        self.tipo = tipo
+
+    def get_lista_facturas(self):
+        return self.lista_facturas
+
+    def set_lista_facturas(self, lista_facturas):
+        self.lista_facturas = lista_facturas
+
+    def get_cuenta_bancaria(self):
+        return self.cuenta_bancaria
+
+    def set_cuenta_bancaria(self, cuenta_bancaria):
+        self.cuenta_bancaria = cuenta_bancaria
