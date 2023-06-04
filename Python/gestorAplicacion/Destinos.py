@@ -7,7 +7,8 @@ class Destinos(Enum):
     JARDIN = ("Jardín", 90000)
     PARQUE_ARVI = ("Parque Arví", 110000)
     SANTA_ELENA = ("Santa Elena", 130000)
-    PEÑOL_GUADELOUPE = ("Peñol-Guadalupe", 150000)
+    PEÑOL_GUADELOUPE = ("Piedra Del Peñol", 150000)
+    COMBO_COMPLETO =("Combo turistico completo", 750000)
 
     def __init__(self, nombre, valor):
         self.nombre = nombre
