@@ -1,11 +1,14 @@
 import datetime
 
+
 class Factura:
-    contador=0
-    def __init__(self,usuario,empleado,listaItems,destino,concepto):
-        Factura.contador+=1
+        contador = 0
+        def __init__(self, usuario, empleado, listaItems, destino, concepto):
+        Factura.contador += 1
         self._codigo = Factura.contador
-        self._fecha_y_hora =datetime.datetime.combine(datetime.date.today(), datetime.datetime.now().time())
+        self._fecha_y_hora = datetime.datetime.combine(
+            datetime.date.today(), datetime.datetime.now().time()
+        )
         self._usuario = usuario
         self._empleado = empleado
         self._items = []
@@ -17,69 +20,87 @@ class Factura:
         usuario.listaFacturas.append(self)
         empleado.calcularComision(100)
 
-def sumarDeuda(usuario):
-        valorDeuda=0
-        for factura in user.listaFacturas:
-                if (factura.get_estado()==0):
-                        valorDeuda = valorDeuda + factura.get_valorTotal()
-        return valorDeuda
+
+        def sumarDeuda(usuario):
+    valorDeuda = 0
+    for factura in user.listaFacturas:
+        if factura.get_estado() == 0:
+            valorDeuda = valorDeuda + factura.get_valorTotal()
+    return valorDeuda
+
 
 def facturasEnDeuda(usuario):
-        print("Terminar")
+    print("Terminar")
 
 
-
-#GETERS AND SETERRS
+# GETERS AND SETERRS
 def getCodigo(self):
-        return self._codigo
+    return self._codigo
+
 
 def setCodigo(self, codigo):
-        self._codigo = codigo
+    self._codigo = codigo
+
 
 def getFecha_y_hora(self):
-        return self._fecha_y_hora
+    return self._fecha_y_hora
+
 
 def setFecha_y_hora(self, fecha_y_hora):
-        self._fecha_y_hora = fecha_y_hora
+    self._fecha_y_hora = fecha_y_hora
 
-def get_usuario(self):
-        return self._usuario
 
-def set_usuario(self, usuario):
-        self._usuario = usuario
+def getUsuario(self):
+    return self._usuario
 
-def get_empleado(self):
-        return self._empleado
 
-def set_empleado(self, empleado):
-        self._empleado = empleado
+def setUsuario(self, usuario):
+    self._usuario = usuario
 
-def get_items(self):
-        return self._items
 
-def set_items(self, items):
-        self._items = items
+def getEmpleado(self):
+    return self._empleado
 
-def get_valorTotal(self):
-        return self._valorTotal
 
-def set_valorTotal(self, valorTotal):
-        self._valorTotal = valorTotal
+def setEmpleado(self, empleado):
+    self._empleado = empleado
 
-def get_estado(self):
-        return self._estado
 
-def set_estado(self, estado):
-        self._estado = estado
+def getItems(self):
+    return self._items
 
-def get_destinos(self):
-        return self._destinos
 
-def set_destinos(self, destinos):
-        self._destinos = destinos
+def setItems(self, items):
+    self._items = items
 
-def get_concepto(self):
-        return self._concepto
 
-def set_concepto(self, concepto):
-        self._concepto = concepto
+def getValorTotal(self):
+    return self._valorTotal
+
+
+def setValorTotal(self, valorTotal):
+    self._valorTotal = valorTotal
+
+
+def getEstado(self):
+    return self._estado
+
+
+def setEstado(self, estado):
+    self._estado = estado
+
+
+def getDestinos(self):
+    return self._destinos
+
+
+def setDestinos(self, destinos):
+    self._destinos = destinos
+
+
+def getConcepto(self):
+    return self._concepto
+
+
+def setConcepto(self, concepto):
+    self._concepto = concepto
