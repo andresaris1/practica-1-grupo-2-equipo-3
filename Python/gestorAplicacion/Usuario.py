@@ -2,11 +2,11 @@ from Persona import Persona
 from Factura import Factura
 
 class Usuario(Persona):
-    def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria, lista_facturas):
+    def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria):
         super().__init__(nombre, identificacion, telefono)
         self.tipo = tipo
         self.cuenta_bancaria = cuenta_bancaria
-        self.lista_facturas = lista_facturas
+        self.lista_facturas = []
 
     def informacion(self):
         return f"Nombre: {self.nombre}\nTelefono: {self.telefono}\nDocumento: {self.identificacion}"

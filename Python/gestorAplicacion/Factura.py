@@ -1,23 +1,22 @@
 import datetime
 from gestorAplicacion.Servicio import Servicio
-from Usuario import Usuario
-
 
 class Factura:
         contador = 0
-        def __init__(self, usuario, empleado, listaItems, destino, concepto):
+        def __init__(self, usuario, empleado, listaItems, destinos, concepto):
             Factura.contador += 1
             self._codigo = Factura.contador
+
             self._fecha_y_hora = datetime.datetime.combine(
-                datetime.date.today(), datetime.datetime.now().time()
-            )
+                datetime.date.today(), datetime.datetime.now().time())
+            
             self._usuario = usuario
             self._empleado = empleado
-            self._items = []
+            self._items = listaItems
             self._valorTotal = 0 #crear metodo
             self._estado = 0
-            self._destinos = []
-            self._concepto = ""
+            self._destinos = destinos
+            self._concepto = concepto
 
             self._usuario.lista_facturas.append(self)
 
@@ -26,16 +25,16 @@ class Factura:
             total = 0
             for servicio in self._items:
                 x = servicio.getValor()
-                total += x
+                total = total + x
             
             if self._destinos is not None:
                 for destino in self._destinos:
                     x = destino.get_valor()
-                    total += x
+                    total = total + x
             
             return total
 
-        def sumarDeuda(usuario):
+        def sumarDeuda(self,usuario):
             valorDeuda = 0
             for factura in usuario.get_lista_facturas:
                 if factura.getEstado() == 0:
@@ -43,20 +42,20 @@ class Factura:
             return valorDeuda
 
 
-        def facturasEnDeuda(usuario):
+        def facturasEnDeuda(self,usuario):
             facturasDeudas = []
             for factura in usuario.get_lista_facturas():
                 if factura.getEstado() == 0:
                     facturasDeudas.append(factura)
             return facturasDeudas
         
-        def imprimirCodigos(facturas):
+        def imprimirCodigos(slef, facturas):
             codigos = []
             for factura in facturas:
                 codigos.append(factura.getCodigo())
             return ", ".join(codigos)
         
-        def realizarCobro(facturas,suma,valorIngresado):
+        def realizarCobro(self, facturas,suma,valorIngresado):
                 
             if (valorIngresado<suma):
                     print("No le alcanza")
@@ -67,6 +66,34 @@ class Factura:
                     factura.getEmpleado().calcularComision(factura.getValor)
                     d=d-factura.getValorTotal()
             return d
+        
+        def imprimirFactura(self):
+            sb = []
+            lista = []
+            empleado = ""
+            lista.append("Concepto \t Valor")
+            iterator = iter(self.items)
+            if self.empleado is not None:
+                empleado = self.empleado.getNombre()
+            else:
+                empleado = "Recepcion"
+            while True:
+                try:
+                    servicio = next(iterator)
+                    lista.append(servicio.nombre + " \t" + servicio.valor + "\n")
+                except StopIteration:
+                    break
+
+            sb.append("-------------------------------------------\n")
+            sb.append("Codigo de factura: " + str(self.codigo) + "\n")
+            sb.append("Fecha y Hora: " + str(self.date) + "\n")
+            sb.append("Empleado: " + empleado + "\n")
+            sb.append("Cliente: " + self.cliente.getNombre() + "\n")
+            sb.append(lista)
+            sb.append("Valor total:  " + str(self.valorTotal) + "\n")
+            sb.append("-------------------------------------------")
+            return ''.join(sb)
+
 
 
 
@@ -142,3 +169,4 @@ class Factura:
 
         def setConcepto(self, concepto):
             self._concepto = concepto
+
