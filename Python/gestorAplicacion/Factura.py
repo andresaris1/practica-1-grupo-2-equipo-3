@@ -1,4 +1,6 @@
 import datetime
+from gestorAplicacion.Servicio import Servicio
+from Usuario import Usuario
 
 
 class Factura:
@@ -17,13 +19,13 @@ class Factura:
             self._destinos = []
             self._concepto = ""
 
-            usuario.listaFacturas.append(self)
+            self._usuario.lista_facturas.append(self)
 
 
         def valorTotal(self):
             total = 0
             for servicio in self._items:
-                x = servicio.getValorTotal()
+                x = servicio.getValor()
                 total += x
             
             if self._destinos is not None:
