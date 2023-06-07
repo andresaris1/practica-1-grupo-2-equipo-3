@@ -1,7 +1,9 @@
-from gestorAplicacion.Empleado import Empleado
+from gestorAplicacion import Empleado
 from gestorAplicacion.Factura import Factura
 from gestorAplicacion.Servicio import Servicio
 from gestorAplicacion.Usuario import Usuario
+
+#importar todas las clases que hay en la carpeta gestorAplicacion
 
 
 if __name__ == '__Menu__':
