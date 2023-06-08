@@ -1,5 +1,4 @@
-from Persona import Persona
-from Factura import Factura
+from Python.gestorAplicacion.modelos.Persona import Persona
 
 class Usuario(Persona):
     def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria):

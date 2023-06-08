@@ -1,6 +1,6 @@
 import datetime
 from Python.gestorAplicacion.modelos.Usuario import Usuario
-from gestorAplicacion.reservacion.Servicio import Servicio
+from Python.gestorAplicacion.reservacion.Servicio import Servicio
 
 class Factura:
         contador = 0
@@ -10,7 +10,7 @@ class Factura:
 
             self._fecha_y_hora = datetime.datetime.combine(
                 datetime.date.today(), datetime.datetime.now().time())
-            
+
             self._usuario = usuario
             self._empleado = empleado
             self._items = listaItems
@@ -27,12 +27,12 @@ class Factura:
             for servicio in self._items:
                 x = servicio.getValor()
                 total = total + x
-            
+
             if self._destinos is not None:
                 for destino in self._destinos:
                     x = destino.get_valor()
                     total = total + x
-            
+
             return total
 
         def sumarDeuda(self,usuario):
@@ -49,15 +49,15 @@ class Factura:
                 if factura.getEstado() == 0:
                     facturasDeudas.append(factura)
             return facturasDeudas
-        
+
         def imprimirCodigos(slef, facturas):
             codigos = []
             for factura in facturas:
                 codigos.append(factura.getCodigo())
             return ", ".join(codigos)
-        
+
         def realizarCobro(self, facturas,suma,valorIngresado):
-                
+
             if (valorIngresado<suma):
                     print("No le alcanza")
             else:
@@ -67,7 +67,7 @@ class Factura:
                     factura.getEmpleado().calcularComision(factura.getValor)
                     d=d-factura.getValorTotal()
             return d
-        
+
         def imprimirFactura(self):
             sb = []
             lista = []
