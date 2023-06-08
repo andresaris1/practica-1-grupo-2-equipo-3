@@ -1,12 +1,13 @@
-from gestorAplicacion import Empleado
-from gestorAplicacion.Factura import Factura
-from gestorAplicacion.Servicio import Servicio
-from gestorAplicacion.Usuario import Usuario
-
-#importar todas las clases que hay en la carpeta gestorAplicacion
-
-
 if __name__ == '__Menu__':
+    print("dfg")
+    from Python.gestorAplicacion.modelos.Empleado import Empleado
+    from Python.gestorAplicacion.modelos.Usuario import Usuario
+    from Python.gestorAplicacion.reservacion.Factura import Factura
+    from Python.gestorAplicacion.reservacion.Servicio import Servicio
+
+    print("Pruebas")
+
+
     print("Prueba de factura")
     ser1 = Servicio( "Cocina", 200,"dsrfvdfvg")
     emo1 = Empleado("Carla", 123456789, 135, "Bar")
