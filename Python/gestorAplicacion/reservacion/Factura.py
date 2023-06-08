@@ -1,7 +1,10 @@
 import datetime
+from Python.gestorAplicacion.modelos.Persona import Persona
+from Python.gestorAplicacion.modelos.Empleado import Empleado
 from Python.gestorAplicacion.modelos.Usuario import Usuario
-from Python.gestorAplicacion.reservacion.Servicio import Servicio
 
+from Python.gestorAplicacion.reservacion.Servicio import Servicio
+from Python.gestorAplicacion.reservacion.Destinos import Destinos
 class Factura:
         contador = 0
         def __init__(self, usuario, empleado, listaItems, destinos, concepto):

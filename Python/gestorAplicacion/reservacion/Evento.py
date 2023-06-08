@@ -1,6 +1,11 @@
 
-import Servicio
-import ServicioExterno
+from Python.gestorAplicacion.modelos.Persona import Persona
+from Python.gestorAplicacion.modelos.Empleado import Empleado
+from Python.gestorAplicacion.modelos.Usuario import Usuario
+
+from Python.gestorAplicacion.reservacion.Servicio import Servicio
+from Python.gestorAplicacion.reservacion.ServicioExterno import ServicioExterno
+
 """
 Clase Evento encargada de crear los eventos, los cuales son un tipo de servicio
 que se le ofrece a los clientes, estos eventos pueden ser de diferentes tipos,

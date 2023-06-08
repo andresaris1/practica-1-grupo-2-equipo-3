@@ -1,5 +1,9 @@
 import datetime
 
+from Python.gestorAplicacion.modelos.Usuario import Usuario
+from Python.gestorAplicacion.reservacion.Lugar import Lugar
+
+
 
 class Reserva:
     def __init__(self, fechaEntrada, fechaSalida, habitaciones, aporte, cliente):

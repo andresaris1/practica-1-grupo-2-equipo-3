@@ -1,4 +1,5 @@
-import Servicio
+
+
 
 """
 Clase ServicioExterno encargada de crear los servicios externos que se le ofrecen
@@ -6,6 +7,7 @@ a los clientes dentro de la reserva de eventos.
 Estos servicios externos pueden ser de diferentes tipos,
 como por ejemplo: Sonido, Entretenimiento, Decoración, etc.
 """
+from Python.gestorAplicacion.reservacion.Servicio import Servicio
 
 class ServicioExterno(Servicio):
     

@@ -1,3 +1,5 @@
+from Python.gestorAplicacion.modelos.Persona import Persona
+
 class Empleado:
 
     _nomina = 560000

@@ -1,4 +1,4 @@
-from gestorAplicacion.Servicio import Servicio
+from Python.gestorAplicacion.reservacion.Servicio import Servicio
 
 
 class Lugar(Servicio):
