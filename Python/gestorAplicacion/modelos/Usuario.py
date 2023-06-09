@@ -16,10 +16,10 @@ class Usuario(Persona):
     def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def get_lista_facturas(self):
+    def getLista_facturas(self):
         return self.lista_facturas
 
-    def set_lista_facturas(self, lista_facturas):
+    def setLista_facturas(self, lista_facturas):
         self.lista_facturas = lista_facturas
 
     def get_cuenta_bancaria(self):

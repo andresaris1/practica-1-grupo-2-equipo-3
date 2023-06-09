@@ -23,7 +23,7 @@ class Factura:
             self._usuario = usuario
             self._empleado = empleado
             self._items = listaItems
-            self._valorTotal=21
+            self._valorTotal=self.valorTotal()
             self._estado = 0
             #self._destinos = destinos
             self._concepto = concepto
@@ -32,7 +32,6 @@ class Factura:
 
 
         def valorTotal(self):
-            listsumas=[]
             total=0
             servicios_iter = iter(self._items)
             while True:
@@ -44,29 +43,38 @@ class Factura:
             total=format(total, ',')
             return(total)
 
+        @classmethod
+        def sumarDeuda(cls,usuario):
+            total=0
+            facturas_iter = iter(usuario.getLista_facturas())
+            while True:
+                try:
+                    factura = next(facturas_iter)
+                    if (factura.getEstado!=0):
+                        total=total+int(factura.getValorTotal())
+                except StopIteration:
+                    break
+            total=format(total, ',')
+            return(total)
 
-        def sumarDeuda(self,usuario):
-            valorDeuda = 0
-            for factura in usuario.get_lista_facturas:
-                if factura.getEstado() == 0:
-                    valorDeuda = valorDeuda + factura.getValorTotal()
-            return valorDeuda
 
-
-        def facturasEnDeuda(self,usuario):
+        @classmethod
+        def facturasEnDeuda(cls,usuario):
             facturasDeudas = []
             for factura in usuario.get_lista_facturas():
                 if factura.getEstado() == 0:
                     facturasDeudas.append(factura)
             return facturasDeudas
 
-        def imprimirCodigos(slef, facturas):
+        @classmethod 
+        def imprimirCodigos(cls, facturas):
             codigos = []
             for factura in facturas:
                 codigos.append(factura.getCodigo())
             return ", ".join(codigos)
 
-        def realizarCobro(self, facturas,suma,valorIngresado):
+        @classmethod 
+        def realizarCobro(cls, facturas,suma,valorIngresado):
 
             if (valorIngresado<suma):
                     print("No le alcanza")
@@ -82,7 +90,7 @@ class Factura:
             #Creando la lista de columnas de los servicios y sus precios
             servicios_iter = iter(self._items)
             lista = []
-            lista.append("Concepto \t Valor")
+            lista.append("Concepto \t Valor"+"\n")
             while True:
                 try:
                     servicio = next(servicios_iter)
@@ -91,17 +99,17 @@ class Factura:
                     break
                 servicioValor = ''
                 for elemento in lista:
-                    servicioValor += str(elemento) + "\n"
+                    servicioValor += str(elemento) 
             
             #Crear zona de informacion principal
             infoP=[]
-            infoP.append("-------------------------------------------\n")
-            infoP.append("Codigo de factura: " + str(self._codigo) + "\n")
-            infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S') + "\n")
-            infoP.append("Empleado: " + self._empleado.nombre + "\n")
-            infoP.append("Cliente: " + self._usuario.nombre + "\n")
+            infoP.append("-------------------------------------------")
+            infoP.append("Codigo de factura: " + str(self._codigo) )
+            infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S'))
+            infoP.append("Empleado: " + self._empleado.nombre )
+            infoP.append("Cliente: " + self._usuario.nombre  +"\n" )
             infoP.append(servicioValor)
-            infoP.append("Valor total:  " + str(self._valorTotal) + "\n")
+            infoP.append("Valor total:  " + str(self._valorTotal) )
             infoP.append("-------------------------------------------")
 
             facturaFinal=''

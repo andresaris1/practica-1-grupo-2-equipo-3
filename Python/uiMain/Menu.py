@@ -11,12 +11,17 @@ if __name__ == '__main__':
     from Servicio import Servicio
 
     print("Prueba de factura")
-    ser1 = Servicio( "Comida", 20330,"dsrfvdfvg")
-    ser2 = Servicio( "Limpieza", 2123,"dsrfvdfvg")
-    ser3 = Servicio( "Piscina", 836,"dsrfvdfvg")
+    ser1 = Servicio( "Comida", 10,"dsrfvdfvg")
+    ser2 = Servicio( "Limpieza", 10,"dsrfvdfvg")
+    ser3 = Servicio( "Piscina", 10,"dsrfvdfvg")
     emo1 = Empleado("Carla", 123456789, 135, "Bar")
     use1 = Usuario( "Kevin", 6543, 321, "tipo", 678)
     fac1 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
+    fac2 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
+    fac3 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
 
-    print(fac1.valorTotal())
+    print(fac1.getUsuario().getNombre())
+    
+    print(Factura.sumarDeuda(use1))
+
     print("FIN DE PRUEBA FACTURA")
