@@ -1,15 +1,19 @@
 import datetime
-from Python.gestorAplicacion.modelos.Persona import Persona
-from Python.gestorAplicacion.modelos.Empleado import Empleado
-from Python.gestorAplicacion.modelos.Usuario import Usuario
+import sys
+import os
 
-from Python.gestorAplicacion.reservacion.Servicio import Servicio
-from Python.gestorAplicacion.reservacion.Destinos import Destinos
+sys.path.append(os.path.join(os.path.dirname(__file__), "../modelos"))
+from Persona import Persona
+from Empleado import Empleado
+from Usuario import Usuario
+
+from Servicio import Servicio
+from Destinos import Destinos
 
 
 class Factura:
         contador = 0
-        def __init__(self, usuario, empleado, listaItems, destinos, concepto):
+        def __init__(self, usuario, empleado, listaItems, concepto):
             Factura.contador += 1
             self._codigo = Factura.contador
 
@@ -19,26 +23,27 @@ class Factura:
             self._usuario = usuario
             self._empleado = empleado
             self._items = listaItems
-            self._valorTotal = 0 #crear metodo
+            self._valorTotal=21
             self._estado = 0
-            self._destinos = destinos
+            #self._destinos = destinos
             self._concepto = concepto
 
             self._usuario.lista_facturas.append(self)
 
 
         def valorTotal(self):
-            total = 0
-            for servicio in self._items:
-                x = servicio.getValor()
-                total = total + x
+            listsumas=[]
+            total=0
+            servicios_iter = iter(self._items)
+            while True:
+                try:
+                    servicio = next(servicios_iter)
+                    total=total+servicio.valor
+                except StopIteration:
+                    break
+            total=format(total, ',')
+            return(total)
 
-            if self._destinos is not None:
-                for destino in self._destinos:
-                    x = destino.get_valor()
-                    total = total + x
-
-            return total
 
         def sumarDeuda(self,usuario):
             valorDeuda = 0
@@ -74,31 +79,37 @@ class Factura:
             return d
 
         def imprimirFactura(self):
-            sb = []
+            #Creando la lista de columnas de los servicios y sus precios
+            servicios_iter = iter(self._items)
             lista = []
-            empleado = ""
             lista.append("Concepto \t Valor")
-            iterator = iter(self.items)
-            if self.empleado is not None:
-                empleado = self.empleado.getNombre()
-            else:
-                empleado = "Recepcion"
             while True:
                 try:
-                    servicio = next(iterator)
-                    lista.append(servicio.nombre + " \t" + servicio.valor + "\n")
+                    servicio = next(servicios_iter)
+                    lista.append(servicio.nombre + " \t" + str(servicio.valor) + "\n")
                 except StopIteration:
                     break
+                servicioValor = ''
+                for elemento in lista:
+                    servicioValor += str(elemento) + "\n"
+            
+            #Crear zona de informacion principal
+            infoP=[]
+            infoP.append("-------------------------------------------\n")
+            infoP.append("Codigo de factura: " + str(self._codigo) + "\n")
+            infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S') + "\n")
+            infoP.append("Empleado: " + self._empleado.nombre + "\n")
+            infoP.append("Cliente: " + self._usuario.nombre + "\n")
+            infoP.append(servicioValor)
+            infoP.append("Valor total:  " + str(self._valorTotal) + "\n")
+            infoP.append("-------------------------------------------")
 
-            sb.append("-------------------------------------------\n")
-            sb.append("Codigo de factura: " + str(self.codigo) + "\n")
-            sb.append("Fecha y Hora: " + str(self.date) + "\n")
-            sb.append("Empleado: " + empleado + "\n")
-            sb.append("Cliente: " + self.cliente.getNombre() + "\n")
-            sb.append(lista)
-            sb.append("Valor total:  " + str(self.valorTotal) + "\n")
-            sb.append("-------------------------------------------")
-            return ''.join(sb)
+            facturaFinal=''
+            for elemento in infoP:
+                facturaFinal += str(elemento) + "\n"
+
+            return(facturaFinal)
+
 
 
 

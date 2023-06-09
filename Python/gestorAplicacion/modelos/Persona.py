@@ -10,20 +10,20 @@ class Persona(abc.ABC):
     def informacion(self):
         pass
 
-    def get_nombre(self):
+    def getNombre(self):
         return self.nombre
 
-    def set_nombre(self, nombre):
+    def setNombre(self, nombre):
         self.nombre = nombre
 
-    def get_identificacion(self):
+    def getIdentificacion(self):
         return self.identificacion
 
-    def set_identificacion(self, identificacion):
+    def setIdentificacion(self, identificacion):
         self.identificacion = identificacion
 
-    def get_telefono(self):
+    def getTelefono(self):
         return self.telefono
 
-    def set_telefono(self, telefono):
+    def setTelefono(self, telefono):
         self.telefono = telefono

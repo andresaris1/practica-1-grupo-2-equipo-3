@@ -7,7 +7,7 @@ a los clientes dentro de la reserva de eventos.
 Estos servicios externos pueden ser de diferentes tipos,
 como por ejemplo: Sonido, Entretenimiento, Decoración, etc.
 """
-from Python.gestorAplicacion.reservacion.Servicio import Servicio
+from Servicio import Servicio
 
 class ServicioExterno(Servicio):
     

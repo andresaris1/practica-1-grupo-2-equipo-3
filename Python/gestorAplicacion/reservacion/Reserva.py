@@ -1,8 +1,11 @@
 import datetime
+import sys
+import os
 
-from Python.gestorAplicacion.modelos.Usuario import Usuario
-from Python.gestorAplicacion.reservacion.Lugar import Lugar
+sys.path.append(os.path.join(os.path.dirname(__file__), "../modelos"))
+from Usuario import Usuario
 
+from Lugar import Lugar
 
 
 class Reserva:

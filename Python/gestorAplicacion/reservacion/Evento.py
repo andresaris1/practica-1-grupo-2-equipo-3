@@ -1,10 +1,14 @@
+import datetime
+import sys
+import os
 
-from Python.gestorAplicacion.modelos.Persona import Persona
-from Python.gestorAplicacion.modelos.Empleado import Empleado
-from Python.gestorAplicacion.modelos.Usuario import Usuario
+sys.path.append(os.path.join(os.path.dirname(__file__), "../modelos"))
+from Persona import Persona
+from Empleado import Empleado
+from Usuario import Usuario
 
-from Python.gestorAplicacion.reservacion.Servicio import Servicio
-from Python.gestorAplicacion.reservacion.ServicioExterno import ServicioExterno
+from Servicio import Servicio
+from ServicioExterno import ServicioExterno
 
 """
 Clase Evento encargada de crear los eventos, los cuales son un tipo de servicio
