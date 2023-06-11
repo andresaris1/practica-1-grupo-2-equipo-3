@@ -11,7 +11,7 @@ from Servicio import Servicio
 from Destinos import Destinos
 
 
-class Factura:
+class Factura():
         contador = 0
         def __init__(self, usuario, empleado, listaItems, concepto):
             Factura.contador += 1

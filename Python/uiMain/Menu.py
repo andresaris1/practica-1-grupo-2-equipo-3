@@ -9,8 +9,9 @@ if __name__ == '__main__':
     from Usuario import Usuario
     from Factura import Factura
     from Servicio import Servicio
+    from Almacenamiento import Almacenamiento
 
-    print("Prueba de factura")
+
     ser1 = Servicio( "Comida", 10,"dsrfvdfvg")
     ser2 = Servicio( "Limpieza", 10,"dsrfvdfvg")
     ser3 = Servicio( "Piscina", 10,"dsrfvdfvg")
@@ -20,8 +21,11 @@ if __name__ == '__main__':
     fac2 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
     fac3 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
 
-    print(fac1.getUsuario().getNombre())
-    
-    print(Factura.sumarDeuda(use1))
+    print("PRUEBA DE SERIALIZADO")
+    Almacenamiento.Deserializar()
 
-    print("FIN DE PRUEBA FACTURA")
+    for usuario in Almacenamiento.listaUsuarios:
+        print(usuario.nombre)
+
+    Almacenamiento.listaUsuarios.append(use1)
+    Almacenamiento.Serializar()
