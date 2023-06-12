@@ -1,53 +1,22 @@
 import tkinter as tk
 
-class Window(tk.Tk):
-    def __init__(self):
-        super().__init__()
+root = tk.Tk()
 
-        self.title("Dos Frames que ocupen la mitad")
-        
-        self.rowconfigure(0, weight=1)  # Ajustar filas al tamaño de la ventana
-        self.columnconfigure(0, weight=1)  # Ajustar columnas al tamaño de la ventana
-        
-        # Frame 1
-        frame1 = tk.Frame(self, bg="red")
-        frame1.grid(row=0, column=0, sticky="nsew")  # Aplicar cambios al tamaño
-        
-        # Frame 2
-        frame2 = tk.Frame(self, bg="blue")
-        frame2.grid(row=0, column=1, sticky="nsew")  # Aplicar cambios al tamaño
-        
-        # Ajustar tamaño de las columnas al tamaño de la ventana
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
+# Crear la barra de menú
+menu_bar = tk.Menu(root)
+root.config(menu=menu_bar)
 
-if __name__ == "__main__":
-    window = Window()
-    window.mainloop()
-import tkinter as tk
+# Crear un menú y agregarlo a la barra de menú
+file_menu = tk.Menu(menu_bar, tearoff=0, font='Arial 19')
+menu_bar.add_cascade(label='Archivo', menu=file_menu)
 
-class Window(tk.Tk):
-    def __init__(self):
-        super().__init__()
+# Agregar elementos al menú
+file_menu.add_command(label='Nuevo')
+file_menu.add_command(label='Abrir')
+file_menu.add_separator()
+file_menu.add_command(label='Salir', command=root.quit)
 
-        self.title("Dos Frames que ocupen la mitad")
-        
-        self.rowconfigure(0, weight=1)  # Ajustar filas al tamaño de la ventana
-        self.columnconfigure(0, weight=1)  # Ajustar columnas al tamaño de la ventana
-        
-        # Frame 1
-        frame1 = tk.Frame(self, bg="red")
-        frame1.grid(row=0, column=0, sticky="nsew")  # Aplicar cambios al tamaño
-        
-        # Frame 2
-        frame2 = tk.Frame(self, bg="blue")
-        frame2.grid(row=0, column=1, sticky="nsew")  # Aplicar cambios al tamaño
-        
-        # Ajustar tamaño de las columnas al tamaño de la ventana
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
+root.mainloop()
 
-if __name__ == "__main__":
-    window = Window()
-    window.mainloop()
+
 

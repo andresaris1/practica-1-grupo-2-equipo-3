@@ -2,13 +2,13 @@ import tkinter
 from tkinter import*
 
 ventanaInicio = Tk()
-ventanaInicio.title ("Inicio")
+ventanaInicio.title ("S gestion hotelera")
 ventanaInicio.geometry ("500x500")
 
 menuBar=Menu(ventanaInicio)
 ventanaInicio.config(menu=menuBar)
 
-menuInicio=Menu(menuBar)
+menuInicio=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Inicio", menu=menuInicio)
 menuInicio.add_command(label="Salir",)
 menuInicio.add_command(label="Descripción",)
@@ -39,6 +39,15 @@ frameP5.pack(side="top", fill="x", padx=3, pady=3)
 
 frameP6=Frame(frame2, bg="orange", height=200, width=200, borderwidth=1, relief="solid")
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
+
+#Zona P3 Bienvenidad
+Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20))
+Bienvenida.place(relx=0.5, rely=0.5, anchor='center')
+
+#Zona P4 Carrusel de imagnes y Boton de incio
+imgA=PhotoImage(file="img/hotel.png")
+
+frameP4.config(image=imgA)
 
 
 ventanaInicio.mainloop()
