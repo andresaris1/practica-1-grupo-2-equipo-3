@@ -1,31 +1,31 @@
-import sys
-import os
+import tkinter
+from tkinter import*
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/modelos"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/reservacion"))
+ventanaInicio = Tk()
+ventanaInicio.title ("Inicio")
+ventanaInicio.geometry ("500x500")
 
-if __name__ == '__main__':
-    from Empleado import Empleado
-    from Usuario import Usuario
-    from Factura import Factura
-    from Servicio import Servicio
-    from Almacenamiento import Almacenamiento
+menuBar=Menu(ventanaInicio)
+ventanaInicio.config(menu=menuBar)
+
+menuInicio=Menu(menuBar)
+menuBar.add_cascade(label="Menu 123", menu=menuInicio)
+
+ventanaInicio.rowconfigure(0, weight=1)  
+ventanaInicio.columnconfigure(0, weight=1) 
+
+ventanaInicio.columnconfigure(0, weight=1)
+ventanaInicio.columnconfigure(1, weight=1)
+
+frame1 = Frame(ventanaInicio, bg="lightpink1", borderwidth=1, relief="solid")
+frame1.grid(row=0, column=0, sticky="nsew", padx=3)
+
+frame2 = Frame(ventanaInicio, bg="DeepSkyBlue2",borderwidth=1, relief="solid")
+frame2.grid(row=0, column=1, sticky="nsew", padx=3) 
 
 
-    ser1 = Servicio( "Comida", 10,"dsrfvdfvg")
-    ser2 = Servicio( "Limpieza", 10,"dsrfvdfvg")
-    ser3 = Servicio( "Piscina", 10,"dsrfvdfvg")
-    emo1 = Empleado("Carla", 123456789, 135, "Bar")
-    use1 = Usuario( "Kevin", 6543, 321, "tipo", 678)
-    fac1 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
-    fac2 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
-    fac3 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
+frameP3=Frame(frame1, bg="red", height=200, width=200)
+frameP3.place(relheight=0.3, relwidth=1)
 
-    print("PRUEBA DE SERIALIZADO")
-    Almacenamiento.Deserializar()
 
-    for usuario in Almacenamiento.listaUsuarios:
-        print(usuario.nombre)
-
-    Almacenamiento.listaUsuarios.append(use1)
-    Almacenamiento.Serializar()
+ventanaInicio.mainloop()
