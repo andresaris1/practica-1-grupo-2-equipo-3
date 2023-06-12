@@ -29,16 +29,16 @@ frame2.grid(row=0, column=1, sticky="nsew", padx=3)
 
 
 frameP3=Frame(frame1, bg="purple", height=200, width=200, borderwidth=1, relief="solid")
-frameP3.place(relheight=0.35 ,relwidth=1 , relx=0 ,rely=0)
+frameP3.pack(side="top", fill="x", padx=3, pady=3)
 
 frameP4=Frame(frame1, bg="green", height=200, width=200, borderwidth=1, relief="solid")
-frameP4.place(relheight=0.65 ,relwidth=1 , relx=0 ,rely=0.35)
+frameP4.pack(expand=True, fill="both", padx=3, pady=3)
 
-frameP5=Frame(frame2, bg="red", height=200, width=200, padx=3, pady=3)
-frameP5.place(relheight=0.35 ,relwidth=1 , relx=0 ,rely=0)
+frameP5=Frame(frame2, bg="red", height=200, width=200, borderwidth=1, relief="solid")
+frameP5.pack(side="top", fill="x", padx=3, pady=3)
 
-frameP6=Frame(frame2, bg="orange", height=200, width=200, padx=3, pady=3)
-frameP6.place(relheight=0.65 ,relwidth=1 , relx=0 ,rely=0.35)
+frameP6=Frame(frame2, bg="orange", height=200, width=200, borderwidth=1, relief="solid")
+frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 
 ventanaInicio.mainloop()
