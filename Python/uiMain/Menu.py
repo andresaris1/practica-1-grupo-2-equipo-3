@@ -1,8 +1,9 @@
-import tkinter
+import tkinter as tk
 from tkinter import*
+from PIL import Image, ImageTk
 
 ventanaInicio = Tk()
-ventanaInicio.title ("S gestion hotelera")
+ventanaInicio.title ("Sistema de gestion hotelera")
 ventanaInicio.geometry ("500x500")
 
 menuBar=Menu(ventanaInicio)
@@ -45,9 +46,11 @@ Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de g
 Bienvenida.place(relx=0.5, rely=0.5, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
-imgA=PhotoImage(file="img/hotel.png")
 
-frameP4.config(image=imgA)
+#imgHotel=tk.PhotoImage(file='img\hotel.png')
+
+BotonInicio=Button(frameP4,text="INCIO")
+BotonInicio.pack(side="bottom")
 
 
 ventanaInicio.mainloop()
