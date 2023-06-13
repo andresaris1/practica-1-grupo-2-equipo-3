@@ -43,11 +43,13 @@ frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 #Zona P3 Bienvenidad
 Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20))
-Bienvenida.place(relx=0.5, rely=0.5, anchor='center')
+Bienvenida.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.7, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
 
 #imgHotel=tk.PhotoImage(file='img\hotel.png')
+#labelCarrusel=Label(image=imgHotel)
+#labelCarrusel.pack(frameP4)
 
 BotonInicio=Button(frameP4,text="INCIO")
 BotonInicio.pack(side="bottom")

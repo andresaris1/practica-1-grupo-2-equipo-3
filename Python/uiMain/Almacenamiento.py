@@ -15,11 +15,9 @@ class Almacenamiento():
     from Servicio import Servicio
     from ServicioExterno import ServicioExterno
 
-    fileUsuarios=open('../usuario' , "wb")
-
+    #Inicializar las listas para almacenado
     listaUsuarios = []
     listaEmpleados = []
-
     listaHabitaciones = []
     listaLugares = []
     listaReservas = []
@@ -29,6 +27,7 @@ class Almacenamiento():
     listaServiciosExternos = []
     listaHabitacionesDisponibles = []
 
+    #Metodos de serializar y deserializar
     @classmethod
     def Serializar(cls):
         fileUsuarios=open('../usuario' , "wb")
