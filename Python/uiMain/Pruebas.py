@@ -27,5 +27,6 @@ if __name__ == '__main__':
     for usuario in Almacenamiento.listaUsuarios:
         print(usuario.nombre)
 
-    Almacenamiento.listaUsuarios.append(use1)
+    #Almacenamiento.listaUsuarios.append(use1)
+
     Almacenamiento.Serializar()
