@@ -30,14 +30,16 @@ class Almacenamiento():
     #Metodos de serializar y deserializar
     @classmethod
     def Serializar(cls):
-        fileUsuarios=open('../usuario' , "wb")
+        path = os.path.join(os.path.dirname(__file__), "temp/usuario.txt")
+        fileUsuarios=open(path , "wb")
         pickle.dump(Almacenamiento.listaUsuarios, fileUsuarios)
         print("Metodo serializar")
         fileUsuarios.close()
     
     @classmethod
     def Deserializar(cls):
-        fileUsuarios=open('../usuario' , "rb")
+        path = os.path.join(os.path.dirname(__file__), "temp/usuario.txt")
+        fileUsuarios=open(path , "rb")
         Almacenamiento.listaUsuarios=pickle.load(fileUsuarios)
         fileUsuarios.close()
 

@@ -2,6 +2,13 @@ import tkinter as tk
 from tkinter import*
 from PIL import Image, ImageTk
 
+import os
+
+def AbrirFuncional():
+    ventanaFuncional.state(newstate = "normal")
+    ventanaInicio.state(newstate = "withdraw")
+    
+
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
 ventanaInicio.geometry ("500x500")
@@ -46,13 +53,24 @@ Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de g
 Bienvenida.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.7, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
+path=os.path.join(os.path.dirname(__file__), "img/hotel.png")
 
-#imgHotel=tk.PhotoImage(file='img\hotel.png')
-#labelCarrusel=Label(image=imgHotel)
-#labelCarrusel.pack(frameP4)
+imgHotel=tk.PhotoImage(file=path)
+labelCarrusel=Label(frameP4,image=imgHotel)
+labelCarrusel.pack(side="top")
 
-BotonInicio=Button(frameP4,text="INCIO")
+BotonInicio=Button(frameP4,text="INCIO", command=AbrirFuncional)
 BotonInicio.pack(side="bottom")
 
 
+#CREACION DE LA VENTANA FUNCIONAL
+ventanaFuncional = Tk()
+ventanaFuncional.title ("Sistema de gestion hotelera")
+ventanaFuncional.geometry ("500x500")
+ventanaFuncional.state(newstate = "withdraw")
+
+#Label de prueba
+lprueba=Label(ventanaFuncional,text="Label para probar que la\n nueva ventana funciona")
+
 ventanaInicio.mainloop()
+ventanaFuncional.mainloop()
