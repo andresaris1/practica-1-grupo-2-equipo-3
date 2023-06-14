@@ -9,6 +9,7 @@ def AbrirFuncional():
     ventanaInicio.state(newstate = "withdraw")
     
 
+#CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
 ventanaInicio.geometry ("500x500")
