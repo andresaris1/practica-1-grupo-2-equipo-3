@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import*
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 
 import os
 def Registro():
@@ -111,7 +111,7 @@ imgDef=tk.PhotoImage(file=pathImgDef)
 listImage=[imgDef, imgHotel, imgPiscina, imgDestino1, imgDestino2]
 indiceImagen=0
 
-botonCarrusel=Button(frameP4,image=imgHotel)
+botonCarrusel=Button(frameP4,image=imgHotel, command=AbrirFuncional)
 botonCarrusel.pack(expand=True)
 botonCarrusel.bind("<Enter>",Carrusel)
 
@@ -120,6 +120,7 @@ botonCarrusel.bind("<Enter>",Carrusel)
 window = Tk()
 window.title("Gestion Hotelera UN3000")
 window.geometry("500x400")
+window.state(newstate="withdraw")
 
 menuBar=Menu(window)
 window.config(menu=menuBar)
