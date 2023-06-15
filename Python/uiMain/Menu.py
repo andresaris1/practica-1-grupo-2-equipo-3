@@ -4,72 +4,104 @@ from tkinter import*
 import os
 
 def reiniciar():
-    print("holas")
-    frame1.destroy()
-    frame2.destroy()
-    Presentacion.place(relx=0.5, rely=0.4, anchor='center')
+    for widgets in frame2.winfo_children():
+      widgets.destroy()
+    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED)
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
+    Cancelar=Button(frame2, text="Cancelar", command=lambda:[bienvenido(),reiniciar()], font=("Arial", 14), relief=RAISED)
+    Cancelar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.75)
+
+def bienvenido():
+    frame3.place(relheight=1, relwidth=1)
+    
+    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+    Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
 
 def Registro():
-    
-    Presentacion.place_forget()
-    
-    frame1.place(relheight=0.2, relwidth=1, rely=0)
+    reiniciar()
+    frame3.place_forget()
+    Titulo.config(text="Registro de nuevos usuarios")
+    Descripcion.config(text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos")
 
-    Titulo=Label(frame1,text="Registro de nuevos usuarios", font=("Arial Bold", 20))
-    Titulo.place(relx=0.5, rely=0.35, anchor='center')
-    Descripcion=Label(frame1,text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos", font=("Arial", 12))
-    Descripcion.place(relx=0.5, rely=0.6, anchor='center')
-    
-    frame2 = Frame(window, borderwidth=1, relief="solid")
-    frame2.place(relheight=0.8, relwidth=1, rely=0.2)
-
-    Documento=Label(frame2,text="No. Documento")
-    Documento.place(relheight=0.1, relwidth=0.2, rely=0.1, relx=0.2)
-    Nombre=Label(frame2, text="Nombre")
-    Nombre.place(relheight=0.1, relwidth=0.2, rely=0.2, relx=0.2)
-    Telefono=Label(frame2, text="Telefono")
-    Telefono.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.2)
-    CuentaBancaria=Label(frame2, text="Cuenta Bancaria")
-    CuentaBancaria.place(relheight=0.1, relwidth=0.2, rely=0.4, relx=0.2)
+    Documento=Label(frame2,text="No. Documento", font=("Arial", 14))
+    Documento.place(relheight=0.125, relwidth=0.2, rely=0.10, relx=0.2)
+    Nombre=Label(frame2, text="Nombre", font=("Arial", 14))
+    Nombre.place(relheight=0.125, relwidth=0.2, rely=0.25, relx=0.2)
+    Telefono=Label(frame2, text="Telefono", font=("Arial", 14))
+    Telefono.place(relheight=0.125, relwidth=0.2, rely=0.40, relx=0.2)
+    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 14))
+    CuentaBancaria.place(relheight=0.125, relwidth=0.2, rely=0.55, relx=0.2)
 
     Doc=Entry(frame2)
-    Doc.place(relheight=0.06, relwidth=0.3, rely=0.12, relx=0.4)
+    Doc.place(relheight=0.0625, relwidth=0.3, rely=0.13, relx=0.45)
     Nom=Entry(frame2)
-    Nom.place(relheight=0.06, relwidth=0.3, rely=0.22, relx=0.4)
+    Nom.place(relheight=0.0625, relwidth=0.3, rely=0.28, relx=0.45)
     Tel=Entry(frame2)
-    Tel.place(relheight=0.06, relwidth=0.3, rely=0.32, relx=0.4)
+    Tel.place(relheight=0.0625, relwidth=0.3, rely=0.43, relx=0.45)
     Cub=Entry(frame2)
-    Cub.place(relheight=0.06, relwidth=0.3, rely=0.42, relx=0.4)
+    Cub.place(relheight=0.0625, relwidth=0.3, rely=0.58, relx=0.45)
 
-    Aceptar=Button(frame2, text="Aceptar")
-    Aceptar.place(relheight=0.1, relwidth=0.2, rely=0.6, relx=0.52)
-    Cancelar=Button(frame2, text="Cancelar", command=reiniciar)
-    Cancelar.place(relheight=0.1, relwidth=0.2, rely=0.6, relx=0.75)
 
 def Alojamiento():
-    frame1.config(bg="lightgreen")
-    Bienvenida.config(text="Aqui va\nReserva de Alojamiento", bg="lightgreen")
+    reiniciar()
+    frame3.place_forget()
+
+    Titulo.config(text="Reserva nueva de alojamiento")
+    Descripcion.config(text="Realiza una nueva reserva de alojamiento")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad1", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Tour():
-    frame1.config(bg="red")
-    Bienvenida.config(text="Aqui va\nReserva de Tour", bg="red")
+    reiniciar()
+    frame3.place_forget()
+    
+    Titulo.config(text="Reserva nueva de Tour")
+    Descripcion.config(text="Realiza una nueva reserva de Tour")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad2", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Eventos():
-    frame1.config(bg="lightblue")
-    Bienvenida.config(text="Aqui va\nReserva de Eventos", bg="lightblue")
+    reiniciar()
+    frame3.place_forget()
+    
+    Titulo.config(text="Reserva nueva de eventos")
+    Descripcion.config(text="Realiza una nueva reserva de evento en nuestras instalaciones")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad3", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Adicionales():
-    frame1.config(bg="orange")
-    Bienvenida.config(text="Aqui va\nReserva de S. Adicionale", bg="orange")
+    reiniciar()
+    frame3.place_forget()
+    
+    Titulo.config(text="Adicion de servicios")
+    Descripcion.config(text="Realiza una adicion de servicios")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad4", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Informacion():
-    frame1.config(bg="purple")
-    Bienvenida.config(text="Aqui va informacion", bg="purple")
+    reiniciar()
+    frame3.place_forget()
+    
+    Titulo.config(text="Informacion")
+    Descripcion.config(text="Consulta la informacion de nuestras instalaciones")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad5", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Cobro():
-    frame1.config(bg="yellow")
-    Bienvenida.config(text="Aqui va cobro", bg="yellow")
+    reiniciar()
+    frame3.place_forget()
+    
+    Titulo.config(text="Generador de cobros")
+    Descripcion.config(text="Genera el cobro del cliente a la hora de salir")
+
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad6", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 
 
@@ -150,7 +182,7 @@ imgDef=tk.PhotoImage(file=pathImgDef)
 listImage=[imgDef, imgHotel, imgPiscina, imgDestino1, imgDestino2]
 indiceImagen=0
 
-botonCarrusel=Button(frameP4,image=imgHotel, command=AbrirFuncional)
+botonCarrusel=Button(frameP4,image=imgHotel, command=lambda:[AbrirFuncional(),bienvenido()])
 botonCarrusel.pack(expand=True)
 botonCarrusel.bind("<Enter>",Carrusel)
 
@@ -158,7 +190,7 @@ botonCarrusel.bind("<Enter>",Carrusel)
 #CREACION DE LA VENTANA FUNCIONAL
 window = Tk()
 window.title("Gestion Hotelera UN3000")
-window.geometry("700x600")
+window.geometry("700x480")
 window.state(newstate="withdraw")
 
 menuBar=Menu(window)
@@ -166,7 +198,7 @@ window.config(menu=menuBar)
 
 menuArchivo=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Archivo", menu=menuArchivo)
-menuArchivo.add_command(label="Aplicación",)
+menuArchivo.add_command(label="Aplicación",command=bienvenido)
 menuArchivo.add_command(label="Salir",)
 
 menuProcesos=Menu(menuBar, tearoff=0)
@@ -190,11 +222,18 @@ window.columnconfigure(0, weight=1)
 window.columnconfigure(1, weight=1)
 
 frame1 = Frame(window, borderwidth=1, relief="solid")
-frame1.place(relheight=1, relwidth=1)
 
+Titulo=Label(frame1,text="", font=("Arial Bold", 20))
+Titulo.place(relx=0.5, rely=0.35, anchor='center')
+Descripcion=Label(frame1,text="", font=("Arial", 12))
+Descripcion.place(relx=0.5, rely=0.7, anchor='center')
+    
+frame2 = Frame(window, borderwidth=1, relief="solid")
+frame3 = Frame(window, borderwidth=1, relief="solid")
 
-Presentacion=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
-Presentacion.place(relx=0.5, rely=0.4, anchor='center')
+frame1.place(relheight=0.2, relwidth=1, rely=0)
+frame2.place(relheight=0.8, relwidth=1, rely=0.2)
+
 
 ventanaInicio.mainloop()
 window.mainloop()

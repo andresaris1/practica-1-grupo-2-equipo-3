@@ -1,35 +1,25 @@
-import sys
-import os
+#Import the required libraries
+from tkinter import *
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/modelos"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/reservacion"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "../baseDatos"))
+#Create an instance of tkinter frame
+win= Tk()
 
-if __name__ == '__main__':
-    from Empleado import Empleado
-    from Usuario import Usuario
-    from Factura import Factura
-    from Servicio import Servicio
-    from Almacenamiento import Almacenamiento
+#Set the geometry of frame
+win.geometry("600x250")
 
+#Create a frame
+frame = Frame(win)
+frame.pack(side="top", expand=True, fill="both")
 
-    ser1 = Servicio( "Comida", 10,"dsrfvdfvg")
-    ser2 = Servicio( "Limpieza", 10,"dsrfvdfvg")
-    ser3 = Servicio( "Piscina", 10,"dsrfvdfvg")
-    emo1 = Empleado("Carla", 123456789, 135, "Bar")
-    use1 = Usuario( "juan", 6543, 321, "tipo", 678)
-    fac1 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
-    fac2 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
-    fac3 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto")
+#Create a text label
+Label(frame,text="Enter the Password", font=('Helvetica',20)).pack(pady=20)
 
-    print("PRUEBA DE SERIALIZADO")
-    Almacenamiento.Deserializar()
+def clear_frame():
+   for widgets in frame.winfo_children():
+      widgets.destroy()
 
-    Almacenamiento.listaUsuarios.append(use1)
+#Create a button to close the window
+Button(frame, text="Clear", font=('Helvetica bold', 10), command=
+clear_frame).pack(pady=20)
 
-    for usuario in Almacenamiento.listaUsuarios:
-        print(usuario.nombre)
-
-    
-
-    Almacenamiento.Serializar()
+win.mainloop()
