@@ -114,8 +114,11 @@ def Cobro():
 
 def AbrirFuncional():
     window.state(newstate = "normal")
-    ventanaInicio.destroy()
+    ventanaInicio.state(newstate = "withdraw")
 
+def AbrirInicio():
+    ventanaInicio.state(newstate = "normal")
+    window.state(newstate = "withdraw")
 def Carrusel(event):
     global indiceImagen
     global listImage
@@ -205,7 +208,7 @@ window.config(menu=menuBar)
 menuArchivo=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Archivo", menu=menuArchivo)
 menuArchivo.add_command(label="Aplicación",command=Aplicacion)
-menuArchivo.add_command(label="Salir",)
+menuArchivo.add_command(label="Salir",command=AbrirInicio)
 
 menuProcesos=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Procesos y Consultas", menu=menuProcesos, )
