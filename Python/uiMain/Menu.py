@@ -2,18 +2,50 @@ import tkinter as tk
 from tkinter import*
 
 import os
+
+def reiniciar():
+    print("holas")
+    frame1.destroy()
+    frame2.destroy()
+    Presentacion.place(relx=0.5, rely=0.4, anchor='center')
+
+
 def Registro():
-    frame1.config(bg="lightpink")
-    frame1.place(relheight=1, relwidth=1)
+    
     Presentacion.place_forget()
-    Titulo=Label(frame1,text="Registro de nuevos usuarios", font=("Arial", 20), bg="lightpink")
-    Titulo.place(relx=0.5, rely=0.10, anchor='center')
-    Descripcion=Label(frame1,text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos", font=("Arial", 12), bg="lightpink")
-    Descripcion.place(relx=0.5, rely=0.20, anchor='center')
-    Documento=Label(frame1,)
-    Nombre=Label(frame1,)
-    Telefono=Label(frame1,)
-    CuentaBancaria=Label(frame1,)
+    
+    frame1.place(relheight=0.2, relwidth=1, rely=0)
+
+    Titulo=Label(frame1,text="Registro de nuevos usuarios", font=("Arial Bold", 20))
+    Titulo.place(relx=0.5, rely=0.35, anchor='center')
+    Descripcion=Label(frame1,text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos", font=("Arial", 12))
+    Descripcion.place(relx=0.5, rely=0.6, anchor='center')
+    
+    frame2 = Frame(window, borderwidth=1, relief="solid")
+    frame2.place(relheight=0.8, relwidth=1, rely=0.2)
+
+    Documento=Label(frame2,text="No. Documento")
+    Documento.place(relheight=0.1, relwidth=0.2, rely=0.1, relx=0.2)
+    Nombre=Label(frame2, text="Nombre")
+    Nombre.place(relheight=0.1, relwidth=0.2, rely=0.2, relx=0.2)
+    Telefono=Label(frame2, text="Telefono")
+    Telefono.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.2)
+    CuentaBancaria=Label(frame2, text="Cuenta Bancaria")
+    CuentaBancaria.place(relheight=0.1, relwidth=0.2, rely=0.4, relx=0.2)
+
+    Doc=Entry(frame2)
+    Doc.place(relheight=0.06, relwidth=0.3, rely=0.12, relx=0.4)
+    Nom=Entry(frame2)
+    Nom.place(relheight=0.06, relwidth=0.3, rely=0.22, relx=0.4)
+    Tel=Entry(frame2)
+    Tel.place(relheight=0.06, relwidth=0.3, rely=0.32, relx=0.4)
+    Cub=Entry(frame2)
+    Cub.place(relheight=0.06, relwidth=0.3, rely=0.42, relx=0.4)
+
+    Aceptar=Button(frame2, text="Aceptar")
+    Aceptar.place(relheight=0.1, relwidth=0.2, rely=0.6, relx=0.52)
+    Cancelar=Button(frame2, text="Cancelar", command=reiniciar)
+    Cancelar.place(relheight=0.1, relwidth=0.2, rely=0.6, relx=0.75)
 
 def Alojamiento():
     frame1.config(bg="lightgreen")
@@ -44,7 +76,7 @@ def Cobro():
 
 def AbrirFuncional():
     window.state(newstate = "normal")
-    ventanaInicio.state(newstate = "withdraw")
+    ventanaInicio.destroy()
 
 def Carrusel(event):
     global indiceImagen
@@ -157,16 +189,12 @@ window.columnconfigure(0, weight=1)
 window.columnconfigure(0, weight=1)
 window.columnconfigure(1, weight=1)
 
-frame1 = Frame(window, bg="light steel blue", borderwidth=1, relief="solid")
+frame1 = Frame(window, borderwidth=1, relief="solid")
 frame1.place(relheight=1, relwidth=1)
 
 
-imagen=tk.Label(frame1,text="hola")
-imagen.place(relx=0.5, rely=0.7, anchor='center')
 Presentacion=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
 Presentacion.place(relx=0.5, rely=0.4, anchor='center')
 
-window.mainloop()
-
-
+ventanaInicio.mainloop()
 window.mainloop()
