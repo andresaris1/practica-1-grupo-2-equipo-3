@@ -3,10 +3,39 @@ from tkinter import*
 from PIL import Image, ImageTk
 
 import os
+def Registro():
+    frame1.config(bg="lightpink")
+    Bienvenida.config(text="Aqui va registro", bg="lightpink")
+
+def Alojamiento():
+    frame1.config(bg="lightgreen")
+    Bienvenida.config(text="Aqui va\nReserva de Alojamiento", bg="lightgreen")
+
+def Tour():
+    frame1.config(bg="red")
+    Bienvenida.config(text="Aqui va\nReserva de Tour", bg="red")
+
+def Eventos():
+    frame1.config(bg="lightblue")
+    Bienvenida.config(text="Aqui va\nReserva de Eventos", bg="lightblue")
+
+def Adicionales():
+    frame1.config(bg="orange")
+    Bienvenida.config(text="Aqui va\nReserva de S. Adicionale", bg="orange")
+
+def Informacion():
+    frame1.config(bg="purple")
+    Bienvenida.config(text="Aqui va informacion", bg="purple")
+
+def Cobro():
+    frame1.config(bg="yellow")
+    Bienvenida.config(text="Aqui va cobro", bg="yellow")
+
+
 
 
 def AbrirFuncional():
-    ventanaFuncional.state(newstate = "normal")
+    window.state(newstate = "normal")
     ventanaInicio.state(newstate = "withdraw")
 
 def Carrusel(event):
@@ -88,13 +117,45 @@ botonCarrusel.bind("<Enter>",Carrusel)
 
 
 #CREACION DE LA VENTANA FUNCIONAL
-ventanaFuncional = Tk()
-ventanaFuncional.title ("Sistema de gestion hotelera")
-ventanaFuncional.geometry ("500x500")
-ventanaFuncional.state(newstate = "withdraw")
+window = Tk()
+window.title("Gestion Hotelera UN3000")
+window.geometry("500x400")
 
-#Label de prueba
-lprueba=Label(ventanaFuncional,text="Label para probar que la\n nueva ventana funciona")
+menuBar=Menu(window)
+window.config(menu=menuBar)
 
-ventanaInicio.mainloop()
-ventanaFuncional.mainloop()
+menuArchivo=Menu(menuBar, tearoff=0)
+menuBar.add_cascade(label="Archivo", menu=menuArchivo)
+menuArchivo.add_command(label="Aplicación",)
+menuArchivo.add_command(label="Salir",)
+
+menuProcesos=Menu(menuBar, tearoff=0)
+menuBar.add_cascade(label="Procesos y Consultas", menu=menuProcesos, )
+menuProcesos.add_command(label="Registrar Usuario",command=Registro)
+menuProcesos.add_command(label="Reservar Alojamiento",command=Alojamiento)
+menuProcesos.add_command(label="Reservar Tour",command=Tour)
+menuProcesos.add_command(label="Reservar evento",command=Eventos)
+menuProcesos.add_command(label="Servicios Adicionales",command=Adicionales)
+menuProcesos.add_command(label="Informacion",command=Informacion)
+menuProcesos.add_command(label="Generar Cobro",command=Cobro)
+
+menuAyuda=Menu(menuBar, tearoff=0)
+menuBar.add_cascade(label="Ayuda", menu=menuAyuda)
+
+menuAyuda.add_command(label="Acerca de...",)
+window.rowconfigure(0, weight=1)
+window.columnconfigure(0, weight=1)
+
+window.columnconfigure(0, weight=1)
+window.columnconfigure(1, weight=1)
+
+frame1 = Frame(window, bg="light steel blue", borderwidth=1, relief="solid")
+frame1.place(relheight=1, relwidth=1)
+
+Bienvenida=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+Bienvenida.place(relx=0.5, rely=0.5, anchor='center')
+
+window.mainloop()
+
+
+window.mainloop()
