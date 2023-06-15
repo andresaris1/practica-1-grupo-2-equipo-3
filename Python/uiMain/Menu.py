@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import*
-#from PIL import Image, ImageTk
 
 import os
 def Registro():
@@ -153,8 +152,12 @@ window.columnconfigure(1, weight=1)
 frame1 = Frame(window, bg="light steel blue", borderwidth=1, relief="solid")
 frame1.place(relheight=1, relwidth=1)
 
-Bienvenida=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
-Bienvenida.place(relx=0.5, rely=0.5, anchor='center')
+#pathImgPresentacion=os.path.join(os.path.dirname(__file__), "img/hotel.png")
+#imgPresentacion=tk.PhotoImage(file=pathImgPresentacion)
+imagen=Label(frame1,image=imgHotel,text="hola").pack()
+imagen.place(relx=0.5, rely=0.7, anchor='center')
+Presentacion=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+Presentacion.place(relx=0.5, rely=0.4, anchor='center')
 
 window.mainloop()
 
