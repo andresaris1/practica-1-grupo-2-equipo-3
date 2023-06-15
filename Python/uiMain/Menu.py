@@ -1,7 +1,13 @@
 import tkinter as tk
-from tkinter import*
+from tkinter import *
+from tkinter import messagebox
 
 import os
+def Aplicacion():
+    messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
+
+def Acercade():
+    messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion hotelera 300\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
 
 def reiniciar():
     for widgets in frame2.winfo_children():
@@ -24,13 +30,13 @@ def Registro():
     Titulo.config(text="Registro de nuevos usuarios")
     Descripcion.config(text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos")
 
-    Documento=Label(frame2,text="No. Documento", font=("Arial", 14))
+    Documento=Label(frame2,text="No. Documento", font=("Arial", 13))
     Documento.place(relheight=0.125, relwidth=0.2, rely=0.10, relx=0.2)
-    Nombre=Label(frame2, text="Nombre", font=("Arial", 14))
+    Nombre=Label(frame2, text="Nombre", font=("Arial", 13))
     Nombre.place(relheight=0.125, relwidth=0.2, rely=0.25, relx=0.2)
-    Telefono=Label(frame2, text="Telefono", font=("Arial", 14))
+    Telefono=Label(frame2, text="Telefono", font=("Arial", 13))
     Telefono.place(relheight=0.125, relwidth=0.2, rely=0.40, relx=0.2)
-    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 14))
+    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 13))
     CuentaBancaria.place(relheight=0.125, relwidth=0.2, rely=0.55, relx=0.2)
 
     Doc=Entry(frame2)
@@ -198,7 +204,7 @@ window.config(menu=menuBar)
 
 menuArchivo=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Archivo", menu=menuArchivo)
-menuArchivo.add_command(label="Aplicación",command=bienvenido)
+menuArchivo.add_command(label="Aplicación",command=Aplicacion)
 menuArchivo.add_command(label="Salir",)
 
 menuProcesos=Menu(menuBar, tearoff=0)
@@ -214,7 +220,7 @@ menuProcesos.add_command(label="Generar Cobro",command=Cobro)
 menuAyuda=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Ayuda", menu=menuAyuda)
 
-menuAyuda.add_command(label="Acerca de...",)
+menuAyuda.add_command(label="Acerca de...", command=Acercade)
 window.rowconfigure(0, weight=1)
 window.columnconfigure(0, weight=1)
 
