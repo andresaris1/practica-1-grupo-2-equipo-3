@@ -4,7 +4,11 @@ from tkinter import*
 import os
 def Registro():
     frame1.config(bg="lightpink")
-    Bienvenida.config(text="Aqui va registro", bg="lightpink")
+    Titulo=Label(frame1,text="Registro de nuevos usuarios", font=("Arial", 20), bg="lightpink")
+    Titulo.place(relx=0.5, rely=0.15, anchor='center')
+    Descripcion=Label(frame1,text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos", font=("Arial", 12), bg="lightpink")
+    Descripcion.place(relx=0.5, rely=0.25, anchor='center')
+    Presentacion.config(text="Aqui va registro", bg="lightpink")
 
 def Alojamiento():
     frame1.config(bg="lightgreen")
