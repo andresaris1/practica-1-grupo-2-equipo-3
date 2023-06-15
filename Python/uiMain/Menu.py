@@ -98,7 +98,6 @@ pathImgHotel=os.path.join(os.path.dirname(__file__), "img/hotel.png")
 pathImgPiscina=os.path.join(os.path.dirname(__file__), "img/piscina.png")
 pathImgDestino1=os.path.join(os.path.dirname(__file__), "img/destino1.png")
 pathImgDestino2=os.path.join(os.path.dirname(__file__), "img/destino2.png")
-
 pathImgDef=os.path.join(os.path.dirname(__file__), "img/def.png")
 
 imgHotel=tk.PhotoImage(file=pathImgHotel)
@@ -152,9 +151,8 @@ window.columnconfigure(1, weight=1)
 frame1 = Frame(window, bg="light steel blue", borderwidth=1, relief="solid")
 frame1.place(relheight=1, relwidth=1)
 
-#pathImgPresentacion=os.path.join(os.path.dirname(__file__), "img/hotel.png")
-#imgPresentacion=tk.PhotoImage(file=pathImgPresentacion)
-imagen=Label(frame1,image=imgHotel,text="hola").pack()
+
+imagen=tk.Label(frame1,text="hola")
 imagen.place(relx=0.5, rely=0.7, anchor='center')
 Presentacion=Label(frame1,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
 Presentacion.place(relx=0.5, rely=0.4, anchor='center')
