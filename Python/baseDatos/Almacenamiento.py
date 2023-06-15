@@ -6,11 +6,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/mod
 sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/reservacion"))
 
 import pickle
-
+from Usuario import *
 
 class Almacenamiento():
 
-    from Usuario import Usuario
     from Empleado import Empleado
     from Lugar import Lugar
     from Reserva import Reserva
@@ -45,7 +44,10 @@ class Almacenamiento():
         fileUsuarios=open(path , "rb")
         Almacenamiento.listaUsuarios=pickle.load(fileUsuarios)
         fileUsuarios.close()
-        
+    
+    def crearUsuario(nombre, identificacion, telefono, cuentaBancaria):
+        cliente=Usuario(nombre, identificacion, telefono, "Cliente", cuentaBancaria)
+        Almacenamiento.listaUsuarios.append(cliente)
 
 
 

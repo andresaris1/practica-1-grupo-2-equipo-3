@@ -1,8 +1,11 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
-
 import os
+import sys
+sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
+from Almacenamiento import *
+
 def Aplicacion():
     messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
@@ -141,6 +144,9 @@ def Cobro():
 def AbrirFuncional():
     window.state(newstate = "normal")
     ventanaInicio.state(newstate = "withdraw")
+    print(Almacenamiento.listaUsuarios)
+    Almacenamiento.crearUsuario("Carlos",12345, 5969988, 1234567)
+    print(Almacenamiento.listaUsuarios)
 
 
 def AbrirInicio():
