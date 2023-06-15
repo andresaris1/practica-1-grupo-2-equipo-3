@@ -1,6 +1,7 @@
 from Persona import Persona
 
 class Usuario(Persona):
+    
     def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria):
         super().__init__(nombre, identificacion, telefono)
         self.tipo = tipo

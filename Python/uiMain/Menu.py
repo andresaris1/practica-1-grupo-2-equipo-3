@@ -23,6 +23,28 @@ def bienvenido():
     Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
+def buscador():
+    Documento=Label(frame2,text="No. Documento", font=("Arial", 10), anchor="w")
+    Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.05)
+    Nombre=Label(frame2, text="Nombre", font=("Arial", 10), anchor="w")
+    Nombre.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.48)
+    Telefono=Label(frame2, text="Telefono", font=("Arial", 10), anchor="w")
+    Telefono.place(relheight=0.05, relwidth=0.15, rely=0.15, relx=0.05)
+    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 10), anchor="w")
+    CuentaBancaria.place(relheight=0.05, relwidth=0.15, rely=0.15, relx=0.48)
+
+    Doc=Entry(frame2)
+    Doc.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.2)
+
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10))
+    Buscar.place(relheight=0.05, relwidth=0.1, rely=0.05, relx=0.35)
+
+    Nom=Entry(frame2)
+    Nom.place(relheight=0.05, relwidth=0.25, rely=0.05, relx=0.65)
+    Tel=Entry(frame2)
+    Tel.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.2)
+    Cub=Entry(frame2)
+    Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
 
 def Registro():
     reiniciar()
@@ -51,6 +73,7 @@ def Registro():
 
 def Alojamiento():
     reiniciar()
+    buscador()
     frame3.place_forget()
 
     Titulo.config(text="Reserva nueva de alojamiento")
@@ -61,6 +84,7 @@ def Alojamiento():
 
 def Tour():
     reiniciar()
+    buscador()
     frame3.place_forget()
     
     Titulo.config(text="Reserva nueva de Tour")
@@ -71,6 +95,7 @@ def Tour():
 
 def Eventos():
     reiniciar()
+    buscador()
     frame3.place_forget()
     
     Titulo.config(text="Reserva nueva de eventos")
@@ -81,29 +106,13 @@ def Eventos():
 
 def Adicionales():
     reiniciar()
+    buscador()
     frame3.place_forget()
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
 
-    frame2.config(bg="lightpink")
-    Documento=Label(frame2,text="No. Documento", font=("Arial", 10))
-    Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.02)
-    Nombre=Label(frame2, text="Nombre", font=("Arial", 10))
-    Nombre.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.4)
-    Telefono=Label(frame2, text="Telefono", font=("Arial", 13))
-    Telefono.place(relheight=0.125, relwidth=0.2, rely=0.40, relx=0.2)
-    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 13))
-    CuentaBancaria.place(relheight=0.125, relwidth=0.2, rely=0.55, relx=0.2)
 
-    Doc=Entry(frame2)
-    Doc.place(relheight=0.0625, relwidth=0.3, rely=0.13, relx=0.45)
-    Nom=Entry(frame2)
-    Nom.place(relheight=0.0625, relwidth=0.3, rely=0.28, relx=0.45)
-    Tel=Entry(frame2)
-    Tel.place(relheight=0.0625, relwidth=0.3, rely=0.43, relx=0.45)
-    Cub=Entry(frame2)
-    Cub.place(relheight=0.0625, relwidth=0.3, rely=0.58, relx=0.45)
 
 def Informacion():
     reiniciar()
@@ -117,6 +126,7 @@ def Informacion():
 
 def Cobro():
     reiniciar()
+    buscador()
     frame3.place_forget()
     
     Titulo.config(text="Generador de cobros")
@@ -131,6 +141,7 @@ def Cobro():
 def AbrirFuncional():
     window.state(newstate = "normal")
     ventanaInicio.state(newstate = "withdraw")
+
 
 def AbrirInicio():
     ventanaInicio.state(newstate = "normal")
@@ -265,6 +276,6 @@ frame3 = Frame(window, borderwidth=1, relief="solid")
 frame1.place(relheight=0.2, relwidth=1, rely=0)
 frame2.place(relheight=0.8, relwidth=1, rely=0.2)
 
-
 ventanaInicio.mainloop()
 window.mainloop()
+

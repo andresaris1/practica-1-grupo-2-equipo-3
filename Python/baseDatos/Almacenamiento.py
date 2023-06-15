@@ -1,9 +1,12 @@
 import sys
 import os
+
+import Usuario
 sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/modelos"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/reservacion"))
 
 import pickle
+
 
 class Almacenamiento():
 
@@ -42,6 +45,7 @@ class Almacenamiento():
         fileUsuarios=open(path , "rb")
         Almacenamiento.listaUsuarios=pickle.load(fileUsuarios)
         fileUsuarios.close()
+        
 
 
 
