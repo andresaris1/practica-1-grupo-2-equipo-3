@@ -119,7 +119,7 @@ botonCarrusel.bind("<Enter>",Carrusel)
 #CREACION DE LA VENTANA FUNCIONAL
 window = Tk()
 window.title("Gestion Hotelera UN3000")
-window.geometry("500x400")
+window.geometry("700x600")
 window.state(newstate="withdraw")
 
 menuBar=Menu(window)
