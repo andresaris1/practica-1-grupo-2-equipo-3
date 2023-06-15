@@ -86,8 +86,24 @@ def Adicionales():
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
 
-    info=Label(frame2,text="Aqui desarrollen su funcionalidad4", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor='center')
+    frame2.config(bg="lightpink")
+    Documento=Label(frame2,text="No. Documento", font=("Arial", 10))
+    Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.02)
+    Nombre=Label(frame2, text="Nombre", font=("Arial", 10))
+    Nombre.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.4)
+    Telefono=Label(frame2, text="Telefono", font=("Arial", 13))
+    Telefono.place(relheight=0.125, relwidth=0.2, rely=0.40, relx=0.2)
+    CuentaBancaria=Label(frame2, text="Cuenta Bancaria", font=("Arial", 13))
+    CuentaBancaria.place(relheight=0.125, relwidth=0.2, rely=0.55, relx=0.2)
+
+    Doc=Entry(frame2)
+    Doc.place(relheight=0.0625, relwidth=0.3, rely=0.13, relx=0.45)
+    Nom=Entry(frame2)
+    Nom.place(relheight=0.0625, relwidth=0.3, rely=0.28, relx=0.45)
+    Tel=Entry(frame2)
+    Tel.place(relheight=0.0625, relwidth=0.3, rely=0.43, relx=0.45)
+    Cub=Entry(frame2)
+    Cub.place(relheight=0.0625, relwidth=0.3, rely=0.58, relx=0.45)
 
 def Informacion():
     reiniciar()
@@ -119,6 +135,11 @@ def AbrirFuncional():
 def AbrirInicio():
     ventanaInicio.state(newstate = "normal")
     window.state(newstate = "withdraw")
+
+def Cerrartodo():
+    ventanaInicio.destroy()
+    window.destroy()
+
 def Carrusel(event):
     global indiceImagen
     global listImage
@@ -135,6 +156,7 @@ def Carrusel(event):
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
 ventanaInicio.geometry ("500x500")
+ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar=Menu(ventanaInicio)
 ventanaInicio.config(menu=menuBar)
@@ -201,7 +223,7 @@ window = Tk()
 window.title("Gestion Hotelera UN3000")
 window.geometry("700x480")
 window.state(newstate="withdraw")
-
+window.protocol("WM_DELETE_WINDOW", Cerrartodo)
 menuBar=Menu(window)
 window.config(menu=menuBar)
 
