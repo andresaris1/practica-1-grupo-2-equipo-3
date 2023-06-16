@@ -26,9 +26,8 @@ def bienvenido():
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
         
 def buscador():
-    def Encontrar(Docu):
-        encontrado=False
-        cliente=None
+    def Rellenar(Docu):
+        cliente=Almacenamiento.buscarUsuario(Docu)
         Nom.config(state="normal")
         Tel.config(state="normal")
         Cub.config(state="normal")
@@ -36,17 +35,13 @@ def buscador():
         Nom.delete(0,END)
         Tel.delete(0,END)
         Cub.delete(0,END)
-        for i in Almacenamiento.listaUsuarios:
-            if Docu == i.getIdentificacion():
-                encontrado=True
-                cliente=i
-        if encontrado:
+        if cliente!=None:
             Doc.insert(0, cliente.getIdentificacion())
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
         else:
-            messagebox.showerror("Usuario no encontrado","Este usuario no está registrado con nostros")
+            messagebox.showerror("Usuario no encontrado","Este usuario no está registrado en la base de datos")
         Nom.config(state="disabled")
         Tel.config(state="disabled")
         Cub.config(state="disabled")
@@ -63,7 +58,7 @@ def buscador():
     Doc=Entry(frame2)
     Doc.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.2)
 
-    Buscar=Button(frame2, text="Buscar", font=("Arial", 10), command=lambda:Encontrar(Doc.get()))
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10), command=lambda:Rellenar(Doc.get()))
     Buscar.place(relheight=0.05, relwidth=0.1, rely=0.05, relx=0.35)
 
     Nom=Entry(frame2)
@@ -75,13 +70,9 @@ def buscador():
 
 def Registro():
     def registrarUsuario(nombre, id, telefono, cuentaBan):
-        encontrado=False
-        for i in Almacenamiento.listaUsuarios:
-            if id == i.getIdentificacion():
-                encontrado=True
-                break
-        if encontrado:
-            messagebox.showerror("Usuario ya registrado","Este usuario ya se encuentra registrado con nosotros")
+        cliente=Almacenamiento.buscarUsuario(id)
+        if cliente!=None:
+            messagebox.showerror("Usuario ya registrado","Este usuario ya se encuentra registrado en la base de datos del hotel")
         else:
             Almacenamiento.crearUsuario(nombre, id, telefono, cuentaBan)
             messagebox.showinfo("Usuario Registrado con Exito","Usuario Registrado con Exito.\n\nIdentificacion:\t"+id+"\n\nNombre:\t"+nombre+"\n\nTelefono:\t"+telefono+"\n\nCuenta Bancaria:\t"+cuentaBan+"\n\nBienvenido")
@@ -118,7 +109,7 @@ def Registro():
 
 def Alojamiento():
 
-    def buscar():
+    def verificar():
         print("holas")
 
     reiniciar()
@@ -138,13 +129,27 @@ def Alojamiento():
     cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
     cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)
 
-    Buscar=Button(frame2, text="Buscar", font=("Arial", 10))
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10), command=verificar)
     Buscar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.08)
+
+    def formarfecha(event):
+        if event.char.isdecimal():
+            texto = fechaEntrada.get()
+            if len(texto)==2:
+                fechaEntrada.insert(2,"/")
+            elif len(texto)==5:
+                fechaEntrada.insert(5,"/")
+            elif len(texto)<10:
+                return False
 
     fechaEntrada=Entry(frame2, font=("Arial", 14), justify="right")
     fechaEntrada.place(relheight=0.1, relwidth=0.15, rely=0.3, relx=0.18)
+    fechaEntrada.bind("<Key>", formarfecha)
+    fechaEntrada.bind("<BackSpace>", lambda _:fechaEntrada.delete(tk.END))
     fechaSalida=Entry(frame2, font=("Arial", 14),justify="right")
     fechaSalida.place(relheight=0.1, relwidth=0.15, rely=0.45, relx=0.18)
+    fechaEntrada.bind("<Key>", formarfecha)
+    fechaEntrada.bind("<BackSpace>", lambda _:fechaEntrada.delete(tk.END))
     personas=Entry(frame2, font=("Arial", 14),justify="right")
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.28)
 
@@ -339,6 +344,18 @@ frame3 = Frame(window, borderwidth=1, relief="solid")
 
 frame1.place(relheight=0.2, relwidth=1, rely=0)
 frame2.place(relheight=0.8, relwidth=1, rely=0.2)
+
+
+#OBJETOS TEMPORALES PARA PRUEBAS
+habitacion1=Almacenamiento.crearHabitacion(101,"Habitacion Individual",101,1)
+habitacion2=Almacenamiento.crearHabitacion(102,"Habitacion Individual",102,1)
+habitacion3=Almacenamiento.crearHabitacion(201,"Habitacion Doble",201,2)
+habitacion4=Almacenamiento.crearHabitacion(202,"Habitacion Doble",202,2)
+habitacion5=Almacenamiento.crearHabitacion(301,"Habitacion Familiar",301,4)
+habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
+
+print(Almacenamiento.listaHabitaciones)
+
 
 ventanaInicio.mainloop()
 window.mainloop()
