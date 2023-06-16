@@ -133,14 +133,15 @@ def Alojamiento():
     Buscar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.08)
 
     def formarfecha(event):
-        if event.char.isdecimal():
-            texto = fechaEntrada.get()
-            if len(texto)==2:
-                fechaEntrada.insert(2,"/")
-            elif len(texto)==5:
-                fechaEntrada.insert(5,"/")
-            elif len(texto)<10:
-                return False
+        texto = fechaEntrada.get()
+        if len(texto)>10:
+            return False
+        else:
+            if event.char.isdecimal():
+                if len(texto)==2:
+                    fechaEntrada.insert(2,"/")
+                elif len(texto)==5:
+                    fechaEntrada.insert(5,"/")
 
     fechaEntrada=Entry(frame2, font=("Arial", 14), justify="right")
     fechaEntrada.place(relheight=0.1, relwidth=0.15, rely=0.3, relx=0.18)
