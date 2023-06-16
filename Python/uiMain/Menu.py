@@ -41,6 +41,7 @@ def buscador():
                 encontrado=True
                 cliente=i
         if encontrado:
+            Doc.insert(0, cliente.getIdentificacion())
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
@@ -120,11 +121,34 @@ def Alojamiento():
     buscador()
     frame3.place_forget()
 
+    #frame2.config(bg="lightpink")
+
     Titulo.config(text="Reserva nueva de alojamiento")
     Descripcion.config(text="Realiza una nueva reserva de alojamiento")
 
-    info=Label(frame2,text="Aqui desarrollen su funcionalidad1", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor='center')
+    w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
+    w.place(relheight=0.05, relwidth=1,rely=0.20)
+
+    fe=Label(frame2, text="Fecha de entrada", font=("Arial", 10), anchor="w")
+    fe.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
+    fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
+    fs.place(relheight=0.1, relwidth=0.2, rely=0.45, relx=0.02)
+    cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
+    cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)
+
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10))
+    Buscar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.08)
+
+    fechaEntrada=Entry(frame2, font=("Arial", 14))
+    fechaEntrada.place(relheight=0.1, relwidth=0.15, rely=0.3, relx=0.18)
+    fechaSalida=Entry(frame2, font=("Arial", 14))
+    fechaSalida.place(relheight=0.1, relwidth=0.15, rely=0.45, relx=0.18)
+    personas=Entry(frame2, font=("Arial", 14))
+    personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.28)
+
+
+
+
 
 def Tour():
     reiniciar()
@@ -156,8 +180,6 @@ def Adicionales():
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
 
-
-
 def Informacion():
     reiniciar()
     frame3.place_forget()
@@ -179,14 +201,9 @@ def Cobro():
     info=Label(frame2,text="Aqui desarrollen su funcionalidad6", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor='center')
 
-
-
-
 def AbrirFuncional():
     window.state(newstate = "normal")
     ventanaInicio.state(newstate = "withdraw")
-
-
 
 def AbrirInicio():
     ventanaInicio.state(newstate = "normal")
