@@ -1,15 +1,12 @@
 import sys
 import os
-
-import Usuario
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/modelos"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/reservacion"))
+sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/modelos")
+sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/reservacion")
 
 import pickle
 from Usuario import *
 
 class Almacenamiento():
-
     from Empleado import Empleado
     from Lugar import Lugar
     from Reserva import Reserva
@@ -46,7 +43,7 @@ class Almacenamiento():
         fileUsuarios.close()
     
     def crearUsuario(nombre, identificacion, telefono, cuentaBancaria):
-        cliente=Usuario(nombre, identificacion, telefono, "Cliente", cuentaBancaria)
+        cliente=Usuario(nombre,identificacion,telefono,"Cliente",cuentaBancaria)
         Almacenamiento.listaUsuarios.append(cliente)
 
 

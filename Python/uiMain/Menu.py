@@ -5,7 +5,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 from Almacenamiento import *
-
+cliente= None
 def Aplicacion():
     messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
@@ -15,8 +15,7 @@ def Acercade():
 def reiniciar():
     for widgets in frame2.winfo_children():
       widgets.destroy()
-    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED)
-    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
+    
     Cancelar=Button(frame2, text="Cancelar", command=lambda:[bienvenido(),reiniciar()], font=("Arial", 14), relief=RAISED)
     Cancelar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.75)
 
@@ -25,8 +24,32 @@ def bienvenido():
     
     Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
-
+        
 def buscador():
+    def Encontrar(Docu):
+        encontrado=False
+        cliente=None
+        Nom.config(state="normal")
+        Tel.config(state="normal")
+        Cub.config(state="normal")
+        Doc.delete(0,END)
+        Nom.delete(0,END)
+        Tel.delete(0,END)
+        Cub.delete(0,END)
+        for i in Almacenamiento.listaUsuarios:
+            if Docu == i.getIdentificacion():
+                encontrado=True
+                cliente=i
+        if encontrado:
+            Nom.insert(0, cliente.getNombre())
+            Tel.insert(0, cliente.getTelefono())
+            Cub.insert(0, cliente.get_cuenta_bancaria())
+        else:
+            messagebox.showerror("Usuario no encontrado","Este usuario no está registrado con nostros")
+        Nom.config(state="disabled")
+        Tel.config(state="disabled")
+        Cub.config(state="disabled")
+
     Documento=Label(frame2,text="No. Documento", font=("Arial", 10), anchor="w")
     Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.05)
     Nombre=Label(frame2, text="Nombre", font=("Arial", 10), anchor="w")
@@ -39,7 +62,7 @@ def buscador():
     Doc=Entry(frame2)
     Doc.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.2)
 
-    Buscar=Button(frame2, text="Buscar", font=("Arial", 10))
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10), command=lambda:Encontrar(Doc.get()))
     Buscar.place(relheight=0.05, relwidth=0.1, rely=0.05, relx=0.35)
 
     Nom=Entry(frame2)
@@ -50,6 +73,22 @@ def buscador():
     Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
 
 def Registro():
+    def registrarUsuario(nombre, id, telefono, cuentaBan):
+        encontrado=False
+        for i in Almacenamiento.listaUsuarios:
+            if id == i.getIdentificacion():
+                encontrado=True
+                break
+        if encontrado:
+            messagebox.showerror("Usuario ya registrado","Este usuario ya se encuentra registrado con nosotros")
+        else:
+            Almacenamiento.crearUsuario(nombre, id, telefono, cuentaBan)
+            messagebox.showinfo("Usuario Registrado con Exito","Usuario Registrado con Exito.\n\nIdentificacion:\t"+id+"\n\nNombre:\t"+nombre+"\n\nTelefono:\t"+telefono+"\n\nCuenta Bancaria:\t"+cuentaBan+"\n\nBienvenido")
+        Doc.delete(0,END)
+        Nom.delete(0,END)
+        Tel.delete(0,END)
+        Cub.delete(0,END)
+
     reiniciar()
     frame3.place_forget()
     Titulo.config(text="Registro de nuevos usuarios")
@@ -73,6 +112,8 @@ def Registro():
     Cub=Entry(frame2)
     Cub.place(relheight=0.0625, relwidth=0.3, rely=0.58, relx=0.45)
 
+    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=lambda: registrarUsuario(Nom.get(), Doc.get(), Tel.get(), Cub.get()))
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 def Alojamiento():
     reiniciar()
@@ -144,9 +185,7 @@ def Cobro():
 def AbrirFuncional():
     window.state(newstate = "normal")
     ventanaInicio.state(newstate = "withdraw")
-    print(Almacenamiento.listaUsuarios)
-    Almacenamiento.crearUsuario("Carlos",12345, 5969988, 1234567)
-    print(Almacenamiento.listaUsuarios)
+
 
 
 def AbrirInicio():
@@ -275,7 +314,7 @@ Titulo=Label(frame1,text="", font=("Arial Bold", 20))
 Titulo.place(relx=0.5, rely=0.35, anchor='center')
 Descripcion=Label(frame1,text="", font=("Arial", 12))
 Descripcion.place(relx=0.5, rely=0.7, anchor='center')
-    
+
 frame2 = Frame(window, borderwidth=1, relief="solid")
 frame3 = Frame(window, borderwidth=1, relief="solid")
 
