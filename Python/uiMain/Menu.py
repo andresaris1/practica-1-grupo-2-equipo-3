@@ -117,11 +117,13 @@ def Registro():
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 def Alojamiento():
+
+    def buscar():
+        print("holas")
+
     reiniciar()
     buscador()
     frame3.place_forget()
-
-    #frame2.config(bg="lightpink")
 
     Titulo.config(text="Reserva nueva de alojamiento")
     Descripcion.config(text="Realiza una nueva reserva de alojamiento")
@@ -139,15 +141,15 @@ def Alojamiento():
     Buscar=Button(frame2, text="Buscar", font=("Arial", 10))
     Buscar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.08)
 
-    fechaEntrada=Entry(frame2, font=("Arial", 14))
+    fechaEntrada=Entry(frame2, font=("Arial", 14), justify="right")
     fechaEntrada.place(relheight=0.1, relwidth=0.15, rely=0.3, relx=0.18)
-    fechaSalida=Entry(frame2, font=("Arial", 14))
+    fechaSalida=Entry(frame2, font=("Arial", 14),justify="right")
     fechaSalida.place(relheight=0.1, relwidth=0.15, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14))
+    personas=Entry(frame2, font=("Arial", 14),justify="right")
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.28)
 
-
-
+    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED)
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 
 def Tour():
