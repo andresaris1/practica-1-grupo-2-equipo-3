@@ -58,6 +58,7 @@ class Almacenamiento():
     def crearHabitacion(nombre,descripcion,numero,capacidad):
         habitacion=Lugar(nombre, descripcion,numero,capacidad)
         Almacenamiento.listaHabitaciones.append(habitacion)
+        Almacenamiento.listaHabitacionesDisponibles.append(habitacion)
 
     def buscarHabitacion(numero) -> Lugar:
         habitacion=None
@@ -138,6 +139,7 @@ class Almacenamiento():
                 factura=fac
                 break
         return factura
+    
 
 
 

@@ -29,7 +29,7 @@ class Lugar(Servicio):
             return -1
 
     def toString(self):
-        return "Habitacion: " + self._numero + " " + super().nombre + " con capacidad para " + self._capacidad + " personas"
+        return "Habitacion: " + str(self._numero) + " " + str(super().getNombre()) + " con capacidad para " + str(self._capacidad) + " personas"
     
 
     def setNumero(self, numero):

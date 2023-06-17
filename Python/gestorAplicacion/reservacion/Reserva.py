@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import sys
 import os
 
@@ -9,24 +9,14 @@ from Lugar import Lugar
 
 
 class Reserva:
-    def __init__(self, fechaEntrada, fechaSalida, habitaciones, aporte, cliente):
-        self._fechaEntrada = self.parsear_fecha(fechaEntrada)
-        self._fechaSalida = self.parsear_fecha(fechaSalida)
+    def __init__(self, fechaEntrada, fechaSalida, habitaciones: list, aporte, cliente):
+        self._fechaEntrada = fechaEntrada
+        self._fechaSalida = fechaSalida
         self._habitaciones = habitaciones
         self._aporte = aporte
         self._cliente = cliente
         self._fe = fechaEntrada
         self._fs = fechaSalida
-
-    def parsear_fecha(self, fecha):
-        formato = "%d/%m/%Y"
-        return datetime.strptime(fecha, formato).date()
-    
-    def listaHabitaciones(self):
-        lista = ""
-        for habitacion in self._habitaciones:
-            lista += f"{habitacion.getNumero()} {habitacion.getTipo()}\n"
-        return lista
     
     def __str__(self):
         habitaciones = self.listaHabitaciones()
