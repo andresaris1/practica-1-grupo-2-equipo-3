@@ -137,10 +137,10 @@ def Alojamiento():
         return caracter.isdecimal()
     
     def seleccionar(num):
+        txt.config(state="normal")
         for i in Almacenamiento.listaHabitaciones:
             if num==i.getNumero():
                 if i not in listahabitaciones:
-                    txt.config(state="normal")
                     listahabitaciones.append(i)
                     txt.insert(END,"\nHabitacion:"+str(i.getNumero()))
                     txt.config(state="disabled")
@@ -148,6 +148,9 @@ def Alojamiento():
 
     def verificar():
         if cliente!=None:
+            txt.config(state="normal")
+            txt.insert(END,"Habitaciones\nReservadas:")
+            txt.config(state="disabled")
             global fen
             global fsa
             fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
@@ -162,7 +165,8 @@ def Alojamiento():
                     if (fe>reservas.getFechaSalida()) or (fs<reservas.getFechaEntrada()):
                         for habitaciones in reservas.getHabitaciones():
                             hadis.append(habitaciones)
-                
+
+
                 for habis in Almacenamiento.listaHabitacionesDisponibles:
                     hadis.append(habis)
                 x=0.4
