@@ -341,6 +341,7 @@ def Adicionales():
                         txt.insert(END,"\n----------------------\n")
                 txt.config(state="disabled")
                 txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
+                txt2.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
                 ra.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
                 Buscar.place_forget()
             else:
@@ -370,8 +371,8 @@ def Adicionales():
     personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
     ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
-    global txt
     txt=Text(frame2,state="disabled")
+    txt2=Text(frame2,state="disabled")
     Buscar=Button(frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar)
     Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
 
