@@ -93,7 +93,7 @@ class Factura():
             while True:
                 try:
                     servicio = next(servicios_iter)
-                    lista.append(str(servicio.nombre) + " \t" + str(servicio.valor) + "\n")
+                    lista.append(str(servicio.getNombre()) + " \t" + str(servicio.getValor()) + "\n")
                 except StopIteration:
                     break
                 servicioValor = ''
