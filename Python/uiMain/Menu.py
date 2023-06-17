@@ -11,10 +11,10 @@ import functools
 
 
 def Aplicacion():
-    messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
+    messagebox.showinfo("Sistema de gestion del Hotel UN 2.0","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
 def Acercade():
-    messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion hotelera 300\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
+    messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion del Hotel UN 2.0\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
 
 def reiniciar():
     for widgets in frame2.winfo_children():
@@ -26,7 +26,7 @@ def reiniciar():
 def bienvenido():
     frame3.place(relheight=1, relwidth=1)
     
-    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
 
@@ -246,8 +246,8 @@ def Tour():
     buscador()
     frame3.place_forget()
     
-    Titulo.config(text="Reserva nueva de Tour")
-    Descripcion.config(text="Realiza una nueva reserva de Tour")
+    Titulo.config(text="Reservar un Tour")
+    Descripcion.config(text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo")
 
     info=Label(frame2,text="Aqui desarrollen su funcionalidad2", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor='center')
@@ -363,7 +363,7 @@ def Carrusel(event):
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
-ventanaInicio.geometry ("500x500")
+ventanaInicio.geometry ("1280x720")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar=Menu(ventanaInicio)
@@ -402,7 +402,7 @@ frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 #Zona P3 Bienvenidad
-Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20))
+Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20))
 Bienvenida.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.7, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
@@ -428,8 +428,8 @@ botonCarrusel.bind("<Enter>",Carrusel)
 
 #CREACION DE LA VENTANA FUNCIONAL
 window = Tk()
-window.title("Gestion Hotelera UN3000")
-window.geometry("700x480")
+window.title("Gestion del Hotel UN 2.0")
+window.geometry("1280x720")
 window.state(newstate="withdraw")
 window.protocol("WM_DELETE_WINDOW", Cerrartodo)
 menuBar=Menu(window)
