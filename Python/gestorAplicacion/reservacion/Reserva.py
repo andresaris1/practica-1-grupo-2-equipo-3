@@ -9,7 +9,7 @@ from Lugar import Lugar
 
 
 class Reserva:
-    def __init__(self, fechaEntrada, fechaSalida, habitaciones, aporte, cliente: Usuario):
+    def __init__(self, fechaEntrada:datetime, fechaSalida:datetime, habitaciones:list, aporte, cliente: Usuario):
         self._fechaEntrada = fechaEntrada
         self._fechaSalida = fechaSalida
         self._habitaciones = habitaciones
@@ -23,7 +23,7 @@ class Reserva:
             habitaciones+=("Habitacion: "+str(h)+"\n")
         fe = self._fechaEntrada.strftime('%d/%m/%Y')
         fs = self._fechaSalida.strftime('%d/%m/%Y')
-        return f"La reserva se hizo a nombre de: {self._cliente.getNombre()}\n Entre los días: {fe} y {fs}\n Para las habitaciones:\n{habitaciones}"
+        return f"Nombre:\n{self._cliente.getNombre()}\n\nFechas:\n{fe} \n{fs}\n\nHabitaciones:\n{habitaciones}"
     
     def getFechaSalida(self):
         return self._fechaSalida

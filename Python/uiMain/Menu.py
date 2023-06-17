@@ -64,7 +64,6 @@ def limitarCaracteres(caracter, texto, digitos: int):
 
 """Metodo buscador: crea el buscador que se utiliza en la mayoria las paginas de procesos"""
 def buscador():
-
     """Metodo encargado de buscar cliente y capturarlo en la variable con el mismo nombre
        para realizar los procesos que se deseen hacer y necesiten un cliente, a la vez que
        muestra los datos de este cliente en varios entry"""
@@ -83,12 +82,6 @@ def buscador():
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
-            try:
-                txt.config(state="normal")
-                txt.insert(END,"Está buscando\n")
-                txt.config(state="disabled")
-            except NameError:
-                pass
         else:
             messagebox.showerror("Usuario no encontrado","Este usuario no está registrado en la base de datos")
         Nom.config(state="disabled")
@@ -339,10 +332,23 @@ def Adicionales():
         messagebox.showinfo("Hola","Hola si funciono")
 
     def buscar():
-        txt.config(state="normal")
-        txt.insert(END,"Está buscando\n")
-        txt.config(state="disabled")
+        try:
+            if cliente!=None:
+                txt.config(state="normal")
+                for reservas in Almacenamiento.listaReservas:
+                    if cliente==reservas.getCliente():
+                        txt.insert(END,reservas)
+                        txt.insert(END,"\n----------------------\n")
+                txt.config(state="disabled")
+                txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
+                ra.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
+                Buscar.place_forget()
+            else:
+                messagebox.showerror("Error","No hay usuario que buscar por else")
+        except NameError:
+            messagebox.showerror("Error","No hay usuario que buscar")
 
+        
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
@@ -364,10 +370,10 @@ def Adicionales():
     personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
     ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
-    ra.place(relheight=0.1, relwidth=0.2, rely=0.25, relx=0.05)
     global txt
     txt=Text(frame2,state="disabled")
-    txt.place(relheight=0.60, rely=0.35, relwidth=0.25, relx=0.02)
+    Buscar=Button(frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar)
+    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
 
     """adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
     adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)"""
@@ -397,7 +403,6 @@ def Cobro():
 
     info=Label(frame2,text="Aqui desarrollen su funcionalidad6", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor='center')
-
 
 
 def AbrirFuncional():
@@ -494,7 +499,7 @@ botonCarrusel.bind("<Enter>",Carrusel)
 #CREACION DE LA VENTANA FUNCIONAL
 window = Tk()
 window.title("Gestion del Hotel UN 2.0")
-window.geometry("1280x720")
+window.geometry("700x500")
 window.state(newstate="withdraw")
 window.protocol("WM_DELETE_WINDOW", Cerrartodo)
 menuBar=Menu(window)
@@ -547,17 +552,34 @@ habitacion4=Almacenamiento.crearHabitacion(202,"Habitacion Doble",202,2)
 habitacion5=Almacenamiento.crearHabitacion(301,"Habitacion Familiar",301,4)
 habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
 
-c1=Almacenamiento.crearUsuario("Carlos","1",1,1)
-
-emp=Almacenamiento.crearEmpleado("Recepcion",0,0,"Recepcion")
+c1=Usuario("Carlos","1","Cliente","1","1")
+Almacenamiento.listaUsuarios.append(c1)
+emp=Empleado("Recepcion",0,0,"Recepcion")
+Almacenamiento.listaEmpleados.append(emp)
 comida=Almacenamiento.crearServicio("Alimentacion",50000,"")
 masaje=Almacenamiento.crearServicio("Masaje",30000,"")
 transporte=Almacenamiento.crearServicio("Transporte",70000,"")
+fechaEntrada="20/03/2023"
+fechaSalida="30/05/2023"
+fen=datetime.strptime(fechaEntrada, "%d/%m/%Y")
+fsa=datetime.strptime(fechaSalida, "%d/%m/%Y")
+ba=[]
+ba.append(Almacenamiento.listaHabitaciones[0])
+
+res1=Reserva(fen,fsa,ba,0,c1)
+res2=Reserva(fen,fsa,ba,0,c1)
+res3=Reserva(fen,fsa,ba,0,c1)
+Almacenamiento.listaReservas.append(res1)
+Almacenamiento.listaReservas.append(res2)
+Almacenamiento.listaReservas.append(res3)
 
 print(Almacenamiento.listaHabitaciones)
 print(Almacenamiento.listaUsuarios)
 print(Almacenamiento.listaServicios)
-
+print(Almacenamiento.listaReservas)
+print(res1.getCliente())
+print(res2.getCliente())
+print(res3.getCliente())
 
 ventanaInicio.mainloop()
 window.mainloop()

@@ -85,7 +85,7 @@ class Almacenamiento():
         Almacenamiento.listaReservas.append(reserva)
         return(reserva.__str__())
 
-    def buscarReserva(cliente) -> Reserva:
+    def buscarReserva(cliente:Usuario) -> Reserva:
         Reserva=None
         for res in Almacenamiento.listaReservas:
             if (cliente==res.getCliente()):

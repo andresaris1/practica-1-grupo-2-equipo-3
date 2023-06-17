@@ -105,7 +105,6 @@ class Factura():
             infoP.append("-------------------------------------------")
             infoP.append("Codigo de factura: " + str(self._codigo) )
             infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S'))
-            #COMENTARIO PROVISIONAL
             #infoP.append("Empleado: " + str(self._empleado.getNombre()))
             infoP.append("Cliente: " + str(self._usuario.getNombre())  +"\n" )
             infoP.append(servicioValor)

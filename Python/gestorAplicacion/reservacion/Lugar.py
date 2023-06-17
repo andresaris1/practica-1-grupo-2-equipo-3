@@ -6,7 +6,7 @@ class Lugar(Servicio):
     def __init__(self,nombre,descripcion, numero,capacidad):
         valor=self.valorSegunTipo()
         super().__init__(nombre, valor, descripcion)
-        self._numero=0
+        self._numero=numero
         self._capacidad=capacidad
         self._numero=numero
 
