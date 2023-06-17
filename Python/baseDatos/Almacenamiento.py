@@ -49,9 +49,9 @@ class Almacenamiento():
 
     def buscarUsuario(id) -> Usuario:
         usuario=None
-        for cliente in Almacenamiento.listaUsuarios:
-            if (id==cliente.getIdentificacion()):
-                usuario=cliente
+        for cli in Almacenamiento.listaUsuarios:
+            if (id==cli.getIdentificacion()):
+                usuario=cli
                 break
         return usuario         
 

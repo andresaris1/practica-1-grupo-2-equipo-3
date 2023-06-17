@@ -5,7 +5,6 @@ import os
 import sys
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 from Almacenamiento import *
-cliente= None
 def Aplicacion():
     messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
@@ -27,6 +26,7 @@ def bienvenido():
         
 def buscador():
     def Rellenar(Docu):
+        global cliente
         cliente=Almacenamiento.buscarUsuario(Docu)
         Nom.config(state="normal")
         Tel.config(state="normal")
@@ -45,6 +45,8 @@ def buscador():
         Nom.config(state="disabled")
         Tel.config(state="disabled")
         Cub.config(state="disabled")
+        return cliente
+
 
     Documento=Label(frame2,text="No. Documento", font=("Arial", 10), anchor="w")
     Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.05)
@@ -67,6 +69,7 @@ def buscador():
     Tel.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.2)
     Cub=Entry(frame2)
     Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
+
 
 def Registro():
     def registrarUsuario(nombre, id, telefono, cuentaBan):
@@ -110,7 +113,11 @@ def Registro():
 def Alojamiento():
 
     def verificar():
-        print("holas")
+        x=0.3
+        for i in Almacenamiento.listaHabitaciones:
+            boton=Button(frame2, text=i.getNombre(), font=("Arial", 14), relief=RAISED)
+            boton.place(relheight=0.1, relwidth=0.1, rely=0.3, relx=x)
+            x+=0.1
 
     reiniciar()
     buscador()
@@ -355,7 +362,10 @@ habitacion4=Almacenamiento.crearHabitacion(202,"Habitacion Doble",202,2)
 habitacion5=Almacenamiento.crearHabitacion(301,"Habitacion Familiar",301,4)
 habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
 
+c1=Almacenamiento.crearUsuario("Carlos",1,1,1)
+
 print(Almacenamiento.listaHabitaciones)
+print(Almacenamiento.listaUsuarios)
 
 
 ventanaInicio.mainloop()
