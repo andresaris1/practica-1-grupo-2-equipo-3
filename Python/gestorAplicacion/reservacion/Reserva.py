@@ -9,18 +9,21 @@ from Lugar import Lugar
 
 
 class Reserva:
-    def __init__(self, fechaEntrada, fechaSalida, habitaciones: list, aporte, cliente):
+    def __init__(self, fechaEntrada, fechaSalida, habitaciones, aporte, cliente: Usuario):
         self._fechaEntrada = fechaEntrada
         self._fechaSalida = fechaSalida
         self._habitaciones = habitaciones
         self._aporte = aporte
         self._cliente = cliente
-        self._fe = fechaEntrada
-        self._fs = fechaSalida
     
     def __str__(self):
-        habitaciones = self.listaHabitaciones()
-        return f"La reserva se hizo a nombre de: {self.cliente.nombre} Entre los días: {self.fe} y {self.fs} para las habitaciones:\n{habitaciones}"
+        habitaciones = ""
+        for habitacion in self._habitaciones:
+            h=habitacion.getNumero()
+            habitaciones+=("Habitacion: "+str(h)+"\n")
+        fe = self._fechaEntrada.strftime('%d/%m/%Y')
+        fs = self._fechaSalida.strftime('%d/%m/%Y')
+        return f"La reserva se hizo a nombre de: {self._cliente.getNombre()}\n Entre los días: {fe} y {fs}\n Para las habitaciones:\n{habitaciones}"
     
     def getFechaSalida(self):
         return self._fechaSalida
@@ -49,17 +52,6 @@ class Reserva:
     def setHabitaciones(self, habitaciones):
         self._habitaciones = habitaciones
         
-    def getFe(self):
-        return self._fe
-    
-    def setFe(self, fe):
-        self._fe = fe
-        
-    def getFs(self):
-        return self._fs
-    
-    def setFs(self, fs):
-        self._fs = fs
 
 
     

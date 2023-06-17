@@ -68,7 +68,7 @@ class Almacenamiento():
                 break
         return habitacion
     
-    def crearEmpleado(nombre, identificacion, telefono, cargo):
+    def crearEmpleado(nombre: str, identificacion, telefono, cargo):
         empleado=Empleado(nombre,identificacion,telefono,cargo)
         Almacenamiento.listaEmpleados.append(empleado)
 
@@ -83,6 +83,7 @@ class Almacenamiento():
     def crearReserva(fentrada,fsalida,habitaciones:list,aporte,cliente:Usuario):
         reserva=Reserva(fentrada,fsalida,habitaciones,aporte,cliente)
         Almacenamiento.listaReservas.append(reserva)
+        return(reserva.__str__())
 
     def buscarReserva(cliente) -> Reserva:
         Reserva=None
@@ -131,7 +132,7 @@ class Almacenamiento():
     def crearFactura(cliente:Usuario, empleado: Empleado, listaItems: list, concepto):
         factura=Factura(cliente,empleado,listaItems,concepto)
         Almacenamiento.listaFacturas.append(factura)
-        
+        return (factura.imprimirFactura())
     def buscarFactura(cliente: Usuario) -> Factura:
         factura=None
         for fac in Almacenamiento.listaFacturas():

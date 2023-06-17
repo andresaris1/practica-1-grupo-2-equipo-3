@@ -18,6 +18,7 @@ class Empleado(Persona):
     def calcularComision(self, valorPagado):
         x = 0.02 * valorPagado
         self._comision += x
+
     
     def getCargo(self):
         return self._cargo
