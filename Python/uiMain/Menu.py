@@ -12,12 +12,12 @@ import functools
 """Metodo Aplicacion crea un messagebox que se muestra a la hora de hacer clic en el boton
    Aplicacion en el submeú  "Archivo" del menú de la applicacion"""
 def Aplicacion():
-    messagebox.showinfo("Sistema de gestion hotelera UN 3000","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
+    messagebox.showinfo("Sistema de gestion del Hotel UN 2.0","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
 """Metodo Acercade: crea un messagebox que se muestra a la hora de hacer clic en el boton
    "Acerca de.." en el submeú  "Ayuda" del menú de la aplicacion"""
 def Acercade():
-    messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion hotelera 300\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
+    messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion del Hotel UN 2.0\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
 
 """"Metodo reiniciar: borra todo lo que hay en el frame2 para formarlo desde 0 cada vez que se selecciona
     uno de los procesos que realiza la aplicacion """
@@ -34,8 +34,9 @@ def reiniciar():
 def bienvenido():
     frame3.place(relheight=1, relwidth=1)
     
-    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
+
 
 
 #METODOS FUNCIONALES
@@ -62,6 +63,7 @@ def limitarCaracteres(caracter, texto, digitos: int):
         return caracter.isdecimal()
 
 
+
 """Metodo buscador: crea el buscador que se utiliza en la mayoria las paginas de procesos"""
 def buscador():
 
@@ -83,6 +85,7 @@ def buscador():
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
+
             try:
                 txt.config(state="normal")
                 txt.insert(END,"Está buscando\n")
@@ -118,10 +121,15 @@ def buscador():
     Tel.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.2)
     Cub=Entry(frame2)
     Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
-    
+
 """Metodo Registro: reinicia el frame2 con el metodo reiniciar, luego forma el formulario
    necesario para crear un nuevo cliente y se dispara a la hora de seleccionar la opcion "registro"
    de "consultas y procesos" """
+
+
+
+
+
 def Registro():
     """Método registrarUsuarios: se encarga de hacer una comprobacion para verificar que el
        usuario que se desea registrar, no esté en la base de datos, en caso de ser encontrado
@@ -176,6 +184,21 @@ def Registro():
    de "consultas y procesos" """
 def Alojamiento():
     listahabitaciones=[]
+    def formarfecha(texto):
+        if len(texto) > 10:
+            return False
+        fecha = []
+        for i, char in enumerate(texto):
+            if i in (2, 5):
+                fecha.append(char == "/")
+            else:
+                fecha.append(char.isdecimal())
+        return all(fecha)
+
+    def dosDigitos(caracter, texto):
+        if len(texto) > 2:
+            return False
+        return caracter.isdecimal()
     
     """Metodo seleccionar: Envia la habitacion seleccionada con su boton a la lista
        listahabitaciones, para luego usarla como parametro para crear una nueva reserva
@@ -194,6 +217,9 @@ def Alojamiento():
     en caso de no haberlas presenta los botones de las habitaciones disponbles"""
     def verificar():
         if cliente!=None:
+            txt.config(state="normal")
+            txt.insert(END,"Habitaciones\nReservadas:")
+            txt.config(state="disabled")
             global fen
             global fsa
             """Pasa las fechas ingresadas de str a tipo Date"""
@@ -223,8 +249,9 @@ def Alojamiento():
                 """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
                    y en una lista que se llama habitaciones disponibles """
                 for reservas in Almacenamiento.listaReservas:
-                    if (fen>=reservas.getFechaSalida()) or (fsa<=reservas.getFechaEntrada()):
+                    if (fe>reservas.getFechaSalida()) or (fs<reservas.getFechaEntrada()):
                         for habitaciones in reservas.getHabitaciones():
+
                             if habitaciones not in hadis:
                                 hadis.append(habitaciones)
                 for habis in Almacenamiento.listaHabitacionesDisponibles:
@@ -233,6 +260,8 @@ def Alojamiento():
 
 
                 """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas""" 
+                for habis in Almacenamiento.listaHabitacionesDisponibles:
+                    hadis.append(habis)
                 x=0.4
                 y=0.3
                 cont=0
@@ -254,17 +283,18 @@ def Alojamiento():
        de la misma y la factura generada, este método se dispara cuando se da click en el boton 
        "Aceptar" """
     def reservar():
-        reserva=Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
-        factura=Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
+        Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
+        Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
         for i in listahabitaciones:
             if i in Almacenamiento.listaHabitacionesDisponibles:
                 Almacenamiento.listaHabitacionesDisponibles.remove(i)
 
-        messagebox.showinfo("Reserva realizada con exito",reserva)
         print(Almacenamiento.listaReservas)
         print(Almacenamiento.listaFacturas)
         print(Almacenamiento.listaHabitacionesDisponibles)
+
         messagebox.showinfo("Factura Asociada", factura)
+        messagebox.showinfo("Reserva realizada", "Reserva realizada con exito")
         "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
         bienvenido()
 
@@ -297,7 +327,7 @@ def Alojamiento():
     fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
     fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
     fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
+    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(dosDigitos), "%S", "%P"))
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)
     txt=Text(frame2,state="disabled")
 
@@ -314,11 +344,11 @@ def Tour():
     buscador()
     frame3.place_forget()
     
-    Titulo.config(text="Reserva nueva de Tour")
-    Descripcion.config(text="Realiza una nueva reserva de Tour")
+    Titulo.config(text="Reservar un Tour")
+    Descripcion.config(text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo")
 
-    info=Label(frame2,text="Aqui desarrollen su funcionalidad2", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor='center')
+    
+
 
 def Eventos():
     reiniciar()
@@ -335,47 +365,9 @@ def Adicionales():
     reiniciar()
     buscador()
     frame3.place_forget()
-    def reservar():
-        messagebox.showinfo("Hola","Hola si funciono")
-
-    def buscar():
-        txt.config(state="normal")
-        txt.insert(END,"Está buscando\n")
-        txt.config(state="disabled")
-
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
-
-    w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
-    w.place(relheight=0.05, relwidth=1,rely=0.20)
-
-    
-    """
-    fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
-    fs.place(relheight=0.1, relwidth=0.2, rely=0.45, relx=0.02)
-    cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
-    cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)"""
-
-    """fechaEntrada =Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
-    fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
-    fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
-    fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
-    personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
-    ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
-    ra.place(relheight=0.1, relwidth=0.2, rely=0.25, relx=0.05)
-    global txt
-    txt=Text(frame2,state="disabled")
-    txt.place(relheight=0.60, rely=0.35, relwidth=0.25, relx=0.02)
-
-    """adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
-    adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)"""
-
-    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
-    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
-
-    
 
 def Informacion():
     reiniciar()
@@ -428,7 +420,7 @@ def Carrusel(event):
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
-ventanaInicio.geometry ("500x500")
+ventanaInicio.geometry ("1280x720")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar=Menu(ventanaInicio)
@@ -467,7 +459,7 @@ frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 #Zona P3 Bienvenidad
-Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20))
+Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20))
 Bienvenida.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.7, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
@@ -493,8 +485,8 @@ botonCarrusel.bind("<Enter>",Carrusel)
 
 #CREACION DE LA VENTANA FUNCIONAL
 window = Tk()
-window.title("Gestion Hotelera UN3000")
-window.geometry("700x480")
+window.title("Gestion del Hotel UN 2.0")
+window.geometry("1280x720")
 window.state(newstate="withdraw")
 window.protocol("WM_DELETE_WINDOW", Cerrartodo)
 menuBar=Menu(window)
@@ -550,13 +542,8 @@ habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
 c1=Almacenamiento.crearUsuario("Carlos","1",1,1)
 
 emp=Almacenamiento.crearEmpleado("Recepcion",0,0,"Recepcion")
-comida=Almacenamiento.crearServicio("Alimentacion",50000,"")
-masaje=Almacenamiento.crearServicio("Masaje",30000,"")
-transporte=Almacenamiento.crearServicio("Transporte",70000,"")
-
 print(Almacenamiento.listaHabitaciones)
 print(Almacenamiento.listaUsuarios)
-print(Almacenamiento.listaServicios)
 
 
 ventanaInicio.mainloop()
