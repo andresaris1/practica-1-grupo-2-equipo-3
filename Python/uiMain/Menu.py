@@ -257,7 +257,7 @@ def Tour():
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                imagen = ImageTk.PhotoImage(Image.open(destino.imagen))
+                imagen = tk.PhotoImage(Image.open(destino.imagen))
                 boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
                 boton.config(image=imagen)
                 boton.image = imagen
@@ -274,7 +274,7 @@ def Tour():
         boton_combo.place(relx=0.05, rely=0.35 + (len(Destinos) * 0.225), relwidth=0.25, relheight=0.3)
 
     ventana = Tk()
-    ventana.geometry("800x600")
+    ventana.geometry("400x200")
 
     frame1 = Frame(ventana, bg="gray")
     frame1.place(relx=0, rely=0, relwidth=1, relheight=0.1)
