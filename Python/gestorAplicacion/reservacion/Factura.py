@@ -13,7 +13,7 @@ from Destinos import Destinos
 
 class Factura():
         contador = 0
-        def __init__(self, usuario, empleado, listaItems, concepto):
+        def __init__(self, usuario: Usuario, empleado: Empleado, listaItems: list, concepto):
             Factura.contador += 1
             self._codigo = Factura.contador
 
@@ -93,7 +93,7 @@ class Factura():
             while True:
                 try:
                     servicio = next(servicios_iter)
-                    lista.append(servicio.nombre + " \t" + str(servicio.valor) + "\n")
+                    lista.append(str(servicio.nombre) + " \t" + str(servicio.valor) + "\n")
                 except StopIteration:
                     break
                 servicioValor = ''
@@ -105,8 +105,9 @@ class Factura():
             infoP.append("-------------------------------------------")
             infoP.append("Codigo de factura: " + str(self._codigo) )
             infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S'))
-            infoP.append("Empleado: " + self._empleado.nombre )
-            infoP.append("Cliente: " + self._usuario.nombre  +"\n" )
+            #COMENTARIO PROVISIONAL
+            #infoP.append("Empleado: " + str(self._empleado.getNombre()))
+            infoP.append("Cliente: " + str(self._usuario.getNombre())  +"\n" )
             infoP.append(servicioValor)
             infoP.append("Valor total:  " + str(self._valorTotal) )
             infoP.append("-------------------------------------------")

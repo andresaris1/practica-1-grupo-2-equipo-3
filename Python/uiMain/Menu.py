@@ -30,6 +30,22 @@ def bienvenido():
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
 
+#METODOS FUNCIONALES
+def formarfecha(texto):
+        if len(texto) > 10:
+            return False
+        fecha = []
+        for i, char in enumerate(texto):
+            if i in (2, 5):
+                fecha.append(char == "/")
+            else:
+                fecha.append(char.isdecimal())
+        return all(fecha)
+
+def limitarCaracteres(caracter, texto, digitos: int):
+        if int(len(texto)) > int(digitos):
+            return False
+        return caracter.isdecimal()
 
 def buscador():
     def Rellenar(Docu):
@@ -47,6 +63,9 @@ def buscador():
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
+            txt.config(state="normal")
+            txt.insert(END,"Está buscando\n")
+            txt.config(state="disabled")
         else:
             messagebox.showerror("Usuario no encontrado","Este usuario no está registrado en la base de datos")
         Nom.config(state="disabled")
@@ -76,6 +95,7 @@ def buscador():
     Tel.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.2)
     Cub=Entry(frame2)
     Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
+    
 
 
 
@@ -120,21 +140,6 @@ def Registro():
 
 def Alojamiento():
     listahabitaciones=[]
-    def formarfecha(texto):
-        if len(texto) > 10:
-            return False
-        fecha = []
-        for i, char in enumerate(texto):
-            if i in (2, 5):
-                fecha.append(char == "/")
-            else:
-                fecha.append(char.isdecimal())
-        return all(fecha)
-
-    def dosDigitos(caracter, texto):
-        if len(texto) > 2:
-            return False
-        return caracter.isdecimal()
     
     def seleccionar(num):
         txt.config(state="normal")
@@ -148,9 +153,6 @@ def Alojamiento():
 
     def verificar():
         if cliente!=None:
-            txt.config(state="normal")
-            txt.insert(END,"Habitaciones\nReservadas:")
-            txt.config(state="disabled")
             global fen
             global fsa
             fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
@@ -160,15 +162,20 @@ def Alojamiento():
             if fsa<fen or fsa<actual or fen<actual:
                 messagebox.showerror("Fechas invalidas","Las fechas ingresadas no son validas")
             else:
+                txt.config(state="normal")
+                txt.insert(END,"Habitaciones\nReservadas:")
+                txt.config(state="disabled")
                 hadis=[]
                 for reservas in Almacenamiento.listaReservas:
-                    if (fe>reservas.getFechaSalida()) or (fs<reservas.getFechaEntrada()):
+                    if (fen>=reservas.getFechaSalida()) or (fsa<=reservas.getFechaEntrada()):
                         for habitaciones in reservas.getHabitaciones():
-                            hadis.append(habitaciones)
+                            if habitaciones not in hadis:
+                                hadis.append(habitaciones)
 
 
                 for habis in Almacenamiento.listaHabitacionesDisponibles:
-                    hadis.append(habis)
+                    if habis not in hadis:
+                        hadis.append(habis)
                 x=0.4
                 y=0.3
                 cont=0
@@ -186,16 +193,17 @@ def Alojamiento():
             messagebox.showerror("Sin Usuario","No hay usuario registrado")
         
     def reservar():
-        Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
-        Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
+        reserva=Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
+        factura=Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
         for i in listahabitaciones:
             if i in Almacenamiento.listaHabitacionesDisponibles:
                 Almacenamiento.listaHabitacionesDisponibles.remove(i)
 
+        messagebox.showinfo("Reserva realizada con exito",reserva)
         print(Almacenamiento.listaReservas)
         print(Almacenamiento.listaFacturas)
         print(Almacenamiento.listaHabitacionesDisponibles)
-        messagebox.showinfo("Reserva realizada", "Reserva realizada con exito")
+        messagebox.showinfo("Factura Asociada", factura)
         bienvenido()
 
     reiniciar()
@@ -222,7 +230,7 @@ def Alojamiento():
     fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
     fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
     fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(dosDigitos), "%S", "%P"))
+    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)
     txt=Text(frame2,state="disabled")
     txt.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
@@ -259,9 +267,50 @@ def Adicionales():
     reiniciar()
     buscador()
     frame3.place_forget()
+    def reservar():
+        messagebox.showinfo("Hola","Hola si funciono")
+
+    def buscar():
+        txt.config(state="normal")
+        txt.insert(END,"Está buscando\n")
+        txt.config(state="disabled")
+
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
+
+    w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
+    w.place(relheight=0.05, relwidth=1,rely=0.20)
+
+    
+    """
+    fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
+    fs.place(relheight=0.1, relwidth=0.2, rely=0.45, relx=0.02)
+    cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
+    cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)"""
+
+    Buscar=Button(frame2, text="Buscar", font=("Arial", 10), command=buscar)
+    Buscar.place(relheight=0.1, relwidth=0.2, rely=0.5, relx=0.8)
+
+    """fechaEntrada =Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
+    fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
+    fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
+    fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
+    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
+    personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
+    ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
+    ra.place(relheight=0.1, relwidth=0.2, rely=0.25, relx=0.05)
+    global txt
+    txt=Text(frame2,state="disabled")
+    txt.place(relheight=0.60, rely=0.35, relwidth=0.25, relx=0.02)
+
+    """adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
+    adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)"""
+
+    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
+
+    
 
 def Informacion():
     reiniciar()
@@ -436,8 +485,13 @@ habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
 c1=Almacenamiento.crearUsuario("Carlos","1",1,1)
 
 emp=Almacenamiento.crearEmpleado("Recepcion",0,0,"Recepcion")
+comida=Almacenamiento.crearServicio("Alimentacion",50000,"")
+masaje=Almacenamiento.crearServicio("Masaje",30000,"")
+transporte=Almacenamiento.crearServicio("Transporte",70000,"")
+
 print(Almacenamiento.listaHabitaciones)
 print(Almacenamiento.listaUsuarios)
+print(Almacenamiento.listaServicios)
 
 
 ventanaInicio.mainloop()
