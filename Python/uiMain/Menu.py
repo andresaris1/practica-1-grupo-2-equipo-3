@@ -26,7 +26,7 @@ def reiniciar():
 def bienvenido():
     frame3.place(relheight=1, relwidth=1)
     
-    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
+    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
 
