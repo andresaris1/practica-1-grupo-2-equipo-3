@@ -9,29 +9,65 @@ from datetime import datetime
 import functools
 
 
-
+"""Metodo Aplicacion crea un messagebox que se muestra a la hora de hacer clic en el boton
+   Aplicacion en el submeú  "Archivo" del menú de la applicacion"""
 def Aplicacion():
     messagebox.showinfo("Sistema de gestion del Hotel UN 2.0","Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)")
 
+"""Metodo Acercade: crea un messagebox que se muestra a la hora de hacer clic en el boton
+   "Acerca de.." en el submeú  "Ayuda" del menú de la aplicacion"""
 def Acercade():
     messagebox.showinfo("Integrantes","Este es el nuevo sistema de gestion del Hotel UN 2.0\n(Ahora con Interfaz Grafica)\nCreada como proyecto para la materia POO 2023-1s por:\n\nJuan José Lotero Florez\n\nCarolina Humanez Urrego\n\nSebastian Mendoza Gonzalez\n\nAndrés Felipe Arismendi Alzate\n\nMiguel Angel Quiceno Hincapie\n\nBest Team Ever")
 
+""""Metodo reiniciar: borra todo lo que hay en el frame2 para formarlo desde 0 cada vez que se selecciona
+    uno de los procesos que realiza la aplicacion """
 def reiniciar():
+    "Borrar todo lo que hay en el frame2"
     for widgets in frame2.winfo_children():
       widgets.destroy()
     
+    """Agrega el boton "Cancelar" utilizado en cada una de las ventanas de procesos"""
     Cancelar=Button(frame2, text="Cancelar", command=lambda:[bienvenido(),reiniciar()], font=("Arial", 14), relief=RAISED)
     Cancelar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.75)
 
+""""Metodo bienvenid: posiciona el frame3 para volver a la pantalla de inicio"""
 def bienvenido():
     frame3.place(relheight=1, relwidth=1)
     
-    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20), bg="light steel blue")
+    Presentacion=Label(frame3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion hotelera UN 3000 ", font=("Arial", 20), bg="light steel blue")
     Presentacion.place(relx=0.5, rely=0.5, anchor='center')
 
 
+#METODOS FUNCIONALES
 
+"""Metodo formarfecha: formatea entrys para que la entrada solo sea en el formato dd/mm/aaaa"""
+def formarfecha(texto):
+        """Comprueba que todo lo que se ingrese sean numeros, que el texto no exceda de los 10
+           carateres, a la vez que obliga a poner los "/" usados en el formato"""
+        if len(texto) > 10:
+            return False
+        fecha = []
+        for i, char in enumerate(texto):
+            if i in (2, 5):
+                fecha.append(char == "/")
+            else:
+                fecha.append(char.isdecimal())
+        return all(fecha)
+
+"""Metodo limitarCaracteres: limita la cantidad de caracteres que puede recibir un entry"""
+def limitarCaracteres(caracter, texto, digitos: int):
+        
+        if int(len(texto)) > int(digitos):
+            return False
+        return caracter.isdecimal()
+
+
+"""Metodo buscador: crea el buscador que se utiliza en la mayoria las paginas de procesos"""
 def buscador():
+
+    """Metodo encargado de buscar cliente y capturarlo en la variable con el mismo nombre
+       para realizar los procesos que se deseen hacer y necesiten un cliente, a la vez que
+       muestra los datos de este cliente en varios entry"""
     def Rellenar(Docu):
         global cliente
         cliente=Almacenamiento.buscarUsuario(Docu)
@@ -47,6 +83,12 @@ def buscador():
             Nom.insert(0, cliente.getNombre())
             Tel.insert(0, cliente.getTelefono())
             Cub.insert(0, cliente.get_cuenta_bancaria())
+            try:
+                txt.config(state="normal")
+                txt.insert(END,"Está buscando\n")
+                txt.config(state="disabled")
+            except NameError:
+                pass
         else:
             messagebox.showerror("Usuario no encontrado","Este usuario no está registrado en la base de datos")
         Nom.config(state="disabled")
@@ -54,7 +96,7 @@ def buscador():
         Cub.config(state="disabled")
         return cliente
 
-
+    """Crear todo lo que vemos en el formulario de busqueda y posicionarlo en el frame"""
     Documento=Label(frame2,text="No. Documento", font=("Arial", 10), anchor="w")
     Documento.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.05)
     Nombre=Label(frame2, text="Nombre", font=("Arial", 10), anchor="w")
@@ -76,10 +118,14 @@ def buscador():
     Tel.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.2)
     Cub=Entry(frame2)
     Cub.place(relheight=0.05, relwidth=0.25, rely=0.15, relx=0.65)
-
-
-
+    
+"""Metodo Registro: reinicia el frame2 con el metodo reiniciar, luego forma el formulario
+   necesario para crear un nuevo cliente y se dispara a la hora de seleccionar la opcion "registro"
+   de "consultas y procesos" """
 def Registro():
+    """Método registrarUsuarios: se encarga de hacer una comprobacion para verificar que el
+       usuario que se desea registrar, no esté en la base de datos, en caso de ser encontrado
+       se cancela el registro, en caso de que no, procede a registrarlo"""
     def registrarUsuario(nombre, id, telefono, cuentaBan):
         cliente=Almacenamiento.buscarUsuario(id)
         if cliente!=None:
@@ -91,12 +137,16 @@ def Registro():
         Nom.delete(0,END)
         Tel.delete(0,END)
         Cub.delete(0,END)
-
+    
+    """Reinicia el frame 2 usando "reiniciar" y quita la pantalla de inicio"""
     reiniciar()
     frame3.place_forget()
+
+    """Se posiciona el titulo y la descripcion de este proceso en especifico """
     Titulo.config(text="Registro de nuevos usuarios")
     Descripcion.config(text="Realiza el registro del nuevo cliente. Por favor complete los siguentes datos")
 
+    """Se forma todo el formulario de registro y se posiciona"""
     Documento=Label(frame2,text="No. Documento", font=("Arial", 13))
     Documento.place(relheight=0.125, relwidth=0.2, rely=0.10, relx=0.2)
     Nombre=Label(frame2, text="Nombre", font=("Arial", 13))
@@ -115,27 +165,21 @@ def Registro():
     Cub=Entry(frame2)
     Cub.place(relheight=0.0625, relwidth=0.3, rely=0.58, relx=0.45)
 
+    """Se crea y se posiciona el boton aceptar encargado de disparar el metodo 
+       de registrarUsuarios"""
     Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=lambda: registrarUsuario(Nom.get(), Doc.get(), Tel.get(), Cub.get()))
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
+"""Metodo Alojamiento: reinicia el frame2 con el metodo reiniciar, luego forma el formulario
+   necesario para realizar una nueva reserva de alojamiento
+   y se dispara a la hora de seleccionar la opcion "Reservar Alojamiento"
+   de "consultas y procesos" """
 def Alojamiento():
     listahabitaciones=[]
-    def formarfecha(texto):
-        if len(texto) > 10:
-            return False
-        fecha = []
-        for i, char in enumerate(texto):
-            if i in (2, 5):
-                fecha.append(char == "/")
-            else:
-                fecha.append(char.isdecimal())
-        return all(fecha)
-
-    def dosDigitos(caracter, texto):
-        if len(texto) > 2:
-            return False
-        return caracter.isdecimal()
     
+    """Metodo seleccionar: Envia la habitacion seleccionada con su boton a la lista
+       listahabitaciones, para luego usarla como parametro para crear una nueva reserva
+       a la vez que la pone en la lista al lado izquierdo donde veremos cuales se han reservado"""
     def seleccionar(num):
         txt.config(state="normal")
         for i in Almacenamiento.listaHabitaciones:
@@ -146,29 +190,49 @@ def Alojamiento():
                     txt.config(state="disabled")
                     break
 
+    """Metodo verificar: Se encarga de verificar que no haya errores en las fechas
+    en caso de no haberlas presenta los botones de las habitaciones disponbles"""
     def verificar():
         if cliente!=None:
-            txt.config(state="normal")
-            txt.insert(END,"Habitaciones\nReservadas:")
-            txt.config(state="disabled")
             global fen
             global fsa
-            fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
-            fsa=datetime.strptime(fechaSalida.get(), "%d/%m/%Y")
+            """Pasa las fechas ingresadas de str a tipo Date"""
+            try:
+                fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
+                fsa=datetime.strptime(fechaSalida.get(), "%d/%m/%Y")
+            except ValueError:
+                """En caso de que no se pueda, responde con la invalidacion de las fechas
+                   y reinicia los campos"""
+                messagebox.showerror("Error","Las fechas ingresadas no son validas")
+                fechaEntrada.delete(0,END)
+                fechaSalida.delete(0,END)
+                personas.delete(0,END)
             actual=datetime.now()
             cantidad=int(personas.get())
+            """Comprueba que la fecha de salida sea despues de la de entrada y que no sean anteriores
+               a la fecha actual"""
             if fsa<fen or fsa<actual or fen<actual:
                 messagebox.showerror("Fechas invalidas","Las fechas ingresadas no son validas")
             else:
+                txt.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
+                txt.config(state="normal")
+                txt.insert(END,"Habitaciones\nReservadas:")
+                txt.config(state="disabled")
                 hadis=[]
+
+                """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
+                   y en una lista que se llama habitaciones disponibles """
                 for reservas in Almacenamiento.listaReservas:
-                    if (fe>reservas.getFechaSalida()) or (fs<reservas.getFechaEntrada()):
+                    if (fen>=reservas.getFechaSalida()) or (fsa<=reservas.getFechaEntrada()):
                         for habitaciones in reservas.getHabitaciones():
-                            hadis.append(habitaciones)
-
-
+                            if habitaciones not in hadis:
+                                hadis.append(habitaciones)
                 for habis in Almacenamiento.listaHabitacionesDisponibles:
-                    hadis.append(habis)
+                    if habis not in hadis:
+                        hadis.append(habis)
+
+
+                """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas""" 
                 x=0.4
                 y=0.3
                 cont=0
@@ -184,30 +248,41 @@ def Alojamiento():
 
         else:
             messagebox.showerror("Sin Usuario","No hay usuario registrado")
-        
+    
+    """Metodo reservar: crea un objeto de la clase reserva, a esta le asocia un objeto de la clase
+       factura y en caso de poderse realizar sin problemas la reserva nos muestra la informacion
+       de la misma y la factura generada, este método se dispara cuando se da click en el boton 
+       "Aceptar" """
     def reservar():
-        Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
-        Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
+        reserva=Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
+        factura=Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
         for i in listahabitaciones:
             if i in Almacenamiento.listaHabitacionesDisponibles:
                 Almacenamiento.listaHabitacionesDisponibles.remove(i)
 
+        messagebox.showinfo("Reserva realizada con exito",reserva)
         print(Almacenamiento.listaReservas)
         print(Almacenamiento.listaFacturas)
         print(Almacenamiento.listaHabitacionesDisponibles)
-        messagebox.showinfo("Reserva realizada", "Reserva realizada con exito")
+        messagebox.showinfo("Factura Asociada", factura)
+        "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
         bienvenido()
 
+    """Reinicia el frame 2 usando "reiniciar", posiciona el buscador y quita la pantalla de inicio"""
     reiniciar()
     buscador()
     frame3.place_forget()
 
+
+    """Se posiciona el titulo y la descripcion de este proceso en especifico """
     Titulo.config(text="Reserva nueva de alojamiento")
     Descripcion.config(text="Realiza una nueva reserva de alojamiento")
 
     w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
     w.place(relheight=0.05, relwidth=1,rely=0.20)
 
+    """Se forma todos los componentes necesarios para realizar una reserva de alojaminento
+       y se posicionan"""
     fe=Label(frame2, text="Fecha de entrada", font=("Arial", 10), anchor="w")
     fe.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
     fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
@@ -222,14 +297,15 @@ def Alojamiento():
     fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
     fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
     fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(dosDigitos), "%S", "%P"))
+    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
     personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)
     txt=Text(frame2,state="disabled")
-    txt.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
 
     adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
     adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)
 
+    """Se crea y se posiciona el boton aceptar encargado de disparar el metodo 
+       de reservar"""
     Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
@@ -238,57 +314,11 @@ def Tour():
     buscador()
     frame3.place_forget()
     
-    Titulo.config(text="Reservar un Tour")
+    Titulo.config(text="Reserva un Tour")
     Descripcion.config(text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo")
 
-    def mostrarImagen(nombre_destino):
-        imagen_destino = None
-        for destino in Destinos:
-            if destino.nombre == nombre_destino:
-                imagen_destino = destino.imagen
-                break
-
-        if imagen_destino:
-            # Aquí puedes realizar la lógica para mostrar la imagen
-            print(f"Mostrando imagen de {nombre_destino}: {imagen_destino}")
-        else:
-            print("No se encontró la imagen del destino")
-
-    def cargarDestinos():
-        for i, destino in enumerate(Destinos):
-            if destino != Destinos.COMBO_COMPLETO:
-                imagen = tk.PhotoImage(Image.open(destino.imagen))
-                boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
-                boton.config(image=imagen)
-                boton.image = imagen
-                boton.place(relx=0.05, rely=0.35 + (i * 0.225), relwidth=0.25, relheight=0.3)
-
-                nombre_label = Label(frame2, text=destino.nombre, font=("Arial", 12))
-                nombre_label.place(relx=0.375, rely=0.375 + (i * 0.225), relwidth=0.25, relheight=0.075)
-
-                valor_label = Label(frame2, text=destino.valor, font=("Arial", 12))
-                valor_label.place(relx=0.375, rely=0.425 + (i * 0.225), relwidth=0.25, relheight=0.075)
-
-        # Botón Combo Completo
-        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
-        boton_combo.place(relx=0.05, rely=0.35 + (len(Destinos) * 0.225), relwidth=0.25, relheight=0.3)
-
-    ventana = Tk()
-    ventana.geometry("400x200")
-
-    frame1 = Frame(ventana, bg="gray")
-    frame1.place(relx=0, rely=0, relwidth=1, relheight=0.1)
-
-    frame2 = Frame(ventana, bg="white")
-    frame2.place(relx=0, rely=0.1, relwidth=1, relheight=0.9)
-
-    titulo_label = Label(frame1, text="DESTINOS TURÍSTICOS", font=("Arial", 18), bg="gray")
-    titulo_label.pack()
-
-    cargarDestinos()
-
-    ventana.mainloop()
-
+    info=Label(frame2,text="Aqui desarrollen su funcionalidad2", font=("Arial", 20))
+    info.place(relx=0.5, rely=0.5, anchor='center')
 
 def Eventos():
     reiniciar()
@@ -305,9 +335,47 @@ def Adicionales():
     reiniciar()
     buscador()
     frame3.place_forget()
+    def reservar():
+        messagebox.showinfo("Hola","Hola si funciono")
+
+    def buscar():
+        txt.config(state="normal")
+        txt.insert(END,"Está buscando\n")
+        txt.config(state="disabled")
+
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
+
+    w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
+    w.place(relheight=0.05, relwidth=1,rely=0.20)
+
+    
+    """
+    fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
+    fs.place(relheight=0.1, relwidth=0.2, rely=0.45, relx=0.02)
+    cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
+    cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)"""
+
+    """fechaEntrada =Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
+    fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
+    fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
+    fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
+    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
+    personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
+    ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
+    ra.place(relheight=0.1, relwidth=0.2, rely=0.25, relx=0.05)
+    global txt
+    txt=Text(frame2,state="disabled")
+    txt.place(relheight=0.60, rely=0.35, relwidth=0.25, relx=0.02)
+
+    """adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
+    adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)"""
+
+    Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
+
+    
 
 def Informacion():
     reiniciar()
@@ -359,7 +427,7 @@ def Carrusel(event):
 
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
-ventanaInicio.title ("Sistema de gestion hotelera")
+ventanaInicio.title ("del Hotel UN 2.0")
 ventanaInicio.geometry ("1280x720")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
@@ -399,7 +467,7 @@ frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 #Zona P3 Bienvenidad
-Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0 ", font=("Arial", 20))
+Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0", font=("Arial", 20))
 Bienvenida.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.7, anchor='center')
 
 #Zona P4 Carrusel de imagnes y Boton de incio
@@ -482,8 +550,13 @@ habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
 c1=Almacenamiento.crearUsuario("Carlos","1",1,1)
 
 emp=Almacenamiento.crearEmpleado("Recepcion",0,0,"Recepcion")
+comida=Almacenamiento.crearServicio("Alimentacion",50000,"")
+masaje=Almacenamiento.crearServicio("Masaje",30000,"")
+transporte=Almacenamiento.crearServicio("Transporte",70000,"")
+
 print(Almacenamiento.listaHabitaciones)
 print(Almacenamiento.listaUsuarios)
+print(Almacenamiento.listaServicios)
 
 
 ventanaInicio.mainloop()
