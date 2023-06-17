@@ -314,7 +314,7 @@ def Carrusel(event):
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("Sistema de gestion hotelera")
-ventanaInicio.geometry ("500x500")
+ventanaInicio.geometry ("1280x720")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar=Menu(ventanaInicio)
