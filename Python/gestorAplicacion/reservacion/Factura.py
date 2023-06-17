@@ -25,7 +25,6 @@ class Factura():
             self._items = listaItems
             self._valorTotal=self.valorTotal()
             self._estado = 0
-            #self._destinos = destinos
             self._concepto = concepto
 
             self._usuario.lista_facturas.append(self)
