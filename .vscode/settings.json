@@ -5,6 +5,7 @@
     "python.formatting.provider": "none",
     "python.analysis.extraPaths": [
         "./Python/gestorAplicacion/modelos",
-        "./Python/gestorAplicacion/reservacion"
+        "./Python/gestorAplicacion/reservacion",
+        "./Python/baseDatos"
     ]
 }
