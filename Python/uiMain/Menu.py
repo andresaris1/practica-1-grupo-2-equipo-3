@@ -783,7 +783,7 @@ Descripciones = [
     "1.Estudiante de ing. en sistemas e informatica en la universidad Nacional",
     "2.Estudiante de ing. en sistemas e informatica en la universidad Nacional",
     "3.Estudiante de ciencias de la computación en la universidad Nacional",
-    "4.Estudiante de ing. en sistemas e informatica en la universidad Nacional",
+    "4.Estudiante de ing. en sistemas e informatica en la universidad Nacional de dia, de noche dibujante Furro.",
     "5.Estudiante de ciencias de la computacion en la universidad Nacional",
 ]
 Nombre = Label(
