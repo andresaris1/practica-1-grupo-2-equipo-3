@@ -444,33 +444,30 @@ def Cerrartodo():
 
 def Carrusel(event):
     global indiceImagen
-    global listImage
+    listImage
 
-    if indiceImagen < 4:
-        indiceImagen += 1
-    else:
-        indiceImagen = 1
+    if indiceImagen == 5:
+        indiceImagen = 0
 
     nextImagen=listImage[indiceImagen]
     botonCarrusel.config(image=nextImagen)
+    indiceImagen += 1
 
 def descripciones(event):
     global persona
 
-    if persona < 4:
-        persona += 1
-    else:
-        persona = 1
-
-    foto=listaFotos[persona]
+    if persona == 5:
+        persona = 0
+        
     nombre=Nombres[persona]
     descripcion=Descripciones[persona]
     Nombre.config(text=nombre)
     Descripcionactual.config(text=descripcion)
-    foto1.config(image=foto)
-    foto2.config(image=foto)
-    foto3.config(image=foto)
-    foto4.config(image=foto)
+    foto1.config(image=listaFotos1[persona])
+    foto2.config(image=listaFotos2[persona])
+    foto3.config(image=listaFotos3[persona])
+    foto4.config(image=listaFotos4[persona])
+    persona+=1
     
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
@@ -483,8 +480,8 @@ ventanaInicio.config(menu=menuBar)
 
 menuInicio=Menu(menuBar, tearoff=0)
 menuBar.add_cascade(label="Inicio", menu=menuInicio)
-menuInicio.add_command(label="Salir",)
 menuInicio.add_command(label="Descripción",)
+menuInicio.add_command(label="Salir", command=Cerrartodo)
 
 menuInicio.config(activebackground="sienna1")
 
@@ -513,27 +510,68 @@ frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
 
 #Zona P6 Fotografias
-pathFJJ1=os.path.join(os.path.dirname(__file__), "img/1.png")
-pathFJJ2=os.path.join(os.path.dirname(__file__), "img/2.png")
-pathFJJ3=os.path.join(os.path.dirname(__file__), "img/3.png")
-pathFJJ4=os.path.join(os.path.dirname(__file__), "img/4.png")
-pathFJJ5=os.path.join(os.path.dirname(__file__), "img/5.png")
 
+"""Se suben las fotos de Juan José"""
+pathFJJ1=os.path.join(os.path.dirname(__file__), "img/JJ1.png")
+pathFJJ2=os.path.join(os.path.dirname(__file__), "img/JJ2.png")
+pathFJJ3=os.path.join(os.path.dirname(__file__), "img/JJ3.png")
+pathFJJ4=os.path.join(os.path.dirname(__file__), "img/JJ4.png")
 imgFJJ1=tk.PhotoImage(file=pathFJJ1)
 imgFJJ2=tk.PhotoImage(file=pathFJJ2)
 imgFJJ3=tk.PhotoImage(file=pathFJJ3)
 imgFJJ4=tk.PhotoImage(file=pathFJJ4)
-imgFJJ5=tk.PhotoImage(file=pathFJJ5)
 
-listaFotos=[imgFJJ1, imgFJJ2, imgFJJ3, imgFJJ4, imgFJJ5]
-colores=["red","pink","blue","green","yellow"]
-foto1=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+"""Se suben las fotos de Carolina"""
+pathC1=os.path.join(os.path.dirname(__file__), "img/C1.png")
+pathC2=os.path.join(os.path.dirname(__file__), "img/C2.png")
+pathC3=os.path.join(os.path.dirname(__file__), "img/C3.png")
+pathC4=os.path.join(os.path.dirname(__file__), "img/C4.png")
+imgC1=tk.PhotoImage(file=pathC1)
+imgC2=tk.PhotoImage(file=pathC2)
+imgC3=tk.PhotoImage(file=pathC3)
+imgC4=tk.PhotoImage(file=pathC4)
+
+"""Se suben las fotos de Sebastian"""
+pathS1=os.path.join(os.path.dirname(__file__), "img/S1.png")
+pathS2=os.path.join(os.path.dirname(__file__), "img/S2.png")
+pathS3=os.path.join(os.path.dirname(__file__), "img/S3.png")
+pathS4=os.path.join(os.path.dirname(__file__), "img/S4.png")
+imgS1=tk.PhotoImage(file=pathS1)
+imgS2=tk.PhotoImage(file=pathS2)
+imgS3=tk.PhotoImage(file=pathS3)
+imgS4=tk.PhotoImage(file=pathS4)
+
+"""Se suben las fotos de Andres"""
+pathA1=os.path.join(os.path.dirname(__file__), "img/A1.png")
+pathA2=os.path.join(os.path.dirname(__file__), "img/A2.png")
+pathA3=os.path.join(os.path.dirname(__file__), "img/A3.png")
+pathA4=os.path.join(os.path.dirname(__file__), "img/A4.png")
+imgA1=tk.PhotoImage(file=pathA1)
+imgA2=tk.PhotoImage(file=pathA2)
+imgA3=tk.PhotoImage(file=pathA3)
+imgA4=tk.PhotoImage(file=pathA4)
+
+"""Se suben las fotos de Miguel"""
+pathM1=os.path.join(os.path.dirname(__file__), "img/M1.png")
+pathM2=os.path.join(os.path.dirname(__file__), "img/M2.png")
+pathM3=os.path.join(os.path.dirname(__file__), "img/M3.png")
+pathM4=os.path.join(os.path.dirname(__file__), "img/M4.png")
+imgM1=tk.PhotoImage(file=pathM1)
+imgM2=tk.PhotoImage(file=pathM2)
+imgM3=tk.PhotoImage(file=pathM3)
+imgM4=tk.PhotoImage(file=pathM4)
+
+listaFotos1=[imgFJJ1, imgC1, imgS1, imgA1, imgM1]
+listaFotos2=[imgFJJ2, imgC2, imgS2, imgA2, imgM2]
+listaFotos3=[imgFJJ3, imgC3, imgS3, imgA3, imgM3]
+listaFotos4=[imgFJJ4, imgC4, imgS4, imgA4, imgM4]
+foto1=Label(frameP6,text="", font=("Arial Bold", 20),anchor="center",bg="white",image=imgFJJ1)
 foto1.place(relheight=0.425, relwidth=0.425, rely=0.05, relx=0.525)
-foto2=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto2=Label(frameP6,text="", font=("Arial Bold", 20),anchor="center",bg="white",image=imgFJJ2)
 foto2.place(relheight=0.425, relwidth=0.425, rely=0.05, relx=0.05)
-foto3=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto3=Label(frameP6,text="", font=("Arial Bold", 20),anchor="center",bg="white",image=imgFJJ3)
 foto3.place(relheight=0.425, relwidth=0.425, rely=0.525, relx=0.05)
-foto4=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto4=Label(frameP6,text="", font=("Arial Bold", 20),anchor="center",bg="white",image=imgFJJ4)
 foto4.place(relheight=0.425, relwidth=0.425, rely=0.525, relx=0.525)
 
 
@@ -543,7 +581,7 @@ Nombres=["Juan José Lotero Florez","Carolina Humanez Urrego","Sebastian Mendoza
 Descripciones=["1.Estudiante de ing. en sistemas e informatica en la universidad Nacional","2.Estudiante de ing. en sistemas e informatica en la universidad Nacional","3.Estudiante de ciencias de la computación en la universidad Nacional","4.Estudiante de ing. en sistemas e informatica en la universidad Nacional","5.Estudiante de ciencias de la computacion en la universidad Nacional"]
 Nombre=Label(frameP5,text="Juan José Lotero Florez", font=("Arial Bold", 20),anchor="w")
 Nombre.place(relheight=0.5, relwidth=1, rely=0, relx=0)
-Descripcionactual=Label(frameP5,text="1.Estudiante de ing. en sistemas e informatica en la universidad Nacional", font=("Arial", 12),anchor="nw")
+Descripcionactual=Label(frameP5,wraplength=400, text="1.Estudiante de ing. en sistemas e informatica en la universidad Nacional", font=("Arial", 12),anchor="nw")
 Descripcionactual.place(relheight=0.5, relwidth=1,rely=0.5, relx=0)
 Nombre.bind("<Button-1>",descripciones)
 Descripcionactual.bind("<Button-1>",descripciones)
@@ -568,7 +606,7 @@ imgDef=tk.PhotoImage(file=pathImgDef)
 listImage=[imgDef, imgHotel, imgPiscina, imgDestino1, imgDestino2]
 indiceImagen=0
 
-botonCarrusel=Button(frameP4,image=imgHotel, command=lambda:[AbrirFuncional(),bienvenido()])
+botonCarrusel=Button(frameP4,image=imgDef, command=lambda:[AbrirFuncional(),bienvenido()])
 botonCarrusel.pack(expand=True)
 botonCarrusel.bind("<Enter>",Carrusel)
 
