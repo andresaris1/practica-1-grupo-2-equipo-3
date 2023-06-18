@@ -4,10 +4,11 @@ from tkinter import messagebox
 import os
 import sys
 from tkinter.ttk import Combobox
-sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
-from Almacenamiento import *
 from datetime import datetime
 import functools
+
+sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
+from Almacenamiento import *
 
 
 """Metodo Aplicacion crea un messagebox que se muestra a la hora de hacer clic en el boton
