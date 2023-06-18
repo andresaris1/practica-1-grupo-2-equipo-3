@@ -5,8 +5,7 @@ import os
 import sys
 from tkinter.ttk import Combobox
 
-sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
-from Almacenamiento import *
+
 from datetime import datetime
 import functools
 
