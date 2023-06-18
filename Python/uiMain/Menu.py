@@ -187,61 +187,63 @@ def Alojamiento():
     """Metodo verificar: Se encarga de verificar que no haya errores en las fechas
     en caso de no haberlas presenta los botones de las habitaciones disponbles"""
     def verificar():
-        if cliente!=None:
-            global fen
-            global fsa
-            """Pasa las fechas ingresadas de str a tipo Date"""
-            try:
-                fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
-                fsa=datetime.strptime(fechaSalida.get(), "%d/%m/%Y")
-            except ValueError:
-                """En caso de que no se pueda, responde con la invalidacion de las fechas
-                   y reinicia los campos"""
-                messagebox.showerror("Error","Las fechas ingresadas no son validas")
-                fechaEntrada.delete(0,END)
-                fechaSalida.delete(0,END)
-                personas.delete(0,END)
-            actual=datetime.now()
-            cantidad=int(personas.get())
-            """Comprueba que la fecha de salida sea despues de la de entrada y que no sean anteriores
-               a la fecha actual"""
-            if fsa<fen or fsa<actual or fen<actual:
-                messagebox.showerror("Fechas invalidas","Las fechas ingresadas no son validas")
+        try:
+            if cliente!=None:
+                global fen
+                global fsa
+                """Pasa las fechas ingresadas de str a tipo Date"""
+                try:
+                    fen=datetime.strptime(fechaEntrada.get(), "%d/%m/%Y")
+                    fsa=datetime.strptime(fechaSalida.get(), "%d/%m/%Y")
+                except ValueError:
+                    """En caso de que no se pueda, responde con la invalidacion de las fechas
+                       y reinicia los campos"""
+                    messagebox.showerror("Error","Las fechas ingresadas no son validas")
+                    fechaEntrada.delete(0,END)
+                    fechaSalida.delete(0,END)
+                    personas.delete(0,END)
+                actual=datetime.now()
+                cantidad=int(personas.get())
+                """Comprueba que la fecha de salida sea despues de la de entrada y que no sean anteriores
+                  a la fecha actual"""
+                if fsa<fen or fsa<actual or fen<actual:
+                    messagebox.showerror("Fechas invalidas","Las fechas ingresadas no son validas")
+                else:
+                    ra=Label(frame2, text="Habitaciones Reservadas", font=("Arial", 10), anchor="center")
+                    ra.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
+                    txt.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
+                    hadis=[]
+
+                    """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
+                       y en una lista que se llama habitaciones disponibles """
+                    for reservas in Almacenamiento.listaReservas:
+                        if (fen>=reservas.getFechaSalida()) or (fsa<=reservas.getFechaEntrada()):
+                            for habitaciones in reservas.getHabitaciones():
+                                if habitaciones not in hadis:
+                                    hadis.append(habitaciones)
+                    for habis in Almacenamiento.listaHabitacionesDisponibles:
+                        if habis not in hadis:
+                            hadis.append(habis)
+
+
+                    """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas""" 
+                    x=0.4
+                    y=0.3
+                    cont=0
+                    for i in hadis:
+                        boton=Button(frame2, text=i.getNombre(), font=("Arial", 14), relief=RAISED, command=functools.partial(seleccionar, i.getNumero()))
+                        boton.place(relheight=0.1, relwidth=0.1, rely=y, relx=x)
+                        cont+=1
+                        x+=0.15
+                        if cont==2:
+                            cont=0
+                            x=0.4
+                            y+=0.15
+
             else:
-                ra=Label(frame2, text="Habitaciones Reservadas", font=("Arial", 10), anchor="center")
-                ra.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
-                txt.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
-                hadis=[]
-
-                """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
-                   y en una lista que se llama habitaciones disponibles """
-                for reservas in Almacenamiento.listaReservas:
-                    if (fen>=reservas.getFechaSalida()) or (fsa<=reservas.getFechaEntrada()):
-                        for habitaciones in reservas.getHabitaciones():
-                            if habitaciones not in hadis:
-                                hadis.append(habitaciones)
-                for habis in Almacenamiento.listaHabitacionesDisponibles:
-                    if habis not in hadis:
-                        hadis.append(habis)
-
-
-                """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas""" 
-                x=0.4
-                y=0.3
-                cont=0
-                for i in hadis:
-                    boton=Button(frame2, text=i.getNombre(), font=("Arial", 14), relief=RAISED, command=functools.partial(seleccionar, i.getNumero()))
-                    boton.place(relheight=0.1, relwidth=0.1, rely=y, relx=x)
-                    cont+=1
-                    x+=0.15
-                    if cont==2:
-                        cont=0
-                        x=0.4
-                        y+=0.15
-
-        else:
+                messagebox.showerror("Sin Usuario","No hay usuario registrado")
+        except NameError:
             messagebox.showerror("Sin Usuario","No hay usuario registrado")
-    
     """Metodo reservar: crea un objeto de la clase reserva, a esta le asocia un objeto de la clase
        factura y en caso de poderse realizar sin problemas la reserva nos muestra la informacion
        de la misma y la factura generada, este método se dispara cuando se da click en el boton 
