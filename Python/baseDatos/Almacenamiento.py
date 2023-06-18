@@ -27,14 +27,37 @@ class Almacenamiento():
     listaServiciosExternos = []
     listaHabitacionesDisponibles = []
 
+
     #Metodos de serializar y deserializar
     @classmethod
     def Serializar(cls):
-        path = os.path.join(os.path.dirname(__file__), "temp/usuario.txt")
-        fileUsuarios=open(path , "wb")
+        print("METODO SERIALIZAR")
+
+        pathUsuarios = os.path(os.path.dirname(__file__), "temp/usuarios.txt")
+        pathEmpleados = os.path(os.path.dirname(__file__), "temp/empleados.txt")    
+        pathHabitaciones = os.path(os.path.dirname(__file__), "temp/habitaciones.txt")    
+        pathLugares = os.path(os.path.dirname(__file__), "temp/lugares.txt")
+        pathReservas = os.path(os.path.dirname(__file__), "temp/reservas.txt")
+        pathEventos = os.path(os.path.dirname(__file__), "temp/eventos.txt")    
+        pathServicios = os.path(os.path.dirname(__file__), "temp/servicios.txt")    
+        pathFacturas = os.path(os.path.dirname(__file__), "temp/facturas.txt")
+        pathServiciosExternos = os.path(os.path.dirname(__file__), "temp/serviciosExternos.txt")
+        
+        fileUsuarios=open(pathUsuarios , "wb")
         pickle.dump(Almacenamiento.listaUsuarios, fileUsuarios)
-        print("Metodo serializar")
-        fileUsuarios.close()
+        fileUsuarios.close()        
+
+        fileEmpleados=open(pathEmpleados , "wb")
+        pickle.dump(Almacenamiento.listaEmpleados, fileEmpleados)
+        fileEmpleados.close() 
+
+        fileHabitaciones = open(pathHabitaciones , "wb")
+        pickle.dump(Almacenamiento.listaHabitaciones, fileHabitaciones)
+        fileHabitaciones.close()
+
+        fileLugares = open(pathLugares , "wb")
+        pickle.dump(Almacenamiento.listaLugares, fileLugares)
+        fileLugares.close()
     
     @classmethod
     def Deserializar(cls):
