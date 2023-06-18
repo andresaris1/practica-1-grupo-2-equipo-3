@@ -454,7 +454,19 @@ def Carrusel(event):
     nextImagen=listImage[indiceImagen]
     botonCarrusel.config(image=nextImagen)
 
+def descripciones(event):
+    global persona
 
+    if persona < 4:
+        persona += 1
+    else:
+        persona = 1
+
+    nombre=Nombres[persona]
+    descripcion=Descripciones[persona]
+    Nombre.config(text=nombre)
+    Descripcionactual.config(text=descripcion)
+    
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("del Hotel UN 2.0")
@@ -478,11 +490,10 @@ ventanaInicio.columnconfigure(0, weight=1)
 ventanaInicio.columnconfigure(1, weight=1)
 
 frame1 = Frame(ventanaInicio, bg="light steel blue", borderwidth=1, relief="solid")
-frame1.grid(row=0, column=0, sticky="nsew", padx=3)
+frame1.place(relheight=1, relwidth=0.5, rely=0, relx=0)
 
 frame2 = Frame(ventanaInicio, bg="light steel blue",borderwidth=1, relief="solid")
-frame2.grid(row=0, column=1, sticky="nsew", padx=3)
-
+frame2.place(relheight=1, relwidth=0.5, rely=0, relx=0.5)
 
 frameP3=Frame(frame1, bg="white", height=200, width=200, borderwidth=1, relief="solid")
 frameP3.pack(side="top", fill="x", padx=3, pady=3)
@@ -495,6 +506,16 @@ frameP5.pack(side="top", fill="x", padx=3, pady=3)
 
 frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="solid")
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
+#Zona P5 Autobiografia
+persona=0
+Nombres=["Juan José Lotero Florez","Carolina Humanez Urrego","Sebastian Mendoza Gonzalez","Andrés Felipe Arismendi Alzate","Miguel Angel Quiceno Hincapie"]
+Descripciones=["1.Estudiante de ing. en sistemas e informatica en la universidad Nacional","2.Estudiante de ing. en sistemas e informatica en la universidad Nacional","3.Estudiante de ciencias de la computación en la universidad Nacional","4.Estudiante de ing. en sistemas e informatica en la universidad Nacional","5.Estudiante de ciencias de la computacion en la universidad Nacional"]
+Nombre=Label(frameP5,text="Juan José Lotero Florez", font=("Arial Bold", 20),anchor="w")
+Nombre.place(relheight=0.5, relwidth=1, rely=0, relx=0)
+Descripcionactual=Label(frameP5,text="1.Estudiante de ing. en sistemas e informatica en la universidad Nacional", font=("Arial", 12),anchor="nw")
+Descripcionactual.place(relheight=0.5, relwidth=1,rely=0.5, relx=0)
+Nombre.bind("<Button-1>",descripciones)
+Descripcionactual.bind("<Button-1>",descripciones)
 
 #Zona P3 Bienvenidad
 Bienvenida=Label(frameP3,text="¡Bienevenido! \n Este es el nuevo sistema\n de gestion del Hotel UN 2.0", font=("Arial", 20))
