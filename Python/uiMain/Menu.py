@@ -462,15 +462,20 @@ def descripciones(event):
     else:
         persona = 1
 
+    foto=listaFotos[persona]
     nombre=Nombres[persona]
     descripcion=Descripciones[persona]
     Nombre.config(text=nombre)
     Descripcionactual.config(text=descripcion)
+    foto1.config(image=foto)
+    foto2.config(image=foto)
+    foto3.config(image=foto)
+    foto4.config(image=foto)
     
 #CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title ("del Hotel UN 2.0")
-ventanaInicio.geometry ("1280x720")
+ventanaInicio.geometry ("800x600")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar=Menu(ventanaInicio)
@@ -506,6 +511,32 @@ frameP5.pack(side="top", fill="x", padx=3, pady=3)
 
 frameP6=Frame(frame2, bg="white", height=200, width=200, borderwidth=1, relief="solid")
 frameP6.pack(expand=True, fill="both", padx=3, pady=3)
+
+#Zona P6 Fotografias
+pathFJJ1=os.path.join(os.path.dirname(__file__), "img/1.png")
+pathFJJ2=os.path.join(os.path.dirname(__file__), "img/2.png")
+pathFJJ3=os.path.join(os.path.dirname(__file__), "img/3.png")
+pathFJJ4=os.path.join(os.path.dirname(__file__), "img/4.png")
+pathFJJ5=os.path.join(os.path.dirname(__file__), "img/5.png")
+
+imgFJJ1=tk.PhotoImage(file=pathFJJ1)
+imgFJJ2=tk.PhotoImage(file=pathFJJ2)
+imgFJJ3=tk.PhotoImage(file=pathFJJ3)
+imgFJJ4=tk.PhotoImage(file=pathFJJ4)
+imgFJJ5=tk.PhotoImage(file=pathFJJ5)
+
+listaFotos=[imgFJJ1, imgFJJ2, imgFJJ3, imgFJJ4, imgFJJ5]
+colores=["red","pink","blue","green","yellow"]
+foto1=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto1.place(relheight=0.425, relwidth=0.425, rely=0.05, relx=0.525)
+foto2=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto2.place(relheight=0.425, relwidth=0.425, rely=0.05, relx=0.05)
+foto3=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto3.place(relheight=0.425, relwidth=0.425, rely=0.525, relx=0.05)
+foto4=Label(frameP6,text="", font=("Arial Bold", 20),anchor="w",bg="red",image=imgFJJ1)
+foto4.place(relheight=0.425, relwidth=0.425, rely=0.525, relx=0.525)
+
+
 #Zona P5 Autobiografia
 persona=0
 Nombres=["Juan José Lotero Florez","Carolina Humanez Urrego","Sebastian Mendoza Gonzalez","Andrés Felipe Arismendi Alzate","Miguel Angel Quiceno Hincapie"]
