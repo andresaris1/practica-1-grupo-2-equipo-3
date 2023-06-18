@@ -207,10 +207,9 @@ def Alojamiento():
             if fsa<fen or fsa<actual or fen<actual:
                 messagebox.showerror("Fechas invalidas","Las fechas ingresadas no son validas")
             else:
-                txt.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
-                txt.config(state="normal")
-                txt.insert(END,"Habitaciones\nReservadas:")
-                txt.config(state="disabled")
+                ra=Label(frame2, text="Habitaciones Reservadas", font=("Arial", 10), anchor="center")
+                ra.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
+                txt.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
                 hadis=[]
 
                 """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
@@ -341,8 +340,8 @@ def Adicionales():
                         txt.insert(END,"\n----------------------\n")
                 txt.config(state="disabled")
                 txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
-                txt2.place(relheight=0.4, rely=0.3, relwidth=0.25, relx=0.7)
-                ra.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
+                ra.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
+                txt2.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
                 Buscar.place_forget()
             else:
                 messagebox.showerror("Error","No hay usuario que buscar por else")
@@ -373,6 +372,7 @@ def Adicionales():
     ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
     txt=Text(frame2,state="disabled")
     txt2=Text(frame2,state="disabled")
+    ra=Label(frame2, text="Servicios Tomados", font=("Arial", 10), anchor="center")
     Buscar=Button(frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar)
     Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
 
