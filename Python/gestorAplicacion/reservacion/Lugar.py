@@ -3,8 +3,8 @@ from Servicio import Servicio
 
 class Lugar(Servicio):
     
-    def __init__(self,nombre,descripcion,numero,capacidad):
-        valor=self.valorSegunTipo()
+    def __init__(self,nombre,descripcion,valor,numero,capacidad):
+        valor=valor
         super().__init__(nombre, valor, descripcion)
         self._capacidad=capacidad
         self._numero=numero

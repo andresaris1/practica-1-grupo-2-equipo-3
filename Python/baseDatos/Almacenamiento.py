@@ -56,7 +56,8 @@ class Almacenamiento():
         return usuario         
 
     def crearHabitacion(nombre:str,descripcion,numero,capacidad):
-        habitacion=Lugar(nombre,descripcion,numero,capacidad)
+        valor=Lugar.valorSegunTipo(descripcion)
+        habitacion=Lugar(nombre,descripcion,valor,numero,capacidad)
         Almacenamiento.listaHabitaciones.append(habitacion)
         Almacenamiento.listaHabitacionesDisponibles.append(habitacion)
 
