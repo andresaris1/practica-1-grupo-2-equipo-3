@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import os
 import sys
+from tkinter.ttk import Combobox
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 from Almacenamiento import *
 from datetime import datetime
@@ -253,9 +254,6 @@ def Alojamiento():
                 Almacenamiento.listaHabitacionesDisponibles.remove(i)
 
         messagebox.showinfo("Reserva realizada con exito",reserva)
-        print(Almacenamiento.listaReservas)
-        print(Almacenamiento.listaFacturas)
-        print(Almacenamiento.listaHabitacionesDisponibles)
         messagebox.showinfo("Factura Asociada", factura)
         "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
         bienvenido()
@@ -323,12 +321,39 @@ def Eventos():
     info=Label(frame2,text="Aqui desarrollen su funcionalidad3", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor='center')
 
+
+mensaje=None
 def Adicionales():
+
     reiniciar()
     buscador()
     frame3.place_forget()
+    servicios=[]
     def reservar():
-        messagebox.showinfo("Hola","Hola si funciono")
+        factura=Almacenamiento.crearFactura(cliente,emp,servicios,"Adicion de servicios")
+        mensaje=txt2.get(1.0,END)
+        messagebox.showinfo("Adicion realizada con exito",("Se adicionaron: \n"+mensaje))
+        messagebox.showinfo("Factura Asociada", factura)
+        "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
+        bienvenido()
+
+    def agregar(event):
+        txt2.config(state="normal")
+        txt2.insert(END, opciones.get()+":\n")
+        txt2.config(state="disabled")
+        for i in Almacenamiento.listaServicios:
+            if opciones.get()==i.getNombre():
+                servicios.append(i)
+        txt3.config(state="normal")
+    
+    def agregardescripcion(event):
+        txt2.config(state="normal")
+        texto= txt3.get(1.0,END)+"\n"
+        txt2.insert(END, texto)
+        txt2.config(state="disabled")
+        servicios[-1].setDescripcion(txt3.get(1.0,END))
+        txt3.delete(1.0,END)
+        txt3.config(state="disabled")
 
     def buscar():
         try:
@@ -338,17 +363,22 @@ def Adicionales():
                     if cliente==reservas.getCliente():
                         txt.insert(END,reservas)
                         txt.insert(END,"\n----------------------\n")
-                txt.config(state="disabled")
+                txt.config(state="normal")
                 txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
-                ra.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
+                ra1.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
+                ra2.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
                 txt2.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
+                ra3.place(relheight=0.1,relwidth=0.25,relx=0.4, rely=0.25)
+                ra4.place(relheight=0.1,relwidth=0.25,relx=0.4, rely=0.47)
+                opciones.place(relheight=0.1,relwidth=0.25,relx=0.4, rely=0.36)
+                txt3.place(relheight=0.18,relwidth=0.25,relx=0.4, rely=0.57)
                 Buscar.place_forget()
             else:
                 messagebox.showerror("Error","No hay usuario que buscar por else")
         except NameError:
             messagebox.showerror("Error","No hay usuario que buscar")
 
-        
+    
     
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
@@ -356,28 +386,19 @@ def Adicionales():
     w=Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
     w.place(relheight=0.05, relwidth=1,rely=0.20)
 
-    
-    """
-    fs=Label(frame2, text="Fecha de salida", font=("Arial", 10), anchor="w")
-    fs.place(relheight=0.1, relwidth=0.2, rely=0.45, relx=0.02)
-    cp=Label(frame2, text="¿Para cuantas personas?", font=("Arial", 10), anchor="w")
-    cp.place(relheight=0.1, relwidth=0.25, rely=0.6, relx=0.02)"""
-
-    """fechaEntrada =Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
-    fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
-    fechaSalida=Entry(frame2, font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"))
-    fechaSalida.place(relheight=0.1, relwidth=0.17, rely=0.45, relx=0.18)
-    personas=Entry(frame2, font=("Arial", 14),justify="center",validate="key",validatecommand=(frame2.register(limitarCaracteres), "%S", "%P", 2))
-    personas.place(relheight=0.1, relwidth=0.05, rely=0.6, relx=0.30)"""
-    ra=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
+    ra1=Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
+    ra3=Label(frame2, text="Servicios disponibles", font=("Arial", 10), anchor="center")
+    ra4=Label(frame2, text="Anotaciones", font=("Arial", 10), anchor="center")
     txt=Text(frame2,state="disabled")
     txt2=Text(frame2,state="disabled")
-    ra=Label(frame2, text="Servicios Tomados", font=("Arial", 10), anchor="center")
+    txt3=Text(frame2,state="disabled")
+    txt3.bind("<Return>", agregardescripcion)
+    ra2=Label(frame2, text="Servicios Tomados", font=("Arial", 10), anchor="center")
+    opciones=Combobox(frame2, values=["Alimentacion","Transporte","Masaje"],textvariable="Servicios")
+    opciones.bind("<<ComboboxSelected>>", agregar)
+
     Buscar=Button(frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar)
     Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
-
-    """adv=Label(frame2, text="*Ingrese las fechas en formato dd/mm/aaaa", font=("Arial", 8), anchor="center", state="disabled")
-    adv.place(relheight=0.1, relwidth=0.35, rely=0.9, relx=0.02)"""
 
     Aceptar=Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
@@ -574,13 +595,13 @@ Almacenamiento.listaReservas.append(res1)
 Almacenamiento.listaReservas.append(res2)
 Almacenamiento.listaReservas.append(res3)
 
-print(Almacenamiento.listaHabitaciones)
-print(Almacenamiento.listaUsuarios)
-print(Almacenamiento.listaServicios)
-print(Almacenamiento.listaReservas)
-print(res1.getCliente())
-print(res2.getCliente())
-print(res3.getCliente())
+(Almacenamiento.listaHabitaciones)
+(Almacenamiento.listaUsuarios)
+(Almacenamiento.listaServicios)
+(Almacenamiento.listaReservas)
+(res1.getCliente())
+(res2.getCliente())
+(res3.getCliente())
 
 ventanaInicio.mainloop()
 window.mainloop()

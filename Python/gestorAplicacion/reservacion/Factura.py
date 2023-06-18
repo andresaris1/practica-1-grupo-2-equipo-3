@@ -93,7 +93,11 @@ class Factura():
             while True:
                 try:
                     servicio = next(servicios_iter)
+                    anotacion=servicio.getDescripcion()
                     lista.append(str(servicio.getNombre()) + " \t" + str(servicio.getValor()) + "\n")
+                    if anotacion=="":
+                        anotacion="Sin Anotaciones"
+                    lista.append("Detalles:\n" + anotacion + "\n")
                 except StopIteration:
                     break
                 servicioValor = ''
@@ -105,7 +109,7 @@ class Factura():
             infoP.append("-------------------------------------------")
             infoP.append("Codigo de factura: " + str(self._codigo) )
             infoP.append("Fecha y Hora: " + self._fecha_y_hora.strftime('%d/%m/%Y %H:%M:%S'))
-            #infoP.append("Empleado: " + str(self._empleado.getNombre()))
+            infoP.append("Empleado: " + str(self._empleado.getNombre()))
             infoP.append("Cliente: " + str(self._usuario.getNombre())  +"\n" )
             infoP.append(servicioValor)
             infoP.append("Valor total:  " + str(self._valorTotal) )
