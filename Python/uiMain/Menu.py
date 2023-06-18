@@ -247,16 +247,20 @@ def Alojamiento():
        de la misma y la factura generada, este método se dispara cuando se da click en el boton 
        "Aceptar" """
     def reservar():
-        reserva=Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
-        factura=Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
+        try:
+            reserva=Almacenamiento.crearReserva(fen,fsa,listahabitaciones,0,cliente)
+            factura=Almacenamiento.crearFactura(cliente,emp,listahabitaciones,"Reserva")
+            messagebox.showinfo("Reserva realizada con exito",reserva)
+            messagebox.showinfo("Factura Asociada", factura)
+            "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
+            bienvenido()
+        except UnboundLocalError:
+            messagebox.showinfo("No se ha realizado la reserva", "Usted no ha seleccionado habitaciones")
         for i in listahabitaciones:
             if i in Almacenamiento.listaHabitacionesDisponibles:
                 Almacenamiento.listaHabitacionesDisponibles.remove(i)
 
-        messagebox.showinfo("Reserva realizada con exito",reserva)
-        messagebox.showinfo("Factura Asociada", factura)
-        "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
-        bienvenido()
+        
 
     """Reinicia el frame 2 usando "reiniciar", posiciona el buscador y quita la pantalla de inicio"""
     reiniciar()
@@ -322,7 +326,6 @@ def Eventos():
     info.place(relx=0.5, rely=0.5, anchor='center')
 
 
-mensaje=None
 def Adicionales():
 
     reiniciar()
@@ -567,12 +570,12 @@ frame2.place(relheight=0.8, relwidth=1, rely=0.2)
 
 
 #OBJETOS TEMPORALES PARA PRUEBAS
-habitacion1=Almacenamiento.crearHabitacion(101,"Habitacion Individual",101,1)
-habitacion2=Almacenamiento.crearHabitacion(102,"Habitacion Individual",102,1)
-habitacion3=Almacenamiento.crearHabitacion(201,"Habitacion Doble",201,2)
-habitacion4=Almacenamiento.crearHabitacion(202,"Habitacion Doble",202,2)
-habitacion5=Almacenamiento.crearHabitacion(301,"Habitacion Familiar",301,4)
-habitacion6=Almacenamiento.crearHabitacion(302,"Habitacion Familiar",302,4)
+habitacion1=Almacenamiento.crearHabitacion("101","Habitacion Individual",101,1)
+habitacion2=Almacenamiento.crearHabitacion("102","Habitacion Individual",102,1)
+habitacion3=Almacenamiento.crearHabitacion("201","Habitacion Doble",201,2)
+habitacion4=Almacenamiento.crearHabitacion("202","Habitacion Doble",202,2)
+habitacion5=Almacenamiento.crearHabitacion("301","Habitacion Familiar",301,4)
+habitacion6=Almacenamiento.crearHabitacion("302","Habitacion Familiar",302,4)
 
 c1=Usuario("Carlos","1","Cliente","1","1")
 Almacenamiento.listaUsuarios.append(c1)

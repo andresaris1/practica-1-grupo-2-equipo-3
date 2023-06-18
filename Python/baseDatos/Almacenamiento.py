@@ -55,8 +55,8 @@ class Almacenamiento():
                 break
         return usuario         
 
-    def crearHabitacion(nombre,descripcion,numero,capacidad):
-        habitacion=Lugar(nombre, descripcion,numero,capacidad)
+    def crearHabitacion(nombre:str,descripcion,numero,capacidad):
+        habitacion=Lugar(nombre,descripcion,numero,capacidad)
         Almacenamiento.listaHabitaciones.append(habitacion)
         Almacenamiento.listaHabitacionesDisponibles.append(habitacion)
 

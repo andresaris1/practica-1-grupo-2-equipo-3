@@ -3,21 +3,20 @@ from Servicio import Servicio
 
 class Lugar(Servicio):
     
-    def __init__(self,nombre,descripcion, numero,capacidad):
+    def __init__(self,nombre,descripcion,numero,capacidad):
         valor=self.valorSegunTipo()
         super().__init__(nombre, valor, descripcion)
-        self._numero=numero
         self._capacidad=capacidad
         self._numero=numero
 
         #El valor no se ingresa porque es calculado mediante la funcion ValorSegunTipo y el numero de los lugares de eventos es 0 por defecto
 
     def valorSegunTipo(nombre):
-        if nombre == "Habitación familiar":
+        if nombre == "Habitacion Familiar":
             return 100000
-        elif nombre == "Habitación doble":
+        elif nombre == "Habitacion Doble":
             return 80000
-        elif nombre == "Habitación individual":
+        elif nombre == "Habitacion Individual":
             return 50000
         elif nombre == "Terraza":
             return 200000
