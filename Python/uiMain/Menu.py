@@ -439,8 +439,53 @@ def Tour():
         text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
     )
 
-    info = Label(frame2, text="Aqui desarrollen su funcionalidad2", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor="center")
+    def mostrarImagen(nombre_destino):
+        imagen_destino = None
+        for destino in Destinos:
+            if destino.nombre == nombre_destino:
+                imagen_destino = destino.imagen
+                break
+
+        if imagen_destino:
+            # Aquí puedes realizar la lógica para mostrar la imagen
+            print(f"Mostrando imagen de {nombre_destino}: {imagen_destino}")
+        else:
+            print("No se encontró la imagen del destino")
+
+    def cargarDestinos():
+        for i, destino in enumerate(Destinos):
+            if destino != Destinos.COMBO_COMPLETO:
+                imagen = tk.PhotoImage(Image.open(destino.imagen))
+                boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
+                boton.config(image=imagen)
+                boton.image = imagen
+                boton.place(relx=0.05, rely=0.35 + (i * 0.225), relwidth=0.25, relheight=0.3)
+
+                nombre_label = Label(frame2, text=destino.nombre, font=("Arial", 12))
+                nombre_label.place(relx=0.375, rely=0.375 + (i * 0.225), relwidth=0.25, relheight=0.075)
+
+                valor_label = Label(frame2, text=destino.valor, font=("Arial", 12))
+                valor_label.place(relx=0.375, rely=0.425 + (i * 0.225), relwidth=0.25, relheight=0.075)
+
+        # Botón Combo Completo
+        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
+        boton_combo.place(relx=0.05, rely=0.35 + (len(Destinos) * 0.225), relwidth=0.25, relheight=0.3)
+
+    ventana = Tk()
+    ventana.geometry("400x200")
+
+    frame1 = Frame(ventana, bg="gray")
+    frame1.place(relx=0, rely=0, relwidth=1, relheight=0.1)
+
+    frame2 = Frame(ventana, bg="white")
+    frame2.place(relx=0, rely=0.1, relwidth=1, relheight=0.9)
+
+    titulo_label = Label(frame1, text="DESTINOS TURÍSTICOS", font=("Arial", 18), bg="gray")
+    titulo_label.pack()
+
+    cargarDestinos()
+
+    ventana.mainloop()
 
 
 def Eventos():
