@@ -14,7 +14,7 @@ class Destinos(Enum):
     def __init__(self, nombre, valor, imagen):
         self.nombre = nombre
         self.valor = valor
-        self.imagen = os.path.join(os.path.dirname(__file__), "img1/"+imagen)
+        self.imagen = destino
 
     def get_nombre(self):
         return self.nombre
