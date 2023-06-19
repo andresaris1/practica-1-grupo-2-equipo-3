@@ -8,23 +8,18 @@ sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 from Almacenamiento import *
 from datetime import datetime
 import functools
-
+cliente=None
 
 """Metodo Aplicacion crea un messagebox que se muestra a la hora de hacer clic en el boton
    Aplicacion en el submeú  "Archivo" del menú de la applicacion"""
-
-
 def Aplicacion():
     messagebox.showinfo(
         "Sistema de gestion del Hotel UN 2.0",
         "Bienvenido, este es el nuevo sistema de gestion hotelera 3000.\nEste sistema cuenta con  las siguientes opciones:\n\n- Registro de usuarios\n\n- Reserva de alojamiento\n\n- Reserva Turistica\n\n- Reserva de eventos\n\n- Informacion de las instalaciones\n\n- Adicion de servicios\n\nGracias por preferirnos ;)",
     )
 
-
 """Metodo Acercade: crea un messagebox que se muestra a la hora de hacer clic en el boton
    "Acerca de.." en el submeú  "Ayuda" del menú de la aplicacion"""
-
-
 def Acercade():
     messagebox.showinfo(
         "Integrantes",
@@ -34,8 +29,6 @@ def Acercade():
 
 """"Metodo reiniciar: borra todo lo que hay en el frame2 para formarlo desde 0 cada vez que se selecciona
     uno de los procesos que realiza la aplicacion """
-
-
 def reiniciar():
     "Borrar todo lo que hay en el frame2"
     for widgets in frame2.winfo_children():
@@ -50,11 +43,11 @@ def reiniciar():
         relief=RAISED,
     )
     Cancelar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.75)
+    global cliente
+    cliente=None
 
 
 """"Metodo bienvenid: posiciona el frame3 para volver a la pantalla de inicio"""
-
-
 def bienvenido():
     frame3.place(relheight=1, relwidth=1)
 
@@ -65,13 +58,13 @@ def bienvenido():
         bg="light steel blue",
     )
     Presentacion.place(relx=0.5, rely=0.5, anchor="center")
+    global cliente
+    cliente=None
 
 
 # METODOS FUNCIONALES
 
 """Metodo formarfecha: formatea entrys para que la entrada solo sea en el formato dd/mm/aaaa"""
-
-
 def formarfecha(texto):
     """Comprueba que todo lo que se ingrese sean numeros, que el texto no exceda de los 10
     carateres, a la vez que obliga a poner los "/" usados en el formato"""
@@ -85,10 +78,11 @@ def formarfecha(texto):
             fecha.append(char.isdecimal())
     return all(fecha)
 
+"""Metodo limitarCaracteres: limita a solo numeros los caracteres que puede recibir un entry"""
+def solonumeros(numero):
+    return numero.isdecimal()
 
 """Metodo limitarCaracteres: limita la cantidad de caracteres que puede recibir un entry"""
-
-
 def limitarCaracteres(caracter, texto, digitos: int):
     if int(len(texto)) > int(digitos):
         return False
@@ -96,8 +90,6 @@ def limitarCaracteres(caracter, texto, digitos: int):
 
 
 """Metodo buscador: crea el buscador que se utiliza en la mayoria las paginas de procesos"""
-
-
 def buscador():
     """Metodo encargado de buscar cliente y capturarlo en la variable con el mismo nombre
     para realizar los procesos que se deseen hacer y necesiten un cliente, a la vez que
@@ -159,8 +151,6 @@ def buscador():
 """Metodo Registro: reinicia el frame2 con el metodo reiniciar, luego forma el formulario
    necesario para crear un nuevo cliente y se dispara a la hora de seleccionar la opcion "registro"
    de "consultas y procesos" """
-
-
 def Registro():
     """Método registrarUsuarios: se encarga de hacer una comprobacion para verificar que el
     usuario que se desea registrar, no esté en la base de datos, en caso de ser encontrado
@@ -237,15 +227,12 @@ def Registro():
    necesario para realizar una nueva reserva de alojamiento
    y se dispara a la hora de seleccionar la opcion "Reservar Alojamiento"
    de "consultas y procesos" """
-
-
 def Alojamiento():
     listahabitaciones = []
 
     """Metodo seleccionar: Envia la habitacion seleccionada con su boton a la lista
        listahabitaciones, para luego usarla como parametro para crear una nueva reserva
        a la vez que la pone en la lista al lado izquierdo donde veremos cuales se han reservado"""
-
     def seleccionar(num):
         txt.config(state="normal")
         for i in Almacenamiento.listaHabitaciones:
@@ -258,7 +245,6 @@ def Alojamiento():
 
     """Metodo verificar: Se encarga de verificar que no haya errores en las fechas
     en caso de no haberlas presenta los botones de las habitaciones disponbles"""
-
     def verificar():
         try:
             if cliente != None:
@@ -338,7 +324,6 @@ def Alojamiento():
        factura y en caso de poderse realizar sin problemas la reserva nos muestra la informacion
        de la misma y la factura generada, este método se dispara cuando se da click en el boton 
        "Aceptar" """
-
     def reservar():
         try:
             reserva = Almacenamiento.crearReserva(
@@ -386,13 +371,7 @@ def Alojamiento():
     Buscar = Button(frame2, text="Buscar", font=("Arial", 10), command=verificar)
     Buscar.place(relheight=0.1, relwidth=0.2, rely=0.75, relx=0.08)
 
-    fechaEntrada = Entry(
-        frame2,
-        font=("Arial", 14),
-        justify="right",
-        validate="key",
-        validatecommand=(frame2.register(formarfecha), "%P"),
-    )
+    fechaEntrada = Entry(frame2,font=("Arial", 14),justify="right",validate="key",validatecommand=(frame2.register(formarfecha), "%P"),)
     fechaEntrada.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
     fechaSalida = Entry(
         frame2,
@@ -616,7 +595,7 @@ def Adicionales():
                     if cliente == reservas.getCliente():
                         txt.insert(END, reservas)
                         txt.insert(END, "\n----------------------\n")
-                txt.config(state="normal")
+                txt.config(state="disabled")
                 txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
                 ra1.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
                 ra2.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
@@ -634,37 +613,24 @@ def Adicionales():
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
 
-    w = Label(
-        frame2,
-        text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",
-    )
+    w = Label(frame2,text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",)
     w.place(relheight=0.05, relwidth=1, rely=0.20)
 
     ra1 = Label(frame2, text="Reservas asociadas", font=("Arial", 10), anchor="center")
-    ra3 = Label(
-        frame2, text="Servicios disponibles", font=("Arial", 10), anchor="center"
-    )
+    ra3 = Label(frame2, text="Servicios disponibles", font=("Arial", 10), anchor="center")
     ra4 = Label(frame2, text="Anotaciones", font=("Arial", 10), anchor="center")
     txt = Text(frame2, state="disabled")
     txt2 = Text(frame2, state="disabled")
     txt3 = Text(frame2, state="disabled")
     txt3.bind("<Return>", agregardescripcion)
     ra2 = Label(frame2, text="Servicios Tomados", font=("Arial", 10), anchor="center")
-    opciones = Combobox(
-        frame2,
-        values=["Alimentacion", "Transporte", "Masaje"],
-        textvariable="Servicios",
-    )
+    opciones = Combobox(frame2,values=["Alimentacion", "Transporte", "Masaje"],textvariable="Servicios",)
     opciones.bind("<<ComboboxSelected>>", agregar)
 
-    Buscar = Button(
-        frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar
-    )
-    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
+    Buscar = Button(frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar)
+    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.35)
 
-    Aceptar = Button(
-        frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar
-    )
+    Aceptar = Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar)
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 
@@ -678,28 +644,36 @@ def Informacion():
     info = Label(frame2, text="Aqui desarrollen su funcionalidad5", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor="center")
 
-
+valor=0
 def Cobro():
     reiniciar()
     buscador()
     frame3.place_forget()
-    servicios = []
     facturasencontradas=[]
     combofacturas=[]
     facturaseleccionadas=[]
+    valor
+
 
     Titulo.config(text="Generador de cobros")
     Descripcion.config(text="Genera el cobro del cliente a la hora de salir")
 
-    def reservar():
-        factura = Almacenamiento.crearFactura(cliente, emp, servicios, "Adicion de servicios")
-        mensaje = txt2.get(1.0, END)
-        messagebox.showinfo(
-            "Adicion realizada con exito", ("Se adicionaron: \n" + mensaje)
-        )
-        messagebox.showinfo("Factura Asociada", factura)
+    def cobrar():
+        valorTotal=valor
+        ValorPagado=int(txt4.get())
+        texto="Facturas pendientes:\n"
+        if valorTotal>ValorPagado:
+            messagebox.showerror("Falta dinero","El valor pagado es inferior a el valor total")
+        else:
+            for factura in facturaseleccionadas:
+                Almacenamiento.listaFacturas.remove(factura)
+            for factura in Almacenamiento.listaFacturas:
+                if cliente==factura.getUsuario():
+                    texto+=("Factura #"+str(factura.getCodigo())+"\n")
+            messagebox.showinfo("Cobro exitoso","El pago se realizó satisfactoriamente\n"+texto)
+            bienvenido()
+        txt4.delete(0,END)
         "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
-        bienvenido()
 
     def pasar(event):
         txt2.config(state="normal")
@@ -714,8 +688,10 @@ def Cobro():
                 txt2.config(state="disabled")
                 facturaseleccionadas.append(factura)
                 facturasencontradas.remove(factura)
-
-        combofacturas.clear()
+                global valor
+                valor1=(factura.getValorTotal()).replace(",",".")
+                valor+=float(valor1)*1000
+                combofacturas.remove("Factura #"+str(factura.getCodigo()))
         txt.delete(1.0,END)
         for i in facturasencontradas:
             txt.insert(END, "Factura #" + str(i.getCodigo())+"\n")
@@ -723,8 +699,8 @@ def Cobro():
             txt.insert(END,  "Concepto:" +str(i.getConcepto())+"\n")
             txt.insert(END,  "Valor:" + i.getValorTotal()+"\n")
             txt.insert(END, "\n----------------------\n")
-            combofacturas.append("Factura #"+str(i.getCodigo()))
         opciones.config(values=combofacturas)
+        txt3.config(text=str(valor))
             
 
     def buscar():
@@ -740,12 +716,16 @@ def Cobro():
                         txt.insert(END,  "Valor:" + factura.getValorTotal()+"\n")
                         txt.insert(END, "\n----------------------\n")
                         combofacturas.append("Factura #"+str(factura.getCodigo()))
-                txt.config(state="normal")
-                txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
+                txt.config(state="disabled")
                 ra1.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
+                txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
                 ra2.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
                 txt2.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
                 ra3.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.25)
+                ra4.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.46)
+                txt3.place(relheight=0.05, relwidth=0.25, relx=0.4, rely=0.56)
+                ra5.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.60)
+                txt4.place(relheight=0.05, relwidth=0.25, relx=0.4, rely=0.70)
                 opciones.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.36)
                 opciones.config(values=combofacturas)
                 Buscar.place_forget()
@@ -761,23 +741,21 @@ def Cobro():
     w.place(relheight=0.05, relwidth=1, rely=0.20)
 
     ra1 = Label(frame2, text="Facturas Asociadas", font=("Arial", 10), anchor="center")
-    ra3 = Label(
-        frame2, text="Selecione Facturas\na pagar", font=("Arial", 10), anchor="center"
-    )
+    ra3 = Label(frame2, text="Selecione Facturas\na pagar", font=("Arial", 10), anchor="center")
+    ra4 = Label(frame2, text="Valor Total", font=("Arial", 10), anchor="center")
     txt = Text(frame2, state="disabled")
-    txt2 = Text(frame2, state="disabled")
+    txt2 = Text(frame2, state="disabled",)
+    txt3= Label(frame2,text="0", font=("Arial", 10))
     ra2 = Label(frame2, text="Facturas seleccionadas", font=("Arial", 10), anchor="center")
+    txt4= Entry(frame2,font=("Arial", 10),justify="center",validate="key",validatecommand=(frame2.register(solonumeros), "%P"))
+    ra5=Label(frame2, text="Valor Pagado", font=("Arial", 10), anchor="center")
     opciones = Combobox(frame2,textvariable="facturas")
     opciones.bind("<<ComboboxSelected>>", pasar)
 
-    Buscar = Button(
-        frame2, text="Buscar facturas asociadas", font=("Arial", 10), command=buscar
-    )
+    Buscar = Button(frame2, text="Buscar facturas asociadas", font=("Arial", 10), command=buscar)
     Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.35)
 
-    Aceptar = Button(
-        frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar
-    )
+    Aceptar = Button( frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=cobrar)
     Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 
