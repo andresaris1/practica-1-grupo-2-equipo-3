@@ -442,30 +442,31 @@ def Tour():
     def mostrarImagen(nombre_destino):
         imagen_destino = None
         for destino in Destinos:
-            if destino.nombre == nombre_destino:
-                imagen_destino = destino.imagen
+            if destino.get_nombre() == nombre_destino:
+                imagen_destino = destino.get_imagen()
                 break
 
         if imagen_destino:
-            # Aquí puedes realizar la lógica para mostrar la imagen
-            print(f"Mostrando imagen de {nombre_destino}: {imagen_destino}")
+            ruta_imagen = os.path.join(os.getcwd(), imagen_destino)  # Obtener la ruta completa de la imagen
+            # Aquí puedes realizar la lógica para mostrar la imagen en tu interfaz
+            print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
         else:
             print("No se encontró la imagen del destino")
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                nombre_label = Label(frame3, text=destino.nombre, font=("Arial", 12))
+                nombre_label = Label(frame3, text=destino.get_nombre(), font=("Arial", 12))
                 nombre_label.grid(row=i, column=0, sticky="w")
 
-                valor_label = Label(frame3, text=destino.valor, font=("Arial", 12))
+                valor_label = Label(frame3, text=destino.get_valor(), font=("Arial", 12))
                 valor_label.grid(row=i, column=1, sticky="w")
 
-                boton = Button(frame3, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.nombre))
+                boton = Button(frame3, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.get_nombre()))
                 boton.grid(row=i, column=2)
 
         # Botón Combo Completo
-        boton_combo = Button(frame3, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
+        boton_combo = Button(frame3, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.get_nombre()))
         boton_combo.grid(row=len(Destinos)-1, column=2)
 
     cargarDestinos()
