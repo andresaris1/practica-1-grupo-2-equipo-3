@@ -13,8 +13,21 @@ if __name__ == '__main__':
     from Almacenamiento import Almacenamiento
 
 
+    ser1 = Servicio( "Comida", 10,"dsrfvdfvg")
+    ser2 = Servicio( "Limpieza", 10,"dsrfvdfvg")
+    ser3 = Servicio( "Piscina", 10,"dsrfvdfvg")
+    emo1 = Empleado("Carla", 123456789, 135, "Bar")
+    use1 = Usuario( "juan", 6543, 321, "tipo", 678)
+    fac1 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto1")
+    fac2 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto2")
+    fac3 = Factura(use1, emo1, [ser1,ser2,ser3], "concepto3")
+
     print("PRUEBA DE SERIALIZADO")
-    #Almacenamiento.Deserializar()
+    Almacenamiento.Deserializar()
+
+    Almacenamiento.listaFacturas.append(fac3)
+
+    for f in Almacenamiento.listaFacturas:
+        print(f._concepto)
 
     Almacenamiento.Serializar()
-

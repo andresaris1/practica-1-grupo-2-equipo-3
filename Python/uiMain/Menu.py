@@ -453,73 +453,77 @@ def Tour():
 
     def cargarDestinos():
         nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_nombre(), font=("Arial", 12))
-        nombre_label_1.place(x=10, y=80)
+        nombre_label_1.place(relx=0.1, rely=0.27, anchor="center")
 
         valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_valor(), font=("Arial", 12))
-        valor_label_1.place(x=150, y=80)
+        valor_label_1.place(relx=0.3, rely=0.27, anchor="center")
 
         boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
-        boton_1.place(x=250, y=80)
+        boton_1.place(relx=0.5, rely=0.27, anchor="center")
+
 
         nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
-        nombre_label_2.place(x=10, y=120)
+        nombre_label_2.place(relx=0.1, rely=0.37, anchor="center")
 
         valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_valor(), font=("Arial", 12))
-        valor_label_2.place(x=150, y=120)
+        valor_label_2.place(relx=0.3, rely=0.37, anchor="center")
 
         boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
-        boton_2.place(x=250, y=120)
+        boton_2.place(relx=0.5, rely=0.37, anchor="center")
+
 
         nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
-        nombre_label_3.place(x=10, y=160)
+        nombre_label_3.place(relx=0.1, rely=0.47, anchor="center")
 
         valor_label_3 = Label(frame2, text=Destinos.JARDIN.get_valor(), font=("Arial", 12))
-        valor_label_3.place(x=150, y=160)
+        valor_label_3.place(relx=0.3, rely=0.47, anchor="center")
 
         boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
-        boton_3.place(x=250, y=160)
+        boton_3.place(relx=0.5, rely=0.47, anchor="center")
 
         nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
-        nombre_label_4.place(x=10, y=200)
+        nombre_label_4.place(relx=0.1, rely=0.57, anchor="center")
 
         valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_valor(), font=("Arial", 12))
-        valor_label_4.place(x=150, y=200)
+        valor_label_4.place(relx=0.3, rely=0.57, anchor="center")
 
         boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
-        boton_4.place(x=250, y=200)
+        boton_4.place(relx=0.5, rely=0.57, anchor="center")
 
         nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
-        nombre_label_5.place(x=10, y=240)
+        nombre_label_5.place(relx=0.1, rely=0.67, anchor="center")
 
         valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_valor(), font=("Arial", 12))
-        valor_label_5.place(x=150, y=240)
+        valor_label_5.place(relx=0.3, rely=0.67, anchor="center")
 
         boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
-        boton_5.place(x=250, y=240)
+        boton_5.place(relx=0.5, rely=0.67, anchor="center")
 
         nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
-        nombre_label_6.place(x=10, y=280)
+        nombre_label_6.place(relx=0.1, rely=0.77, anchor="center")
+
 
         valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_valor(), font=("Arial", 12))
-        valor_label_6.place(x=150, y=280)
+        valor_label_6.place(relx=0.3, rely=0.77, anchor="center")
 
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
-        boton_6.place(x=250, y=280)
+        boton_6.place(relx=0.5, rely=0.77, anchor="center")
 
         valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
-        valor_label_7.place(x=70, y=320)
+        valor_label_7.place(relx=0.2, rely=0.87, anchor="center")
+
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.place(x=250, y=320)
+        boton_combo.place(relx=0.5, rely=0.87, anchor="center")
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.place(x=250, y=360)
+        boton_terminar.place(relx=0.5, rely=0.97, anchor="center")
     
     listbox_destinos = Listbox(frame2, width=25, height=10)
-    listbox_destinos.place(x=350, y=80)
+    listbox_destinos.place(relx=0.8, rely=0.5, anchor="center")
 
     label_valor_total = Label(frame2, text="Valor Total: 0", font=("Arial", 12))
-    label_valor_total.place(x=350, y=250)
+    label_valor_total.place(relx=0.8, rely=0.7, anchor="center")
 
     cargarDestinos()
 
@@ -528,6 +532,13 @@ def Eventos():
     buscador()
     frame3.place_forget()
 
+    def solicitarEmpleados():
+        return None
+    
+    def solicitarServiciosExternos():
+        return None
+    
+    
     Titulo.config(text="Reserva nueva de eventos")
     Descripcion.config(
         text="Realiza una nueva reserva de evento en nuestras instalaciones"
@@ -539,6 +550,7 @@ def Eventos():
     )
     w.place(relheight=0.05, relwidth=1, rely=0.20)
     
+    # Se pregunta por la Fecha de realización del evento
     lblFecha = Label(frame2, text="Fecha Evento", font=("Arial", 10), anchor="w")
     lblFecha.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
     
@@ -551,7 +563,18 @@ def Eventos():
     )
     fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
     
-
+    #Se pregunta por duración del evento
+    lblDuracion = Label(frame2, text="Duración Evento", font=("Arial", 10), anchor="w")
+    lblDuracion.place(relheight = 0.1, relwidth = 0.2, rely = 0.5, relx = 0.02)
+    
+    #Se pregunta por el número de personas que asistirán al evento
+    
+    #Se pregunta por el lugar de realización del evento
+    
+    #Botón para añadir servicios externos
+    
+    #Botón para añadir empleados
+    
 
 def Adicionales():
     reiniciar()
@@ -587,6 +610,7 @@ def Adicionales():
         txt3.delete(1.0, END)
         txt3.config(state="disabled")
 
+    #Pa buscar reservas asociadas al cliente
     def buscar():
         try:
             if cliente != None:
@@ -609,6 +633,7 @@ def Adicionales():
                 messagebox.showerror("Error", "No hay usuario que buscar por else")
         except NameError:
             messagebox.showerror("Error", "No hay usuario que buscar")
+
 
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
