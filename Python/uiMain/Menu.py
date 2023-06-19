@@ -589,26 +589,44 @@ def Eventos():
         
         vars = [False]*3
         
-        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: vars[0] *= True)
+        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command= lambda: f0() )
         cb1.pack(side="left")
         
-        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: vars[1] *= True)
+        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: f1() )
         cb2.pack(side="left")
         
-        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: vars[2] *= True)
+        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: f2() )
         cb3.pack(side="left")
         
         txtDisplay = Text(new)
-        txtDisplay.insert(END,"Los servicios seleccionados son: \n")
         txtDisplay.config(state="disabled")
         txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
         
+        def f0():
+            inv(vars[0])
+            actualizarDisplay()
+            
+        def f1():
+            inv(vars[1])
+            actualizarDisplay()
+        
+        def f2():
+            inv(vars[2])
+            actualizarDisplay()
+            
+        def inv(var):
+            var = not(var)
+            
         def actualizarDisplay():
             valor = dict(zip( [True,False],["Sí","No"] ))
-            s = ""
+            s = "Los servicios contratados son:\n"
+            s += "Sonido: " + valor[vars[0]] + "\n"
+            s += "Entretenimiento: " + valor[vars[1]] + "\n"
+            s += "DJ: " + valor[vars[2]] + "\n"
             
             txtDisplay.config(state="normal")
-            txtDisplay.insert(END, texto)
+            txtDisplay.delete("1.0", END)   
+            txtDisplay.insert(END, s)
             txtDisplay.config(state="disabled")
             
           
