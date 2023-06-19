@@ -76,6 +76,13 @@ class Almacenamiento():
         pickle.dump(Almacenamiento.listaServiciosExternos, fileServiciosExternos)
         fileServiciosExternos.close()
 
+        pathcontador = os.path.join(os.path.dirname(__file__), "temp/contadorFacturas.txt")
+        filecontador = open(pathcontador, "wb")
+        pickle.dump(Factura.contador, filecontador)
+        filecontador.close()
+
+
+
 
 
 
@@ -128,6 +135,13 @@ class Almacenamiento():
         fileServiciosExternos = open(pathServiciosExternos, "rb")
         Almacenamiento.listaServiciosExternos = pickle.load(fileServiciosExternos)
         fileServiciosExternos.close()
+
+        pathcontador = os.path.join(os.path.dirname(__file__), "temp/contadorFacturas.txt")
+        filecontador = open(pathcontador, "wb")
+        Factura.contador= pickle.load(filecontador)
+        filecontador.close()
+
+
 
 
     def crearUsuario(nombre, identificacion:int, telefono, cuentaBancaria):
