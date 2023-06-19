@@ -6,9 +6,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../modelos"))
 from Persona import Persona
 from Empleado import Empleado
 from Usuario import Usuario
-
-from Servicio import Servicio
 from Destinos import Destinos
+from Servicio import Servicio
 
 
 class Factura():
@@ -93,10 +92,7 @@ class Factura():
             while True:
                 try:
                     servicio = next(servicios_iter)
-                    try:
-                        anotacion=servicio.getDescripcion()
-                    except AttributeError:
-                        anotacion=""
+                    anotacion=servicio.getDescripcion()
                     lista.append(str(servicio.getNombre()) + " \t" + str(servicio.getValor()) + "\n")
                     if anotacion=="":
                         anotacion="Sin Anotaciones"

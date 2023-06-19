@@ -700,7 +700,6 @@ def Cobro():
     facturasencontradas=[]
     combofacturas=[]
     facturaseleccionadas=[]
-    valor
 
 
     Titulo.config(text="Generador de cobros")
@@ -1165,6 +1164,7 @@ Almacenamiento.listaReservas.append(res3)
 (res1.getCliente())
 (res2.getCliente())
 (res3.getCliente())
+print(Almacenamiento.listaFacturas)
 
 ventanaInicio.mainloop()
 window.mainloop()

@@ -221,6 +221,7 @@ class Almacenamiento():
         factura=Factura(cliente,empleado,listaItems,concepto)
         Almacenamiento.listaFacturas.append(factura)
         return (factura.imprimirFactura())
+    
     def buscarFactura(cliente: Usuario) -> Factura:
         factura=None
         for fac in Almacenamiento.listaFacturas():
