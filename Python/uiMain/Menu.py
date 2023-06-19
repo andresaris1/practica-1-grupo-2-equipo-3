@@ -447,7 +447,7 @@ def Tour():
                 break
 
         if imagen_destino:
-            ruta_imagen = os.path.join(os.getcwd(), imagen_destino)  # Obtener la ruta completa de la imagen
+            ruta_imagen = os.path.join(os.path.dirname(__file__), "img"+imagen_destino)  # Obtener la ruta completa de la imagen
             # Aquí puedes realizar la lógica para mostrar la imagen en tu interfaz
             print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
         else:
