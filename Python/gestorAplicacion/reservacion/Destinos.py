@@ -8,7 +8,7 @@ class Destinos(Enum):
     JARDIN = ("Jardín", 90000, "jardin.png")
     PARQUE_ARVI = ("Parque Arví", 110000, "parquearvi.png")
     SANTA_ELENA = ("Santa Elena", 130000, "santaelena.png")
-    PEÑOL_GUADELOUPE = ("Piedra Del Peñol", 200000, "penolguadeloupe.png")
+    PEÑOL_GUADELOUPE = ("Piedra Del Peñol", 200000, "piedradelpeñol.png")
     COMBO_COMPLETO =("Combo turistico completo", 720000, "")
 
     def __init__(self, nombre, valor, imagen):
@@ -21,3 +21,6 @@ class Destinos(Enum):
 
     def get_valor(self):
         return self.valor
+
+    def get_imagen(self):
+        return self.imagen
