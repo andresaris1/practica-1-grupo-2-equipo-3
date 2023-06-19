@@ -444,7 +444,8 @@ def Tour():
     def agregarDestino(destino):
         destinos_seleccionados.append(destino)
         print(f"Destino agregado: {destino.get_nombre()}")
-    
+        actualizarRecuadro()
+
     def calcularValorTotal():
         valor_total = sum(destino.get_valor() for destino in destinos_seleccionados)
         return valor_total
@@ -452,32 +453,94 @@ def Tour():
     def terminarReserva():
         if destinos_seleccionados:
             # Generar factura y asociarla al cliente
+            valor_total = calcularValorTotal()
             factura = Almacenamiento.crearFactura(cliente, None, valor_total, "Reserva de tour")
-            Almacenamiento.listaFacturas.append(factura)
+            cliente.agregar_factura(factura)
             messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
-            factura.imprimirFactura() 
+            factura.imprimirFactura()
         else:
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
+    def actualizarRecuadro():
+        listbox_destinos.delete(0, END)
+        for destino in destinos_seleccionados:
+            listbox_destinos.insert(END, destino.get_nombre())
+        actualizarValorTotal()
+
+    def actualizarValorTotal():
+        valor_total = calcularValorTotal()
+        label_valor_total.config(text=f"Valor Total: {valor_total}")
+
+
     def cargarDestinos():
-        for i, destino in enumerate(Destinos):
-            if destino != Destinos.COMBO_COMPLETO:
-                nombre_label = Label(frame2, text=destino.get_nombre(), font=("Arial", 12))
-                nombre_label.grid(row=i, column=0, sticky="w")
+        nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_nombre(), font=("Arial", 12))
+        nombre_label_1.place(x=10, y=80)
 
-                valor_label = Label(frame2, text=destino.get_valor(), font=("Arial", 12))
-                valor_label.grid(row=i, column=1, sticky="w")
+        valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_valor(), font=("Arial", 12))
+        valor_label_1.place(x=150, y=80)
 
-                boton = Button(frame2, text="Aceptar", command=lambda destino=destino: agregarDestino(destino))
-                boton.grid(row=i, column=2)
+        boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
+        boton_1.place(x=250, y=80)
 
-        # Botón Combo Completo
+        nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
+        nombre_label_2.place(x=10, y=120)
+
+        valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_valor(), font=("Arial", 12))
+        valor_label_2.place(x=150, y=120)
+
+        boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
+        boton_2.place(x=250, y=120)
+
+        nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
+        nombre_label_3.place(x=10, y=160)
+
+        valor_label_3 = Label(frame2, text=Destinos.JARDIN.get_valor(), font=("Arial", 12))
+        valor_label_3.place(x=150, y=160)
+
+        boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
+        boton_3.place(x=250, y=160)
+
+        nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
+        nombre_label_4.place(x=10, y=200)
+
+        valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_valor(), font=("Arial", 12))
+        valor_label_4.place(x=150, y=200)
+
+        boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
+        boton_4.place(x=250, y=200)
+
+        nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
+        nombre_label_5.place(x=10, y=240)
+
+        valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_valor(), font=("Arial", 12))
+        valor_label_5.place(x=150, y=240)
+
+        boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
+        boton_5.place(x=250, y=240)
+
+        nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
+        nombre_label_6.place(x=10, y=280)
+
+        valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_valor(), font=("Arial", 12))
+        valor_label_6.place(x=150, y=280)
+
+        boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
+        boton_6.place(x=250, y=280)
+
+        valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
+        valor_label_7.place(x=70, y=320)
+
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.grid(row=len(Destinos)-1, column=2)
+        boton_combo.place(x=250, y=320)
 
-        # Botón Terminar
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.grid(row=len(Destinos)+1, column=2)
+        boton_terminar.place(x=250, y=360)
+    
+    listbox_destinos = Listbox(frame2, width=25, height=10)
+    listbox_destinos.place(x=350, y=80)
+
+    label_valor_total = Label(frame2, text="Valor Total: 0", font=("Arial", 12))
+    label_valor_total.place(x=350, y=250)
 
     cargarDestinos()
 
