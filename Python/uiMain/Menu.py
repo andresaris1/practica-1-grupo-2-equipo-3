@@ -560,7 +560,17 @@ def Eventos():
     )
     w.place(relheight=0.05, relwidth=1, rely=0.20)
     
+    lblFecha = Label(frame2, text="Fecha Evento", font=("Arial", 10), anchor="w")
+    lblFecha.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
     
+    fechaEvento = Entry(
+        frame2,
+        font=("Arial", 14),
+        justify="right",
+        validate="key",
+        validatecommand=(frame2.register(formarfecha), "%P"),
+    )
+    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
     
 
 
