@@ -455,7 +455,7 @@ def Tour():
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                imagen = tk.PhotoImage(Image.open(destino.imagen))
+                imagen = os.path.join(os.path.dirname(__file__), "img/"+imagen_destino)
                 boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
                 boton.config(image=imagen)
                 boton.image = imagen
