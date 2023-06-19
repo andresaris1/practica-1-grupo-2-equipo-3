@@ -455,37 +455,20 @@ def Tour():
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                imagen = PhotoImage(file=destino.imagen)
-                boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
-                boton.config(image=imagen)
-                boton.image = imagen
-                boton.place(relx=0.05, rely=0.35 + (i * 0.225), relwidth=0.25, relheight=0.3)
+                nombre_label = Label(frame3, text=destino.nombre, font=("Arial", 12))
+                nombre_label.grid(row=i, column=0, sticky="w")
 
-                nombre_label = Label(frame2, text=destino.nombre, font=("Arial", 12))
-                nombre_label.place(relx=0.375, rely=0.375 + (i * 0.225), relwidth=0.25, relheight=0.075)
+                valor_label = Label(frame3, text=destino.valor, font=("Arial", 12))
+                valor_label.grid(row=i, column=1, sticky="w")
 
-                valor_label = Label(frame2, text=destino.valor, font=("Arial", 12))
-                valor_label.place(relx=0.375, rely=0.425 + (i * 0.225), relwidth=0.25, relheight=0.075)
+                boton = Button(frame3, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.nombre))
+                boton.grid(row=i, column=2)
 
         # Botón Combo Completo
-        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
-        boton_combo.place(relx=0.05, rely=0.35 + (len(Destinos) * 0.225), relwidth=0.25, relheight=0.3)
-
-    ventana = Tk()
-    ventana.geometry("400x200")
-
-    frame1 = Frame(ventana, bg="gray")
-    frame1.place(relx=0, rely=0, relwidth=1, relheight=0.1)
-
-    frame2 = Frame(ventana, bg="white")
-    frame2.place(relx=0, rely=0.1, relwidth=1, relheight=0.9)
-
-    titulo_label = Label(frame1, text="DESTINOS TURÍSTICOS", font=("Arial", 18), bg="gray")
-    titulo_label.pack()
+        boton_combo = Button(frame3, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
+        boton_combo.grid(row=len(Destinos)-1, column=2)
 
     cargarDestinos()
-
-    ventana.mainloop()
 
 def Eventos():
     reiniciar()
