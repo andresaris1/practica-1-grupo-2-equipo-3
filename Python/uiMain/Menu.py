@@ -436,57 +436,40 @@ def Tour():
 
     Titulo.config(text="Reserva un Tour")
     Descripcion.config(
-        text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
+        text="crearemos una reserva de tour que estará encargada a una empresa externa,\nsolo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
     )
 
     def mostrarImagen(nombre_destino):
         imagen_destino = None
         for destino in Destinos:
-            if destino.nombre == nombre_destino:
-                imagen_destino = destino.imagen
+            if destino.get_nombre() == nombre_destino:
+                imagen_destino = destino.get_imagen()
                 break
 
         if imagen_destino:
-            # Aquí puedes realizar la lógica para mostrar la imagen
-            print(f"Mostrando imagen de {nombre_destino}: {imagen_destino}")
+            ruta_imagen = os.path.join(os.getcwd(), imagen_destino)  # Obtener la ruta completa de la imagen
+            # Aquí puedes realizar la lógica para mostrar la imagen en tu interfaz
+            print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
         else:
             print("No se encontró la imagen del destino")
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                imagen = os.path.join(os.path.dirname(__file__), "img/"+imagen_destino)
-                boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
-                boton.config(image=imagen)
-                boton.image = imagen
-                boton.place(relx=0.05, rely=0.35 + (i * 0.225), relwidth=0.25, relheight=0.3)
+                nombre_label = Label(frame2, text=destino.get_nombre(), font=("Arial", 12))
+                nombre_label.grid(row=i, column=0, sticky="w")
 
-                nombre_label = Label(frame2, text=destino.nombre, font=("Arial", 12))
-                nombre_label.place(relx=0.375, rely=0.375 + (i * 0.225), relwidth=0.25, relheight=0.075)
+                valor_label = Label(frame2, text=destino.get_valor(), font=("Arial", 12))
+                valor_label.grid(row=i, column=1, sticky="w")
 
-                valor_label = Label(frame2, text=destino.valor, font=("Arial", 12))
-                valor_label.place(relx=0.375, rely=0.425 + (i * 0.225), relwidth=0.25, relheight=0.075)
+                boton = Button(frame2, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.get_nombre()))
+                boton.grid(row=i, column=2)
 
         # Botón Combo Completo
-        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
-        boton_combo.place(relx=0.05, rely=0.35 + (len(Destinos) * 0.225), relwidth=0.25, relheight=0.3)
-
-    ventana = Tk()
-    ventana.geometry("400x200")
-
-    frame1 = Frame(ventana, bg="gray")
-    frame1.place(relx=0, rely=0, relwidth=1, relheight=0.1)
-
-    frame2 = Frame(ventana, bg="white")
-    frame2.place(relx=0, rely=0.1, relwidth=1, relheight=0.9)
-
-    titulo_label = Label(frame1, text="DESTINOS TURÍSTICOS", font=("Arial", 18), bg="gray")
-    titulo_label.pack()
+        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.get_nombre()))
+        boton_combo.grid(row=len(Destinos)-1, column=2)
 
     cargarDestinos()
-
-    ventana.mainloop()
-
 
 def Eventos():
     reiniciar()
