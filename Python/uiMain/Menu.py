@@ -567,6 +567,7 @@ def Eventos():
     )
     w.place(relheight=0.05, relwidth=1, rely=0.20)
     
+    # Se pregunta por la Fecha de realización del evento
     lblFecha = Label(frame2, text="Fecha Evento", font=("Arial", 10), anchor="w")
     lblFecha.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
     
@@ -579,7 +580,17 @@ def Eventos():
     )
     fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
     
-
+    #Se pregunta por duración del evento
+    
+    
+    #Se pregunta por el número de personas que asistirán al evento
+    
+    #Se pregunta por el lugar de realización del evento
+    
+    #Botón para añadir servicios externos
+    
+    #Botón para añadir empleados
+    
 
 def Adicionales():
     reiniciar()
