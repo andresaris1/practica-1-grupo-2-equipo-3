@@ -581,7 +581,8 @@ def Eventos():
     fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
     
     #Se pregunta por duración del evento
-    
+    lblDuracion = Label(frame2, text="Duración Evento", font=("Arial", 10), anchor="w")
+    lblDuracion.place(relheight = 0.1, relwidth = 0.2, rely = 0.5, relx = 0.02)
     
     #Se pregunta por el número de personas que asistirán al evento
     
