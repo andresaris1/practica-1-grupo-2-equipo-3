@@ -90,6 +90,7 @@ class Factura():
             servicios_iter = iter(self._items)
             lista = []
             lista.append("Concepto \t Valor"+"\n")
+            servicioValor = ''
             while True:
                 try:
                     servicio = next(servicios_iter)
@@ -103,9 +104,8 @@ class Factura():
                     lista.append("Detalles:\n" + anotacion + "\n")
                 except StopIteration:
                     break
-                servicioValor = ''
-                for elemento in lista:
-                    servicioValor += str(elemento) 
+            for elemento in lista:
+                servicioValor += str(elemento) 
             
             #Crear zona de informacion principal
             infoP=[]

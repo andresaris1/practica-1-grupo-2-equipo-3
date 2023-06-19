@@ -46,6 +46,11 @@ class Almacenamiento():
         pickle.dump(Almacenamiento.listaHabitaciones, fileHabitaciones)
         fileHabitaciones.close()
 
+        pathHabitacionesDisponibles = os.path.join(os.path.dirname(__file__), "temp/habitacionesDisponibles.txt")
+        fileHabitacionesDisponibles = open(pathHabitacionesDisponibles, "wb")
+        pickle.dump(Almacenamiento.listaHabitacionesDisponibles, fileHabitacionesDisponibles)
+        fileHabitacionesDisponibles.close()
+
         pathLugares = os.path.join(os.path.dirname(__file__), "temp/lugares.txt")
         fileLugares = open(pathLugares, "wb")
         pickle.dump(Almacenamiento.listaLugares, fileLugares)
@@ -98,6 +103,11 @@ class Almacenamiento():
         fileHabitaciones = open(pathHabitaciones, "rb")
         Almacenamiento.listaHabitaciones = pickle.load(fileHabitaciones)
         fileHabitaciones.close()
+
+        pathHabitacionesDisponibles = os.path.join(os.path.dirname(__file__), "temp/habitacionesDisponibles.txt")
+        fileHabitacionesDisponibles = open(pathHabitacionesDisponibles, "rb")
+        Almacenamiento.listaHabitacionesDisponibles = pickle.load(fileHabitacionesDisponibles)
+        fileHabitacionesDisponibles.close()
 
         pathLugares = os.path.join(os.path.dirname(__file__), "temp/lugares.txt")
         fileLugares = open(pathLugares, "rb")
