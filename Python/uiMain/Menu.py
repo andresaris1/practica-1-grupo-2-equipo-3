@@ -792,7 +792,7 @@ def Cobro():
 
 
 def AbrirFuncional():
-    #Almacenamiento.Deserializar()
+    Almacenamiento.Deserializar()
     window.state(newstate="normal")
     ventanaInicio.state(newstate="withdraw")
     
