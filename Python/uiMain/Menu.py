@@ -457,17 +457,17 @@ def Tour():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
                 nombre_label = Label(frame2, text=destino.get_nombre(), font=("Arial", 12))
-                nombre_label.grid(row=i, column=0, sticky="w")
+                nombre_label.grid(row=i+4, column=0, sticky="w")
 
                 valor_label = Label(frame2, text=destino.get_valor(), font=("Arial", 12))
-                valor_label.grid(row=i, column=1, sticky="w")
+                valor_label.grid(row=i+4, column=1, sticky="w")
 
                 boton = Button(frame2, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.get_nombre()))
-                boton.grid(row=i, column=2)
+                boton.grid(row=i+4, column=2)
 
         # Botón Combo Completo
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.get_nombre()))
-        boton_combo.grid(row=len(Destinos)-1, column=2)
+        boton_combo.grid(row=len(Destinos)+3, column=2)
 
     cargarDestinos()
 
