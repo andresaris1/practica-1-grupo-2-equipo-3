@@ -474,67 +474,71 @@ def Tour():
 
     def cargarDestinos():
         nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_nombre(), font=("Arial", 12))
-        nombre_label_1.place(x=10, y=80)
+        nombre_label_1.place(relx=0.1, rely=0.27, anchor="center")
 
         valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_valor(), font=("Arial", 12))
-        valor_label_1.place(x=150, y=80)
+        valor_label_1.place(relx=0.3, rely=0.27, anchor="center")
 
         boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
-        boton_1.place(x=250, y=80)
+        boton_1.place(relx=0.5, rely=0.27, anchor="center")
+
 
         nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
-        nombre_label_2.place(x=10, y=120)
+        nombre_label_2.place(relx=0.1, rely=0.37, anchor="center")
 
         valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_valor(), font=("Arial", 12))
-        valor_label_2.place(x=150, y=120)
+        valor_label_2.place(relx=0.3, rely=0.37, anchor="center")
 
         boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
-        boton_2.place(x=250, y=120)
+        boton_2.place(relx=0.5, rely=0.37, anchor="center")
+
 
         nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
-        nombre_label_3.place(x=10, y=160)
+        nombre_label_3.place(relx=0.1, rely=0.47, anchor="center")
 
         valor_label_3 = Label(frame2, text=Destinos.JARDIN.get_valor(), font=("Arial", 12))
-        valor_label_3.place(x=150, y=160)
+        valor_label_3.place(relx=0.3, rely=0.47, anchor="center")
 
         boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
-        boton_3.place(x=250, y=160)
+        boton_3.place(relx=0.5, rely=0.47, anchor="center")
 
         nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
-        nombre_label_4.place(x=10, y=200)
+        nombre_label_4.place(relx=0.1, rely=0.57, anchor="center")
 
         valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_valor(), font=("Arial", 12))
-        valor_label_4.place(x=150, y=200)
+        valor_label_4.place(relx=0.3, rely=0.57, anchor="center")
 
         boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
-        boton_4.place(x=250, y=200)
+        boton_4.place(relx=0.5, rely=0.57, anchor="center")
 
         nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
-        nombre_label_5.place(x=10, y=240)
+        nombre_label_5.place(relx=0.1, rely=0.67, anchor="center")
 
         valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_valor(), font=("Arial", 12))
-        valor_label_5.place(x=150, y=240)
+        valor_label_5.place(relx=0.3, rely=0.67, anchor="center")
 
         boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
-        boton_5.place(x=250, y=240)
+        boton_5.place(relx=0.5, rely=0.67, anchor="center")
 
         nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
-        nombre_label_6.place(x=10, y=280)
+        nombre_label_6.place(relx=0.1, rely=0.77, anchor="center")
+
 
         valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_valor(), font=("Arial", 12))
-        valor_label_6.place(x=150, y=280)
+        valor_label_6.place(relx=0.3, rely=0.77, anchor="center")
 
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
-        boton_6.place(x=250, y=280)
+        boton_6.place(relx=0.5, rely=0.77, anchor="center")
 
         valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
-        valor_label_7.place(x=70, y=320)
+        valor_label_7.place(relx=0.2, rely=0.87, anchor="center")
+
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.place(x=250, y=320)
+        boton_combo.place(relx=0.5, rely=0.87, anchor="center")
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.place(relx=0.5, rely=0.9, anchor="center")
+        boton_terminar.place(relx=0.5, rely=0.97, anchor="center")
     
     listbox_destinos = Listbox(frame2, width=25, height=10)
     listbox_destinos.place(relx=0.8, rely=0.5, anchor="center")
