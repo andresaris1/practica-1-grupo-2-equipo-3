@@ -5,6 +5,7 @@ from tkinter import messagebox
 import os
 import sys
 from tkinter.ttk import Combobox
+import random
 
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 sys.path.append(os.path.dirname(__file__)+ "/../uiMain/Exepciones")
@@ -569,8 +570,10 @@ def Eventos():
     
     def solicitarServiciosExternos():
         
+        serviciosExternos = []
+        
         new = Toplevel(frame2)
-        new.geometry("400x400")
+        new.geometry("400x300")
         new.title("Solicitar Servicios Externos")
         
         titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
@@ -600,7 +603,7 @@ def Eventos():
         
         txtDisplay = Text(new)
         txtDisplay.config(state="disabled")
-        txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
+        txtDisplay.place(relheight=0.4, relwidth=0.7, rely=0.5, relx=0.02)
         
         def f0():
             vars[0] = not(vars[0])
@@ -627,7 +630,8 @@ def Eventos():
             txtDisplay.insert(END, s)
             txtDisplay.config(state="disabled")
             
-          
+        
+        
         #Aceptar = Button(new, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
         
         return None
@@ -701,6 +705,10 @@ def Eventos():
     
     empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
     empleados.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.22)
+    
+    #numero aleatorio para el código del evento
+    codigoEvento = random.randint(1000, 9999)
+    
 
 
 
