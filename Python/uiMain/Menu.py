@@ -436,7 +436,7 @@ def Tour():
 
     Titulo.config(text="Reserva un Tour")
     Descripcion.config(
-        text="crearemos una reserva de tour que estara encargada una empresa externa,\n solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
+        text="crearemos una reserva de tour que estará encargada a una empresa externa,\nsolo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
     )
 
     def mostrarImagen(nombre_destino):
@@ -455,7 +455,7 @@ def Tour():
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
-                imagen = os.path.join(os.path.dirname(__file__), "img/"+imagen_destino)
+                imagen = PhotoImage(file=destino.imagen)
                 boton = Button(frame2, command=lambda destino=destino: mostrarImagen(destino.nombre))
                 boton.config(image=imagen)
                 boton.image = imagen
@@ -486,7 +486,6 @@ def Tour():
     cargarDestinos()
 
     ventana.mainloop()
-
 
 def Eventos():
     reiniciar()
