@@ -448,7 +448,7 @@ def Tour():
     def terminarReserva():
         if destinos_seleccionados:
             # Generar factura y asociarla al cliente
-            factura = Almacenamiento.crearFactura(cliente_actual, None, destinos_seleccionados, "Reserva de tour")
+            factura = Almacenamiento.crearFactura(cliente, None, destinos_seleccionados, "Reserva de tour")
             Almacenamiento.listaFacturas.append(factura)
             messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
         else:
