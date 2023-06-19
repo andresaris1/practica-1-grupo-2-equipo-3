@@ -25,9 +25,15 @@ if __name__ == '__main__':
     print("PRUEBA DE SERIALIZADO")
     Almacenamiento.Deserializar()
 
-    Almacenamiento.listaFacturas.append(fac3)
+    use1 = Usuario( "Juan", 123, 111, "tipo", 345)
+    use2 = Usuario( "Carolina", 000, 222, "tipo", 678)
 
-    for f in Almacenamiento.listaFacturas:
-        print(f._concepto)
+    #Almacenamiento.listaUsuarios.append(use1)
+    #Almacenamiento.listaUsuarios.append(use2)
+    
+
+    for use in Almacenamiento.listaUsuarios:
+        print(use.nombre)
+    
 
     Almacenamiento.Serializar()
