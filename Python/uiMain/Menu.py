@@ -560,9 +560,23 @@ def Eventos():
         
         
     def solicitarEmpleados():
+        new = Toplevel(frame2)
+        new.geometry("400x400")
+        new.title("Solicitar Empleados")
+        
         return None
     
     def solicitarServiciosExternos():
+        new = Toplevel(frame2)
+        new.geometry("400x400")
+        new.title("Solicitar Servicios Externos")
+        
+        lblServicioExt = Label(new, text="Elija los servicios Externos", font=("Arial", 10), anchor="w")
+        lblServicioExt.place(relheight=0.1, relwidth=0.5, rely=0.3, relx=0.02)
+        
+        opt = Listbox(new,selectmode="multiple", values = ["Sonido", "Entretenimiento", "DJ"])
+        opt.place(relheight=0.1, relwidth=0.5, rely=0.5, relx=0.29)
+        
         return None
     
     
