@@ -436,39 +436,45 @@ def Tour():
 
     Titulo.config(text="Reserva un Tour")
     Descripcion.config(
-        text="crearemos una reserva de tour que estará encargada a una empresa externa,\nsolo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
+        text="Crearemos una reserva de tour que estará encargada a una empresa externa. "
+             "Solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo."
     )
 
-    def mostrarImagen(nombre_destino):
-        imagen_destino = None
-        for destino in Destinos:
-            if destino.get_nombre() == nombre_destino:
-                imagen_destino = os.path.join(os.path.dirname(__file__), "img/"+imagen_destino)
-            
-                if imagen_destino:
-                    ruta_imagen =tk.PhotoImage(file=image_destino)   # Obtener la ruta completa de la imagen
-            # Aquí puedes realizar la lógica para mostrar la imagen en tu interfaz
-                    print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
-                else:
-                    print("No se encontró la imagen del destino")
-            break
+    destinos_seleccionados = []  # Lista para almacenar los destinos seleccionados por el cliente
 
+    def agregarDestino(destino):
+        destinos_seleccionados.append(destino)
+        print(f"Destino agregado: {destino.get_nombre()}")
+
+    def terminarReserva():
+        if destinos_seleccionados:
+            # Generar factura y asociarla al cliente
+            factura = generarFactura(destinos_seleccionados)
+            cliente_actual.agregar_factura(factura)
+            print("Reserva de tour terminada. Factura generada y asociada al cliente.")
+            mostrarMensaje("Reserva finalizada", "La reserva de tour ha sido completada.")
+        else:
+            mostrarMensaje("Reserva incompleta", "No has seleccionado ningún destino.")
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
                 nombre_label = Label(frame2, text=destino.get_nombre(), font=("Arial", 12))
-                nombre_label.grid(row=i+4, column=0, sticky="w")
+                nombre_label.grid(row=i+1, column=0, sticky="w")
 
                 valor_label = Label(frame2, text=destino.get_valor(), font=("Arial", 12))
-                valor_label.grid(row=i+4, column=1, sticky="w")
+                valor_label.grid(row=i+1, column=1, sticky="w")
 
-                boton = Button(frame2, text="Aceptar", command=lambda destino=destino: mostrarImagen(destino.get_nombre()))
-                boton.grid(row=i+4, column=2)
+                boton = Button(frame2, text="Aceptar", command=lambda destino=destino: agregarDestino(destino))
+                boton.grid(row=i+1, column=2)
 
         # Botón Combo Completo
-        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.get_nombre()))
-        boton_combo.grid(row=len(Destinos)+3, column=2)
+        boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
+        boton_combo.grid(row=len(Destinos), column=2)
+
+        # Botón Terminar
+        boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
+        boton_terminar.grid(row=len(Destinos)+1, column=2)
 
     cargarDestinos()
 
