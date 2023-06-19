@@ -14,7 +14,7 @@ class Destinos(Enum):
     def __init__(self, nombre, valor, imagen):
         self.nombre = nombre
         self.valor = valor
-        self.imagen = destino
+        self.imagen = imagen
 
     def get_nombre(self):
         return self.nombre
