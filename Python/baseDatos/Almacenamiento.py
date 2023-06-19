@@ -2,6 +2,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/modelos")
 sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/reservacion")
+sys.path.append(os.path.dirname(__file__)+ "/../UiMain/Exepciones")
 
 import pickle
 from Usuario import *
@@ -12,6 +13,7 @@ from Evento import *
 from Servicio import *
 from Factura import *
 from ServicioExterno import *
+from ExepcionC1 import *
 
 class Almacenamiento():
 
@@ -137,7 +139,7 @@ class Almacenamiento():
         fileServiciosExternos.close()
 
         pathcontador = os.path.join(os.path.dirname(__file__), "temp/contadorFacturas.txt")
-        filecontador = open(pathcontador, "wb")
+        filecontador = open(pathcontador, "rb")
         Factura.contador= pickle.load(filecontador)
         filecontador.close()
 

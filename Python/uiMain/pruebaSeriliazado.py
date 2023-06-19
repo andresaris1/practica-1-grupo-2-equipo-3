@@ -28,12 +28,8 @@ if __name__ == '__main__':
     use1 = Usuario( "Juan", 123, 111, "tipo", 345)
     use2 = Usuario( "Pedro", 456, 222, "tipo", 678)
 
-    #Almacenamiento.listaUsuarios.append(use1)
-    #Almacenamiento.listaUsuarios.append(use2)
-    
+    print(Factura.contador)
 
-    for use in Almacenamiento.listaUsuarios:
-        print(use.nombre+"   "+ str(use.identificacion))
     
 
     Almacenamiento.Serializar()

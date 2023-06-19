@@ -6,6 +6,7 @@
     "python.analysis.extraPaths": [
         "./Python/gestorAplicacion/modelos",
         "./Python/gestorAplicacion/reservacion",
-        "./Python/baseDatos"
+        "./Python/baseDatos",
+        "./Python/uiMain/Exepciones"
     ]
 }

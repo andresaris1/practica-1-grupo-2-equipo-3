@@ -4,10 +4,15 @@ from tkinter import messagebox
 import os
 import sys
 from tkinter.ttk import Combobox
+
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
+sys.path.append(os.path.dirname(__file__)+ "/../UiMain/Exepciones")
+
 from Almacenamiento import *
 from datetime import datetime
 import functools
+from ExepcionC1 import ExepcionC1
+from UsuarioNoEncontradoError import UsuarioNoEncontradoError
 cliente=None
 
 """Metodo Aplicacion crea un messagebox que se muestra a la hora de hacer clic en el boton
@@ -114,7 +119,9 @@ def buscador():
             messagebox.showerror(
                 "Usuario no encontrado",
                 "Este usuario no está registrado en la base de datos",
+                
             )
+            raise UsuarioNoEncontradoError()
         Nom.config(state="disabled")
         Tel.config(state="disabled")
         Cub.config(state="disabled")
@@ -283,7 +290,7 @@ def Alojamiento():
                     hadis = []
 
                     """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
-                       y en una lista que se llama habitaciones disponibles """
+                    y en una lista que se llama habitaciones disponibles """
                     for reservas in Almacenamiento.listaReservas:
                         if (fen >= reservas.getFechaSalida()) or (
                             fsa <= reservas.getFechaEntrada()
