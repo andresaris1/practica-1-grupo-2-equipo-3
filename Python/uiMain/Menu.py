@@ -455,7 +455,7 @@ def Tour():
             # Generar factura y asociarla al cliente
             valor_total = calcularValorTotal()
             factura = Almacenamiento.crearFactura(cliente, None, valor_total, "Reserva de tour")
-            cliente_actual.agregar_factura(factura)
+            cliente.agregar_factura(factura)
             messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
             factura.imprimirFactura()
         else:
