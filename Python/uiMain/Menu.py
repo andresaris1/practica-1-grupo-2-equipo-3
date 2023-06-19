@@ -296,11 +296,18 @@ def Alojamiento():
                             fsa <= reservas.getFechaEntrada()
                         ):
                             for habitaciones in reservas.getHabitaciones():
-                                if habitaciones not in hadis:
+                                esta=False
+                                for habitaciones2 in hadis:
+                                    if habitaciones.getNumero() != habitaciones2.getNumero():
+                                        esta=True
+                                if esta:
                                     hadis.append(habitaciones)
                     for habis in Almacenamiento.listaHabitacionesDisponibles:
-                        if habis not in hadis:
-                            hadis.append(habis)
+                        for habitaciones2 in hadis:
+                            if habis.getNumero() != habitaciones2.getNumero():
+                                esta=True
+                        if esta:
+                            hadis.append(habitaciones)
 
                     """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas"""
                     x = 0.4
@@ -337,7 +344,7 @@ def Alojamiento():
                 fen, fsa, listahabitaciones, 0, cliente
             )
             factura = Almacenamiento.crearFactura(
-                cliente, emp, listahabitaciones, "Reserva"
+                cliente, Almacenamiento.listaEmpleados[0], listahabitaciones, "Reserva"
             )
             messagebox.showinfo("Reserva realizada con exito", reserva)
             messagebox.showinfo("Factura Asociada", factura)
@@ -443,7 +450,7 @@ def Tour():
 
             # Generar factura y asociarla al cliente
             valor_total = calcularValorTotal()
-            factura = Almacenamiento.crearFactura(cliente,emp,destinos_seleccionados,"Tour") 
+            factura = Almacenamiento.crearFactura(cliente,Almacenamiento.listaEmpleados[0],destinos_seleccionados,"Tour") 
             mostrardestinos=""
             for destino in destinos_seleccionados:
                 mostrardestinos+=(destino.getNombre()+"\n")
@@ -637,7 +644,7 @@ def Adicionales():
     servicios = []
 
     def reservar():
-        factura = Almacenamiento.crearFactura(cliente, emp, servicios, "Adicion de servicios")
+        factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], servicios, "Adicion de servicios")
         mensaje = txt2.get(1.0, END)
         messagebox.showinfo(
             "Adicion realizada con exito", ("Se adicionaron: \n" + mensaje)
@@ -670,7 +677,7 @@ def Adicionales():
             if cliente != None:
                 txt.config(state="normal")
                 for reservas in Almacenamiento.listaReservas:
-                    if cliente == reservas.getCliente():
+                    if cliente.getIdentificacion() == reservas.getCliente().getIdentificacion():
                         txt.insert(END, reservas)
                         txt.insert(END, "\n----------------------\n")
                 txt.config(state="disabled")
@@ -786,7 +793,7 @@ def Cobro():
             if cliente != None:
                 txt.config(state="normal")
                 for factura in Almacenamiento.listaFacturas:
-                    if cliente == factura.getUsuario():
+                    if cliente.getIdentificacion() == factura.getUsuario().getIdentificacion():
                         facturasencontradas.append(factura)
                         txt.insert(END, "Factura #" + str(factura.getCodigo())+"\n")
                         txt.insert(END,  str(factura.getFecha_y_hora())+"\n")
@@ -1163,6 +1170,7 @@ print    (Almacenamiento.listaServicios)
 print    (Almacenamiento.listaFacturas)
 print    (Almacenamiento.listaServiciosExternos)
 print    (Almacenamiento.listaHabitacionesDisponibles)
+
 
 
 ventanaInicio.mainloop()
