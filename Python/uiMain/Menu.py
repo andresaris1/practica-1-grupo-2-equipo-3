@@ -771,9 +771,9 @@ def Cobro():
     opciones.bind("<<ComboboxSelected>>", pasar)
 
     Buscar = Button(
-        frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar
+        frame2, text="Buscar facturas asociadas", font=("Arial", 10), command=buscar
     )
-    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.05)
+    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.35)
 
     Aceptar = Button(
         frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar
