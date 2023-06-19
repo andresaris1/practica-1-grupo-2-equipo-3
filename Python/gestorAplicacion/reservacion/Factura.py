@@ -93,7 +93,10 @@ class Factura():
             while True:
                 try:
                     servicio = next(servicios_iter)
-                    anotacion=servicio.getDescripcion()
+                    try:
+                        anotacion=servicio.getDescripcion()
+                    except AttributeError:
+                        anotacion=""
                     lista.append(str(servicio.getNombre()) + " \t" + str(servicio.getValor()) + "\n")
                     if anotacion=="":
                         anotacion="Sin Anotaciones"

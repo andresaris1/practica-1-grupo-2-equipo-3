@@ -419,38 +419,41 @@ def Tour():
     )
 
     destinos_seleccionados = []  # Lista para almacenar los destinos seleccionados por el cliente
-
     def agregarDestino(destino):
-        destinos_seleccionados.append(destino)
-        print(f"Destino agregado: {destino.get_nombre()}")
-        actualizarRecuadro()
+        if cliente!=None:
+            destinos_seleccionados.append(destino)
+            actualizarRecuadro()
+        else:
+            messagebox.showerror("Sin cliente","No existe un cliente asignado")
 
     def calcularValorTotal():
-        valor_total = sum(destino.get_valor() for destino in destinos_seleccionados)
+        valor_total = sum(destino.getValor() for destino in destinos_seleccionados)
         return valor_total
 
     def terminarReserva():
         if destinos_seleccionados:
             # Crear una lista de objetos Tour a partir de los destinos seleccionados
-            lista_tours = []
-            for destino in destinos_seleccionados:
-                tour = Tour(destino)
-                lista_tours.append(tour)
 
             # Generar factura y asociarla al cliente
             valor_total = calcularValorTotal()
-            factura = Factura(cliente, None, lista_tours, "Reserva de tour")
-            cliente.agregar_factura(factura)
-            factura.imprimirFactura()
-            messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
+            factura = Almacenamiento.crearFactura(cliente,emp,destinos_seleccionados,"Tour") 
+            mostrardestinos=""
+            for destino in destinos_seleccionados:
+                mostrardestinos+=(destino.getNombre()+"\n")
+            messagebox.showinfo("Reserva realizada con exito", "Se realizó la reserva de Tour a nombre de: "+cliente.getNombre()+"\nA los destinos:\n"+mostrardestinos)
+            messagebox.showinfo("Factura Asociada", factura)
+            bienvenido()
         else:
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
 
+            messagebox.showinfo("Factura Asociada", factura)
+            "Despues de reservar exitosamente se vuelve a la pa"
+
     def actualizarRecuadro():
         listbox_destinos.delete(0, END)
         for destino in destinos_seleccionados:
-            listbox_destinos.insert(END, destino.get_nombre())
+            listbox_destinos.insert(END, destino.getNombre())
         actualizarValorTotal()
 
     def actualizarValorTotal():
@@ -459,72 +462,73 @@ def Tour():
 
 
     def cargarDestinos():
-        nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_nombre(), font=("Arial", 12))
+        nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.getNombre(), font=("Arial", 12))
         nombre_label_1.place(relx=0.1, rely=0.27, anchor="center")
 
-        valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_valor(), font=("Arial", 12))
+        valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.getValor(), font=("Arial", 12))
         valor_label_1.place(relx=0.3, rely=0.27, anchor="center")
 
         boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
         boton_1.place(relx=0.5, rely=0.27, anchor="center")
 
 
-        nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
+        nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.getNombre(), font=("Arial", 12))
         nombre_label_2.place(relx=0.1, rely=0.37, anchor="center")
 
-        valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_valor(), font=("Arial", 12))
+        valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.getValor(), font=("Arial", 12))
         valor_label_2.place(relx=0.3, rely=0.37, anchor="center")
 
         boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
         boton_2.place(relx=0.5, rely=0.37, anchor="center")
 
 
-        nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
+        nombre_label_3 = Label(frame2, text=Destinos.JARDIN.getNombre(), font=("Arial", 12))
         nombre_label_3.place(relx=0.1, rely=0.47, anchor="center")
 
-        valor_label_3 = Label(frame2, text=Destinos.JARDIN.get_valor(), font=("Arial", 12))
+        valor_label_3 = Label(frame2, text=Destinos.JARDIN.getValor(), font=("Arial", 12))
         valor_label_3.place(relx=0.3, rely=0.47, anchor="center")
 
         boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
         boton_3.place(relx=0.5, rely=0.47, anchor="center")
 
-        nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
+        nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.getNombre(), font=("Arial", 12))
         nombre_label_4.place(relx=0.1, rely=0.57, anchor="center")
 
-        valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_valor(), font=("Arial", 12))
+        valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.getValor(), font=("Arial", 12))
         valor_label_4.place(relx=0.3, rely=0.57, anchor="center")
 
         boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
         boton_4.place(relx=0.5, rely=0.57, anchor="center")
 
-        nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
+        nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.getNombre(), font=("Arial", 12))
         nombre_label_5.place(relx=0.1, rely=0.67, anchor="center")
 
-        valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_valor(), font=("Arial", 12))
+        valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.getValor(), font=("Arial", 12))
         valor_label_5.place(relx=0.3, rely=0.67, anchor="center")
 
         boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
         boton_5.place(relx=0.5, rely=0.67, anchor="center")
 
-        nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
+        nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.getNombre(), font=("Arial", 12))
         nombre_label_6.place(relx=0.1, rely=0.77, anchor="center")
 
 
-        valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_valor(), font=("Arial", 12))
+        valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.getValor(), font=("Arial", 12))
         valor_label_6.place(relx=0.3, rely=0.77, anchor="center")
 
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
         boton_6.place(relx=0.5, rely=0.77, anchor="center")
 
-        valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
-        valor_label_7.place(relx=0.2, rely=0.87, anchor="center")
+        #valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.getValor(), font=("Arial", 12))
+        #valor_label_7.place(relx=0.2, rely=0.87, anchor="center")
 
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.place(relx=0.5, rely=0.87, anchor="center")
+        boton_combo.place(relx=0.2, rely=0.87, anchor="center")
 
-        boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.place(relx=0.5, rely=0.97, anchor="center")
+        Aceptar = Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
+        Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
+        
     
     listbox_destinos = Listbox(frame2, width=25, height=10)
     listbox_destinos.place(relx=0.8, rely=0.5, anchor="center")

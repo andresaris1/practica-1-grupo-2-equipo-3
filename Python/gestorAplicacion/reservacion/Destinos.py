@@ -16,11 +16,11 @@ class Destinos(Enum):
         self.valor = valor
         self.imagen = imagen
 
-    def get_nombre(self):
+    def getNombre(self):
         return self.nombre
 
-    def get_valor(self):
+    def getValor(self):
         return self.valor
 
-    def get_imagen(self):
+    def getImagen(self):
         return self.imagen
