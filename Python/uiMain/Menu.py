@@ -570,7 +570,7 @@ def Eventos():
         validate="key",
         validatecommand=(frame2.register(formarfecha), "%P"),
     )
-    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)
+    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
     
 
 
@@ -701,16 +701,31 @@ def Cobro():
         "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
         bienvenido()
 
-    def agregar(event):
+    def pasar(event):
         txt2.config(state="normal")
         for factura in facturasencontradas:
-            if opciones.get == factura.getCodigo():
+            facturacomparable="Factura #"+str(factura.getCodigo())
+            if opciones.get() == facturacomparable:
                 txt2.insert(END, "Factura #" + str(factura.getCodigo())+"\n")
                 txt2.insert(END,  str(factura.getFecha_y_hora())+"\n")
                 txt2.insert(END,  "Concepto:" +str(factura.getConcepto())+"\n")
                 txt2.insert(END,  "Valor:" + factura.getValorTotal()+"\n")
                 txt2.insert(END, "\n-------------------\n")
                 txt2.config(state="disabled")
+                facturaseleccionadas.append(factura)
+                facturasencontradas.remove(factura)
+
+        combofacturas.clear()
+        txt.delete(1.0,END)
+        for i in facturasencontradas:
+            txt.insert(END, "Factura #" + str(i.getCodigo())+"\n")
+            txt.insert(END,  str(i.getFecha_y_hora())+"\n")
+            txt.insert(END,  "Concepto:" +str(i.getConcepto())+"\n")
+            txt.insert(END,  "Valor:" + i.getValorTotal()+"\n")
+            txt.insert(END, "\n----------------------\n")
+            combofacturas.append("Factura #"+str(i.getCodigo()))
+        opciones.config(values=combofacturas)
+            
 
     def buscar():
         try:
@@ -753,7 +768,7 @@ def Cobro():
     txt2 = Text(frame2, state="disabled")
     ra2 = Label(frame2, text="Facturas seleccionadas", font=("Arial", 10), anchor="center")
     opciones = Combobox(frame2,textvariable="facturas")
-    opciones.bind("<<ComboboxSelected>>", agregar)
+    opciones.bind("<<ComboboxSelected>>", pasar)
 
     Buscar = Button(
         frame2, text="Buscar reservas asociadas", font=("Arial", 10), command=buscar
