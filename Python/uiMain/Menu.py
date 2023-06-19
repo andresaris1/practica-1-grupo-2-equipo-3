@@ -567,6 +567,7 @@ def Eventos():
         return None
     
     def solicitarServiciosExternos():
+        
         new = Toplevel(frame2)
         new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
@@ -582,20 +583,32 @@ def Eventos():
         lblServiciosExt = Label(new, text="¿Qué servicios externos desea?", font=("Arial", 8), anchor="w")
         lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
       
-
-        var = [False,False,False]
+        frameEleccion = Frame(new)
+        frameEleccion.place(relheight=0.08, relwidth=0.7, rely=0.35, relx=0.02)
         
-        cb1 = Checkbutton(new, text='Sonido', variable=var[0])
-        cb1.place(relheight=0.1, relwidth=0.5, rely=0.35, relx=0.3)
-        cb2 = Checkbutton(new, text='Entretenimiento', variable=var[1])
-        cb2.place(relheight=0.1, relwidth=0.5, rely=0.45, relx=0.3)
-        cb3 = Checkbutton(new, text='DJ', variable=var[2])
-        cb3.place(relheight=0.1, relwidth=0.5, rely=0.55, relx=0.3)
         
-        def clear_selection():
-            cb1.deselect()
-            cb2.deselect()
-            cb3.deselect()
+        
+        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: escribir("Sonido\n"))
+        cb1.pack(side="left")
+        
+        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: escribir("Entretenimiento\n"))
+        cb2.pack(side="left")
+        
+        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: escribir("DJ\n"))
+        cb3.pack(side="left")
+        
+        txtDisplay = Text(new)
+        txtDisplay.insert(END,"Los servicios seleccionados son: \n")
+        txtDisplay.config(state="disabled")
+        txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
+        
+        def escribir(texto):
+            txtDisplay.config(state="normal")
+            txtDisplay.insert(END, texto)
+            txtDisplay.config(state="disabled")
+            
+          
+        #Aceptar = Button(new, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
         
         return None
     

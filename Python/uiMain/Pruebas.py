@@ -1,27 +1,56 @@
-#Import the required libraries
 from tkinter import *
 
-#Create an instance of tkinter frame
-win= Tk()
+ws = Tk()
+ws.title('PythonGuides')
+ws.geometry('300x250')
+ws.config(bg="grey")
 
-#Set the geometry of frame
-win.geometry("600x250")
 
-#Create a frame
-frame = Frame(win)
-frame.pack(side="top", expand=True, fill="both")
-txt=Text(frame,state="normal")
-txt.place(relheight=0.60, rely=0.35, relwidth=0.25, relx=0.02)
 
-#Create a text label
-Label(frame,text="Enter the Password", font=('Helvetica',20)).pack(pady=20)
+Checkbutton(ws, text='0, 0').grid(row=0, column=0)
+Checkbutton(ws, text='0, 1').grid(row=0, column=1)
+Checkbutton(ws, text='0, 2').grid(row=0, column=1)
+Checkbutton(ws, text='1, 0').grid(row=1, column=0)
+Checkbutton(ws, text='1, 1').grid(row=1, column=1)
+Checkbutton(ws, text='1, 2').grid(row=1, column=2)
+Checkbutton(ws, text='2, 0').grid(row=2, column=0)
+Checkbutton(ws, text='2, 1').grid(row=2, column=1)
+Checkbutton(ws, text='2, 2').grid(row=2, column=2)
 
-def clear_frame():
-   for widgets in frame.winfo_children():
-      widgets.destroy()
+ws.mainloop()
+from tkinter import *
+ 
+ws = Tk() 
+ws.geometry('300x250')
+ws.title('Python Guides')
 
-#Create a button to close the window
-Button(frame, text="Clear", font=('Helvetica bold', 10), command=
-clear_frame).pack(pady=20)
+def clear_selection():
+    cb1.deselect()
+    cb2.deselect()
+    cb3.deselect()
+    cb4.deselect()
+    cb5.deselect()
+    cb6.deselect()
+    
+var = BooleanVar() 
+var.set(True)
+ 
+cb1 = Checkbutton(ws, text='Click me!', variable=var)
+cb1.pack()
+cb2 = Checkbutton(ws, text='Click me!', variable=var)
+cb2.pack()
+cb3 = Checkbutton(ws, text='Click me!', variable=var)
+cb3.pack()
+cb4 = Checkbutton(ws, text='Click me!', variable=var)
+cb4.pack()
+cb5 = Checkbutton(ws, text='Click me!', variable=var)
+cb5.pack()
+cb6 = Checkbutton(ws, text='Click me!', variable=var)
+cb6.pack()
 
-win.mainloop()
+Button(ws, text='Deselect All Check buttons', command=clear_selection).pack()
+
+
+
+ 
+ws.mainloop()
