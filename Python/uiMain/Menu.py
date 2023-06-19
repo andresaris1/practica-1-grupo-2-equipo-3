@@ -560,7 +560,17 @@ def Eventos():
     )
     w.place(relheight=0.05, relwidth=1, rely=0.20)
     
+    lblFecha = Label(frame2, text="Fecha Evento", font=("Arial", 10), anchor="w")
+    lblFecha.place(relheight=0.1, relwidth=0.2, rely=0.3, relx=0.02)
     
+    fechaEvento = Entry(
+        frame2,
+        font=("Arial", 14),
+        justify="right",
+        validate="key",
+        validatecommand=(frame2.register(formarfecha), "%P"),
+    )
+    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
     
 
 
@@ -571,9 +581,7 @@ def Adicionales():
     servicios = []
 
     def reservar():
-        factura = Almacenamiento.crearFactura(
-            cliente, emp, servicios, "Adicion de servicios"
-        )
+        factura = Almacenamiento.crearFactura(cliente, emp, servicios, "Adicion de servicios")
         mensaje = txt2.get(1.0, END)
         messagebox.showinfo(
             "Adicion realizada con exito", ("Se adicionaron: \n" + mensaje)
@@ -675,12 +683,102 @@ def Cobro():
     reiniciar()
     buscador()
     frame3.place_forget()
+    servicios = []
+    facturasencontradas=[]
+    combofacturas=[]
+    facturaseleccionadas=[]
 
     Titulo.config(text="Generador de cobros")
     Descripcion.config(text="Genera el cobro del cliente a la hora de salir")
 
-    info = Label(frame2, text="Aqui desarrollen su funcionalidad6", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor="center")
+    def reservar():
+        factura = Almacenamiento.crearFactura(cliente, emp, servicios, "Adicion de servicios")
+        mensaje = txt2.get(1.0, END)
+        messagebox.showinfo(
+            "Adicion realizada con exito", ("Se adicionaron: \n" + mensaje)
+        )
+        messagebox.showinfo("Factura Asociada", factura)
+        "Despues de reservar exitosamente se vuelve a la pantalla de inicio"
+        bienvenido()
+
+    def pasar(event):
+        txt2.config(state="normal")
+        for factura in facturasencontradas:
+            facturacomparable="Factura #"+str(factura.getCodigo())
+            if opciones.get() == facturacomparable:
+                txt2.insert(END, "Factura #" + str(factura.getCodigo())+"\n")
+                txt2.insert(END,  str(factura.getFecha_y_hora())+"\n")
+                txt2.insert(END,  "Concepto:" +str(factura.getConcepto())+"\n")
+                txt2.insert(END,  "Valor:" + factura.getValorTotal()+"\n")
+                txt2.insert(END, "\n-------------------\n")
+                txt2.config(state="disabled")
+                facturaseleccionadas.append(factura)
+                facturasencontradas.remove(factura)
+
+        combofacturas.clear()
+        txt.delete(1.0,END)
+        for i in facturasencontradas:
+            txt.insert(END, "Factura #" + str(i.getCodigo())+"\n")
+            txt.insert(END,  str(i.getFecha_y_hora())+"\n")
+            txt.insert(END,  "Concepto:" +str(i.getConcepto())+"\n")
+            txt.insert(END,  "Valor:" + i.getValorTotal()+"\n")
+            txt.insert(END, "\n----------------------\n")
+            combofacturas.append("Factura #"+str(i.getCodigo()))
+        opciones.config(values=combofacturas)
+            
+
+    def buscar():
+        try:
+            if cliente != None:
+                txt.config(state="normal")
+                for factura in Almacenamiento.listaFacturas:
+                    if cliente == factura.getUsuario():
+                        facturasencontradas.append(factura)
+                        txt.insert(END, "Factura #" + str(factura.getCodigo())+"\n")
+                        txt.insert(END,  str(factura.getFecha_y_hora())+"\n")
+                        txt.insert(END,  "Concepto:" +str(factura.getConcepto())+"\n")
+                        txt.insert(END,  "Valor:" + factura.getValorTotal()+"\n")
+                        txt.insert(END, "\n----------------------\n")
+                        combofacturas.append("Factura #"+str(factura.getCodigo()))
+                txt.config(state="normal")
+                txt.place(relheight=0.60, rely=0.35, relwidth=0.3, relx=0.05)
+                ra1.place(relheight=0.1, relwidth=0.3, rely=0.25, relx=0.05)
+                ra2.place(relheight=0.1, relwidth=0.25, rely=0.25, relx=0.7)
+                txt2.place(relheight=0.4, rely=0.35, relwidth=0.25, relx=0.7)
+                ra3.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.25)
+                opciones.place(relheight=0.1, relwidth=0.25, relx=0.4, rely=0.36)
+                opciones.config(values=combofacturas)
+                Buscar.place_forget()
+            else:
+                messagebox.showerror("Error", "No hay usuario que buscar por else")
+        except NameError:
+            messagebox.showerror("Error", "No hay usuario que buscar")
+
+    w = Label(
+        frame2,
+        text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",
+    )
+    w.place(relheight=0.05, relwidth=1, rely=0.20)
+
+    ra1 = Label(frame2, text="Facturas Asociadas", font=("Arial", 10), anchor="center")
+    ra3 = Label(
+        frame2, text="Selecione Facturas\na pagar", font=("Arial", 10), anchor="center"
+    )
+    txt = Text(frame2, state="disabled")
+    txt2 = Text(frame2, state="disabled")
+    ra2 = Label(frame2, text="Facturas seleccionadas", font=("Arial", 10), anchor="center")
+    opciones = Combobox(frame2,textvariable="facturas")
+    opciones.bind("<<ComboboxSelected>>", pasar)
+
+    Buscar = Button(
+        frame2, text="Buscar facturas asociadas", font=("Arial", 10), command=buscar
+    )
+    Buscar.place(relheight=0.1, relwidth=0.3, rely=0.5, relx=0.35)
+
+    Aceptar = Button(
+        frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=reservar
+    )
+    Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
 
 
 def AbrirFuncional():
@@ -1008,8 +1106,10 @@ habitacion6 = Almacenamiento.crearHabitacion("302", "Habitacion Familiar", 302, 
 
 c1 = Usuario("Carlos", "1", "Cliente", "1", "1")
 Almacenamiento.listaUsuarios.append(c1)
+
 emp = Empleado("Recepcion", 0, 0, "Recepcion")
 Almacenamiento.listaEmpleados.append(emp)
+
 comida = Almacenamiento.crearServicio("Alimentacion", 50000, "")
 masaje = Almacenamiento.crearServicio("Masaje", 30000, "")
 transporte = Almacenamiento.crearServicio("Transporte", 70000, "")
@@ -1023,6 +1123,11 @@ ba.append(Almacenamiento.listaHabitaciones[0])
 res1 = Reserva(fen, fsa, ba, 0, c1)
 res2 = Reserva(fen, fsa, ba, 0, c1)
 res3 = Reserva(fen, fsa, ba, 0, c1)
+
+factura1 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
+factura2 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
+factura3 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
+
 Almacenamiento.listaReservas.append(res1)
 Almacenamiento.listaReservas.append(res2)
 Almacenamiento.listaReservas.append(res3)
