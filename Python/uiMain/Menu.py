@@ -549,6 +549,13 @@ def Eventos():
     buscador()
     frame3.place_forget()
 
+    def solicitarEmpleados():
+        return None
+    
+    def solicitarServiciosExternos():
+        return None
+    
+    
     Titulo.config(text="Reserva nueva de eventos")
     Descripcion.config(
         text="Realiza una nueva reserva de evento en nuestras instalaciones"
@@ -608,6 +615,7 @@ def Adicionales():
         txt3.delete(1.0, END)
         txt3.config(state="disabled")
 
+    #Pa buscar reservas asociadas al cliente
     def buscar():
         try:
             if cliente != None:
@@ -630,6 +638,7 @@ def Adicionales():
                 messagebox.showerror("Error", "No hay usuario que buscar por else")
         except NameError:
             messagebox.showerror("Error", "No hay usuario que buscar")
+
 
     Titulo.config(text="Adicion de servicios")
     Descripcion.config(text="Realiza una adicion de servicios")
