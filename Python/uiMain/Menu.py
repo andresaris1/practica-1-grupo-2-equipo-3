@@ -436,8 +436,7 @@ def Tour():
 
     Titulo.config(text="Reserva un Tour")
     Descripcion.config(
-        text="Crearemos una reserva de tour que estará encargada a una empresa externa. "
-             "Solo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo."
+        text="crearemos una reserva de tour que estará encargada a una empresa externa,\nsolo nos encargaremos de agregar la lista de la reserva de Tour y la factura de costo"
     )
 
     destinos_seleccionados = []  # Lista para almacenar los destinos seleccionados por el cliente
@@ -449,12 +448,11 @@ def Tour():
     def terminarReserva():
         if destinos_seleccionados:
             # Generar factura y asociarla al cliente
-            factura = generarFactura(destinos_seleccionados)
-            cliente_actual.agregar_factura(factura)
+            factura = Almacenamiento.crearFactura(cliente_actual, None, destinos_seleccionados, "Reserva de tour")
+            Almacenamiento.listaFacturas.append(factura)
             print("Reserva de tour terminada. Factura generada y asociada al cliente.")
-            mostrarMensaje("Reserva finalizada", "La reserva de tour ha sido completada.")
         else:
-            mostrarMensaje("Reserva incompleta", "No has seleccionado ningún destino.")
+            print("Reserva incompleta. No has seleccionado ningún destino.")
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
