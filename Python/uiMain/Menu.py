@@ -431,14 +431,21 @@ def Tour():
 
     def terminarReserva():
         if destinos_seleccionados:
+            # Crear una lista de objetos Tour a partir de los destinos seleccionados
+            lista_tours = []
+            for destino in destinos_seleccionados:
+                tour = Tour(destino)
+                lista_tours.append(tour)
+
             # Generar factura y asociarla al cliente
             valor_total = calcularValorTotal()
-            factura = Almacenamiento.crearFactura(cliente, None, valor_total, "Reserva de tour")
+            factura = Factura(cliente, None, lista_tours, "Reserva de tour")
             cliente.agregar_factura(factura)
-            messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
             factura.imprimirFactura()
+            messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
         else:
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
+
 
     def actualizarRecuadro():
         listbox_destinos.delete(0, END)
