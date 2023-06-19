@@ -605,9 +605,10 @@ def Cobro():
 
 
 def AbrirFuncional():
+    #Almacenamiento.Deserializar()
     window.state(newstate="normal")
     ventanaInicio.state(newstate="withdraw")
-    Almacenamiento.Deserializar()
+    
 
 
 def AbrirInicio():
