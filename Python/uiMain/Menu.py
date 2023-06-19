@@ -581,18 +581,36 @@ def Eventos():
     lblDuracion.place(relheight = 0.1, relwidth = 0.2, rely = 0.5, relx = 0.02)
     
     
-    opciones = Combobox(
+    desicionDuracion = Combobox(
         frame2,
         values=["4 Horas", "6 Horas", "8 Horas"],
         textvariable="Duración en horas",
     )
-    opciones.place(relheight=0.1, relwidth=0.17, rely=0.5, relx=0.2)
+    desicionDuracion.place(relheight=0.1, relwidth=0.17, rely=0.5, relx=0.2)
     
     #Se pregunta por el número de personas que asistirán al evento
     
     lblAsistentes = Label(frame2, text="Número de asistentes", font=("Arial", 10), anchor="w")
-    lblAsistentes.place(relheight = 0.1, relwidth = 0.16, rely = 0.7, relx = 0.02)
+    lblAsistentes.place(relheight = 0.1, relwidth = 0.17, rely = 0.7, relx = 0.02)
+    
+    entryAsistentes = Entry(
+        frame2,
+        font=("Arial", 14),
+        justify="right"
+    )
+    entryAsistentes.place(relheight=0.1, relwidth=0.17, rely=0.7, relx=0.2)
+    
+    
     #Se pregunta por el lugar de realización del evento
+    lblLugar = Label(frame2, text="Lugar Evento", font=("Arial", 10), anchor="w")
+    lblLugar.place(relheight = 0.1, relwidth = 0.2, rely = 0.3, relx = 0.4)
+    
+    desicionLugar = Combobox(
+        frame2,
+        values=["Terraza", "Salón de Eventos", "Piscina"],
+        textvariable="Lugar del evento"
+    )
+    desicionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.5)
     
     #Botón para añadir servicios externos
     
