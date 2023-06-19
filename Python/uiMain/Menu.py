@@ -480,7 +480,8 @@ def Tour():
         valor_label_1.place(x=150, y=80)
 
         boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
-        boton_1.place(x=250, y=80)
+        boton_1.place(relx=0.5, rely=0.27, anchor="center")
+
 
         nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
         nombre_label_2.place(x=10, y=120)
@@ -489,7 +490,8 @@ def Tour():
         valor_label_2.place(x=150, y=120)
 
         boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
-        boton_2.place(x=250, y=120)
+        boton_2.place(relx=0.5, rely=0.37, anchor="center")
+
 
         nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
         nombre_label_3.place(x=10, y=160)
@@ -498,7 +500,7 @@ def Tour():
         valor_label_3.place(x=150, y=160)
 
         boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
-        boton_3.place(x=250, y=160)
+        boton_3.place(relx=0.5, rely=0.47, anchor="center")
 
         nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
         nombre_label_4.place(x=10, y=200)
@@ -507,7 +509,7 @@ def Tour():
         valor_label_4.place(x=150, y=200)
 
         boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
-        boton_4.place(x=250, y=200)
+        boton_4.place(relx=0.5, rely=0.57, anchor="center")
 
         nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
         nombre_label_5.place(x=10, y=240)
@@ -516,7 +518,7 @@ def Tour():
         valor_label_5.place(x=150, y=240)
 
         boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
-        boton_5.place(x=250, y=240)
+        boton_5.place(relx=0.5, rely=0.67, anchor="center")
 
         nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
         nombre_label_6.place(x=10, y=280)
@@ -525,16 +527,16 @@ def Tour():
         valor_label_6.place(x=150, y=280)
 
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
-        boton_6.place(x=250, y=280)
+        boton_6.place(relx=0.5, rely=0.77, anchor="center")
 
         valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
         valor_label_7.place(x=70, y=320)
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.place(x=250, y=320)
+        boton_combo.place(relx=0.5, rely=0.87, anchor="center")
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.place(relx=0.5, rely=0.9, anchor="center")
+        boton_terminar.place(relx=0.5, rely=0.97, anchor="center")
     
     listbox_destinos = Listbox(frame2, width=25, height=10)
     listbox_destinos.place(relx=0.8, rely=0.5, anchor="center")
