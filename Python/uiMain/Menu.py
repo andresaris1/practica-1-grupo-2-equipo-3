@@ -571,11 +571,31 @@ def Eventos():
         new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
         
-        lblServicioExt = Label(new, text="Elija los servicios Externos", font=("Arial", 10), anchor="w")
-        lblServicioExt.place(relheight=0.1, relwidth=0.5, rely=0.3, relx=0.02)
+        titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
+        titulo.place(relheight=0.1, relwidth=0.5, rely=0.05, relx=0.3)
         
-        opt = Listbox(new,selectmode="multiple", values = ["Sonido", "Entretenimiento", "DJ"])
-        opt.place(relheight=0.1, relwidth=0.5, rely=0.5, relx=0.29)
+        subtitulo = Label(new, text="Elija los Servicios externos", font=("Arial",8), anchor="w")
+        subtitulo.place(relheight=0.1, relwidth=0.5, rely=0.12, relx=0.3)
+        
+        Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
+        
+        lblServiciosExt = Label(new, text="¿Qué servicios externos desea?", font=("Arial", 8), anchor="w")
+        lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
+      
+
+        var = [False,False,False]
+        
+        cb1 = Checkbutton(new, text='Sonido', variable=var[0])
+        cb1.place(relheight=0.1, relwidth=0.5, rely=0.35, relx=0.3)
+        cb2 = Checkbutton(new, text='Entretenimiento', variable=var[1])
+        cb2.place(relheight=0.1, relwidth=0.5, rely=0.45, relx=0.3)
+        cb3 = Checkbutton(new, text='DJ', variable=var[2])
+        cb3.place(relheight=0.1, relwidth=0.5, rely=0.55, relx=0.3)
+        
+        def clear_selection():
+            cb1.deselect()
+            cb2.deselect()
+            cb3.deselect()
         
         return None
     
