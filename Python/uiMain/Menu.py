@@ -552,7 +552,9 @@ def Eventos():
     reiniciar()
     buscador()
     frame3.place_forget()
-
+        
+        
+        
     def solicitarEmpleados():
         return None
     
@@ -582,14 +584,24 @@ def Eventos():
         validate="key",
         validatecommand=(frame2.register(formarfecha), "%P"),
     )
-    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.18)    
+    fechaEvento.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.2)    
     
     #Se pregunta por duración del evento
     lblDuracion = Label(frame2, text="Duración Evento", font=("Arial", 10), anchor="w")
     lblDuracion.place(relheight = 0.1, relwidth = 0.2, rely = 0.5, relx = 0.02)
     
+    
+    opciones = Combobox(
+        frame2,
+        values=["4 Horas", "6 Horas", "8 Horas"],
+        textvariable="Duración en horas",
+    )
+    opciones.place(relheight=0.1, relwidth=0.17, rely=0.5, relx=0.2)
+    
     #Se pregunta por el número de personas que asistirán al evento
     
+    lblAsistentes = Label(frame2, text="Número de asistentes", font=("Arial", 10), anchor="w")
+    lblAsistentes.place(relheight = 0.1, relwidth = 0.16, rely = 0.7, relx = 0.02)
     #Se pregunta por el lugar de realización del evento
     
     #Botón para añadir servicios externos
