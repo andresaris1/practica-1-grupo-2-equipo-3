@@ -444,7 +444,8 @@ def Tour():
     def agregarDestino(destino):
         destinos_seleccionados.append(destino)
         print(f"Destino agregado: {destino.get_nombre()}")
-    
+        actualizarRecuadro()
+
     def calcularValorTotal():
         valor_total = sum(destino.get_valor() for destino in destinos_seleccionados)
         return valor_total
@@ -460,6 +461,15 @@ def Tour():
         else:
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
+    def actualizarRecuadro():
+        listbox_destinos.delete(0, END)
+        for destino in destinos_seleccionados:
+            listbox_destinos.insert(END, destino.get_nombre())
+        actualizarValorTotal()
+
+    def actualizarValorTotal():
+        valor_total = calcularValorTotal()
+        label_valor_total.config(text=f"Valor Total: {valor_total}")
 
 
     def cargarDestinos():
@@ -525,6 +535,12 @@ def Tour():
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
         boton_terminar.place(x=250, y=360)
+    
+    listbox_destinos = Listbox(frame2, width=25, height=10)
+    listbox_destinos.place(x=350, y=80)
+
+    label_valor_total = Label(frame2, text="Valor Total: 0", font=("Arial", 12))
+    label_valor_total.place(x=350, y=250)
 
     cargarDestinos()
 
