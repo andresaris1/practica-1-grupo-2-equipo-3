@@ -534,13 +534,13 @@ def Tour():
         boton_combo.place(x=250, y=320)
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.place(x=250, y=360)
+        boton_terminar.place(relx=0.5, rely=0.9, anchor="center")
     
     listbox_destinos = Listbox(frame2, width=25, height=10)
-    listbox_destinos.place(x=350, y=80)
+    listbox_destinos.place(relx=0.8, rely=0.5, anchor="center")
 
     label_valor_total = Label(frame2, text="Valor Total: 0", font=("Arial", 12))
-    label_valor_total.place(x=350, y=250)
+    label_valor_total.place(relx=0.8, rely=0.7, anchor="center")
 
     cargarDestinos()
 
