@@ -289,11 +289,18 @@ def Alojamiento():
                             fsa <= reservas.getFechaEntrada()
                         ):
                             for habitaciones in reservas.getHabitaciones():
-                                if habitaciones not in hadis:
+                                esta=False
+                                for habitaciones2 in hadis:
+                                    if habitaciones.getNumero() != habitaciones2.getNumero():
+                                        esta=True
+                                if esta:
                                     hadis.append(habitaciones)
                     for habis in Almacenamiento.listaHabitacionesDisponibles:
-                        if habis not in hadis:
-                            hadis.append(habis)
+                        for habitaciones2 in hadis:
+                            if habis.getNumero() != habitaciones2.getNumero():
+                                esta=True
+                        if esta:
+                            hadis.append(habitaciones)
 
                     """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas"""
                     x = 0.4
