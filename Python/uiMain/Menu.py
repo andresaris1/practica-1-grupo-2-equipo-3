@@ -624,6 +624,7 @@ def Cobro():
 def AbrirFuncional():
     window.state(newstate="normal")
     ventanaInicio.state(newstate="withdraw")
+    Almacenamiento.Deserializar()
 
 
 def AbrirInicio():
@@ -634,6 +635,7 @@ def AbrirInicio():
 def Cerrartodo():
     ventanaInicio.destroy()
     window.destroy()
+    Almacenamiento.Serializar()
 
 def cambiarDescripcion():
     Descripcion = Label(

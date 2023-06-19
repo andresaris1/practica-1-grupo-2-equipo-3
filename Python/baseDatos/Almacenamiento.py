@@ -31,41 +31,100 @@ class Almacenamiento():
     #Metodos de serializar y deserializar
     @classmethod
     def Serializar(cls):
-        print("METODO SERIALIZAR")
-
-        pathUsuarios = os.path(os.path.dirname(__file__), "temp/usuarios.txt")
-        pathEmpleados = os.path(os.path.dirname(__file__), "temp/empleados.txt")    
-        pathHabitaciones = os.path(os.path.dirname(__file__), "temp/habitaciones.txt")    
-        pathLugares = os.path(os.path.dirname(__file__), "temp/lugares.txt")
-        pathReservas = os.path(os.path.dirname(__file__), "temp/reservas.txt")
-        pathEventos = os.path(os.path.dirname(__file__), "temp/eventos.txt")    
-        pathServicios = os.path(os.path.dirname(__file__), "temp/servicios.txt")    
-        pathFacturas = os.path(os.path.dirname(__file__), "temp/facturas.txt")
-        pathServiciosExternos = os.path(os.path.dirname(__file__), "temp/serviciosExternos.txt")
-        
-        fileUsuarios=open(pathUsuarios , "wb")
+        path = os.path.join(os.path.dirname(__file__), "temp/usuarios.txt")
+        fileUsuarios=open(path , "wb")
         pickle.dump(Almacenamiento.listaUsuarios, fileUsuarios)
-        fileUsuarios.close()        
+        fileUsuarios.close()
 
-        fileEmpleados=open(pathEmpleados , "wb")
+        path = os.path.join(os.path.dirname(__file__), "temp/empleados.txt")
+        fileEmpleados = open(path, "wb")
         pickle.dump(Almacenamiento.listaEmpleados, fileEmpleados)
-        fileEmpleados.close() 
+        fileEmpleados.close()
 
-        fileHabitaciones = open(pathHabitaciones , "wb")
+        path = os.path.join(os.path.dirname(__file__), "temp/habitaciones.txt")
+        fileHabitaciones = open(path, "wb")
         pickle.dump(Almacenamiento.listaHabitaciones, fileHabitaciones)
         fileHabitaciones.close()
 
-        fileLugares = open(pathLugares , "wb")
+        path = os.path.join(os.path.dirname(__file__), "temp/lugares.txt")
+        fileLugares = open(path, "wb")
         pickle.dump(Almacenamiento.listaLugares, fileLugares)
         fileLugares.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/reservas.txt")
+        fileReservas = open(path, "wb")
+        pickle.dump(Almacenamiento.listaReservas, fileReservas)
+        fileReservas.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/eventos.txt")
+        fileEventos = open(path, "wb")
+        pickle.dump(Almacenamiento.listaEventos, fileEventos)
+        fileEventos.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/servicios.txt")
+        fileServicios = open(path, "wb")
+        pickle.dump(Almacenamiento.listaServicios, fileServicios)
+        fileServicios.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/serviciosExternos.txt")
+        fileServiciosExternos = open(path, "wb")
+        pickle.dump(Almacenamiento.listaServiciosExternos, fileServiciosExternos)
+        fileServiciosExternos.close()
+
+
+
+
+
+
     
     @classmethod
     def Deserializar(cls):
-        path = os.path.join(os.path.dirname(__file__), "temp/usuario.txt")
+        path = os.path.join(os.path.dirname(__file__), "temp/usuarios.txt")
         fileUsuarios=open(path , "rb")
         Almacenamiento.listaUsuarios=pickle.load(fileUsuarios)
         fileUsuarios.close()
-    
+
+        path = os.path.join(os.path.dirname(__file__), "temp/empleados.txt")
+        fileEmpleados = open(path, "rb")
+        Almacenamiento.listaEmpleados = pickle.load(fileEmpleados)
+        fileEmpleados.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/habitaciones.txt")
+        fileHabitaciones = open(path, "rb")
+        Almacenamiento.listaHabitaciones = pickle.load(fileHabitaciones)
+        fileHabitaciones.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/lugares.txt")
+        fileLugares = open(path, "rb")
+        Almacenamiento.listaLugares = pickle.load(fileLugares)
+        fileLugares.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/reservas.txt")
+        fileReservas = open(path, "rb")
+        Almacenamiento.listaReservas = pickle.load(fileReservas)
+        fileReservas.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/eventos.txt")
+        fileEventos = open(path, "rb")
+        Almacenamiento.listaEventos = pickle.load(fileEventos)
+        fileEventos.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/servicios.txt")
+        fileServicios = open(path, "rb")
+        Almacenamiento.listaServicios = pickle.load(fileServicios)
+        fileServicios.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/facturas.txt")
+        fileFacturas = open(path, "rb")
+        Almacenamiento.listaFacturas = pickle.load(fileFacturas)
+        fileFacturas.close()
+
+        path = os.path.join(os.path.dirname(__file__), "temp/serviciosExternos.txt")
+        fileServiciosExternos = open(path, "rb")
+        Almacenamiento.listaServiciosExternos = pickle.load(fileServiciosExternos)
+        fileServiciosExternos.close()
+
+
     def crearUsuario(nombre, identificacion, telefono, cuentaBancaria):
         cliente=Usuario(nombre,identificacion,telefono,"Cliente",cuentaBancaria)
         Almacenamiento.listaUsuarios.append(cliente)
