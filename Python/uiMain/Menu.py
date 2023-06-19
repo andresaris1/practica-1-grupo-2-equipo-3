@@ -444,13 +444,18 @@ def Tour():
     def agregarDestino(destino):
         destinos_seleccionados.append(destino)
         print(f"Destino agregado: {destino.get_nombre()}")
+    
+    def calcularValorTotal():
+        valor_total = sum(destino.get_valor() for destino in destinos_seleccionados)
+        return valor_total
 
     def terminarReserva():
         if destinos_seleccionados:
             # Generar factura y asociarla al cliente
-            factura = Almacenamiento.crearFactura(cliente, None, destinos_seleccionados, "Reserva de tour")
+            factura = Almacenamiento.crearFactura(cliente, None, destinos_seleccionados,valor_total, "Reserva de tour")
             Almacenamiento.listaFacturas.append(factura)
             messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
+            factura.imprimirFactura() 
         else:
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
@@ -458,17 +463,17 @@ def Tour():
         for i, destino in enumerate(Destinos):
             if destino != Destinos.COMBO_COMPLETO:
                 nombre_label = Label(frame2, text=destino.get_nombre(), font=("Arial", 12))
-                nombre_label.grid(row=i+1, column=0, sticky="w")
+                nombre_label.grid(row=i, column=0, sticky="w")
 
                 valor_label = Label(frame2, text=destino.get_valor(), font=("Arial", 12))
-                valor_label.grid(row=i+1, column=1, sticky="w")
+                valor_label.grid(row=i, column=1, sticky="w")
 
                 boton = Button(frame2, text="Aceptar", command=lambda destino=destino: agregarDestino(destino))
-                boton.grid(row=i+1, column=2)
+                boton.grid(row=i, column=2)
 
         # Botón Combo Completo
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.grid(row=len(Destinos), column=2)
+        boton_combo.grid(row=len(Destinos)-1, column=2)
 
         # Botón Terminar
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
