@@ -568,15 +568,48 @@ def Eventos():
         return None
     
     def solicitarServiciosExternos():
+        
         new = Toplevel(frame2)
         new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
         
-        lblServicioExt = Label(new, text="Elija los servicios Externos", font=("Arial", 10), anchor="w")
-        lblServicioExt.place(relheight=0.1, relwidth=0.5, rely=0.3, relx=0.02)
+        titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
+        titulo.place(relheight=0.1, relwidth=0.5, rely=0.05, relx=0.3)
         
-        opt = Listbox(new,selectmode="multiple", values = ["Sonido", "Entretenimiento", "DJ"])
-        opt.place(relheight=0.1, relwidth=0.5, rely=0.5, relx=0.29)
+        subtitulo = Label(new, text="Elija los Servicios externos", font=("Arial",8), anchor="w")
+        subtitulo.place(relheight=0.1, relwidth=0.5, rely=0.12, relx=0.3)
+        
+        Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
+        
+        lblServiciosExt = Label(new, text="¿Qué servicios externos desea?", font=("Arial", 8), anchor="w")
+        lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
+      
+        frameEleccion = Frame(new)
+        frameEleccion.place(relheight=0.08, relwidth=0.7, rely=0.35, relx=0.02)
+        
+        
+        
+        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: escribir("Sonido\n"))
+        cb1.pack(side="left")
+        
+        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: escribir("Entretenimiento\n"))
+        cb2.pack(side="left")
+        
+        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: escribir("DJ\n"))
+        cb3.pack(side="left")
+        
+        txtDisplay = Text(new)
+        txtDisplay.insert(END,"Los servicios seleccionados son: \n")
+        txtDisplay.config(state="disabled")
+        txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
+        
+        def escribir(texto):
+            txtDisplay.config(state="normal")
+            txtDisplay.insert(END, texto)
+            txtDisplay.config(state="disabled")
+            
+          
+        #Aceptar = Button(new, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
         
         return None
     
