@@ -610,12 +610,18 @@ def Eventos():
         values=["Terraza", "Salón de Eventos", "Piscina"],
         textvariable="Lugar del evento"
     )
-    desicionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.5)
+    desicionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.55)
     
     #Botón para añadir servicios externos
     
+    serviciosExt = Button(frame2, text="Servicios Externos",font=("Arial", 10), command=solicitarServiciosExternos)
+    serviciosExt.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.02)
     #Botón para añadir empleados
     
+    empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
+    empleados.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.22)
+
+
 
 def Adicionales():
     reiniciar()
