@@ -554,8 +554,14 @@ def Eventos():
         text="Realiza una nueva reserva de evento en nuestras instalaciones"
     )
 
-    info = Label(frame2, text="Aqui desarrollen su funcionalidad3", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor="center")
+    w = Label(
+        frame2,
+        text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",
+    )
+    w.place(relheight=0.05, relwidth=1, rely=0.20)
+    
+    
+    
 
 
 def Adicionales():
