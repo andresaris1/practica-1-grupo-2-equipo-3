@@ -443,15 +443,16 @@ def Tour():
         imagen_destino = None
         for destino in Destinos:
             if destino.get_nombre() == nombre_destino:
-                imagen_destino = destino.get_imagen()
-                break
-
-        if imagen_destino:
-            ruta_imagen = os.path.join(os.path.dirname(__file__), "img"+imagen_destino)  # Obtener la ruta completa de la imagen
+                imagen_destino = os.path.join(os.path.dirname(__file__), "img/"+imagen_destino)
+            
+                if imagen_destino:
+                    ruta_imagen =tk.PhotoImage(file=image_destino)   # Obtener la ruta completa de la imagen
             # Aquí puedes realizar la lógica para mostrar la imagen en tu interfaz
-            print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
-        else:
-            print("No se encontró la imagen del destino")
+                    print(f"Mostrando imagen de {nombre_destino}: {ruta_imagen}")
+                else:
+                    print("No se encontró la imagen del destino")
+            break
+
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
