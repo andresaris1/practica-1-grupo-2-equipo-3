@@ -589,13 +589,13 @@ def Eventos():
         
         vars = [False]*3
         
-        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: vars[0] ^= True)
+        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: vars[0] *= True)
         cb1.pack(side="left")
         
-        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: vars[1] ^= True)
+        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: vars[1] *= True)
         cb2.pack(side="left")
         
-        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: vars[2] ^= True)
+        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: vars[2] *= True)
         cb3.pack(side="left")
         
         txtDisplay = Text(new)
@@ -603,7 +603,10 @@ def Eventos():
         txtDisplay.config(state="disabled")
         txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
         
-        def escribir(texto):
+        def actualizarDisplay():
+            valor = dict(zip( [True,False],["Sí","No"] ))
+            s = ""
+            
             txtDisplay.config(state="normal")
             txtDisplay.insert(END, texto)
             txtDisplay.config(state="disabled")
