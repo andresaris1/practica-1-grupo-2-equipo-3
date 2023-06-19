@@ -461,69 +461,70 @@ def Tour():
             messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
 
+
     def cargarDestinos():
         nombre_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_nombre(), font=("Arial", 12))
-        nombre_label_1.grid(row=4, column=0, sticky="w")
+        nombre_label_1.place(x=10, y=80)
 
         valor_label_1 = Label(frame2, text=Destinos.SANTA_FE_DE_ANTIOQUIA.get_valor(), font=("Arial", 12))
-        valor_label_1.grid(row=4, column=1, sticky="w")
+        valor_label_1.place(x=150, y=80)
 
         boton_1 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_FE_DE_ANTIOQUIA))
-        boton_1.grid(row=4, column=2)
+        boton_1.place(x=250, y=80)
 
         nombre_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_nombre(), font=("Arial", 12))
-        nombre_label_2.grid(row=5, column=0, sticky="w")
+        nombre_label_2.place(x=10, y=120)
 
         valor_label_2 = Label(frame2, text=Destinos.COMUNA_13.get_valor(), font=("Arial", 12))
-        valor_label_2.grid(row=5, column=1, sticky="w")
+        valor_label_2.place(x=150, y=120)
 
         boton_2 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.COMUNA_13))
-        boton_2.grid(row=5, column=2)
+        boton_2.place(x=250, y=120)
 
         nombre_label_3 = Label(frame2, text=Destinos.JARDIN.get_nombre(), font=("Arial", 12))
-        nombre_label_3.grid(row=6, column=0, sticky="w")
+        nombre_label_3.place(x=10, y=160)
 
         valor_label_3 = Label(frame2, text=Destinos.JARDIN.get_valor(), font=("Arial", 12))
-        valor_label_3.grid(row=6, column=1, sticky="w")
+        valor_label_3.place(x=150, y=160)
 
         boton_3 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.JARDIN))
-        boton_3.grid(row=6, column=2)
+        boton_3.place(x=250, y=160)
 
         nombre_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_nombre(), font=("Arial", 12))
-        nombre_label_4.grid(row=7, column=0, sticky="w")
+        nombre_label_4.place(x=10, y=200)
 
         valor_label_4 = Label(frame2, text=Destinos.PARQUE_ARVI.get_valor(), font=("Arial", 12))
-        valor_label_4.grid(row=7, column=1, sticky="w")
+        valor_label_4.place(x=150, y=200)
 
         boton_4 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PARQUE_ARVI))
-        boton_4.grid(row=7, column=2)
+        boton_4.place(x=250, y=200)
 
         nombre_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_nombre(), font=("Arial", 12))
-        nombre_label_5.grid(row=8, column=0, sticky="w")
+        nombre_label_5.place(x=10, y=240)
 
         valor_label_5 = Label(frame2, text=Destinos.SANTA_ELENA.get_valor(), font=("Arial", 12))
-        valor_label_5.grid(row=8, column=1, sticky="w")
+        valor_label_5.place(x=150, y=240)
 
         boton_5 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.SANTA_ELENA))
-        boton_5.grid(row=8, column=2)
+        boton_5.place(x=250, y=240)
 
         nombre_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_nombre(), font=("Arial", 12))
-        nombre_label_6.grid(row=9, column=0, sticky="w")
+        nombre_label_6.place(x=10, y=280)
 
         valor_label_6 = Label(frame2, text=Destinos.PEÑOL_GUADELOUPE.get_valor(), font=("Arial", 12))
-        valor_label_6.grid(row=9, column=1, sticky="w")
+        valor_label_6.place(x=150, y=280)
 
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
-        boton_6.grid(row=9, column=2)
+        boton_6.place(x=250, y=280)
 
-        valor_label_7= Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
-        valor_label_7.grid(row=10, column=1)
+        valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.get_valor(), font=("Arial", 12))
+        valor_label_7.place(x=70, y=320)
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.grid(row=10, column=2)
+        boton_combo.place(x=250, y=320)
 
         boton_terminar = Button(frame2, text="Terminar", command=terminarReserva)
-        boton_terminar.grid(row=12, column=2)
+        boton_terminar.place(x=250, y=360)
 
     cargarDestinos()
 
