@@ -2,7 +2,7 @@ from Persona import Persona
 
 class Usuario(Persona):
     
-    def __init__(self, nombre, identificacion, telefono, tipo, cuenta_bancaria):
+    def __init__(self, nombre, identificacion:int, telefono, tipo, cuenta_bancaria):
         super().__init__(nombre, identificacion, telefono)
         self.tipo = tipo
         self.cuenta_bancaria = cuenta_bancaria

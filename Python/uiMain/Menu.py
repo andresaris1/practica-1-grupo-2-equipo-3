@@ -136,7 +136,7 @@ def buscador():
     Doc.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.2)
 
     Buscar = Button(
-        frame2, text="Buscar", font=("Arial", 10), command=lambda: Rellenar(Doc.get())
+        frame2, text="Buscar", font=("Arial", 10), command=lambda: Rellenar(int(Doc.get()))
     )
     Buscar.place(relheight=0.05, relwidth=0.1, rely=0.05, relx=0.35)
 
@@ -825,7 +825,6 @@ def Cobro():
 
 
 def AbrirFuncional():
-    Almacenamiento.Deserializar()
     window.state(newstate="normal")
     ventanaInicio.state(newstate="withdraw")
     
@@ -837,9 +836,10 @@ def AbrirInicio():
 
 
 def Cerrartodo():
+    Almacenamiento.Serializar()
     ventanaInicio.destroy()
     window.destroy()
-    Almacenamiento.Serializar()
+    
 
 def cambiarDescripcion():
     Descripcion = Label(
@@ -1138,51 +1138,19 @@ frame3 = Frame(window, borderwidth=1, relief="solid")
 frame1.place(relheight=0.2, relwidth=1, rely=0)
 frame2.place(relheight=0.8, relwidth=1, rely=0.2)
 
+Almacenamiento.Deserializar()
 
-# OBJETOS TEMPORALES PARA PRUEBAS
-habitacion1 = Almacenamiento.crearHabitacion("101", "Habitacion Individual", 101, 1)
-habitacion2 = Almacenamiento.crearHabitacion("102", "Habitacion Individual", 102, 1)
-habitacion3 = Almacenamiento.crearHabitacion("201", "Habitacion Doble", 201, 2)
-habitacion4 = Almacenamiento.crearHabitacion("202", "Habitacion Doble", 202, 2)
-habitacion5 = Almacenamiento.crearHabitacion("301", "Habitacion Familiar", 301, 4)
-habitacion6 = Almacenamiento.crearHabitacion("302", "Habitacion Familiar", 302, 4)
+print (Almacenamiento.listaUsuarios)
+print    (Almacenamiento.listaEmpleados)
+print    (Almacenamiento.listaHabitaciones)
+print    (Almacenamiento.listaLugares)
+print    (Almacenamiento.listaReservas)
+print    (Almacenamiento.listaEventos)
+print    (Almacenamiento.listaServicios)
+print    (Almacenamiento.listaFacturas)
+print    (Almacenamiento.listaServiciosExternos)
+print    (Almacenamiento.listaHabitacionesDisponibles)
 
-c1 = Usuario("Carlos", "1", "Cliente", "1", "1")
-Almacenamiento.listaUsuarios.append(c1)
-
-emp = Empleado("Recepcion", 0, 0, "Recepcion")
-Almacenamiento.listaEmpleados.append(emp)
-
-comida = Almacenamiento.crearServicio("Alimentacion", 50000, "")
-masaje = Almacenamiento.crearServicio("Masaje", 30000, "")
-transporte = Almacenamiento.crearServicio("Transporte", 70000, "")
-fechaEntrada = "20/03/2023"
-fechaSalida = "30/05/2023"
-fen = datetime.strptime(fechaEntrada, "%d/%m/%Y")
-fsa = datetime.strptime(fechaSalida, "%d/%m/%Y")
-ba = []
-ba.append(Almacenamiento.listaHabitaciones[0])
-
-res1 = Reserva(fen, fsa, ba, 0, c1)
-res2 = Reserva(fen, fsa, ba, 0, c1)
-res3 = Reserva(fen, fsa, ba, 0, c1)
-
-factura1 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
-factura2 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
-factura3 = Almacenamiento.crearFactura(c1,emp,ba,"Reserva")
-
-Almacenamiento.listaReservas.append(res1)
-Almacenamiento.listaReservas.append(res2)
-Almacenamiento.listaReservas.append(res3)
-
-(Almacenamiento.listaHabitaciones)
-(Almacenamiento.listaUsuarios)
-(Almacenamiento.listaServicios)
-(Almacenamiento.listaReservas)
-(res1.getCliente())
-(res2.getCliente())
-(res3.getCliente())
-print(Almacenamiento.listaFacturas)
 
 ventanaInicio.mainloop()
 window.mainloop()

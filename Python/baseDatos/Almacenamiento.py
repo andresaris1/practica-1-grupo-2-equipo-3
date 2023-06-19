@@ -130,14 +130,14 @@ class Almacenamiento():
         fileServiciosExternos.close()
 
 
-    def crearUsuario(nombre, identificacion, telefono, cuentaBancaria):
+    def crearUsuario(nombre, identificacion:int, telefono, cuentaBancaria):
         cliente=Usuario(nombre,identificacion,telefono,"Cliente",cuentaBancaria)
         Almacenamiento.listaUsuarios.append(cliente)
 
-    def buscarUsuario(id) -> Usuario:
+    def buscarUsuario(id:int) -> Usuario:
         usuario=None
         for cli in Almacenamiento.listaUsuarios:
-            if (id==cli.getIdentificacion()):
+            if (id==int(cli.getIdentificacion())):
                 usuario=cli
                 break
         return usuario         
