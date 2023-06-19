@@ -468,6 +468,15 @@ def Tour():
         boton_combo = Button(frame3, text="COMBO COMPLETO", command=lambda: mostrarImagen(Destinos.COMBO_COMPLETO.nombre))
         boton_combo.grid(row=len(Destinos)-1, column=2)
 
+    frame1 = Frame(root, bg="gray")
+    frame1.place(relx=0.05, rely=0.15, relwidth=0.9, relheight=0.1)
+
+    frame2 = Frame(root, bg="white")
+    frame2.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.5)
+
+    frame3 = Frame(root, bg="white")
+    frame3.place(relx=0.05, rely=0.75, relwidth=0.9, relheight=0.15)
+
     cargarDestinos()
 
 def Eventos():
