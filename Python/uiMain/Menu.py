@@ -603,19 +603,17 @@ def Eventos():
         txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
         
         def f0():
-            inv(vars[0])
+            vars[0] = not(vars[0])
             actualizarDisplay()
             
         def f1():
-            inv(vars[1])
+            vars[1] = not(vars[1])
             actualizarDisplay()
         
         def f2():
-            inv(vars[2])
+            vars[2] = not(vars[2])
             actualizarDisplay()
             
-        def inv(var):
-            var = not(var)
             
         def actualizarDisplay():
             valor = dict(zip( [True,False],["Sí","No"] ))
