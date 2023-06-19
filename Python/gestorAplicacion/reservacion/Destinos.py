@@ -9,7 +9,7 @@ class Destinos(Enum):
     PARQUE_ARVI = ("Parque Arví", 110000, "parquearvi.png")
     SANTA_ELENA = ("Santa Elena", 130000, "santaelena.png")
     PEÑOL_GUADELOUPE = ("Piedra Del Peñol", 200000, "piedradelpeñol.png")
-    COMBO_COMPLETO =("Combo turistico completo", 720000, "")
+    COMBO_COMPLETO =("Combo turistico completo", 700000, "")
 
     def __init__(self, nombre, valor, imagen):
         self.nombre = nombre
