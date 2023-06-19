@@ -450,9 +450,9 @@ def Tour():
             # Generar factura y asociarla al cliente
             factura = Almacenamiento.crearFactura(cliente_actual, None, destinos_seleccionados, "Reserva de tour")
             Almacenamiento.listaFacturas.append(factura)
-            print("Reserva de tour terminada. Factura generada y asociada al cliente.")
+            messagebox.showinfo("Reserva finalizada", "La reserva de tour ha sido completada.")
         else:
-            print("Reserva incompleta. No has seleccionado ningún destino.")
+            messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
 
     def cargarDestinos():
         for i, destino in enumerate(Destinos):
