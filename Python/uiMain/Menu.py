@@ -738,8 +738,8 @@ def Informacion():
     reiniciar()
     frame3.place_forget()
 
-    Titulo.config(text="Informacion")
-    Descripcion.config(text="Consulta la informacion de nuestras instalaciones")
+    Titulo.config(text="Informacion de habitaciones")
+    Descripcion.config(text="Consulta la Sobre las diferentes habitaciones")
 
     info = Label(frame2, text="Aqui desarrollen su funcionalidad5", font=("Arial", 20))
     info.place(relx=0.5, rely=0.5, anchor="center")
