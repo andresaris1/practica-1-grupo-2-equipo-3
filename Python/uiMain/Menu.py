@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+import tkinter.font as tkFont
 from tkinter import messagebox
 import os
 import sys
@@ -741,8 +742,28 @@ def Informacion():
     Titulo.config(text="Informacion de habitaciones")
     Descripcion.config(text="Consulta la Sobre las diferentes habitaciones")
 
-    info = Label(frame2, text="Aqui desarrollen su funcionalidad5", font=("Arial", 20))
-    info.place(relx=0.5, rely=0.5, anchor="center")
+    forma = Label(frame2, text="Organizar por tipo de busqueda", font=("Arial", 10))
+    forma.place(relheight=0.1, relwidth=0.3, relx=0.1, rely=0.2, anchor="w")
+    """GLabel_581=tk.Label(frame2)
+    ft = tkFont.Font(family='Arial',size=5)
+    GLabel_581["font"] = ft
+   # GLabel_581["fg"] = "#333333"
+    GLabel_581["justify"] = "center"
+    GLabel_581["text"] = "Organizar por tipo de busqueda"
+    GLabel_581.place(relx=0.2,rely=0.3)"""
+    
+    cb1 = Checkbutton(frame2, text = "Informacion con clientes", anchor = "w", font = ("Arial", 10))
+    cb1.place(relx = 0.1, rely = 0.4)
+    
+    b = Button(frame2, text = "Mostrar", font = ("Arial", 10), anchor = "center")
+    b.place(relx = 0.1, rely = 0.46, relheight = 0.12, relwidth = 0.16)
+
+    caja = Text(frame2, state = "disabled")
+    caja.place(relheight=0.6, relwidth=0.42, relx=0.55,rely=0.19)
+
+    
+
+
 
 valor=0
 def Cobro():
