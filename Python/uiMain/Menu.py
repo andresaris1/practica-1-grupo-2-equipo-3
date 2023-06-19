@@ -6,7 +6,7 @@ import sys
 from tkinter.ttk import Combobox
 
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
-sys.path.append(os.path.dirname(__file__)+ "/../UiMain/Exepciones")
+sys.path.append(os.path.dirname(__file__)+ "/../uiMain/Exepciones")
 
 from Almacenamiento import *
 from datetime import datetime

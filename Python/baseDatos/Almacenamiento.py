@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/modelos")
 sys.path.append(os.path.dirname(__file__)+ "/../gestorAplicacion/reservacion")
-sys.path.append(os.path.dirname(__file__)+ "/../UiMain/Exepciones")
+sys.path.append(os.path.dirname(__file__)+ "/../uiMain/Exepciones")
 
 import pickle
 from Usuario import *
