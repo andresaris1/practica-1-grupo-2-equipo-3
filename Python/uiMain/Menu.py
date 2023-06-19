@@ -587,15 +587,15 @@ def Eventos():
         frameEleccion = Frame(new)
         frameEleccion.place(relheight=0.08, relwidth=0.7, rely=0.35, relx=0.02)
         
+        vars = [False]*3
         
-        
-        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: escribir("Sonido\n"))
+        cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command=lambda: vars[0] ^= True)
         cb1.pack(side="left")
         
-        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: escribir("Entretenimiento\n"))
+        cb2 = Checkbutton(frameEleccion, text='Entretenimiento', anchor="w", command= lambda: vars[1] ^= True)
         cb2.pack(side="left")
         
-        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: escribir("DJ\n"))
+        cb3 = Checkbutton(frameEleccion, text='DJ', anchor="w", command= lambda: vars[2] ^= True)
         cb3.pack(side="left")
         
         txtDisplay = Text(new)
