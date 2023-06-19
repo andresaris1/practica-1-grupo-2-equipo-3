@@ -519,12 +519,12 @@ def Tour():
         boton_6 = Button(frame2, text="Aceptar", command=lambda: agregarDestino(Destinos.PEÑOL_GUADELOUPE))
         boton_6.place(relx=0.5, rely=0.77, anchor="center")
 
-        #valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.getValor(), font=("Arial", 12))
-        #valor_label_7.place(relx=0.2, rely=0.87, anchor="center")
+        valor_label_7 = Label(frame2, text=Destinos.COMBO_COMPLETO.getValor(), font=("Arial", 12))
+        valor_label_7.place(relx=0.1, rely=0.87, anchor="center")
 
 
         boton_combo = Button(frame2, text="COMBO COMPLETO", command=lambda: agregarDestino(Destinos.COMBO_COMPLETO))
-        boton_combo.place(relx=0.2, rely=0.87, anchor="center")
+        boton_combo.place(relx=0.3, rely=0.87, anchor="center")
 
         Aceptar = Button(frame2, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
         Aceptar.place(relheight=0.125, relwidth=0.2, rely=0.8, relx=0.52)
