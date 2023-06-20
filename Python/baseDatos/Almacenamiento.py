@@ -244,8 +244,8 @@ class Almacenamiento():
                 break
         return Servicio
     
-    def crearServicioExterno(nombre, cliente: Usuario, eventoAsociado, descripcion):
-        sExterno=ServicioExterno(nombre,cliente,eventoAsociado,descripcion)
+    def crearServicioExterno(nombre, cliente: Usuario, descripcion):
+        sExterno=ServicioExterno(nombre,cliente,descripcion)
         Almacenamiento.listaServiciosExternos.append(sExterno)
 
     def BuscarServicioExterno(cliente:Usuario) -> ServicioExterno:
