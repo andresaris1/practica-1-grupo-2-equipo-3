@@ -984,12 +984,19 @@ def Informacion():
         if var1.get()==1:
             caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
             
-            hab = []
+            hab_ocu = []
             reservas = Almacenamiento.listaReservas
+            for m in reservas:
+                for u in m.getHabitaciones():
+                    hab_ocu.append(u.getNumero())
+            
             for i in Almacenamiento.listaHabitaciones:
                 caja.insert(END, "________________________________________________\n")
                 caja.insert(END, "Habitacion numero: " + str(i.getNumero()) + "\n" + "Capacidad: " + str(i.getCapacidad()))
-                if i in Almacenamiento.listaHabitacionesDisponibles:
+                nums = []
+                
+                if i.getNumero() not in hab_ocu:
+                    caja.insert(END, "\n")
                     caja.insert(END, "Habitacion disponible")
                 else:
                     caja.insert(END, "\n")
@@ -1001,10 +1008,18 @@ def Informacion():
                        # print(i)
                        # print(i in reserva.getHabitaciones())
                         #print("------")
-                        if i in reserva.getHabitaciones():
+                        
+                        numeros = []
+                        for k in reserva.getHabitaciones():
+                            numeros.append(k.getNumero())
+                            
+                            
+                        if i.getNumero() in numeros:
                             cli = reserva.getCliente()
                             caja.insert(END, cli.informacion() + "\n")
                             caja.insert(END, "Cuenta: " + str(cli.get_cuenta_bancaria()) + "\n")
+                            caja.insert(END, "Fecha entrada: " + str(reserva.getFechaEntrada()) + "\n")
+                            caja.insert(END, "Fecha Salida: " + str(reserva.getFechaSalida()) + "\n")
                             break
                             
                 caja.insert(END, "\n")
@@ -1012,12 +1027,18 @@ def Informacion():
         else:
             caja.insert(END, "Informacion de habitaciones\n")
             
-            hab = []
+            hab_ocu = []
+            reservas = Almacenamiento.listaReservas
+            for m in reservas:
+                for u in m.getHabitaciones():
+                    hab_ocu.append(u.getNumero())
+            
 
             for i in Almacenamiento.listaHabitaciones:
                 caja.insert(END, "________________________________________________\n")
                 caja.insert(END, "Habitacion numero: " + str(i.getNumero()) + "\n" + "Capacidad: " + str(i.getCapacidad()))
-                if i in Almacenamiento.listaHabitacionesDisponibles:
+                if i.getNumero() not in hab_ocu:
+                    caja.insert(END, "\n")
                     caja.insert(END, "Habitacion disponible")
                 else:
                     caja.insert(END, "\n")
