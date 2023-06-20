@@ -738,12 +738,12 @@ def Eventos():
     lblDuracion.place(relheight = 0.1, relwidth = 0.2, rely = 0.5, relx = 0.02)
     
     
-    desicionDuracion = Combobox(
+    decisionDuracion = Combobox(
         frame2,
         values=["4 Horas", "6 Horas", "8 Horas"],
         textvariable="Duración en horas",
     )
-    desicionDuracion.place(relheight=0.1, relwidth=0.17, rely=0.5, relx=0.2)
+    decisionDuracion.place(relheight=0.1, relwidth=0.17, rely=0.5, relx=0.2)
     
     #Se pregunta por el número de personas que asistirán al evento
     
@@ -762,12 +762,12 @@ def Eventos():
     lblLugar = Label(frame2, text="Lugar Evento", font=("Arial", 10), anchor="w")
     lblLugar.place(relheight = 0.1, relwidth = 0.2, rely = 0.3, relx = 0.4)
     
-    desicionLugar = Combobox(
+    decisionLugar = Combobox(
         frame2,
         values=["Terraza", "Salón de Eventos", "Piscina"],
         textvariable="Lugar del evento"
     )
-    desicionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.55)
+    decisionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.55)
     
     #Botón para añadir servicios externos
     
@@ -788,21 +788,23 @@ def Eventos():
     aceptar.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.47)
     
     def terminarEvento():
-        if fecha == "" or duracion == "" or lugar == "" or asistentes == "":
+        if fechaEvento.get() == "" or decisionDuracion.get() == "" or decisionLugar.get() == "" or entryAsistentes.get() == "":
             messagebox.showerror("Error", "Por favor llene todos los campos")
         else:
             if messagebox.askyesno("Confirmación", "¿Desea confirmar la reserva?"):
                 messagebox.showinfo("Confirmación", "Reserva realizada con éxito")
                 codigo = random.randint(1000, 9999)
-                lugar = desicionLugar.get()
+                lugar = decisionLugar.get()
                 cl = cliente
                 servicios = conseguirServiciosExt()
                 fecha = fechaEvento.get()
-                duracion = desicionDuracion.get()
+                duracion = decisionDuracion.get()
                 asistentes = entryAsistentes.get()
                 empleados = conseguirEmpleados()
                 descripcion = txtDescripcion.get(1.0, END)
                 evento = Almacenamiento.createEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
+                factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], evento, f"Evento en {Evento.getLugar()}")
+                messagebox.showinfo("Factura Asociada", factura)
                 bienvenido()
             else:
                 messagebox.showinfo("Confirmación", "Reserva cancelada")
