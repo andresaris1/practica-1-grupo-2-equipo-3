@@ -900,6 +900,7 @@ def Informacion():
         
         caja.config(state = "normal")
         #print(seleccion())
+        caja.delete("1.0", END) 
         
         if var1.get()==1:
             caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
@@ -927,7 +928,7 @@ def Informacion():
     b.place(relx = 0.1, rely = 0.46, relheight = 0.12, relwidth = 0.16)
     
     caja = Text(frame2, state = "disabled")
-    caja.place(relheight=0.6, relwidth=0.42, relx=0.55,rely=0.19)
+    caja.place(relheight=0.6, relwidth=0.5, relx=0.45,rely=0.19)
     
     #caja.insert("Informacion de habitaciones")
     b.bind("<Button-1>", infoprint)
