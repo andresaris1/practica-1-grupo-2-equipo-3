@@ -442,8 +442,8 @@ def Tour():
 
     def terminarReserva():
         try:
-            if len(destinos_seleccionados) > 15:
-                raise ValueError("Error: Has seleccionado más de 15 destinos.")
+            if len(destinos_seleccionados) > 10:
+                raise ValueError("Error: Has seleccionado más de 10 destinos.")
 
             if destinos_seleccionados:
                 # Crear una lista de objetos Tour a partir de los destinos seleccionados
