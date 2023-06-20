@@ -830,7 +830,7 @@ def Eventos():
                 messagebox.showinfo("Confirmación", "Reserva realizada con éxito")
                 codigo = random.randint(1000, 9999)
                 nombredelugar=decisionLugar.get()
-                lu =Almacenamiento.crearLugar(nombredelugar,nombredelugar,0,0)
+                Almacenamiento.crearLugar(nombredelugar,nombredelugar,0,0)
                 lugar=Almacenamiento.listaLugares[-1]
                 cl = cliente
                 servicios = conseguirServiciosExt()
@@ -846,7 +846,7 @@ def Eventos():
                 empleados = conseguirEmpleados()
                 descripcion = txtDescripcion.get(1.0, END)
                 listaeventos=[]
-                even = Almacenamiento.crearEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
+                Almacenamiento.crearEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
                 evento=Almacenamiento.listaEventos[-1]
                 listaeventos.append(evento)
                 factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], listaeventos, f"Evento en {nombredelugar}")
