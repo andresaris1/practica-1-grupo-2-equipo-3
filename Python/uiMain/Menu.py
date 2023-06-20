@@ -906,18 +906,30 @@ def Informacion():
             caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
             
             hab = []
+
             for i in Almacenamiento.listaHabitaciones:
                 caja.insert(END, "________________________________________________\n")
                 caja.insert(END, "Habitacion numero: " + str(i.getNumero()) + "\n" + "Capacidad: " + str(i.getCapacidad()))
+                if i in Almacenamiento.listaHabitacionesDisponibles:
+                    caja.insert(END, "Habitacion disponible")
+                else:
+                    caja.insert(END, "\n")
+                    caja.insert(END, "Habitacion no disponible")
                 caja.insert(END, "\n")
             #var1.set(0) 
         else:
             caja.insert(END, "Informacion de habitaciones\n")
             
             hab = []
+
             for i in Almacenamiento.listaHabitaciones:
                 caja.insert(END, "________________________________________________\n")
                 caja.insert(END, "Habitacion numero: " + str(i.getNumero()) + "\n" + "Capacidad: " + str(i.getCapacidad()))
+                if i in Almacenamiento.listaHabitacionesDisponibles:
+                    caja.insert(END, "Habitacion disponible")
+                else:
+                    caja.insert(END, "\n")
+                    caja.insert(END, "Habitacion no disponible")
                 caja.insert(END, "\n")
             #var1.set(1) 
             
