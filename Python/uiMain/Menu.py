@@ -945,6 +945,7 @@ def Informacion():
     reiniciar()
     frame3.place_forget()
 
+
     Titulo.config(text="Informacion de habitaciones")
     Descripcion.config(text="Consulta la Sobre las diferentes habitaciones")
 
@@ -960,9 +961,10 @@ def Informacion():
     GLabel_581["text"] = "Organizar por tipo de busqueda"
     GLabel_581.place(relx=0.2,rely=0.3)"""
     
-    
+    #Variable controladora del checkbpox
     var1 = IntVar()
     
+    #Funcion que devuelve el estado de la check box
     def seleccion():
         #print(var1.get())
         if var1.get()==1:
@@ -972,6 +974,7 @@ def Informacion():
         return
     
     
+    #Imprime la informacion de las habitaciones
     def infoprint(event):
         
         caja.config(state = "normal")
@@ -982,7 +985,7 @@ def Informacion():
             caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
             
             hab = []
-
+            reservas = Almacenamiento.listaReservas
             for i in Almacenamiento.listaHabitaciones:
                 caja.insert(END, "________________________________________________\n")
                 caja.insert(END, "Habitacion numero: " + str(i.getNumero()) + "\n" + "Capacidad: " + str(i.getCapacidad()))
@@ -990,7 +993,20 @@ def Informacion():
                     caja.insert(END, "Habitacion disponible")
                 else:
                     caja.insert(END, "\n")
-                    caja.insert(END, "Habitacion no disponible")
+                    caja.insert(END, "Habitacion no disponible\n") 
+                    caja.insert(END, "-------------------------\n") 
+                    caja.insert(END, "Informacion del cliente que tiene la habitacion:\n") 
+                    
+                    for reserva in reservas:
+                       # print(i)
+                       # print(i in reserva.getHabitaciones())
+                        #print("------")
+                        if i in reserva.getHabitaciones():
+                            cli = reserva.getCliente()
+                            caja.insert(END, cli.informacion() + "\n")
+                            caja.insert(END, "Cuenta: " + str(cli.get_cuenta_bancaria()) + "\n")
+                            break
+                            
                 caja.insert(END, "\n")
             #var1.set(0) 
         else:
@@ -1013,7 +1029,7 @@ def Informacion():
         
         
     
-    
+    #Checkbox para diferenciar indormacion con clientes y sin clientes
     cb1 = Checkbutton(frame2, text = "Informacion con clientes", anchor = "w", font = ("Arial", 10), variable = var1, command  = lambda: seleccion())
     cb1.place(relx = 0.1, rely = 0.4)
     
