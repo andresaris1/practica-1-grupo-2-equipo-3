@@ -4,7 +4,7 @@ from Servicio import Servicio
 class Lugar(Servicio):
     
     def __init__(self,nombre,descripcion,valor,numero,capacidad):
-        valor=valor
+        self._valor=valor
         super().__init__(nombre, valor, descripcion)
         self._capacidad=capacidad
         self._numero=numero
@@ -22,7 +22,7 @@ class Lugar(Servicio):
             return 200000
         elif nombre == "Piscina":
             return 300000
-        elif nombre == "Salon":
+        elif nombre == "Salon de Eventos":
             return 500000
         else:
             return -1

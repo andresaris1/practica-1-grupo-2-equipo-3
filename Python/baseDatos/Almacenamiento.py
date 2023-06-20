@@ -220,7 +220,7 @@ class Almacenamiento():
                 break
         return Reserva
     
-    def crearEvento(codigo,lugar, cliente: Usuario, servicios:list, fecha, duracion, numeroAsistentes, empleados:Empleado,descripcion):
+    def crearEvento(codigo: int,lugar, cliente: Usuario, servicios:list, fecha, duracion, numeroAsistentes, empleados:Empleado,descripcion):
         evento=Evento(codigo,lugar,cliente,servicios,fecha,duracion,numeroAsistentes,empleados,descripcion)
         Almacenamiento.listaEventos.append(evento)
 
