@@ -441,24 +441,22 @@ def Tour():
         return valor_total
 
     def terminarReserva():
-        if destinos_seleccionados:
-            # Crear una lista de objetos Tour a partir de los destinos seleccionados
-
-            # Generar factura y asociarla al cliente
-            valor_total = calcularValorTotal()
-            factura = Almacenamiento.crearFactura(cliente,Almacenamiento.listaEmpleados[0],destinos_seleccionados,"Tour") 
-            mostrardestinos=""
-            for destino in destinos_seleccionados:
-                mostrardestinos+=(destino.getNombre()+"\n")
-            messagebox.showinfo("Reserva realizada con exito", "Se realizó la reserva de Tour a nombre de: "+cliente.getNombre()+"\nA los destinos:\n"+mostrardestinos)
-            messagebox.showinfo("Factura Asociada", factura)
-            bienvenido()
-        else:
-            messagebox.showwarning("Reserva incompleta", "No has seleccionado ningún destino.")
-
-
-            messagebox.showinfo("Factura Asociada", factura)
-            "Despues de reservar exitosamente se vuelve a la pa"
+        try:
+            if destinos_seleccionados:
+                # Crear una lista de objetos Tour a partir de los destinos seleccionados
+                # Generar factura y asociarla al cliente
+                valor_total = calcularValorTotal()
+                factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], destinos_seleccionados, "Tour") 
+                mostrardestinos = ""
+                for destino in destinos_seleccionados:
+                    mostrardestinos += (destino.getNombre() + "\n")
+                messagebox.showinfo("Reserva realizada con éxito", "Se realizó la reserva de Tour a nombre de: " + cliente.getNombre() + "\nA los destinos:\n" + mostrardestinos)
+                messagebox.showinfo("Factura Asociada", factura)
+                bienvenido()
+            else:
+                raise ValueError("Reserva incompleta: No has seleccionado ningún destino.")
+        except Exception as e:
+            messagebox.showerror("Error en la reserva", str(e))
 
     def actualizarRecuadro():
         listbox_destinos.delete(0, END)
