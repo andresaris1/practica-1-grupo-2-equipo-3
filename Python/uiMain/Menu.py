@@ -102,31 +102,39 @@ def buscador():
     muestra los datos de este cliente en varios entry"""
 
     def Rellenar(Docu):
-        global cliente
-        cliente = Almacenamiento.buscarUsuario(Docu)
-        Nom.config(state="normal")
-        Tel.config(state="normal")
-        Cub.config(state="normal")
-        Doc.delete(0, END)
-        Nom.delete(0, END)
-        Tel.delete(0, END)
-        Cub.delete(0, END)
-        if cliente != None:
-            Doc.insert(0, cliente.getIdentificacion())
-            Nom.insert(0, cliente.getNombre())
-            Tel.insert(0, cliente.getTelefono())
-            Cub.insert(0, cliente.get_cuenta_bancaria())
-        else:
+        try:
+            Docu=int(Docu)
+            global cliente
+            cliente = Almacenamiento.buscarUsuario(Docu)
+            Nom.config(state="normal")
+            Tel.config(state="normal")
+            Cub.config(state="normal")
+            Doc.delete(0, END)
+            Nom.delete(0, END)
+            Tel.delete(0, END)
+            Cub.delete(0, END)
+            if cliente != None:
+                Doc.insert(0, cliente.getIdentificacion())
+                Nom.insert(0, cliente.getNombre())
+                Tel.insert(0, cliente.getTelefono())
+                Cub.insert(0, cliente.get_cuenta_bancaria())
+            else:
+                messagebox.showerror(
+                    "Usuario no encontrado",
+                    "Por favor ingrese un documento a buscar",
+
+                )
+                raise UsuarioNoEncontradoError()
+            Nom.config(state="disabled")
+            Tel.config(state="disabled")
+            Cub.config(state="disabled")
+            return cliente
+        except ValueError:
             messagebox.showerror(
                 "Usuario no encontrado",
                 "Este usuario no está registrado en la base de datos",
                 
             )
-            raise UsuarioNoEncontradoError()
-        Nom.config(state="disabled")
-        Tel.config(state="disabled")
-        Cub.config(state="disabled")
-        return cliente
 
     """Crear todo lo que vemos en el formulario de busqueda y posicionarlo en el frame"""
     Documento = Label(frame2, text="No. Documento", font=("Arial", 10), anchor="w")
@@ -144,7 +152,7 @@ def buscador():
     Doc.place(relheight=0.05, relwidth=0.15, rely=0.05, relx=0.2)
 
     Buscar = Button(
-        frame2, text="Buscar", font=("Arial", 10), command=lambda: Rellenar(int(Doc.get()))
+        frame2, text="Buscar", font=("Arial", 10), command=lambda: Rellenar(Doc.get())
     )
     Buscar.place(relheight=0.05, relwidth=0.1, rely=0.05, relx=0.35)
 
@@ -293,22 +301,13 @@ def Alojamiento():
                     """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
                     y en una lista que se llama habitaciones disponibles """
                     for reservas in Almacenamiento.listaReservas:
-                        if (fen >= reservas.getFechaSalida()) or (
-                            fsa <= reservas.getFechaEntrada()
-                        ):
+                        if (fen >= reservas.getFechaSalida()) or (fsa <= reservas.getFechaEntrada()):
                             for habitaciones in reservas.getHabitaciones():
-                                esta=False
-                                for habitaciones2 in hadis:
-                                    if habitaciones.getNumero() != habitaciones2.getNumero():
-                                        esta=True
-                                if esta:
+                                if habitaciones not in hadis:
                                     hadis.append(habitaciones)
                     for habis in Almacenamiento.listaHabitacionesDisponibles:
-                        for habitaciones2 in hadis:
-                            if habis.getNumero() != habitaciones2.getNumero():
-                                esta=True
-                        if esta:
-                            hadis.append(habitaciones)
+                        if habis not in hadis:
+                            hadis.append(habis)
 
                     """Posiciona los botones de las habitaciones encontradas disponibles para esas fechas"""
                     x = 0.4
