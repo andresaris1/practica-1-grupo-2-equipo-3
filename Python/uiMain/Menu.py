@@ -726,10 +726,10 @@ def Eventos():
     """
     def conseguirEmpleados():
         empleados = []
-        i = 0
+        i = 2
         for key in empleadosNecesarios:
-            for _ in range(len(empleadosNecesarios)):
-                emp=Almacenamiento.crearEmpleado(f"alfredo {i}", cliente, random.randint(100000,999999), key)
+            for j in range(len(empleadosNecesarios)):
+                Almacenamiento.buscarEmpleado( int(f"{i}{j}{0}") )
                 empleados.append(Almacenamiento.listaEmpleados[-1])
                 i += 1
         return empleados
