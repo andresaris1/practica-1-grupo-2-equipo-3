@@ -5,7 +5,6 @@ from tkinter import messagebox
 import os
 import sys
 from tkinter.ttk import Combobox
-import random
 
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 sys.path.append(os.path.dirname(__file__)+ "/../uiMain/Exepciones")
@@ -570,10 +569,8 @@ def Eventos():
     
     def solicitarServiciosExternos():
         
-        serviciosExternos = []
-        
         new = Toplevel(frame2)
-        new.geometry("400x300")
+        new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
         
         titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
@@ -603,7 +600,7 @@ def Eventos():
         
         txtDisplay = Text(new)
         txtDisplay.config(state="disabled")
-        txtDisplay.place(relheight=0.4, relwidth=0.7, rely=0.5, relx=0.02)
+        txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
         
         def f0():
             vars[0] = not(vars[0])
@@ -630,8 +627,7 @@ def Eventos():
             txtDisplay.insert(END, s)
             txtDisplay.config(state="disabled")
             
-        
-        
+          
         #Aceptar = Button(new, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
         
         return None
@@ -705,10 +701,6 @@ def Eventos():
     
     empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
     empleados.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.22)
-    
-    #numero aleatorio para el código del evento
-    codigoEvento = random.randint(1000, 9999)
-    
 
 
 
@@ -804,6 +796,8 @@ def Informacion():
 
     forma = Label(frame2, text="Informacion de habitaciones", font=("Arial", 10))
     forma.place(relheight=0.1, relwidth=0.3, relx=0.1, rely=0.2, anchor="w")
+    
+    
     """GLabel_581=tk.Label(frame2)
     ft = tkFont.Font(family='Arial',size=5)
     GLabel_581["font"] = ft
@@ -811,30 +805,55 @@ def Informacion():
     GLabel_581["justify"] = "center"
     GLabel_581["text"] = "Organizar por tipo de busqueda"
     GLabel_581.place(relx=0.2,rely=0.3)"""
-    cliente = False
-    cb1 = Checkbutton(frame2, text = "Informacion con clientes", anchor = "w", font = ("Arial", 10), command = lambda: cambio())
-    cb1.place(relx = 0.1, rely = 0.4)
-    def cambio(event):
-        cliente = not(cliente)
-        return None
-    cb1.bind("<Button-1>", cambio)
-    b = Button(frame2, text = "Mostrar", font = ("Arial", 10), anchor = "center")
-    b.place(relx = 0.1, rely = 0.46, relheight = 0.12, relwidth = 0.16)
-
-    caja = Text(frame2, state = "disabled")
-    caja.place(relheight=0.6, relwidth=0.42, relx=0.55,rely=0.19)
-    #caja.insert("Informacion de habitaciones")
     
-    def infoprint(event):
-        caja.config(state = "normal")
-        if cliente==True:
-            caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
+    
+    var1 = IntVar()
+    
+    def seleccion():
+        #print(var1.get())
+        if var1.get()==1:
+            var1.set(0) 
         else:
-            caja.insert(END, "Informacion de habitaciones\n")
-        caja.config(state = "disabled")
+            var1.set(1) 
         return
     
+    
+    def infoprint(event):
+        
+        caja.config(state = "normal")
+        #print(seleccion())
+        
+        if var1.get()==1:
+            caja.insert(END, "Informacion de habitaciones y clientes asociados\n")
+            #var1.set(0) 
+        else:
+            caja.insert(END, "Informacion de habitaciones\n")
+            #var1.set(1) 
+            
+        caja.config(state = "disabled")
+        
+        
+    
+    
+    cb1 = Checkbutton(frame2, text = "Informacion con clientes", anchor = "w", font = ("Arial", 10), variable = var1, command  = lambda: seleccion())
+    cb1.place(relx = 0.1, rely = 0.4)
+    
+    
+    """def cambio(event):
+        cliente = not(cliente)
+        return None"""
+    #b1.bind("<Button-1>", cambio)
+    
+    
+    b = Button(frame2, text = "Mostrar", font = ("Arial", 10), anchor = "center")
+    b.place(relx = 0.1, rely = 0.46, relheight = 0.12, relwidth = 0.16)
+    
+    caja = Text(frame2, state = "disabled")
+    caja.place(relheight=0.6, relwidth=0.42, relx=0.55,rely=0.19)
+    
+    #caja.insert("Informacion de habitaciones")
     b.bind("<Button-1>", infoprint)
+    
 
     
 
