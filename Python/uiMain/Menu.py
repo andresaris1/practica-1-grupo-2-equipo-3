@@ -442,6 +442,8 @@ def Tour():
 
     def terminarReserva():
         try:
+            if len(destinos_seleccionados) > 15:
+                raise ValueError("Error: Has seleccionado más de 15 destinos.")
 
             if destinos_seleccionados:
                 # Crear una lista de objetos Tour a partir de los destinos seleccionados
@@ -460,9 +462,12 @@ def Tour():
 
                 raise ValueError("Reserva incompleta: No has seleccionado ningún destino.")
 
+        except Exception as ve:
+
+            messagebox.showerror("Error en la reserva", str(ve))
         except Exception as e:
 
-            messagebox.showerror("Error en la reserva", str(e))
+            messagebox.showerror("Error en la reserva", "Ocurrió un error al procesar la reserva: " + str(e))
 
 
     def actualizarRecuadro():
