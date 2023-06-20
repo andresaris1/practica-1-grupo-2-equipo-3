@@ -25,10 +25,28 @@ if __name__ == '__main__':
     print("PRUEBA DE SERIALIZADO")
     Almacenamiento.Deserializar()
 
-    use1 = Usuario( "Juan", 123, 111, "tipo", 345)
-    use2 = Usuario( "Pedro", 456, 222, "tipo", 678)
+    '''empleado1= Almacenamiento.crearEmpleado("Carla",110,1,"Recepcion")
+    empleado2= Almacenamiento.crearEmpleado("Lina",120,1,"Recepcion")
+    empleado3= Almacenamiento.crearEmpleado("Mario",130,1,"Recepcion")
+    empleado4= Almacenamiento.crearEmpleado("Juan",140,1,"Recepcion")
 
-    print(Factura.contador)
+    empleado4= Almacenamiento.crearEmpleado("Luisa",210,1,"Mesero")
+    empleado6= Almacenamiento.crearEmpleado("Valentina",220,1,"Mesero")
+    empleado7= Almacenamiento.crearEmpleado("Mateo",230,1,"Mesero")
+    empleado8= Almacenamiento.crearEmpleado("Jorge",240,1,"Mesero")
+
+    empleado9= Almacenamiento.crearEmpleado("Pedro",310,1,"Cocinero")
+    empleado10= Almacenamiento.crearEmpleado("Julian",320,1,"Cocinero")
+    empleado11= Almacenamiento.crearEmpleado("Kevin",330,1,"Cocinero")
+    empleado12= Almacenamiento.crearEmpleado("Martin",340,1,"Cocinero")
+
+    empleado13= Almacenamiento.crearEmpleado("Camila",410,1,"Bartender")
+    empleado14= Almacenamiento.crearEmpleado("Patricia",420,1,"Bartender")
+    empleado15= Almacenamiento.crearEmpleado("Paula",430,1,"Bartender")
+    empleado16= Almacenamiento.crearEmpleado("Elena",440,1,"Bartender")
+'''
+    for a in Almacenamiento.listaEmpleados:
+        print(a.nombre + "   " + str(a.identificacion))
 
     
 
