@@ -28,17 +28,18 @@ class ServicioExterno(Servicio):
         self.eventoAsociado = eventoAsociado
         
         
+        
     """
     Este método estático retorna el valor monetario de un
     servicio externo según el tipo de servicio externo.
     """
     @staticmethod
     def valorSegunTipo(nombre):
-        if nombre == "entretenimiento":
+        if nombre == "Entretenimiento":
             return 100000
-        elif nombre == "sonido":
+        elif nombre == "Sonido":
             return 50000
-        elif nombre == "decoracion":
+        elif nombre == "Decoracion":
             return 200000
         else:
             return -1
