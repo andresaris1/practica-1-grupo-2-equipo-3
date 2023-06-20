@@ -761,6 +761,24 @@ def Eventos():
     
     empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
     empleados.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.22)
+    
+    aceptar = Button(frame2, text="Aceptar", font=("Arial Bold", 11), command= lambda: terminarEvento())
+    aceptar.place(relheight=0.11, relwidth=0.18, rely=0.87, relx=0.47)
+    
+    def terminarEvento():
+        fecha = fechaEvento.get()
+        duracion = desicionDuracion.get()
+        lugar = desicionLugar.get()
+        asistentes = entryAsistentes.get()
+        if fecha == "" or duracion == "" or lugar == "" or asistentes == "":
+            messagebox.showerror("Error", "Por favor llene todos los campos")
+        else:
+            if messagebox.askyesno("Confirmación", "¿Desea confirmar la reserva?"):
+                messagebox.showinfo("Confirmación", "Reserva realizada con éxito")
+                bienvenido()
+            else:
+                messagebox.showinfo("Confirmación", "Reserva cancelada")
+                bienvenido()
 
 
 
