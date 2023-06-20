@@ -567,13 +567,21 @@ def Eventos():
     serviciosExt = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
     empleadosNecesarios = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
     
+    
+    """
+    Función disparada por el botón "Solicitar Empleados" en la ventana de Eventos.
+    Esta función crea una nueva ventana en la que el cliente tiene la opción
+    de especificar la cantidad de empleados que considera necesaria para la 
+    realización de su evento.
+    
+    """
     def solicitarEmpleados():
     
         new = Toplevel(frame2)
         new.geometry("400x330")
         new.title("Solicitar Empleados")
         
-        
+        #Titulo y subtítulo
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.01)
         titulo = Label(new, text="Solicitar Empleados", font=("Arial Bold", 10), anchor="w")
         titulo.place(relheight=0.05, relwidth=0.5, rely=0.07, relx=0.3)
@@ -582,10 +590,13 @@ def Eventos():
         subtitulo.place(relheight=0.05, relwidth=0.5, rely=0.12, relx=0.34)
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
         
+        #se le pregunta cuántos empleados necesita
         lblServiciosExt = Label(new, text="¿Qué empleados necesita?", font=("Arial", 9), anchor="w")
         lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
         
-        
+        #Una serie de labels (los ai), seguidas de sus respectivas comboboxes (los bi) 
+        #para que el cliente pueda elegir la cantidad de empleados que necesita
+        #de cada tipo
         a0 = Label(new, text="Cocineros: ", font=("Arial", 9), anchor="w")
         a0.value = 0
         a0.place(relheight=0.1, relwidth=0.5, rely=0.45, relx=0.02)
@@ -617,14 +628,19 @@ def Eventos():
             new.destroy()
         
     
+    """
+    Funcion disparada por el Botón de Servicios Externos.
+    Se encarga de preguntar por los servicios externos que el cliente
+    desee incluir en su reserva y guardar aquella información en un diccionario llamado
+    serviciosExt.
+    """
     def solicitarServiciosExternos():
-        
-        
         
         new = Toplevel(frame2)
         new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
         
+        #Titulo y subtítulo
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.001)
         titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
         titulo.place(relheight=0.1, relwidth=0.5, rely=0.07, relx=0.3)
@@ -634,6 +650,7 @@ def Eventos():
         
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
         
+        #Pregunta por los servicios externos que el cliente desea
         lblServiciosExt = Label(new, text="¿Qué servicios externos desea?", font=("Arial", 8), anchor="w")
         lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
       
@@ -641,7 +658,7 @@ def Eventos():
         frameEleccion.place(relheight=0.08, relwidth=0.7, rely=0.35, relx=0.02)
         
         vars = [False]*3
-        
+        #Crea los checkbox para elegir los servicios externos
         cb1 = Checkbutton(frameEleccion, text='Sonido', anchor="w", command= lambda: f0() )
         cb1.pack(side="left")
         
@@ -667,7 +684,8 @@ def Eventos():
             vars[2] = not(vars[2])
             actualizarDisplay()
             
-            
+        #función para actualizar el display de los servicios externos, para que el usuario
+        #pueda ver los servicios que ha elegido
         def actualizarDisplay():
             valor = dict(zip( [True,False],["Sí","No"] ))
             s = "Los servicios contratados son:\n"
@@ -690,6 +708,11 @@ def Eventos():
             serviciosExt["DJ"] = vars[2]
             new.destroy()
     
+    
+    """ 
+    Método que se encarga de retornar una lista de servicios externos, recopilando 
+    y poniendo en uso la información recogida gracias a la ventana de Solicitar Servicios Externos
+    """
     def conseguirServiciosExt():
         servicios = []
         for key in serviciosExt:
@@ -697,7 +720,10 @@ def Eventos():
                 servicios.append(Almacenamiento.createServicioExterno(key, cliente,""))
         return servicios
             
-            
+    """
+    Método que se encarga de retornar una lista de empleados, recopilando
+    y poniendo en uso la información recogida gracias a la ventana de Solicitar Empleados
+    """
     def conseguirEmpleados():
         empleados = []
         i = 0
@@ -773,20 +799,28 @@ def Eventos():
     
     serviciosExt = Button(frame2, text="Servicios Externos",font=("Arial", 10), command=solicitarServiciosExternos)
     serviciosExt.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.02)
-    #Botón para añadir empleados
     
+    #Botón para añadir empleados
     empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
     empleados.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.22)
     
+    #Espacio para añadir una descripción opcional del evento
     lblDescripcion = Label(frame2, text="Descripción (opcional):", font=("Arial", 10), anchor="w")
     lblDescripcion.place(relheight = 0.1, relwidth = 0.23, rely = 0.4, relx = 0.4)
     
     txtDescripcion = Text(frame2, font=("Arial", 8))
     txtDescripcion.place(relheight=0.26, relwidth=0.55, rely=0.5, relx=0.4)
     
+    #Botón para aceptar y confirmar reserva de evento
     aceptar = Button(frame2, text="Aceptar", font=("Arial Bold", 11), command= lambda: terminarEvento())
     aceptar.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.47)
     
+    """
+    Función disparada por el botón Aceptar dentro de la ventana de Reserva de Eventos
+    Se encarga de validar que todos los campos estén llenos y de confirmar la reserva,
+    y del mismo modo se encarga también de mostrarle al usuario la factura 
+    de la reserva de evento en cuestión
+    """
     def terminarEvento():
         if fechaEvento.get() == "" or decisionDuracion.get() == "" or decisionLugar.get() == "" or entryAsistentes.get() == "":
             messagebox.showerror("Error", "Por favor llene todos los campos")
