@@ -182,6 +182,19 @@ class Almacenamiento():
                 break
         return habitacion
     
+    def crearLugar(nombre:str,descripcion,numero,capacidad):
+        valor=Lugar.valorSegunTipo(descripcion)
+        lugar=Lugar(nombre,descripcion,valor,numero,capacidad)
+        Almacenamiento.listaLugares.append(lugar)
+
+    def buscarLugar(numero) -> Lugar:
+        lugar=None
+        for lug in Almacenamiento.listaLugares:
+            if (numero==lug.getNumero()):
+                lugar=lug
+                break
+        return lugar
+    
     def crearEmpleado(nombre: str, identificacion, telefono, cargo):
         empleado=Empleado(nombre,identificacion,telefono,cargo)
         Almacenamiento.listaEmpleados.append(empleado)
