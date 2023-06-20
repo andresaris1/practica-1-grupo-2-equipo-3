@@ -32,9 +32,9 @@ if __name__ == '__main__':
     '''
 
 
-    for a in Almacenamiento.listaServiciosExternos:
+    for a in Almacenamiento.listaUsuarios:
         print(a.nombre)
 
-    
+    print(Factura.contador)
 
     Almacenamiento.Serializar()
