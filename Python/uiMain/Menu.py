@@ -1247,7 +1247,7 @@ def descripciones(event):
 # CREACION DE LA VENTANA DE INICIO
 ventanaInicio = Tk()
 ventanaInicio.title("Gestor del Hotel UN 2.0")
-ventanaInicio.geometry("800x600")
+ventanaInicio.geometry("900x700")
 ventanaInicio.protocol("WM_DELETE_WINDOW", Cerrartodo)
 
 menuBar = Menu(ventanaInicio)
