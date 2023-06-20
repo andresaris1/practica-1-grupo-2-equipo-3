@@ -169,7 +169,7 @@ def Registro():
     se cancela el registro, en caso de que no, procede a registrarlo"""
 
     def registrarUsuario(nombre, id, telefono, cuentaBan):
-        cliente = Almacenamiento.buscarUsuario(id)
+        cliente = Almacenamiento.buscarUsuario(int(id))
         if cliente != None:
             messagebox.showerror(
                 "Usuario ya registrado",
