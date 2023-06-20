@@ -57,8 +57,10 @@ class Evento(Servicio):
         valor = 0
         valor += lugar.getValor()
         for servicioExterno in servicios:
-            valor += servicioExterno.getValor()
-        valor += duracion * 10000
+            if servicioExterno:
+                valor += servicioExterno.getValor()
+            
+        valor += int(duracion) * 10000
         valor += numeroAsistentes * 10000
         for empleado in empleados:
             valor += empleado.getNomina()

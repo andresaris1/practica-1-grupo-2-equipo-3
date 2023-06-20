@@ -564,7 +564,7 @@ def Eventos():
     buscador()
     frame3.place_forget()
         
-    serviciosExt = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
+    serviciosExtra = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
     empleadosNecesarios = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
     
     
@@ -703,9 +703,9 @@ def Eventos():
         aceptar.place(relheight=0.1, relwidth=0.2, rely=0.85, relx=0.7)
         
         def terminar():
-            serviciosExt["Sonido"] = vars[0]
-            serviciosExt["Entretenimiento"] = vars[1]
-            serviciosExt["DJ"] = vars[2]
+            serviciosExtra["Sonido"] = vars[0]
+            serviciosExtra["Entretenimiento"] = vars[1]
+            serviciosExtra["DJ"] = vars[2]
             new.destroy()
     
     
@@ -715,9 +715,9 @@ def Eventos():
     """
     def conseguirServiciosExt():
         servicios = []
-        for key in serviciosExt:
-            if serviciosExt[key]:
-                servicios.append(Almacenamiento.createServicioExterno(key, cliente,""))
+        for key in serviciosExtra:
+            if serviciosExtra[key]:
+                servicios.append(Almacenamiento.crearServicioExterno(key, cliente,""))
         return servicios
             
     """
@@ -726,10 +726,11 @@ def Eventos():
     """
     def conseguirEmpleados():
         empleados = []
-        i = 0
+        i = 2
         for key in empleadosNecesarios:
-            for _ in range(0,empleadosNecesarios[key]):
-                empleados.append(Almacenamiento.createEmpleado(f"alfredo {i}", cliente, random.randint(100000,999999), key))
+            for j in range(len(empleadosNecesarios)):
+                Almacenamiento.buscarEmpleado( int(f"{i}{j}{0}") )
+                empleados.append(Almacenamiento.listaEmpleados[-1])
                 i += 1
         return empleados
                 
@@ -790,7 +791,7 @@ def Eventos():
     
     decisionLugar = Combobox(
         frame2,
-        values=["Terraza", "Salón de Eventos", "Piscina"],
+        values=["Terraza", "Salon de Eventos", "Piscina"],
         textvariable="Lugar del evento"
     )
     decisionLugar.place(relheight=0.1, relwidth=0.17, rely=0.3, relx=0.55)
@@ -828,16 +829,27 @@ def Eventos():
             if messagebox.askyesno("Confirmación", "¿Desea confirmar la reserva?"):
                 messagebox.showinfo("Confirmación", "Reserva realizada con éxito")
                 codigo = random.randint(1000, 9999)
-                lugar = decisionLugar.get()
+                nombredelugar=decisionLugar.get()
+                lu =Almacenamiento.crearLugar(nombredelugar,nombredelugar,0,0)
+                lugar=Almacenamiento.listaLugares[-1]
                 cl = cliente
                 servicios = conseguirServiciosExt()
                 fecha = fechaEvento.get()
-                duracion = decisionDuracion.get()
-                asistentes = entryAsistentes.get()
+                duracion = 0
+                if decisionDuracion.get() == "4 Horas":
+                    duracion=4
+                elif decisionDuracion.get() == "6 Horas":
+                    duracion=6
+                else:
+                    duracion=8
+                asistentes = int(entryAsistentes.get())
                 empleados = conseguirEmpleados()
                 descripcion = txtDescripcion.get(1.0, END)
-                evento = Almacenamiento.createEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
-                factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], evento, f"Evento en {Evento.getLugar()}")
+                listaeventos=[]
+                even = Almacenamiento.crearEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
+                evento=Almacenamiento.listaEventos[-1]
+                listaeventos.append(evento)
+                factura = Almacenamiento.crearFactura(cliente, Almacenamiento.listaEmpleados[0], listaeventos, f"Evento en {nombredelugar}")
                 messagebox.showinfo("Factura Asociada", factura)
                 bienvenido()
             else:

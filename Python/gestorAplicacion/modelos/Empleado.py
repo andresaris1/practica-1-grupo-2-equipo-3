@@ -8,6 +8,7 @@ class Empleado(Persona):
         super().__init__(nombre, identificacion, telefono)
         self._cargo = cargo
         self._comision = 1000 # Valor inicial para todos los empleados
+        self._nomina= 20000
 
     def informacion(self):
         return ("Nombre: " + self.getNombre() + "\n" +
