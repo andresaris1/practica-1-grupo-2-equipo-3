@@ -120,22 +120,17 @@ def buscador():
                 Tel.insert(0, cliente.getTelefono())
                 Cub.insert(0, cliente.get_cuenta_bancaria())
             else:
-                messagebox.showerror(
-                    "Usuario no encontrado",
-                    "Por favor ingrese un documento a buscar",
-
-                )
-                raise UsuarioNoEncontradoError()
+                reg=messagebox.askyesno("Usuario no encontrado","¿Desea registrarlo?")
+                if reg:
+                    Registro()
             Nom.config(state="disabled")
             Tel.config(state="disabled")
             Cub.config(state="disabled")
             return cliente
         except ValueError:
-            messagebox.showerror(
-                "Usuario no encontrado",
-                "Este usuario no está registrado en la base de datos",
-                
-            )
+            reg=messagebox.askyesno("Usuario no encontrado","¿Desea registrarlo?")
+            if reg:
+                Registro()
 
     """Crear todo lo que vemos en el formulario de busqueda y posicionarlo en el frame"""
     Documento = Label(frame2, text="No. Documento", font=("Arial", 10), anchor="w")
@@ -251,13 +246,19 @@ def Alojamiento():
        listahabitaciones, para luego usarla como parametro para crear una nueva reserva
        a la vez que la pone en la lista al lado izquierdo donde veremos cuales se han reservado"""
     def seleccionar(num):
+        print("si entro")
+        print(num)
         txt.config(state="normal")
+        print(Almacenamiento.listaHabitaciones)
         for i in Almacenamiento.listaHabitaciones:
+            print("si entro")
             if num == i.getNumero():
+                print("si entro")
                 if i not in listahabitaciones:
                     listahabitaciones.append(i)
                     txt.insert(END, "\nHabitacion:" + str(i.getNumero()))
                     txt.config(state="disabled")
+                    print(listahabitaciones)
                     break
 
     """Metodo verificar: Se encarga de verificar que no haya errores en las fechas
@@ -301,11 +302,6 @@ def Alojamiento():
 
                     """Busca las habitaciones disponibles para esa fecha, bsucando en las reservas
                     y en una lista que se llama habitaciones disponibles """
-                    for reservas in Almacenamiento.listaReservas:
-                        if (fen >= reservas.getFechaSalida()) or (fsa <= reservas.getFechaEntrada()):
-                            for habitaciones in reservas.getHabitaciones():
-                                if habitaciones not in hadis:
-                                    hadis.append(habitaciones)
                     for habis in Almacenamiento.listaHabitacionesDisponibles:
                         if habis not in hadis:
                             hadis.append(habis)
@@ -1267,18 +1263,9 @@ frame3 = Frame(window, borderwidth=1, relief="solid")
 frame1.place(relheight=0.2, relwidth=1, rely=0)
 frame2.place(relheight=0.8, relwidth=1, rely=0.2)
 
-Almacenamiento.Deserializar()
 
-print (Almacenamiento.listaUsuarios)
-print    (Almacenamiento.listaEmpleados)
-print    (Almacenamiento.listaHabitaciones)
-print    (Almacenamiento.listaLugares)
-print    (Almacenamiento.listaReservas)
-print    (Almacenamiento.listaEventos)
-print    (Almacenamiento.listaServicios)
-print    (Almacenamiento.listaFacturas)
-print    (Almacenamiento.listaServiciosExternos)
-print    (Almacenamiento.listaHabitacionesDisponibles)
+
+Almacenamiento.Deserializar()
 
 
 
