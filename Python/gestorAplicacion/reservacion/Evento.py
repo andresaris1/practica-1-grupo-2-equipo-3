@@ -36,7 +36,7 @@ class Evento(Servicio):
         descripcion (opcional): Descripción del evento.
     """
     def __init__(self, codigo, lugar, cliente, servicios, fecha, duracion, numeroAsistentes, empleados,descripcion=""):
-        super().__init__(f"Evento en {lugar}" , self.calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados),descripcion)
+        super().__init__(f"Evento en {lugar.toString()}" , self.calcularValor(lugar, servicios, duracion, numeroAsistentes, empleados),descripcion)
         self.lugar = lugar
         self.cliente = cliente
         self.servicios = servicios
