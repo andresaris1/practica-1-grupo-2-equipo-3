@@ -1396,7 +1396,7 @@ Nombres = [
     "Miguel Angel Quiceno Hincapie",
 ]
 Descripciones = [
-    "1.Estudiante de ing. en sistemas e informatica en la universidad Nacional",
+    "1.Estudiante de ing. en sistemas e informatica en la universidad Nacional en las mañananas. En las noches Spiderman",
     "2.Edad:19 \nEstudiante de ing. en sistemas e informatica en la Universidad Nacional",
     "3.Estudiante de Matemáticas en la universidad Nacional",
     "4.Estudiante de ing. en sistemas e informatica en la universidad Nacional de dia, de noche dibujante Furro.",
@@ -1409,7 +1409,7 @@ Nombre.place(relheight=0.5, relwidth=1, rely=0, relx=0)
 Descripcionactual = Label(
     frameP5,
     wraplength=400,
-    text="1.Estudiante de ing. en sistemas e informatica en la universidad Nacional",
+    text="1.Estudiante de ing. en sistemas e informatica en la universidad Nacional en las mañananas. En las noches Spiderman",
     font=("Arial", 12),
     anchor="nw",
     
