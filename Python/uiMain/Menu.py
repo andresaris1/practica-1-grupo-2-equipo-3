@@ -949,8 +949,8 @@ def Informacion():
     Titulo.config(text="Informacion de habitaciones")
     Descripcion.config(text="Consulta la Sobre las diferentes habitaciones")
 
-    forma = Label(frame2, text="Informacion de habitaciones", font=("Arial", 10))
-    forma.place(relheight=0.1, relwidth=0.3, relx=0.1, rely=0.2, anchor="w")
+    forma = Label(frame2, text="Informacion de habitaciones", font=("Arial", 15))
+    forma.place(relheight=0.1, relwidth=0.35, relx=0.1, rely=0.2, anchor="w")
     
     
     """GLabel_581=tk.Label(frame2)
