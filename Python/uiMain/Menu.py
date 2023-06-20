@@ -5,6 +5,7 @@ from tkinter import messagebox
 import os
 import sys
 from tkinter.ttk import Combobox
+import random
 
 sys.path.append(os.path.dirname(__file__) + "/../baseDatos")
 sys.path.append(os.path.dirname(__file__)+ "/../uiMain/Exepciones")
@@ -563,15 +564,15 @@ def Eventos():
     buscador()
     frame3.place_forget()
         
-        
-        
+    serviciosExt = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
+    empleadosNecesarios = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
+    
     def solicitarEmpleados():
-        
+    
         new = Toplevel(frame2)
         new.geometry("400x330")
         new.title("Solicitar Empleados")
         
-        empleados = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
         
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.01)
         titulo = Label(new, text="Solicitar Empleados", font=("Arial Bold", 10), anchor="w")
@@ -610,16 +611,15 @@ def Eventos():
         aceptar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.7)
         
         def terminar():
-            empleados["Cocineros"] = b0.get()
-            empleados["Meseros"] = b1.get()
-            empleados["Bartenders"] = b2.get()
+            empleadosNecesarios["Cocineros"] = b0.get()
+            empleadosNecesarios["Meseros"] = b1.get()
+            empleadosNecesarios["Bartenders"] = b2.get()
             new.destroy()
-            
-        return empleados
+        
     
     def solicitarServiciosExternos():
         
-        serviciosExt = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
+        
         
         new = Toplevel(frame2)
         new.geometry("400x400")
@@ -689,9 +689,25 @@ def Eventos():
             serviciosExt["Entretenimiento"] = vars[1]
             serviciosExt["DJ"] = vars[2]
             new.destroy()
-        
-        return serviciosExt
     
+    def conseguirServiciosExt():
+        servicios = []
+        for key in serviciosExt:
+            if serviciosExt[key]:
+                servicios.append(Almacenamiento.createServicioExterno(key, cliente,""))
+        return servicios
+            
+            
+    def conseguirEmpleados():
+        empleados = []
+        i = 0
+        for key in empleadosNecesarios:
+            for _ in range(0,empleadosNecesarios[key]):
+                empleados.append(Almacenamiento.createEmpleado(f"alfredo {i}", cliente, random.randint(100000,999999), key))
+                i += 1
+        return empleados
+                
+        
     
     Titulo.config(text="Reserva nueva de eventos")
     Descripcion.config(
@@ -756,25 +772,37 @@ def Eventos():
     #Botón para añadir servicios externos
     
     serviciosExt = Button(frame2, text="Servicios Externos",font=("Arial", 10), command=solicitarServiciosExternos)
-    serviciosExt.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.02)
+    serviciosExt.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.02)
     #Botón para añadir empleados
     
     empleados = Button(frame2, text="Empleados",font=("Arial", 10), command=solicitarEmpleados)
-    empleados.place(relheight=0.1, relwidth=0.18, rely=0.87, relx=0.22)
+    empleados.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.22)
+    
+    lblDescripcion = Label(frame2, text="Descripción (opcional):", font=("Arial", 10), anchor="w")
+    lblDescripcion.place(relheight = 0.1, relwidth = 0.23, rely = 0.4, relx = 0.4)
+    
+    txtDescripcion = Text(frame2, font=("Arial", 8))
+    txtDescripcion.place(relheight=0.26, relwidth=0.55, rely=0.5, relx=0.4)
     
     aceptar = Button(frame2, text="Aceptar", font=("Arial Bold", 11), command= lambda: terminarEvento())
-    aceptar.place(relheight=0.11, relwidth=0.18, rely=0.87, relx=0.47)
+    aceptar.place(relheight=0.12, relwidth=0.18, rely=0.87, relx=0.47)
     
     def terminarEvento():
-        fecha = fechaEvento.get()
-        duracion = desicionDuracion.get()
-        lugar = desicionLugar.get()
-        asistentes = entryAsistentes.get()
         if fecha == "" or duracion == "" or lugar == "" or asistentes == "":
             messagebox.showerror("Error", "Por favor llene todos los campos")
         else:
             if messagebox.askyesno("Confirmación", "¿Desea confirmar la reserva?"):
                 messagebox.showinfo("Confirmación", "Reserva realizada con éxito")
+                codigo = random.randint(1000, 9999)
+                lugar = desicionLugar.get()
+                cl = cliente
+                servicios = conseguirServiciosExt()
+                fecha = fechaEvento.get()
+                duracion = desicionDuracion.get()
+                asistentes = entryAsistentes.get()
+                empleados = conseguirEmpleados()
+                descripcion = txtDescripcion.get(1.0, END)
+                evento = Almacenamiento.createEvento(codigo, lugar, cl, servicios, fecha, duracion, asistentes, empleados, descripcion)
                 bienvenido()
             else:
                 messagebox.showinfo("Confirmación", "Reserva cancelada")
