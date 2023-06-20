@@ -33,8 +33,10 @@ if __name__ == '__main__':
     Almacenamiento.crearLugar("Terraza","descripcion",101,20000)
     Almacenamiento.crearLugar("Salón de Eventos","descripcion",202,20000)
     Almacenamiento.crearLugar("Piscina","descripcion",303,20000)
+
     '''
-    for a in Almacenamiento.listaLugares:
+
+    for a in Almacenamiento.listaHabitaciones:
         print(a.nombre)
 
     
