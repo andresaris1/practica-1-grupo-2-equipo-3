@@ -562,7 +562,7 @@ def Eventos():
     def solicitarEmpleados():
         
         new = Toplevel(frame2)
-        new.geometry("400x300")
+        new.geometry("400x330")
         new.title("Solicitar Empleados")
         
         empleados = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
@@ -573,14 +573,12 @@ def Eventos():
         
         subtitulo = Label(new, text="Elija los empleados", font=("Arial",8), anchor="w")
         subtitulo.place(relheight=0.05, relwidth=0.5, rely=0.12, relx=0.34)
-        
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
         
         lblServiciosExt = Label(new, text="¿Qué empleados necesita?", font=("Arial", 9), anchor="w")
         lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
         
         
-        vars = [0]*3
         a0 = Label(new, text="Cocineros: ", font=("Arial", 9), anchor="w")
         a0.value = 0
         a0.place(relheight=0.1, relwidth=0.5, rely=0.45, relx=0.02)
@@ -609,20 +607,24 @@ def Eventos():
             empleados["Cocineros"] = b0.get()
             empleados["Meseros"] = b1.get()
             empleados["Bartenders"] = b2.get()
+            new.destroy()
             
         return empleados
     
     def solicitarServiciosExternos():
         
+        serviciosExt = dict(zip(["Sonido","Entretenimiento","DJ"],[False,False,False]))
+        
         new = Toplevel(frame2)
         new.geometry("400x400")
         new.title("Solicitar Servicios Externos")
         
+        Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.001)
         titulo = Label(new, text="Servicios Externos", font=("Arial Bold", 10), anchor="w")
-        titulo.place(relheight=0.1, relwidth=0.5, rely=0.05, relx=0.3)
+        titulo.place(relheight=0.1, relwidth=0.5, rely=0.07, relx=0.3)
         
         subtitulo = Label(new, text="Elija los Servicios externos", font=("Arial",8), anchor="w")
-        subtitulo.place(relheight=0.1, relwidth=0.5, rely=0.12, relx=0.3)
+        subtitulo.place(relheight=0.1, relwidth=0.5, rely=0.14, relx=0.3)
         
         Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
         
@@ -645,7 +647,7 @@ def Eventos():
         
         txtDisplay = Text(new)
         txtDisplay.config(state="disabled")
-        txtDisplay.place(relheight=0.4, relwidth=0.8, rely=0.5, relx=0.02)
+        txtDisplay.place(relheight=0.3, relwidth=0.8, rely=0.5, relx=0.02)
         
         def f0():
             vars[0] = not(vars[0])
@@ -673,9 +675,16 @@ def Eventos():
             txtDisplay.config(state="disabled")
             
           
-        #Aceptar = Button(new, text="Aceptar", font=("Arial", 14), relief=RAISED, command=terminarReserva)
+        aceptar = Button(new, text="Aceptar", font=("Arial", 10), command= lambda: terminar())
+        aceptar.place(relheight=0.1, relwidth=0.2, rely=0.85, relx=0.7)
         
-        return None
+        def terminar():
+            serviciosExt["Sonido"] = vars[0]
+            serviciosExt["Entretenimiento"] = vars[1]
+            serviciosExt["DJ"] = vars[2]
+            new.destroy()
+        
+        return serviciosExt
     
     
     Titulo.config(text="Reserva nueva de eventos")
