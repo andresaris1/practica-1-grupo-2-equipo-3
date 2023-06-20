@@ -560,11 +560,57 @@ def Eventos():
         
         
     def solicitarEmpleados():
+        
         new = Toplevel(frame2)
-        new.geometry("400x400")
+        new.geometry("400x300")
         new.title("Solicitar Empleados")
         
-        return None
+        empleados = dict( zip(["Meseros", "Cocineros", "Bartenders"], [0,0,0]) )
+        
+        Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.01)
+        titulo = Label(new, text="Solicitar Empleados", font=("Arial Bold", 10), anchor="w")
+        titulo.place(relheight=0.05, relwidth=0.5, rely=0.07, relx=0.3)
+        
+        subtitulo = Label(new, text="Elija los empleados", font=("Arial",8), anchor="w")
+        subtitulo.place(relheight=0.05, relwidth=0.5, rely=0.12, relx=0.34)
+        
+        Label(new, text="____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________", font=("Arial", 10)).place(relheight=0.05, relwidth=1, rely=0.20)
+        
+        lblServiciosExt = Label(new, text="¿Qué empleados necesita?", font=("Arial", 9), anchor="w")
+        lblServiciosExt.place(relheight=0.1, relwidth=1, rely=0.28, relx=0.02)
+        
+        
+        vars = [0]*3
+        a0 = Label(new, text="Cocineros: ", font=("Arial", 9), anchor="w")
+        a0.value = 0
+        a0.place(relheight=0.1, relwidth=0.5, rely=0.45, relx=0.02)
+        
+        a1 = Label(new, text="Meseros: ", font=("Arial", 9), anchor="w")
+        a1.value = 0
+        a1.place(relheight=0.1, relwidth=0.5, rely=0.55, relx=0.02)
+        
+        a2 = Label(new, text="Bartenders: ", font=("Arial", 9), anchor="w")
+        a2.value = 0
+        a2.place(relheight=0.1, relwidth=0.5, rely=0.65, relx=0.02)
+        
+        b0 = Combobox(new, values=[0,1,2,3,4], state="readonly")
+        b0.place(relheight=0.08, relwidth=0.1, rely=0.45, relx=0.2)
+        
+        b1 = Combobox(new, values=[0,1,2,3,4], state="readonly")
+        b1.place(relheight=0.08, relwidth=0.1, rely=0.55, relx=0.2)
+        
+        b2 = Combobox(new, values=[0,1,2,3], state="readonly")
+        b2.place(relheight=0.08, relwidth=0.1, rely=0.65, relx=0.2)
+        
+        aceptar = Button(new, text="Aceptar", command = lambda: terminar())
+        aceptar.place(relheight=0.1, relwidth=0.2, rely=0.8, relx=0.7)
+        
+        def terminar():
+            empleados["Cocineros"] = b0.get()
+            empleados["Meseros"] = b1.get()
+            empleados["Bartenders"] = b2.get()
+            
+        return empleados
     
     def solicitarServiciosExternos():
         
