@@ -20,12 +20,12 @@ class ServicioExterno(Servicio):
         eventoAsociado: Evento (objeto de tipo Evento) al que se le solicita el servicio externo.
         descripcion (opcional): Descripción del servicio externo.
     """
-    def __init__(self, nombre, cliente, eventoAsociado, descripcion=""):
+    def __init__(self, nombre, cliente, descripcion=""):
         super().__init__(nombre, self.valorSegunTipo(nombre),descripcion)
         self.empresaContratada = self.empresaSegunTipo(nombre)
         self.descripcion = descripcion
         self.cliente = cliente
-        self.eventoAsociado = eventoAsociado
+        
         
         
     """
@@ -34,11 +34,11 @@ class ServicioExterno(Servicio):
     """
     @staticmethod
     def valorSegunTipo(nombre):
-        if nombre == "entretenimiento":
+        if nombre == "Entretenimiento":
             return 100000
-        elif nombre == "sonido":
+        elif nombre == "Sonido":
             return 50000
-        elif nombre == "decoracion":
+        elif nombre == "Decoracion":
             return 200000
         else:
             return -1
@@ -73,11 +73,5 @@ class ServicioExterno(Servicio):
 
     def setCliente(self, cliente):
         self.cliente = cliente
-        
-    def getEventoAsociado(self):
-        return self.eventoAsociado
-    
-    def setEventoAsociado(self, eventoAsociado):
-        self.eventoAsociado = eventoAsociado
         
     

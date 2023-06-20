@@ -24,12 +24,17 @@ if __name__ == '__main__':
 
     print("PRUEBA DE SERIALIZADO")
     Almacenamiento.Deserializar()
+    '''
 
-    use1 = Usuario( "Juan", 123, 111, "tipo", 345)
-    use2 = Usuario( "Pedro", 456, 222, "tipo", 678)
+    Almacenamiento.crearServicioExterno("Sonido", use1, "descripcion")
+    Almacenamiento.crearServicioExterno("Entretenimiento", use1, "descripcion")
+    Almacenamiento.crearServicioExterno("DJ", use1, "descripcion")
+    '''
+
+
+    for a in Almacenamiento.listaUsuarios:
+        print(a.nombre)
 
     print(Factura.contador)
-
-    
 
     Almacenamiento.Serializar()
